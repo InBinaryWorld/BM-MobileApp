@@ -1,8 +1,18 @@
 package dev.szafraniak.bm_mobileapp.presentation;
 
-import com.trello.rxlifecycle3.LifecycleProvider;
-import com.trello.rxlifecycle3.android.ActivityEvent;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 
-public interface BaseView extends LifecycleProvider<ActivityEvent> {
+import com.trello.rxlifecycle3.LifecycleTransformer;
 
+public interface BaseView {
+
+    <T> LifecycleTransformer<T> bindToLifecycle();
+
+    void startActivityForResult(Intent intent, int requestCode, Bundle options);
+
+    Context getContext();
+
+    void startActivity(Intent intent, Bundle options);
 }

@@ -4,67 +4,53 @@ import android.app.Application;
 
 import javax.inject.Inject;
 
-import dev.szafraniak.bm_mobileapp.BMApplication;
+import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.entity.AuthorizationResponse;
 import dev.szafraniak.bm_mobileapp.business.http.service.AuthorizationService;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.rxjava3.annotations.NonNull;
+import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
+import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
+import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuActivity_;
+import io.reactivex.observers.DisposableSingleObserver;
 import lombok.Setter;
 import timber.log.Timber;
 
 public class LoginPresenter {
-
     @Setter
     LoginView view;
 
     @Inject
     AuthorizationService service;
 
+    @Inject
+    SessionManager session;
+
     public LoginPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
     }
 
-    private void loginSuccesses(@NonNull AuthorizationResponse response) {
-        Timber.d("!!!!!!!!!!!! Congratulations !!!!!!!!!!!");
-    }
-
-
     public void signInWithCredentials(String userName, String password) {
         service.loginWithCredentials(userName, password)
                 .compose(view.bindToLifecycle())
-                .subscribe(new LoginObserver("Login Failed: wrong username or password"));
+                .subscribe(new LoginObserver());
     }
 
     public void exchangeGoogleToken(String idToken) {
         service.loginWithGoogle(idToken)
                 .compose(view.bindToLifecycle())
-                .subscribe(new LoginObserver("Login Failed: internal error"));
+                .subscribe(new LoginObserver());
     }
 
-    private class LoginObserver implements Observer<AuthorizationResponse> {
-        String errMsg;
-
-        public LoginObserver(String errorMessage) {
-            errMsg = errorMessage;
-        }
-
+    private class LoginObserver extends DisposableSingleObserver<AuthorizationResponse> {
         @Override
-        public void onSubscribe(Disposable d) {
-        }
-
-        @Override
-        public void onNext(@NonNull AuthorizationResponse response) {
-            loginSuccesses(response);
+        public void onSuccess(AuthorizationResponse response) {
+            session.setSession(response);
+            Navigator.startActivity(view.getContext(), MenuActivity_.class);
         }
 
         @Override
         public void onError(Throwable t) {
-            view.UIOnLoginFailed(errMsg);
-        }
-
-        @Override
-        public void onComplete() {
+            view.showError();
+            Timber.e(t);
         }
     }
 }

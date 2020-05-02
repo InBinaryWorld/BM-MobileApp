@@ -18,7 +18,8 @@ public class RetrofitModule {
     @Provides
     @Singleton
     @Named("ResourceServerRetrofit")
-    Retrofit provideResourceServerRetrofit(OkHttpClient okHttpClient) {
+    Retrofit provideResourceServerRetrofit(
+            @Named("OkHttpClientWithAuth") OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(BuildConfig.RESOURCE_SERVER_URL)
@@ -31,7 +32,8 @@ public class RetrofitModule {
     @Provides
     @Singleton
     @Named("AuthorizationServerRetrofit")
-    Retrofit provideAuthorizationServerRetrofit(OkHttpClient okHttpClient) {
+    Retrofit provideAuthorizationServerRetrofit(
+            @Named("OkHttpClientWithoutAuth") OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(BuildConfig.AUTHORIZATION_SERVER_URL)

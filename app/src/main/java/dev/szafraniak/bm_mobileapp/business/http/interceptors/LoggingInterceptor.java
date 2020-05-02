@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.business.http;
+package dev.szafraniak.bm_mobileapp.business.http.interceptors;
 
 import java.io.IOException;
 
@@ -27,9 +27,9 @@ public class LoggingInterceptor implements Interceptor {
         MediaType contentType = response.body().contentType();
         if (hasRepresentation(contentType)) {
             responseContent = response.body().string();
-            responseBody = ResponseBody.create(contentType, responseContent);
+            responseBody = ResponseBody.create(responseContent, contentType);
         } else {
-            responseBody = ResponseBody.create(contentType, response.body().bytes());
+            responseBody = ResponseBody.create(response.body().bytes(), contentType);
         }
 
         logResponse(response, responseContent, responseTime);

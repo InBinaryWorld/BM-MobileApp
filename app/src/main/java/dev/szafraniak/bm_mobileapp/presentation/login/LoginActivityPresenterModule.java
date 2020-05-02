@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation;
+package dev.szafraniak.bm_mobileapp.presentation.login;
 
 import android.app.Application;
 
@@ -6,10 +6,9 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import dev.szafraniak.bm_mobileapp.presentation.login.LoginPresenter;
 
 @Module
-public class ViewPresenterModule {
+public class LoginActivityPresenterModule {
 
     @Provides
     @Singleton

@@ -1,7 +1,8 @@
-package dev.szafraniak.bm_mobileapp;
+package dev.szafraniak.bm_mobileapp.business;
 
 import android.app.Application;
 
+import dev.szafraniak.bm_mobileapp.BuildConfig;
 import dev.szafraniak.bm_mobileapp.business.dagger.AppComponent;
 import dev.szafraniak.bm_mobileapp.business.dagger.AppModule;
 import dev.szafraniak.bm_mobileapp.business.dagger.DaggerAppComponent;

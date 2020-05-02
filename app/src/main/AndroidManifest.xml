@@ -2,25 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.szafraniak.bm_mobileapp">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!--        TODO: remove clearTextTraffic when servers will not be on localhost and will be served on https -->
     <application
         android:usesCleartextTraffic="true"
-        android:name=".BMApplication"
+        android:name=".business.BMApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.login.LoginActivity_">
+
+        <activity android:name=".presentation.splash.SplashActivity_">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".presentation.login.LoginActivity_" />
+        <activity android:name=".presentation.menu.activity.MenuActivity_" />
     </application>
 
 </manifest>
