@@ -6,9 +6,11 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.HelloService;
+import lombok.Setter;
 
 public class MenuPresenter {
 
+    @Setter
     MenuView view;
 
     @Inject

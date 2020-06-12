@@ -38,6 +38,7 @@ public class MenuActivity extends BaseActivity implements MenuView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((BMApplication) getApplication()).getAppComponent().inject(this);
+        presenter.setView(this);
     }
 
     @Click(R.id.btn_logout)

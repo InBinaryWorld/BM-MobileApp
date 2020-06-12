@@ -30,6 +30,7 @@ public class AuthorizationService {
     private final static String GRANT_TYPE_REFRESH_TOKEN = "refresh_token";
     private final static String GRANT_TYPE_TOKEN_EXCHANGE = "urn:ietf:params:oauth:grant-type:token-exchange";
     private final static String SUBJECT_ISSUER_GOOGLE = "google";
+    private final static String SUBJECT_ISSUER_FACEBOOK = "facebook";
     private final static String SUBJECT_TOKEN_TYPE_ACCESS_TOKEN = "urn:ietf:params:oauth:token-type:access_token";
 
     @Inject
@@ -58,13 +59,21 @@ public class AuthorizationService {
         return HttpUtils.executeCall(serverApi.syncTokenEndpoint(fields));
     }
 
-    public Single<AuthorizationResponse> loginWithGoogle(String googleIdToken) {
+    public Single<AuthorizationResponse> loginWithGoogle(String token) {
+        return socialLogin(token, SUBJECT_ISSUER_GOOGLE);
+    }
+
+    public Single<AuthorizationResponse> loginWithFacebook(String token) {
+        return socialLogin(token, SUBJECT_ISSUER_FACEBOOK);
+    }
+
+    private Single<AuthorizationResponse> socialLogin(String token, String issuer) {
         Map<String, String> fields = new ArrayMap<>();
         fields.put(FIELD_CLIENT_ID, BuildConfig.AUTHORIZATION_CLIENT_ID);
         fields.put(FIELD_GRANT_TYPE, GRANT_TYPE_TOKEN_EXCHANGE);
-        fields.put(FIELD_SUBJECT_ISSUER, SUBJECT_ISSUER_GOOGLE);
+        fields.put(FIELD_SUBJECT_ISSUER, issuer);
         fields.put(FIELD_SUBJECT_TOKEN_TYPE, SUBJECT_TOKEN_TYPE_ACCESS_TOKEN);
-        fields.put(FIELD_SUBJECT_TOKEN, googleIdToken);
+        fields.put(FIELD_SUBJECT_TOKEN, token);
         return serverApi.tokenEndpoint(fields)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());

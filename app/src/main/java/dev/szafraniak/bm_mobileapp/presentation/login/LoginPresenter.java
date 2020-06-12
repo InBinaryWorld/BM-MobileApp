@@ -40,6 +40,12 @@ public class LoginPresenter {
                 .subscribe(new LoginObserver());
     }
 
+    public void exchangeFacebookToken(String token) {
+        service.loginWithFacebook(token)
+                .compose(view.bindToLifecycle())
+                .subscribe(new LoginObserver());
+    }
+
     private class LoginObserver extends DisposableSingleObserver<AuthorizationResponse> {
         @Override
         public void onSuccess(AuthorizationResponse response) {

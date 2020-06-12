@@ -4,6 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -23,6 +29,7 @@ import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
 import dev.szafraniak.bm_mobileapp.presentation.BaseActivity;
 import timber.log.Timber;
 
+import static dev.szafraniak.bm_mobileapp.business.Constance.ACTIVITY_RESULT_CODE_FACEBOOK_LOGIN;
 import static dev.szafraniak.bm_mobileapp.business.Constance.ACTIVITY_RESULT_CODE_GOOGLE_LOGIN;
 
 @SuppressLint("Registered")
@@ -35,7 +42,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Inject
     LoginPresenter presenter;
 
-    private GoogleSignInClient mGoogleSignInClient;
+    private LoginManager loginManager;
+    private CallbackManager callbackManager;
+    private GoogleSignInClient googleClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +52,30 @@ public class LoginActivity extends BaseActivity implements LoginView {
         ((BMApplication) getApplication()).getAppComponent().inject(this);
         presenter.setView(this);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        callbackManager = CallbackManager.Factory.create();
+        loginManager = LoginManager.getInstance();
+        loginManager.registerCallback(callbackManager, new FacebookCallbackImpl());
+
+        GoogleSignInOptions gso = new GoogleSignInOptions
+                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(BuildConfig.GOOGLE_CLIENT_ID)
                 .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        googleClient = GoogleSignIn.getClient(this, gso);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (userPreferences.silentLoginEnabled()) {
+        if (AccessToken.isCurrentAccessTokenActive() && !userPreferences.facebookSilentLogin()) {
+            loginManager.logOut();
+        }
+
+        if (userPreferences.facebookSilentLogin() && AccessToken.isCurrentAccessTokenActive()) {
             showProgressBar();
-            mGoogleSignInClient.silentSignIn()
-                    .addOnCompleteListener(this, this::handleGoogleSignInResult);
+            presenter.exchangeFacebookToken(AccessToken.getCurrentAccessToken().getToken());
+        } else if (userPreferences.googleSilentLoginEnabled()) {
+            showProgressBar();
+            googleClient.silentSignIn().addOnCompleteListener(this, this::handleGoogleSignInResult);
         }
     }
 
@@ -74,19 +94,21 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     @Click(R.id.sign_in_google_button)
-    protected void signIn() {
+    protected void googleSignIn() {
         showProgressBar();
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        Intent signInIntent = googleClient.getSignInIntent();
         startActivityForResult(signInIntent, ACTIVITY_RESULT_CODE_GOOGLE_LOGIN);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ACTIVITY_RESULT_CODE_GOOGLE_LOGIN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleGoogleSignInResult(task);
+        } else if (requestCode == ACTIVITY_RESULT_CODE_FACEBOOK_LOGIN) {
+            callbackManager.onActivityResult(requestCode, resultCode, data);
         }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void handleGoogleSignInResult(Task<GoogleSignInAccount> completedTask) {
@@ -99,6 +121,24 @@ public class LoginActivity extends BaseActivity implements LoginView {
             }
         } catch (ApiException e) {
             Timber.e("signInResult:failed code=%s", e.getStatusCode());
+            showError();
+        }
+    }
+
+    class FacebookCallbackImpl implements FacebookCallback<LoginResult> {
+        @Override
+        public void onSuccess(LoginResult loginResult) {
+            showProgressBar();
+            presenter.exchangeFacebookToken(loginResult.getAccessToken().getToken());
+        }
+
+        @Override
+        public void onCancel() {
+            showError();
+        }
+
+        @Override
+        public void onError(FacebookException exception) {
             showError();
         }
     }
