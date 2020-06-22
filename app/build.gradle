@@ -1,29 +1,38 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.0"
 
     defaultConfig {
         applicationId "dev.szafraniak.bm_mobileapp"
         minSdkVersion 26
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    signingConfigs {
+        defaultConf {
+            storeFile file("certificate/BmMobileApp.jks")
+            keyAlias "BmMobileApp"
+            storePassword "app123"
+            keyPassword "app123"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.defaultConf
         }
         debug {
             buildConfigField "String", "GOOGLE_CLIENT_ID", '"896691165273-um6gce2ec2p4r4jkl307lij2lrvc5vma.apps.googleusercontent.com"'
             buildConfigField "String", "AUTHORIZATION_CLIENT_ID", '"bm-mobile"'
             buildConfigField "String", "RESOURCE_SERVER_URL", '"http://localhost:8081"'
             buildConfigField "String", "AUTHORIZATION_SERVER_URL", '"http://localhost:8080"'
+            signingConfig signingConfigs.defaultConf
         }
     }
     compileOptions {
