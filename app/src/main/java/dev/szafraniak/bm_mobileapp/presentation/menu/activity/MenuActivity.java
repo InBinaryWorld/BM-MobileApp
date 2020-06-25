@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.AuthorizationService;
+import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationService;
 import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
 import dev.szafraniak.bm_mobileapp.presentation.BaseActivity;
 import io.reactivex.observers.DisposableCompletableObserver;

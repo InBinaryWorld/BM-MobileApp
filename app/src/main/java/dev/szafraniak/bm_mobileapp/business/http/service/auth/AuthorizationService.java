@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.business.http.service;
+package dev.szafraniak.bm_mobileapp.business.http.service.auth;
 
 import android.app.Application;
 import android.util.ArrayMap;

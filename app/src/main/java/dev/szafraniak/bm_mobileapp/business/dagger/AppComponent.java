@@ -8,9 +8,11 @@ import dev.szafraniak.bm_mobileapp.business.http.RetrofitModule;
 import dev.szafraniak.bm_mobileapp.business.http.api.ServerApiModule;
 import dev.szafraniak.bm_mobileapp.business.http.interceptors.AuthInterceptor;
 import dev.szafraniak.bm_mobileapp.business.http.interceptors.TokenAuthenticator;
-import dev.szafraniak.bm_mobileapp.business.http.service.AuthorizationService;
 import dev.szafraniak.bm_mobileapp.business.http.service.HelloService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ServicesModule;
+import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthModule;
+import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationService;
+import dev.szafraniak.bm_mobileapp.business.http.service.auth.LoginService;
 import dev.szafraniak.bm_mobileapp.business.memory.MemoryManagementModule;
 import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
 import dev.szafraniak.bm_mobileapp.presentation.login.LoginActivity;
@@ -24,7 +26,8 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuPresenter;
 @Component(modules = {
         AppModule.class, MemoryManagementModule.class, OkHttpClientModule.class,
         ServerApiModule.class, RetrofitModule.class, ServicesModule.class,
-        LoginActivityPresenterModule.class, MenuActivityPresenterModule.class
+        LoginActivityPresenterModule.class, MenuActivityPresenterModule.class,
+        AuthModule.class
 })
 public interface AppComponent {
 
@@ -45,4 +48,6 @@ public interface AppComponent {
     void inject(MenuActivity menuActivity);
 
     void inject(MenuPresenter menuPresenter);
+
+    void inject(LoginService socialLoginService);
 }

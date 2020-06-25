@@ -16,9 +16,4 @@ public class ServicesModule {
         return new HelloService(app);
     }
 
-    @Provides
-    @Singleton
-    public AuthorizationService provideAuthorizationService(Application app) {
-        return new AuthorizationService(app);
-    }
 }

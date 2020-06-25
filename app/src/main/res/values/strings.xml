@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BM-MobileApp</string>
+    <string name="app_name">Business Manager</string>
     <string name="facebook_app_id">255726149027121</string>
     <string name="fb_login_protocol_scheme">fb255726149027121</string>
 </resources>

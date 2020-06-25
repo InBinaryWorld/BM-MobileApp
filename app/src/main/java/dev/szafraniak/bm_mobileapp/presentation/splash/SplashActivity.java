@@ -20,8 +20,13 @@ public class SplashActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initSplashTimer();
+    }
+
+    private void initSplashTimer() {
         new Handler().postDelayed(() -> {
             Navigator.startActivityOnEmptyStack(this, LoginActivity_.class);
         }, SPLASH_DISPLAY_LENGTH);
     }
+
 }
