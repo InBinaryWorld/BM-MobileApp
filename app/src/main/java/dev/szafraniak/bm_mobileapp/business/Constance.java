@@ -1,7 +1,7 @@
 package dev.szafraniak.bm_mobileapp.business;
 
 public final class Constance {
-    public static final long SPLASH_DISPLAY_LENGTH = 8000;
+    public static final long SPLASH_DISPLAY_LENGTH = 1500;
 
     public final static String PREFERENCES_SESSION_PREFIX = "BM_Session";
     public final static String PREFERENCES_USER_PREFIX = "BM_User";

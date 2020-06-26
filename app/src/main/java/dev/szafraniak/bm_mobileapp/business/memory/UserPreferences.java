@@ -27,7 +27,7 @@ public class UserPreferences {
         preferences.edit().putBoolean(FACEBOOK_SILENT_LOGIN_ENABLED, state).apply();
     }
 
-    public boolean facebookSilentLogin() {
+    public boolean facebookSilentLoginEnabled() {
         return preferences.getBoolean(FACEBOOK_SILENT_LOGIN_ENABLED, false);
     }
 

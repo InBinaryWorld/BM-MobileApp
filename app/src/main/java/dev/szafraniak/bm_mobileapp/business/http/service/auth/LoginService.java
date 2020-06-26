@@ -55,10 +55,12 @@ public class LoginService {
 
     public void silentFacebookSignIn() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        if (accessToken.isExpired()) {
-            silentLoginFailed(new Exception("Facebook token is not active"));
+        if (accessToken != null && !accessToken.isExpired()) {
+            exchangeFacebookToken(accessToken.getToken(), new SilentLoginObserver());
+            return;
         }
-        exchangeFacebookToken(accessToken.getToken(), new SilentLoginObserver());
+        silentLoginFailed(new Exception("Facebook token is not active"));
+
     }
 
     public void silentGoogleSignIn() {
@@ -87,13 +89,13 @@ public class LoginService {
 
     // Method must be injected in Activity onActivityResult method
 
-    public void exchangeGoogleToken(String idToken, DisposableSingleObserver<AuthorizationResponse> callback) {
+    private void exchangeGoogleToken(String idToken, DisposableSingleObserver<AuthorizationResponse> callback) {
         authorizationService.loginWithGoogle(idToken)
                 .compose(activity.bindToLifecycle())
                 .subscribe(callback);
     }
 
-    public void exchangeFacebookToken(String token, DisposableSingleObserver<AuthorizationResponse> callback) {
+    private void exchangeFacebookToken(String token, DisposableSingleObserver<AuthorizationResponse> callback) {
         authorizationService.loginWithFacebook(token)
                 .compose(activity.bindToLifecycle())
                 .subscribe(callback);

@@ -3,107 +3,161 @@ package dev.szafraniak.bm_mobileapp.presentation.login;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.transition.ChangeBounds;
+import android.transition.Fade;
+import android.transition.Transition;
+import android.transition.TransitionManager;
+import android.view.View;
+import android.widget.Toast;
 
-import com.facebook.AccessToken;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.entity.AuthorizationResponse;
-import dev.szafraniak.bm_mobileapp.business.http.service.auth.LoginService;
-import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
-import dev.szafraniak.bm_mobileapp.business.models.LoginCallback;
-import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.BaseActivity;
-import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuActivity_;
+import dev.szafraniak.bm_mobileapp.business.Constance;
 
 @SuppressLint("Registered")
 @EActivity(R.layout.login_activity)
-public class LoginActivity extends BaseActivity implements LoginView {
+public class LoginActivity extends LoginView {
 
-    @Inject
-    UserPreferences userPreferences;
+    @ViewById(R.id.cl_logo_component)
+    ConstraintLayout logoContainer;
+
+    @ViewById(R.id.cl_buttons_container)
+    ConstraintLayout buttonsContainer;
+
+    @ViewById(R.id.cl_silent_container)
+    ConstraintLayout silentContainer;
+
+    @ViewById(R.id.cl_progress_container)
+    ConstraintLayout progressContainer;
+
+    @ViewById(R.id.cl_logo_host)
+    ConstraintLayout logoHost;
+
+    @ViewById(R.id.cl_buttons_host)
+    ConstraintLayout buttonsHost;
+
+    @ViewById(R.id.cl_silent_host)
+    ConstraintLayout silentHost;
+
+    @ViewById(R.id.cl_progress_host)
+    ConstraintLayout progressHost;
 
     @Inject
     LoginPresenter presenter;
-
-    @Inject
-    SessionManager session;
-
-    LoginService loginService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((BMApplication) getApplication()).getAppComponent().inject(this);
-        loginService = new LoginService(this, new LoginCallbackImpl());
-        presenter.setView(this);
+        presenter.initializePresenter(this);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (userPreferences.facebookSilentLogin() && AccessToken.isCurrentAccessTokenActive()) {
-            showProgressBar();
-            loginService.silentFacebookSignIn();
-        } else if (userPreferences.googleSilentLoginEnabled()) {
-            showProgressBar();
-            loginService.silentGoogleSignIn();
-        }
-    }
-
-    @Override
-    public void showProgressBar() {
-    }
-
-    @Override
-    public void showError() {
-    }
-
-    @Click(R.id.sign_in)
-    public void credentialSignIn() {
-        showProgressBar();
-        loginService.signInWithCredentials("test", "test");
-    }
-
-    @Click(R.id.sign_in_google_button)
-    protected void googleSignIn() {
-        showProgressBar();
-        loginService.signInWithGoogle();
-    }
-
-    @Click(R.id.sign_in_facebook_button)
-    protected void facebookSignIn() {
-        showProgressBar();
-        loginService.signInWithFacebook();
+    @AfterViews
+    public void initializeUI() {
+        new Handler().postDelayed(this::startLoginProcess, Constance.SPLASH_DISPLAY_LENGTH);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        loginService.onActivityResult(requestCode, resultCode, data);
+        presenter.registerLoginService(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private class LoginCallbackImpl implements LoginCallback {
-        @Override
-        public void onSuccess(AuthorizationResponse response) {
-            session.setSession(response);
-            Navigator.startActivity(getContext(), MenuActivity_.class);
+    private void startLoginProcess() {
+        super.onStart();
+        moveLogo(1000, 0);
+        if (presenter.isSilentLoginEnabled()) {
+            setSilentComponentVisibility(View.VISIBLE, 500, 500);
+            new Handler().postDelayed(presenter::performSilentLogin, 1000);
+        } else {
+            setButtonComponentVisibility(View.VISIBLE, 500, 500);
         }
+    }
 
-        @Override
-        public void onFailed(Exception e) {
-            showError();
-        }
+    @Click(R.id.btn_login_google)
+    protected void googleSignIn() {
+        showProgressBar();
+        presenter.signInWithGoogle();
+    }
 
-        @Override
-        public void onSilentFailed(Exception e) {
+    @Click(R.id.btn_login_facebook)
+    protected void facebookSignIn() {
+        showProgressBar();
+        presenter.signInWithFacebook();
+    }
 
-        }
+    @Override
+    void onFailed() {
+        showError();
+    }
+
+    @Override
+    void onSilentFailed() {
+        setSilentComponentVisibility(View.GONE, 500, 0);
+        setButtonComponentVisibility(View.VISIBLE, 500, 300);
+    }
+
+    private void showProgressBar() {
+        setButtonComponentVisibility(View.GONE, 500, 0);
+        setLoginInProgressComponentVisibility(View.VISIBLE, 500, 300);
+    }
+
+    private void showError() {
+        Toast.makeText(this, R.string.login_failed, Toast.LENGTH_SHORT).show();
+        setLoginInProgressComponentVisibility(View.GONE, 500, 0);
+        setButtonComponentVisibility(View.VISIBLE, 500, 300);
+    }
+
+    private void setLoginInProgressComponentVisibility(int visibility, int duration, int delay) {
+        Transition transition = getFade(duration, delay);
+        TransitionManager.beginDelayedTransition(progressHost, transition);
+        progressContainer.setVisibility(visibility);
+    }
+
+    private void setButtonComponentVisibility(int visibility, int duration, int delay) {
+        Transition transition = getFade(duration, delay);
+        TransitionManager.beginDelayedTransition(buttonsHost, transition);
+        buttonsContainer.setVisibility(visibility);
+    }
+
+    private void setSilentComponentVisibility(int visibility, int duration, int delay) {
+        Transition transition = getFade(duration, delay);
+        TransitionManager.beginDelayedTransition(silentHost, transition);
+        silentContainer.setVisibility(visibility);
+    }
+
+    private void moveLogo(int duration, int delay) {
+        ConstraintSet constraintSet = new ConstraintSet();
+        constraintSet.clone(logoHost);
+        constraintSet.setVerticalBias(logoContainer.getId(), 0.28f);
+
+        Transition transition = getChangeBounds(duration, delay);
+        TransitionManager.beginDelayedTransition(logoHost, transition);
+        constraintSet.applyTo(logoHost);
+    }
+
+    public Transition getFade(int duration, int delay) {
+        Transition fade = new Fade();
+        fade.setDuration(duration);
+        fade.setStartDelay(delay);
+        return fade;
+    }
+
+    public Transition getChangeBounds(int duration, int delay) {
+        Transition changeBounds = new ChangeBounds();
+        changeBounds.setDuration(duration);
+        changeBounds.setStartDelay(delay);
+        return changeBounds;
     }
 }
