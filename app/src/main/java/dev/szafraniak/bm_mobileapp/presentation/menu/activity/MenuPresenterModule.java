@@ -8,7 +8,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class MenuActivityPresenterModule {
+public class MenuPresenterModule {
 
     @Provides
     @Singleton

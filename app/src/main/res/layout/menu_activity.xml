@@ -6,42 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".presentation.login.LoginActivity">
 
-    <Button
-        android:id="@+id/secured"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="secured"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <FrameLayout
+        android:id="@+id/fl_navigator_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/not_secured"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="not secured"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Logout"
+        app:labelVisibilityMode="selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/not_secured" />
-
-    <TextView
-        android:id="@+id/tv_response"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tv_response"
-        app:layout_constraintBottom_toTopOf="@+id/secured"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:menu="@menu/menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

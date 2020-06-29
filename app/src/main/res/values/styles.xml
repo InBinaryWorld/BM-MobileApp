@@ -9,11 +9,10 @@
     </style>
 
     <!-- Base application theme. -->
-    <style name="BMTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="BMTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorAccent">@color/colorCoral</item>
         <item name="colorPrimary">@color/colorBlueLight</item>
         <item name="android:statusBarColor">@color/colorBlueDark</item>
-        <item name="android:navigationBarColor">@color/colorBlueDark</item>
     </style>
 
     <style name="MainContainer">

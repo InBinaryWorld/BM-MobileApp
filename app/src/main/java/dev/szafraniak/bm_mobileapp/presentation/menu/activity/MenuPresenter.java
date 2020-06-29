@@ -2,10 +2,9 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.activity;
 
 import android.app.Application;
 
-import javax.inject.Inject;
-
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.HelloService;
+import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
+import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import lombok.Setter;
 
 public class MenuPresenter {
@@ -13,28 +12,13 @@ public class MenuPresenter {
     @Setter
     MenuView view;
 
-    @Inject
-    HelloService helloService;
-
     public MenuPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
     }
 
-    public void notSecured() {
-        helloService.getHelloMsg()
-                .compose(view.bindToLifecycle())
-                .subscribe(
-                        e -> view.setData(e),
-                        e -> view.setData(e.getMessage())
-                );
+    public void onNavigationItemSelected(int menuId) {
+        int fragmentId = FragmentFactory.parseMenuIdToFragmentId(menuId);
+        Navigator.navigateTo(fragmentId, view, true, true);
     }
 
-    public void secured() {
-        helloService.getSecuredHelloMsg()
-                .compose(view.bindToLifecycle())
-                .subscribe(
-                        e -> view.setData(e),
-                        e -> view.setData(e.getMessage())
-                );
-    }
 }

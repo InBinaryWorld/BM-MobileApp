@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.fragment.app.FragmentManager;
+
 import com.trello.rxlifecycle3.LifecycleTransformer;
 
 public interface BaseView {
@@ -15,4 +17,8 @@ public interface BaseView {
     Context getContext();
 
     void startActivity(Intent intent, Bundle options);
+
+    FragmentManager getFManager();
+
+    String getClassName();
 }

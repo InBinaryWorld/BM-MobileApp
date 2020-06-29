@@ -2,9 +2,15 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
 
-import org.androidannotations.annotations.Click;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
@@ -12,72 +18,50 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationService;
-import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
+import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.BaseActivity;
-import io.reactivex.observers.DisposableCompletableObserver;
-import timber.log.Timber;
+import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment;
 
 @SuppressLint("Registered")
 @EActivity(R.layout.menu_activity)
-public class MenuActivity extends BaseActivity implements MenuView {
+public class MenuActivity extends BaseActivity implements MenuView, BottomNavigationView.OnNavigationItemSelectedListener {
 
-    @Inject
-    AuthorizationService service;
+    @ViewById(R.id.fl_navigator_container)
+    FrameLayout navigatorContainer;
 
-    @Inject
-    SessionManager session;
+    @ViewById(R.id.bottomNavigationView)
+    BottomNavigationView navigationView;
 
     @Inject
     MenuPresenter presenter;
 
-    @ViewById(R.id.tv_response)
-    TextView messageTextView;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((BMApplication) getApplication()).getAppComponent().inject(this);
         presenter.setView(this);
     }
 
-    @Click(R.id.btn_logout)
-    public void logoutBtnOnClick() {
-        logout();
-    }
-
-    @Click(R.id.not_secured)
-    public void notSecured() {
-        presenter.notSecured();
-    }
-
-    @Click(R.id.secured)
-    public void secured() {
-        presenter.secured();
+    @AfterViews
+    public void initialize() {
+        Navigator.startNavigation(this);
+        navigationView.setOnNavigationItemSelectedListener(this);
     }
 
     @Override
-    public void setData(String data) {
-        messageTextView.setText(data);
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        presenter.onNavigationItemSelected(item.getItemId());
+        return true;
     }
 
     @Override
-    public void logout() {
-        service.logout(session.getRefreshToken())
-                .compose(bindToLifecycle())
-                .subscribe(new LogoutObserver());
-    }
-
-    private class LogoutObserver extends DisposableCompletableObserver {
-        @Override
-        public void onComplete() {
-            setResult(RESULT_OK, null);
+    public void onBackPressed() {
+        if (Navigator.getStackCount(this) == 1) {
             finish();
         }
-
-        @Override
-        public void onError(Throwable e) {
-            Timber.e(e);
+        super.onBackPressed();
+        if (Navigator.getCurrentFragment(this) instanceof DashboardFragment) {
+            navigationView.getMenu().findItem(R.id.menu_dashboard).setChecked(true);
         }
     }
 }

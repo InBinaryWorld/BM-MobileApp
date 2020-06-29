@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_dashboard"
+        android:icon="@drawable/ic_dashboard"
+        android:title="@string/menu_dashboard" />
+    <item
+        android:id="@+id/menu_contacts"
+        android:icon="@drawable/ic_contact"
+        android:title="@string/contacts" />
+    <item
+        android:id="@+id/menu_resources"
+        android:icon="@drawable/ic_resources"
+        android:title="@string/resources" />
+    <item
+        android:id="@+id/menu_finances"
+        android:icon="@drawable/ic_finances"
+        android:title="@string/finances" />
+    <item
+        android:id="@+id/menu_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/menu_settings" />
+</menu>
