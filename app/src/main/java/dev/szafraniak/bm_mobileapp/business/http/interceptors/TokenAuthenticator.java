@@ -39,7 +39,7 @@ public class TokenAuthenticator implements okhttp3.Authenticator {
         AuthorizationResponse tokenResponse = service.refreshToken(session.getRefreshToken());
         if (tokenResponse == null) {
             Timber.e("Refreshing token failed!");
-            Navigator.restartApplication(context, session);
+            Navigator.navigateToLoginActivity(context, session);
             return null;
         }
 

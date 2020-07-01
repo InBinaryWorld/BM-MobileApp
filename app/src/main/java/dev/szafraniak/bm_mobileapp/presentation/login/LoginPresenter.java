@@ -37,26 +37,19 @@ public class LoginPresenter {
     }
 
     public void initializePresenter(LoginView view) {
-        this.loginService = new LoginService(view, getLoginCallback());
         this.view = view;
+        this.loginService = new LoginService(view, new LoginCallbackImpl());
     }
 
     public void registerLoginService(int requestCode, int resultCode, Intent data) {
         loginService.onActivityResult(requestCode, resultCode, data);
     }
 
-    public LoginCallbackImpl getLoginCallback() {
-        return new LoginCallbackImpl();
-    }
-
-    public boolean isSilentLoginEnabled() {
-        return isFacebookSilentLoginEnabled() || isFacebookSilentLoginEnabled();
-    }
-
     public void performSilentLogin() {
         if (isFacebookSilentLoginEnabled()) {
             loginService.silentFacebookSignIn();
-        } else if (isGoogleSilentLoginEnabled()) {
+        }
+        if (isGoogleSilentLoginEnabled()) {
             loginService.silentGoogleSignIn();
         }
     }
@@ -69,12 +62,17 @@ public class LoginPresenter {
         loginService.signInWithGoogle();
     }
 
+    public boolean isSilentLoginEnabled() {
+        return isFacebookSilentLoginEnabled() || isGoogleSilentLoginEnabled();
+    }
+
     private boolean isGoogleSilentLoginEnabled() {
-        return userPreferences.googleSilentLoginEnabled();
+        System.out.println("google silent: " + userPreferences.getGoogleSilentLoginEnabled());
+        return userPreferences.getGoogleSilentLoginEnabled();
     }
 
     private boolean isFacebookSilentLoginEnabled() {
-        return userPreferences.facebookSilentLoginEnabled();
+        return userPreferences.getFacebookSilentLoginEnabled();
     }
 
     private class LoginCallbackImpl implements LoginCallback {

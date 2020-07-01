@@ -19,7 +19,7 @@ public class UserPreferences {
         preferences.edit().putBoolean(GOOGLE_SILENT_LOGIN_ENABLED, state).apply();
     }
 
-    public boolean googleSilentLoginEnabled() {
+    public boolean getGoogleSilentLoginEnabled() {
         return preferences.getBoolean(GOOGLE_SILENT_LOGIN_ENABLED, false);
     }
 
@@ -27,7 +27,7 @@ public class UserPreferences {
         preferences.edit().putBoolean(FACEBOOK_SILENT_LOGIN_ENABLED, state).apply();
     }
 
-    public boolean facebookSilentLoginEnabled() {
+    public boolean getFacebookSilentLoginEnabled() {
         return preferences.getBoolean(FACEBOOK_SILENT_LOGIN_ENABLED, false);
     }
 

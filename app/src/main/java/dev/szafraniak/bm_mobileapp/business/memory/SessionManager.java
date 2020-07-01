@@ -3,12 +3,18 @@ package dev.szafraniak.bm_mobileapp.business.memory;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.entity.AuthorizationResponse;
 
 public class SessionManager {
+
+    @Inject
+    GoogleSignInClient googleClient;
 
     @Inject
     SessionPreferences session;
@@ -43,4 +49,11 @@ public class SessionManager {
     public String getRefreshToken() {
         return session.getRefreshToken();
     }
+
+    public void logout() {
+        LoginManager.getInstance().logOut();
+        googleClient.signOut();
+        clearSession();
+    }
+
 }

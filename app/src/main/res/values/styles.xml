@@ -10,7 +10,7 @@
 
     <!-- Base application theme. -->
     <style name="BMTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorAccent">@color/colorCoral</item>
+        <item name="colorAccent">@color/colorBlueLight</item>
         <item name="colorPrimary">@color/colorBlueLight</item>
         <item name="android:statusBarColor">@color/colorBlueDark</item>
     </style>
@@ -25,33 +25,61 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="ScrollContainer">
+    <style name="PaddingContainer">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingHorizontal">26dp</item>
     </style>
 
     <style name="BaseTextView" parent="@style/Widget.AppCompat.TextView">
-        <item name="fontFamily">@font/roboto_light</item>
-        <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:layout_width">wrap_content</item>
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/colorBlack</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="BaseTextView.RowSettings">
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <style name="BaseTextView.RowSettings.Switch">
+        <item name="android:layout_marginRight">8dp</item>
+    </style>
+
+    <style name="BaseTextView.HeaderName">
+        <item name="fontFamily">@font/roboto_light</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:letterSpacing">0.04</item>
     </style>
 
     <style name="BaseTextView.AutoLogin">
         <item name="fontFamily">@font/roboto_thin</item>
+        <item name="android:textColor">@color/colorWhite</item>
         <item name="android:letterSpacing">0.05</item>
         <item name="android:textSize">15sp</item>
     </style>
 
     <style name="BaseTextView.SplashTextView">
-        <item name="android:textSize">30sp</item>
         <item name="fontFamily">@font/roboto_thin</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
+    <style name="BaseSwitch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleX">1.1</item>
+        <item name="android:scaleY">1.1</item>
     </style>
 
     <style name="BaseButton">
         <item name="android:textAllCaps">false</item>
         <item name="fontFamily">@font/roboto</item>
     </style>
+
 
     <style name="LogoImageView">
         <item name="android:tint">@color/colorWhite</item>
@@ -71,6 +99,13 @@
         <item name="android:layout_width">@dimen/progress_bar_size</item>
         <item name="android:layout_height">@dimen/progress_bar_size</item>
         <item name="android:indeterminateTint">@color/colorBlueLight</item>
+    </style>
+
+    <style name="NextImageView">
+        <item name="android:src">@drawable/ic_arrow_right</item>
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="tint">@color/colorGrey</item>
     </style>
 
 </resources>

@@ -78,6 +78,8 @@ public class LoginActivity extends LoginView {
         super.onStart();
         moveLogo(1000, 0);
         if (presenter.isSilentLoginEnabled()) {
+            System.out.println(presenter.isSilentLoginEnabled());
+            System.out.println("silent");
             setSilentComponentVisibility(View.VISIBLE, 500, 500);
             new Handler().postDelayed(presenter::performSilentLogin, 1000);
         } else {

@@ -22,6 +22,9 @@ import dev.szafraniak.bm_mobileapp.presentation.login.LoginPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuActivity;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuPresenterModule;
+import dev.szafraniak.bm_mobileapp.presentation.menu.company.CompanyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.company.CompanyPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.company.CompanyPresenterModule;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsPresenterModule;
@@ -45,7 +48,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsPresenterM
         LoginActivityPresenterModule.class, MenuPresenterModule.class,
         AuthModule.class, DashboardPresenterModule.class, SettingsPresenterModule.class,
         ContactsPresenterModule.class, ResourcesPresenterModule.class,
-        FinancesPresenterModule.class
+        FinancesPresenterModule.class, CompanyPresenterModule.class
 })
 public interface AppComponent {
 
@@ -91,4 +94,7 @@ public interface AppComponent {
 
     void inject(FinancesFragment financesFragment);
 
+    void inject(CompanyFragment companyFragment);
+
+    void inject(CompanyPresenter companyPresenter);
 }

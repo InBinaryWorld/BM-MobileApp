@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import dev.szafraniak.bm_mobileapp.R;
+import dev.szafraniak.bm_mobileapp.presentation.menu.company.CompanyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment_;
@@ -22,6 +23,7 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_RESOURCES_ID = 300;
     public static final int FRAGMENT_FINANCES_ID = 400;
     public static final int FRAGMENT_SETTINGS_ID = 500;
+    public static final int FRAGMENT_SETTINGS_COMPANY_ID = 501;
 
     public static final Map<Integer, Integer> menuMap = new HashMap<Integer, Integer>() {{
         put(R.id.menu_dashboard, FRAGMENT_DASHBOARD_ID);
@@ -50,6 +52,9 @@ public abstract class FragmentFactory {
                 break;
             case FRAGMENT_SETTINGS_ID:
                 fragment = new SettingsFragment_();
+                break;
+            case FRAGMENT_SETTINGS_COMPANY_ID:
+                fragment = new CompanyFragment_();
                 break;
             default:
                 throw new Resources.NotFoundException("Not found fragment with id: " + fragmentId);

@@ -36,9 +36,9 @@ public class LoginService {
     GoogleSignInClient googleClient;
 
     private final BaseActivity activity;
+    private final LoginCallback callback;
     private final LoginManager loginManager;
     private final CallbackManager callbackManager;
-    private final LoginCallback callback;
 
     public LoginService(BaseActivity activity, LoginCallback callback) {
         ((BMApplication) activity.getApplication()).getAppComponent().inject(this);
