@@ -78,6 +78,7 @@ public class LoginPresenter {
     private class LoginCallbackImpl implements LoginCallback {
         @Override
         public void onSuccess(AuthorizationResponse response) {
+            System.out.println(response);
             session.setSession(response);
             Navigator.startActivityOnEmptyStack(view.getContext(), MenuActivity_.class);
         }

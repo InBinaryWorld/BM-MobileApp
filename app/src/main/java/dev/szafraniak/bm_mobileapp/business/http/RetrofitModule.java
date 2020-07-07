@@ -17,7 +17,7 @@ public class RetrofitModule {
 
     @Provides
     @Singleton
-    @Named("ResourceServerRetrofit")
+    @Named("Retrofit")
     Retrofit provideResourceServerRetrofit(
             @Named("OkHttpClientWithAuth") OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
@@ -31,12 +31,12 @@ public class RetrofitModule {
 
     @Provides
     @Singleton
-    @Named("AuthorizationServerRetrofit")
+    @Named("RetrofitWithoutAuth")
     Retrofit provideAuthorizationServerRetrofit(
             @Named("OkHttpClientWithoutAuth") OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .client(okHttpClient)
-                .baseUrl(BuildConfig.AUTHORIZATION_SERVER_URL)
+                .baseUrl(BuildConfig.RESOURCE_SERVER_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

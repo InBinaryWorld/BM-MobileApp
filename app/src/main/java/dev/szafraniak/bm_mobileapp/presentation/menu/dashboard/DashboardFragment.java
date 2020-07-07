@@ -14,8 +14,6 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationService;
 import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
 import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
-import io.reactivex.observers.DisposableCompletableObserver;
-import timber.log.Timber;
 
 @EFragment(R.layout.dashboard_fragment)
 public class DashboardFragment extends BaseFragment implements DashboardView {
@@ -40,7 +38,6 @@ public class DashboardFragment extends BaseFragment implements DashboardView {
 
     @Click(R.id.btn_logout)
     public void logoutBtnOnClick() {
-        logout();
     }
 
     @Click(R.id.not_secured)
@@ -55,23 +52,6 @@ public class DashboardFragment extends BaseFragment implements DashboardView {
 
     public void setData(String data) {
         messageTextView.setText(data);
-    }
-
-    public void logout() {
-        service.logout(session.getRefreshToken())
-                .compose(bindToLifecycle())
-                .subscribe(new LogoutObserver());
-    }
-
-    private class LogoutObserver extends DisposableCompletableObserver {
-        @Override
-        public void onComplete() {
-        }
-
-        @Override
-        public void onError(Throwable e) {
-            Timber.e(e);
-        }
     }
 
 }

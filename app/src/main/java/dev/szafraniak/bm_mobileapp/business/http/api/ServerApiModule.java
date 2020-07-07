@@ -12,16 +12,16 @@ public class ServerApiModule {
 
     @Provides
     @Singleton
-    public BmResourcesServerApi provideBmResourcesServerApi(
-            @Named("ResourceServerRetrofit") Retrofit retrofit) {
-        return retrofit.create(BmResourcesServerApi.class);
+    public BmResourcesApi provideBmResourcesServerApi(
+            @Named("Retrofit") Retrofit retrofit) {
+        return retrofit.create(BmResourcesApi.class);
     }
 
     @Provides
     @Singleton
-    public AuthorizationServerApi provideAuthorizationServerRetrofit(
-            @Named("AuthorizationServerRetrofit") Retrofit retrofit) {
-        return retrofit.create(AuthorizationServerApi.class);
+    public AuthorizationApi provideAuthorizationServerRetrofit(
+            @Named("RetrofitWithoutAuth") Retrofit retrofit) {
+        return retrofit.create(AuthorizationApi.class);
     }
 
 }

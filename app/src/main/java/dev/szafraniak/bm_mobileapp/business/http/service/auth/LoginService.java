@@ -81,14 +81,6 @@ public class LoginService {
         }
     }
 
-    public void signInWithCredentials(String userName, String password) {
-        authorizationService.loginWithCredentials(userName, password)
-                .compose(activity.bindToLifecycle())
-                .subscribe(new LoginObserver());
-    }
-
-    // Method must be injected in Activity onActivityResult method
-
     private void exchangeGoogleToken(String idToken, DisposableSingleObserver<AuthorizationResponse> callback) {
         authorizationService.loginWithGoogle(idToken)
                 .compose(activity.bindToLifecycle())
