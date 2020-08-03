@@ -2,7 +2,7 @@ package dev.szafraniak.bm_mobileapp.business.http.api;
 
 import java.util.Map;
 
-import dev.szafraniak.bm_mobileapp.business.entity.AuthorizationResponse;
+import dev.szafraniak.bm_mobileapp.business.models.auth.AuthorizationResponse;
 import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.http.FieldMap;

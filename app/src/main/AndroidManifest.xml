@@ -32,6 +32,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".presentation.company.CompanyActivity_"
+            android:screenOrientation="portrait"
+            android:theme="@style/BMTheme" />
+        <activity
             android:name=".presentation.menu.activity.MenuActivity_"
             android:screenOrientation="portrait"
             android:theme="@style/BMTheme" />

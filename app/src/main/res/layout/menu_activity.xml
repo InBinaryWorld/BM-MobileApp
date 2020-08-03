@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.login.LoginActivity">
 
-
     <FrameLayout
         android:id="@+id/fl_navigator_container"
         android:layout_width="0dp"

@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.business.entity;
+package dev.szafraniak.bm_mobileapp.business.models.auth;
 
 import com.google.gson.annotations.SerializedName;
 

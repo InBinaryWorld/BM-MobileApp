@@ -5,12 +5,12 @@ import android.app.Application;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import lombok.Setter;
 
-public class CompanyPresenter {
+public class ModifyCompanyPresenter {
 
     @Setter
-    CompanyView view;
+    ModifyCompanyView view;
 
-    public CompanyPresenter(Application app) {
+    public ModifyCompanyPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
     }
 

@@ -1,6 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.settings;
 
 import android.widget.Switch;
+import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -22,6 +23,9 @@ public class SettingsFragment extends BaseFragment implements SettingsView {
     @ViewById(R.id.sw_facebook)
     Switch switchFacebook;
 
+    @ViewById(R.id.tv_header_text)
+    TextView headerTextView;
+
     @Inject
     SettingsPresenter presenter;
 
@@ -29,6 +33,7 @@ public class SettingsFragment extends BaseFragment implements SettingsView {
     public void initialize() {
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
+        headerTextView.setText(R.string.header_settings);
         presenter.setView(this);
         presenter.loadSettings();
     }

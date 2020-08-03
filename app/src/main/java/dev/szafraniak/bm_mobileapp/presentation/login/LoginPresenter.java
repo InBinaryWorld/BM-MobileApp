@@ -6,14 +6,13 @@ import android.content.Intent;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.entity.AuthorizationResponse;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.LoginService;
 import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
-import dev.szafraniak.bm_mobileapp.business.models.LoginCallback;
+import dev.szafraniak.bm_mobileapp.business.models.auth.AuthorizationResponse;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuActivity_;
+import dev.szafraniak.bm_mobileapp.presentation.company.CompanyActivity_;
 import lombok.Setter;
 import timber.log.Timber;
 
@@ -75,12 +74,11 @@ public class LoginPresenter {
         return userPreferences.getFacebookSilentLoginEnabled();
     }
 
-    private class LoginCallbackImpl implements LoginCallback {
+    private class LoginCallbackImpl implements LoginService.LoginCallback {
         @Override
         public void onSuccess(AuthorizationResponse response) {
-            System.out.println(response);
             session.setSession(response);
-            Navigator.startActivityOnEmptyStack(view.getContext(), MenuActivity_.class);
+            Navigator.startActivityOnEmptyStack(view.getContext(), CompanyActivity_.class);
         }
 
         @Override

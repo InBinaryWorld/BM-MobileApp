@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.presentation.menu.company.CompanyFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.company.ModifyCompanyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment_;
@@ -54,7 +54,7 @@ public abstract class FragmentFactory {
                 fragment = new SettingsFragment_();
                 break;
             case FRAGMENT_SETTINGS_COMPANY_ID:
-                fragment = new CompanyFragment_();
+                fragment = new ModifyCompanyFragment_();
                 break;
             default:
                 throw new Resources.NotFoundException("Not found fragment with id: " + fragmentId);

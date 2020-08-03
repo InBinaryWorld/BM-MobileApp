@@ -18,6 +18,9 @@ import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
 @EFragment(R.layout.dashboard_fragment)
 public class DashboardFragment extends BaseFragment implements DashboardView {
 
+    @ViewById(R.id.tv_header_text)
+    TextView headerTextView;
+
     @Inject
     AuthorizationService service;
 
@@ -34,6 +37,7 @@ public class DashboardFragment extends BaseFragment implements DashboardView {
     public void initialize() {
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
+        headerTextView.setText("Dashboard");
     }
 
     @Click(R.id.btn_logout)

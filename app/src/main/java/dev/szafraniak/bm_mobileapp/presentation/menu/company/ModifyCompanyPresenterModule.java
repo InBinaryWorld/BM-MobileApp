@@ -8,10 +8,10 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class CompanyPresenterModule {
+public class ModifyCompanyPresenterModule {
     @Provides
     @Singleton
-    public CompanyPresenter provideCompanyPresenter(Application app) {
-        return new CompanyPresenter(app);
+    public ModifyCompanyPresenter provideCompanyPresenter(Application app) {
+        return new ModifyCompanyPresenter(app);
     }
 }

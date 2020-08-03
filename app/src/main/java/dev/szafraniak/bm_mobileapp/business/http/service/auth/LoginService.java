@@ -19,8 +19,7 @@ import java.util.Collections;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.entity.AuthorizationResponse;
-import dev.szafraniak.bm_mobileapp.business.models.LoginCallback;
+import dev.szafraniak.bm_mobileapp.business.models.auth.AuthorizationResponse;
 import dev.szafraniak.bm_mobileapp.presentation.BaseActivity;
 import io.reactivex.observers.DisposableSingleObserver;
 
@@ -181,5 +180,14 @@ public class LoginService {
             silentLoginFailed(new Exception(t.getMessage(), t.getCause()));
         }
     }
+
+    public interface LoginCallback {
+        void onSuccess(AuthorizationResponse authorizationResponse);
+
+        void onFailed(Exception e);
+
+        void onSilentFailed(Exception e);
+    }
+
 
 }

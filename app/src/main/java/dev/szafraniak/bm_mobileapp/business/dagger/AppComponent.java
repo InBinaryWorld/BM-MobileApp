@@ -15,16 +15,18 @@ import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationServi
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.LoginService;
 import dev.szafraniak.bm_mobileapp.business.memory.MemoryManagementModule;
 import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
-import dev.szafraniak.bm_mobileapp.presentation.BaseActivity;
+import dev.szafraniak.bm_mobileapp.presentation.company.CompanyActivity;
+import dev.szafraniak.bm_mobileapp.presentation.company.CompanyActivityPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.company.CompanyActivityPresenterModule;
 import dev.szafraniak.bm_mobileapp.presentation.login.LoginActivity;
 import dev.szafraniak.bm_mobileapp.presentation.login.LoginActivityPresenterModule;
 import dev.szafraniak.bm_mobileapp.presentation.login.LoginPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuActivity;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuPresenterModule;
-import dev.szafraniak.bm_mobileapp.presentation.menu.company.CompanyFragment;
-import dev.szafraniak.bm_mobileapp.presentation.menu.company.CompanyPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.company.CompanyPresenterModule;
+import dev.szafraniak.bm_mobileapp.presentation.menu.company.ModifyCompanyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.company.ModifyCompanyPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.company.ModifyCompanyPresenterModule;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsPresenterModule;
@@ -48,11 +50,16 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsPresenterM
         LoginActivityPresenterModule.class, MenuPresenterModule.class,
         AuthModule.class, DashboardPresenterModule.class, SettingsPresenterModule.class,
         ContactsPresenterModule.class, ResourcesPresenterModule.class,
-        FinancesPresenterModule.class, CompanyPresenterModule.class
+        FinancesPresenterModule.class, ModifyCompanyPresenterModule.class,
+        CompanyActivityPresenterModule.class
 })
 public interface AppComponent {
 
     void inject(LoginActivity loginActivity);
+
+    void inject(CompanyActivity companyActivity);
+
+    void inject(MenuActivity menuActivity);
 
     void inject(HelloService helloService);
 
@@ -66,8 +73,6 @@ public interface AppComponent {
 
     void inject(SessionManager sessionManager);
 
-    void inject(MenuActivity menuActivity);
-
     void inject(MenuPresenter menuPresenter);
 
     void inject(DashboardPresenter dashboardPresenter);
@@ -75,8 +80,6 @@ public interface AppComponent {
     void inject(LoginService socialLoginService);
 
     void inject(DashboardFragment dashboardFragment);
-
-    void inject(BaseActivity activity);
 
     void inject(SettingsFragment settingsFragment);
 
@@ -94,7 +97,10 @@ public interface AppComponent {
 
     void inject(FinancesFragment financesFragment);
 
-    void inject(CompanyFragment companyFragment);
+    void inject(ModifyCompanyFragment modifyCompanyFragment);
 
-    void inject(CompanyPresenter companyPresenter);
+    void inject(ModifyCompanyPresenter modifyCompanyPresenter);
+
+    void inject(CompanyActivityPresenter companyActivityPresenter);
+
 }

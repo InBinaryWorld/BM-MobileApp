@@ -2,7 +2,6 @@ package dev.szafraniak.bm_mobileapp.presentation.login;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.transition.ChangeBounds;
 import android.transition.Fade;
@@ -56,15 +55,10 @@ public class LoginActivity extends LoginView {
     @Inject
     LoginPresenter presenter;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    @AfterViews
+    public void initialize() {
         ((BMApplication) getApplication()).getAppComponent().inject(this);
         presenter.initializePresenter(this);
-    }
-
-    @AfterViews
-    public void initializeUI() {
         new Handler().postDelayed(this::startLoginProcess, Constance.SPLASH_DISPLAY_LENGTH);
     }
 

@@ -9,7 +9,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.entity.AuthorizationResponse;
+import dev.szafraniak.bm_mobileapp.business.models.auth.AuthorizationResponse;
 
 public class SessionManager {
 

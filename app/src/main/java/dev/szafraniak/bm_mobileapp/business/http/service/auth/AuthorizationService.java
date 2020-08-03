@@ -8,9 +8,9 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.entity.AuthorizationResponse;
 import dev.szafraniak.bm_mobileapp.business.http.HttpUtils;
 import dev.szafraniak.bm_mobileapp.business.http.api.AuthorizationApi;
+import dev.szafraniak.bm_mobileapp.business.models.auth.AuthorizationResponse;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
