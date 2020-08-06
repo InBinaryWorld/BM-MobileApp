@@ -12,7 +12,7 @@ import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
 import dev.szafraniak.bm_mobileapp.business.models.auth.AuthorizationResponse;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.company.CompanyActivity_;
+import dev.szafraniak.bm_mobileapp.presentation.company.activity.CompanyActivity_;
 import lombok.Setter;
 import timber.log.Timber;
 

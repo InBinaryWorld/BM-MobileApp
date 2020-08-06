@@ -1,6 +1,9 @@
 package dev.szafraniak.bm_mobileapp.presentation;
 
 
+import android.view.View;
+
+import androidx.annotation.IdRes;
 import androidx.fragment.app.FragmentManager;
 
 import com.trello.rxlifecycle3.components.support.RxFragment;
@@ -11,6 +14,7 @@ import java.util.Objects;
 
 @EFragment
 public abstract class BaseFragment extends RxFragment implements BaseView {
+
     @Override
     public FragmentManager getFManager() {
         return Objects.requireNonNull(getActivity()).getSupportFragmentManager();
@@ -21,4 +25,7 @@ public abstract class BaseFragment extends RxFragment implements BaseView {
         return getClass().getName();
     }
 
+    protected View findViewById(@IdRes int id) {
+        return getView().findViewById(id);
+    }
 }

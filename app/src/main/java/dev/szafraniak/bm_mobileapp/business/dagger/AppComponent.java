@@ -8,16 +8,22 @@ import dev.szafraniak.bm_mobileapp.business.http.RetrofitModule;
 import dev.szafraniak.bm_mobileapp.business.http.api.ServerApiModule;
 import dev.szafraniak.bm_mobileapp.business.http.interceptors.AuthInterceptor;
 import dev.szafraniak.bm_mobileapp.business.http.interceptors.TokenAuthenticator;
-import dev.szafraniak.bm_mobileapp.business.http.service.HelloService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ServicesModule;
+import dev.szafraniak.bm_mobileapp.business.http.service.UserService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthModule;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.LoginService;
 import dev.szafraniak.bm_mobileapp.business.memory.MemoryManagementModule;
 import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
-import dev.szafraniak.bm_mobileapp.presentation.company.CompanyActivity;
-import dev.szafraniak.bm_mobileapp.presentation.company.CompanyActivityPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.company.CompanyActivityPresenterModule;
+import dev.szafraniak.bm_mobileapp.presentation.company.activity.CompanyActivity;
+import dev.szafraniak.bm_mobileapp.presentation.company.activity.CompanyActivityPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.company.activity.CompanyActivityPresenterModule;
+import dev.szafraniak.bm_mobileapp.presentation.company.create.CompanyCreateFragment;
+import dev.szafraniak.bm_mobileapp.presentation.company.create.CompanyCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.company.create.CompanyCreatePresenterModule;
+import dev.szafraniak.bm_mobileapp.presentation.company.list.CompanyListFragment;
+import dev.szafraniak.bm_mobileapp.presentation.company.list.CompanyListModule;
+import dev.szafraniak.bm_mobileapp.presentation.company.list.CompanyListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.login.LoginActivity;
 import dev.szafraniak.bm_mobileapp.presentation.login.LoginActivityPresenterModule;
 import dev.szafraniak.bm_mobileapp.presentation.login.LoginPresenter;
@@ -51,7 +57,8 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsPresenterM
         AuthModule.class, DashboardPresenterModule.class, SettingsPresenterModule.class,
         ContactsPresenterModule.class, ResourcesPresenterModule.class,
         FinancesPresenterModule.class, ModifyCompanyPresenterModule.class,
-        CompanyActivityPresenterModule.class
+        CompanyActivityPresenterModule.class, CompanyListModule.class,
+        CompanyCreatePresenterModule.class
 })
 public interface AppComponent {
 
@@ -61,7 +68,7 @@ public interface AppComponent {
 
     void inject(MenuActivity menuActivity);
 
-    void inject(HelloService helloService);
+    void inject(UserService userService);
 
     void inject(LoginPresenter loginPresenter);
 
@@ -103,4 +110,11 @@ public interface AppComponent {
 
     void inject(CompanyActivityPresenter companyActivityPresenter);
 
+    void inject(CompanyListPresenter companyListPresenter);
+
+    void inject(CompanyListFragment companyListFragment);
+
+    void inject(CompanyCreatePresenter companyCreatePresenter);
+
+    void inject(CompanyCreateFragment companyCreateFragment);
 }

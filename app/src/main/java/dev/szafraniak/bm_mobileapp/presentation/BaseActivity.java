@@ -6,6 +6,8 @@ import androidx.fragment.app.FragmentManager;
 
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
+import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
+
 public abstract class BaseActivity extends RxAppCompatActivity implements BaseView {
 
     @Override
@@ -21,5 +23,13 @@ public abstract class BaseActivity extends RxAppCompatActivity implements BaseVi
     @Override
     public String getClassName() {
         return getClass().getName();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (Navigator.getStackCount(this) == 1) {
+            finish();
+        }
+        super.onBackPressed();
     }
 }

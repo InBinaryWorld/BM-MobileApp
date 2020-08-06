@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import dev.szafraniak.bm_mobileapp.R;
+import dev.szafraniak.bm_mobileapp.presentation.company.create.CompanyCreateFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.company.list.CompanyListFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.company.ModifyCompanyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment_;
@@ -18,6 +20,8 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsFragment_;
 
 
 public abstract class FragmentFactory {
+    public static final int FRAGMENT_COMPANY_LIST_ID = 10;
+    public static final int FRAGMENT_COMPANY_CREATE_ID = 11;
     public static final int FRAGMENT_DASHBOARD_ID = 100;
     public static final int FRAGMENT_CONTACTS_ID = 200;
     public static final int FRAGMENT_RESOURCES_ID = 300;
@@ -38,6 +42,12 @@ public abstract class FragmentFactory {
         Fragment fragment;
 
         switch (fragmentId) {
+            case FRAGMENT_COMPANY_CREATE_ID:
+                fragment = new CompanyCreateFragment_();
+                break;
+            case FRAGMENT_COMPANY_LIST_ID:
+                fragment = new CompanyListFragment_();
+                break;
             case FRAGMENT_DASHBOARD_ID:
                 fragment = new DashboardFragment_();
                 break;
@@ -68,7 +78,11 @@ public abstract class FragmentFactory {
         return menuMap.get(menuId);
     }
 
-    public static int getMainId() {
+    public static int getCompanyMainFragmentId() {
+        return FRAGMENT_COMPANY_LIST_ID;
+    }
+
+    public static int getMenuMainFragmentId() {
         return FRAGMENT_DASHBOARD_ID;
     }
 

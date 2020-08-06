@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.company;
+package dev.szafraniak.bm_mobileapp.presentation.company.activity;
 
 import android.app.Application;
 

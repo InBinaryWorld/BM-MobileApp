@@ -3,7 +3,6 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.dashboard;
 import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
@@ -38,20 +37,6 @@ public class DashboardFragment extends BaseFragment implements DashboardView {
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         headerTextView.setText("Dashboard");
-    }
-
-    @Click(R.id.btn_logout)
-    public void logoutBtnOnClick() {
-    }
-
-    @Click(R.id.not_secured)
-    public void notSecured() {
-        presenter.notSecured();
-    }
-
-    @Click(R.id.secured)
-    public void secured() {
-        presenter.secured();
     }
 
     public void setData(String data) {

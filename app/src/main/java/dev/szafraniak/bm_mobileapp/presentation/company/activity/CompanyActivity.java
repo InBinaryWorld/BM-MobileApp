@@ -1,16 +1,15 @@
-package dev.szafraniak.bm_mobileapp.presentation.company;
+package dev.szafraniak.bm_mobileapp.presentation.company.activity;
 
 import android.annotation.SuppressLint;
-import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
+import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.BaseActivity;
 
 @SuppressLint("Registered")
@@ -20,23 +19,12 @@ public class CompanyActivity extends BaseActivity {
     @Inject
     CompanyActivityPresenter presenter;
 
-    @ViewById(R.id.tv_header_text)
-    TextView headerTextView;
-
     @AfterViews
     public void initialize() {
         ((BMApplication) getApplication()).getAppComponent().inject(this);
+        presenter.setView(this);
         presenter.initializePresenter(this);
-        headerTextView.setText(R.string.header_companies);
-    }
-
-    private void showProgressBar() {
-    }
-
-    private void showError() {
-    }
-
-    private void showData() {
+        Navigator.startCompanyNavigation(this);
     }
 
 }

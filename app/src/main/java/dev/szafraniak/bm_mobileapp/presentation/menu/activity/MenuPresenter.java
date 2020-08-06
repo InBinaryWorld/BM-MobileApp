@@ -18,7 +18,7 @@ public class MenuPresenter {
 
     public void onNavigationItemSelected(int menuId) {
         int fragmentId = FragmentFactory.parseMenuIdToFragmentId(menuId);
-        Navigator.navigateTo(fragmentId, view, true, true);
+        Navigator.backToStartAndNavigateTo(view, fragmentId);
     }
 
 }

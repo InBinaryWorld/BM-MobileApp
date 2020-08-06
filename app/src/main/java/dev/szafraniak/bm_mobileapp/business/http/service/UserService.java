@@ -6,27 +6,23 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.api.BmResourcesApi;
+import dev.szafraniak.bm_mobileapp.business.models.User;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class HelloService {
+public class UserService {
     @Inject
     BmResourcesApi bmResourcesApi;
 
-    public HelloService(Application app) {
+    public UserService(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
     }
 
-    public Observable<String> getHelloMsg() {
-        return bmResourcesApi.getHello()
+    public Observable<User> getUser() {
+        return bmResourcesApi.getUser()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observable<String> getSecuredHelloMsg() {
-        return bmResourcesApi.getSecuredHello()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
-    }
 }

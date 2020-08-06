@@ -17,7 +17,7 @@ import dev.szafraniak.bm_mobileapp.presentation.login.LoginActivity_;
 
 public class Navigator {
 
-    private final static String TAG_MAIN = "main_fragment";
+    private final static String TAG_START = "main_fragment";
 
     private static Bundle getBundleAnimation(Context ctx) {
         return ActivityOptions
@@ -55,39 +55,81 @@ public class Navigator {
         startActivityOnEmptyStack(ctx, LoginActivity_.class);
     }
 
-    public static void startNavigation(BaseView view) {
-        int fragmentId = FragmentFactory.getMainId();
+    public static void startCompanyNavigation(BaseView view) {
+        int fragmentId = FragmentFactory.getCompanyMainFragmentId();
+        startNavigation(view, fragmentId);
+    }
+
+    public static void startMenuNavigation(BaseView view) {
+        int fragmentId = FragmentFactory.getMenuMainFragmentId();
+        startNavigation(view, fragmentId);
+    }
+
+    private static void startNavigation(BaseView view, int fragmentId) {
         Fragment mainFragment = FragmentFactory.getFragmentById(fragmentId);
         FragmentManager manager = view.getFManager();
 
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fl_navigator_container, mainFragment, TAG_MAIN);
-        transaction.addToBackStack(TAG_MAIN);
+        transaction.replace(R.id.fl_navigator_container, mainFragment, TAG_START);
+        transaction.addToBackStack(TAG_START);
         transaction.commit();
     }
 
-    public static void navigateTo(Integer fragmentId, BaseView view,
-                                  Boolean withStack, Boolean pop) {
+    public static void backToStart(BaseView view) {
+        backTo(view, TAG_START);
+    }
+
+    public static void backTo(BaseView view, int fragmentId) {
+        String tag = getFragmentTag(fragmentId);
+        backTo(view, tag);
+    }
+
+    private static void backTo(BaseView view, String tag) {
+        FragmentManager fm = view.getFManager();
+        fm.popBackStack(tag, 0);
+    }
+
+    public static void backToStartAndNavigateTo(BaseView view, Integer fragmentId) {
+        backAndNavigateTo(view, fragmentId, TAG_START);
+    }
+
+    public static void backAndNavigateTo(BaseView view, Integer fragmentId, int backToFragmentId) {
+        String tag = getFragmentTag(backToFragmentId);
+        backAndNavigateTo(view, fragmentId, tag);
+    }
+
+    private static void backAndNavigateTo(BaseView view, Integer fragmentId, String backToTag) {
         FragmentManager fragmentManager = view.getFManager();
         Fragment fragment = FragmentFactory.getFragmentById(fragmentId);
-        if (!getCurrentFragment(fragmentManager).equals(fragment)) {
-            navigateTo(fragmentManager, fragment, withStack, pop);
-        }
+        backAndNavigateTo(fragmentManager, fragment, backToTag);
     }
 
-    private static void navigateTo(FragmentManager fragmentManager, Fragment fragment,
-                                   Boolean withStack, Boolean pop) {
-        if (pop) {
-            fragmentManager.popBackStack(TAG_MAIN, 0);
+    private static void backAndNavigateTo(FragmentManager fm, Fragment fragment, String backToTag) {
+        fm.popBackStackImmediate(backToTag, 0);
+        navigateTo(fm, fragment);
+    }
+
+    public static void navigateTo(BaseView view, Integer fragmentId) {
+        FragmentManager fragmentManager = view.getFManager();
+        Fragment fragment = FragmentFactory.getFragmentById(fragmentId);
+        navigateTo(fragmentManager, fragment);
+    }
+
+    private static void navigateTo(FragmentManager fragmentManager, Fragment fragment) {
+        if (isAlreadyLoaded(fragmentManager, fragment)) {
+            return;
         }
+        String tag = getFragmentTag(fragment);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fl_navigator_container, fragment);
-        if (withStack && !getCurrentFragment(fragmentManager).equals(fragment)) {
-            transaction.addToBackStack(null);
-        }
+        transaction.addToBackStack(tag);
         transaction.commit();
     }
 
+
+    public static boolean isAlreadyLoaded(FragmentManager fm, Fragment fragment) {
+        return fragment.getClass().equals(getCurrentFragment(fm).getClass());
+    }
 
     public static Fragment getCurrentFragment(BaseView view) {
         FragmentManager manager = view.getFManager();
@@ -102,5 +144,12 @@ public class Navigator {
         return view.getFManager().getBackStackEntryCount();
     }
 
+    private static String getFragmentTag(int fragmentId) {
+        return FragmentFactory.getFragmentById(fragmentId).getClass().getName();
+    }
+
+    private static String getFragmentTag(Fragment fragment) {
+        return fragment.getClass().getName();
+    }
 
 }

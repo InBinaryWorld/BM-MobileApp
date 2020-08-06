@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.company;
+package dev.szafraniak.bm_mobileapp.presentation.company.activity;
 
 import android.app.Application;
 
@@ -9,6 +9,7 @@ import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
 import lombok.Setter;
 
 public class CompanyActivityPresenter {
+
     @Setter
     CompanyActivity view;
 
@@ -23,6 +24,5 @@ public class CompanyActivityPresenter {
     public void initializePresenter(CompanyActivity view) {
         this.view = view;
     }
-
 
 }

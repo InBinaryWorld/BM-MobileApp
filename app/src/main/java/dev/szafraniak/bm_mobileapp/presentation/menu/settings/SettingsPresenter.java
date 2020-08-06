@@ -55,6 +55,6 @@ public class SettingsPresenter {
     }
 
     public void modifyCompanyDataAction() {
-        Navigator.navigateTo(FRAGMENT_SETTINGS_COMPANY_ID, view, true, false);
+        Navigator.navigateTo(view, FRAGMENT_SETTINGS_COMPANY_ID);
     }
 }

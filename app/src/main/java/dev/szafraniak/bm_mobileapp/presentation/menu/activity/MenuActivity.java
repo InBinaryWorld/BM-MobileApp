@@ -44,7 +44,7 @@ public class MenuActivity extends BaseActivity implements MenuView, BottomNaviga
 
     @AfterViews
     public void initialize() {
-        Navigator.startNavigation(this);
+        Navigator.startMenuNavigation(this);
         navigationView.setOnNavigationItemSelectedListener(this);
     }
 
@@ -56,9 +56,6 @@ public class MenuActivity extends BaseActivity implements MenuView, BottomNaviga
 
     @Override
     public void onBackPressed() {
-        if (Navigator.getStackCount(this) == 1) {
-            finish();
-        }
         super.onBackPressed();
         if (Navigator.getCurrentFragment(this) instanceof DashboardFragment) {
             navigationView.getMenu().findItem(R.id.menu_dashboard).setChecked(true);

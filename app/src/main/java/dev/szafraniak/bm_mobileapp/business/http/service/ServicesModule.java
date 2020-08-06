@@ -12,8 +12,8 @@ public class ServicesModule {
 
     @Provides
     @Singleton
-    public HelloService provideHelloService(Application app) {
-        return new HelloService(app);
+    public UserService provideUserService(Application app) {
+        return new UserService(app);
     }
 
 }
