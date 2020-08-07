@@ -10,14 +10,14 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.models.IdNameEntity;
+import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.BaseAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.BaseListFragment;
 
 @EFragment(R.layout.company_list_fragment)
-public class CompanyListFragment extends BaseListFragment<IdNameEntity> implements CompanyListView {
+public class CompanyListFragment extends BaseListFragment<Company> implements CompanyListView {
 
 
     @ViewById(R.id.tv_header_text)
@@ -41,12 +41,12 @@ public class CompanyListFragment extends BaseListFragment<IdNameEntity> implemen
     }
 
     @Override
-    protected BaseAdapter<IdNameEntity> createAdapter() {
+    protected BaseAdapter<Company> createAdapter() {
         return new CompanyListAdapter(getContext(), R.layout.support_simple_spinner_dropdown_item);
     }
 
     @Override
-    public void onItemClick(IdNameEntity item) {
+    public void onItemClick(Company item) {
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CREATE_ID);
     }
 }

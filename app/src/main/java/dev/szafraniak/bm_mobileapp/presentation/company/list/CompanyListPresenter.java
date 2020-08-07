@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.UserService;
-import dev.szafraniak.bm_mobileapp.business.models.User;
+import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
 import lombok.Setter;
 
 public class CompanyListPresenter {
@@ -23,9 +23,9 @@ public class CompanyListPresenter {
     }
 
     public void loadListData() {
-        userService.getUser()
+        userService.getCompanies()
                 .compose(view.bindToLifecycle())
-                .map(User::getCompanies)
+                .map(BMCollection::getItems)
                 .subscribe(view::setData, view::setError);
     }
 }

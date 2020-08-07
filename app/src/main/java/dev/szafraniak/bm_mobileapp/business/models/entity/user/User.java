@@ -1,7 +1,8 @@
-package dev.szafraniak.bm_mobileapp.business.models;
+package dev.szafraniak.bm_mobileapp.business.models.entity.user;
 
 import java.util.List;
 
+import dev.szafraniak.bm_mobileapp.business.models.IdNameEntity;
 import lombok.Data;
 
 @Data

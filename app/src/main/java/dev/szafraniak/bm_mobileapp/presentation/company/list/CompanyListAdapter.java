@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.business.models.IdNameEntity;
+import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
 import dev.szafraniak.bm_mobileapp.presentation.BaseAdapter;
 
-public class CompanyListAdapter extends BaseAdapter<IdNameEntity> {
+public class CompanyListAdapter extends BaseAdapter<Company> {
 
     public CompanyListAdapter(Context context, int res) {
         super(context, res);

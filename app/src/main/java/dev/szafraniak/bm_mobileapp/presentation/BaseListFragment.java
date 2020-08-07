@@ -12,6 +12,7 @@ import org.androidannotations.annotations.EFragment;
 import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
+import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
 import timber.log.Timber;
 
 @EFragment
@@ -55,6 +56,11 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
     protected abstract void loadData();
 
     protected abstract BaseAdapter<T> createAdapter();
+
+    @Override
+    public synchronized void setData(BMCollection<T> collection) {
+        setData(collection.getItems());
+    }
 
     @Override
     public synchronized void setData(List<T> items) {
