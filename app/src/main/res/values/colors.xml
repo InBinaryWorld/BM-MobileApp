@@ -3,12 +3,22 @@
     <color name="colorBlueLight">#2988BC</color>
     <color name="colorBlueDark">#2F496E</color>
     <color name="colorCoral">#ED8C72</color>
+    <color name="colorCoral50a">#80ED8C72</color>
+    <color name="colorCoral40a">#66ED8C72</color>
+    <color name="colorCoral30a">#4DED8C72</color>
     <color name="colorPlaster">#F4EADE</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorBlack">#000000</color>
-    <color name="colorBlack80">#CC000000</color>
-    <color name="colorBlack60">#99000000</color>
-    <color name="colorBlack40">#66000000</color>
-    <color name="colorGrey">#9A9A9A</color>
+    <color name="colorBlack80a">#CC000000</color>
+    <color name="colorBlack60a">#99000000</color>
+    <color name="colorBlack40a">#66000000</color>
+    <color name="colorBlack20a">#33000000</color>
+    <color name="colorBlack10a">#1A000000</color>
+    <color name="colorBlack5a">#0D000000</color>
+    <color name="colorBlack5">#F2F2F2</color>
+    <color name="colorBlack10">#E6E6E6</color>
+    <color name="colorBlack20">#CCCCCC</color>
+    <color name="colorBlack40">#9A9A9A</color>
+    <color name="colorBlack60">#666666</color>
     <color name="colorRedError">#B00020</color>
 </resources>

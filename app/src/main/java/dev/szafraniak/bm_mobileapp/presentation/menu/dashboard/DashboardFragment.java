@@ -10,8 +10,6 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationService;
-import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
 import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
 
 @EFragment(R.layout.dashboard_fragment)
@@ -21,16 +19,7 @@ public class DashboardFragment extends BaseFragment implements DashboardView {
     TextView headerTextView;
 
     @Inject
-    AuthorizationService service;
-
-    @Inject
-    SessionManager session;
-
-    @Inject
     DashboardPresenter presenter;
-
-    @ViewById(R.id.tv_response)
-    TextView messageTextView;
 
     @AfterViews
     public void initialize() {
@@ -39,8 +28,5 @@ public class DashboardFragment extends BaseFragment implements DashboardView {
         headerTextView.setText("Dashboard");
     }
 
-    public void setData(String data) {
-        messageTextView.setText(data);
-    }
 
 }

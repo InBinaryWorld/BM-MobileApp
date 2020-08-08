@@ -18,6 +18,10 @@
     <string name="settings_login_with_facebook">Automatic login with Facebook</string>
     <string name="settings_login_with_google">Automatic login with Google</string>
     <string name="edit">Edit</string>
-    <string name="modify_company_data">Modify company data</string>
+    <string name="settings_modify_company">Modify company data</string>
     <string name="settings_logout">Logout</string>
+    <string name="address">Address</string>
+    <string name="company_card_products_value">Products Value</string>
+    <string name="company_list_btn_create">CREATE NEW COMPANY</string>
+    <string name="settings_change_company">Change the company</string>
 </resources>

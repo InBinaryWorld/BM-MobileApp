@@ -33,8 +33,9 @@ public abstract class BaseSRLFragment extends BaseFragment implements SwipeRefre
     }
 
 
-    protected void setRefresh(boolean enabled) {
-        swipeRefreshLayout.setEnabled(enabled);
+    protected void setRefreshing(boolean visible) {
+        swipeRefreshLayout.setRefreshing(visible);
+        swipeRefreshLayout.setEnabled(!visible);
     }
 
 }

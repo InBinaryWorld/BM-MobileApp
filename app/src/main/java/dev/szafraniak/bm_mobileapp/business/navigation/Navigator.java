@@ -105,7 +105,7 @@ public class Navigator {
     }
 
     private static void backAndNavigateTo(FragmentManager fm, Fragment fragment, String backToTag) {
-        fm.popBackStackImmediate(backToTag, 0);
+        fm.popBackStack(backToTag, 0);
         navigateTo(fm, fragment);
     }
 

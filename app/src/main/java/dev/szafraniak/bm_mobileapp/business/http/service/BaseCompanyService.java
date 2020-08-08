@@ -8,23 +8,16 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.api.BmResourcesApi;
 import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
-import dev.szafraniak.bm_mobileapp.business.models.entity.user.User;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class UserService {
+public class BaseCompanyService {
     @Inject
     BmResourcesApi bmResourcesApi;
 
-    public UserService(Application app) {
+    public BaseCompanyService(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
-    }
-
-    public Observable<User> getUser() {
-        return bmResourcesApi.getUser()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Observable<BMCollection<Company>> getCompanies() {

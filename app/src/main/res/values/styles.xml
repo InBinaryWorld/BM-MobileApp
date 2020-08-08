@@ -10,7 +10,7 @@
 
     <!-- Base application theme. -->
     <style name="BMTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorAccent">@color/colorBlueLight</item>
+        <item name="colorAccent">@color/colorCoral</item>
         <item name="colorPrimary">@color/colorBlueLight</item>
         <item name="android:statusBarColor">@color/colorBlueDark</item>
     </style>
@@ -25,10 +25,54 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="PaddingContainer">
+    <style name="WideContainer">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingHorizontal">26dp</item>
+    </style>
+
+    <style name="WideContainer.SettingsRow">
+        <item name="android:layout_marginStart">24dp</item>
+    </style>
+
+    <style name="WideContainer.SettingsRow.Switch">
+        <item name="android:layout_marginEnd">10dp</item>
+    </style>
+
+    <style name="WideContainer.SettingsRow.Array">
+        <item name="android:layout_marginEnd">20dp</item>
+    </style>
+
+    <style name="BottomNavigationView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>`
+        <item name="labelVisibilityMode">selected</item>
+        <item name="menu">@menu/menu</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">match_parent</item>`
+        <item name="android:layout_marginHorizontal">10dp</item>
+        <item name="android:background">@color/colorBlack10a</item>
+    </style>
+
+    <style name="Card">
+        <item name="cardElevation">4dp</item>
+        <item name="cardCornerRadius">3dp</item>
+        <item name="cardUseCompatPadding">true</item>
+    </style>
+
+    <style name="Card.List">
+        <item name="android:layout_marginHorizontal">6dp</item>
+    </style>
+
+    <style name="ListView" parent="Widget.AppCompat.ListView">
+        <item name="android:paddingTop">6dp</item>
+    </style>
+
+    <style name="ListView.NoDivider">
+        <item name="android:dividerHeight">0dp</item>
+        <item name="android:divider">@null</item>
     </style>
 
     <style name="BaseTextView" parent="@style/Widget.AppCompat.TextView">
@@ -38,21 +82,41 @@
         <item name="android:layout_width">wrap_content</item>
     </style>
 
+    <style name="BaseTextView.Card">
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <style name="BaseTextView.Card.Title">
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">-0.05</item>
+        <item name="android:textColor">@color/colorBlueDark</item>
+    </style>
+
+    <style name="BaseTextView.Card.Header">
+        <item name="android:textColor">@color/colorBlack60a</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="BaseTextView.Card.Value"></style>
+
+    <style name="BaseTextView.Card.Value.Accent">
+        <item name="android:textColor">@color/colorCoral</item>
+    </style>
+
     <style name="BaseTextView.RowSettings">
         <item name="android:textSize">16sp</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:letterSpacing">-0.02</item>
     </style>
 
-    <style name="BaseTextView.RowSettings.Switch">
-        <item name="android:layout_marginRight">8dp</item>
-    </style>
-
     <style name="BaseTextView.HeaderName">
         <item name="fontFamily">@font/roboto_light</item>
         <item name="android:textSize">28sp</item>
         <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:letterSpacing">0.04</item>
+        <item name="android:letterSpacing">0.06</item>
     </style>
 
     <style name="BaseTextView.AutoLogin">
@@ -71,15 +135,30 @@
     <style name="BaseSwitch">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:clickable">false</item>
+        <item name="thumbTint">@color/colorBlack5</item>
+        <item name="trackTint">@color/checked_coral40_black20</item>
         <item name="android:scaleX">1.1</item>
         <item name="android:scaleY">1.1</item>
+    </style>
+
+    <style name="BaseSwitch.SettingRow">
+        <item name="android:clickable">false</item>
+    </style>
+
+
+    <style name="FloatingButton">
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="elevation">6dp</item>
+        <item name="borderWidth">0dp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="backgroundTint">@color/colorBlueDark</item>
     </style>
 
     <style name="BaseButton">
         <item name="android:textAllCaps">false</item>
         <item name="fontFamily">@font/roboto</item>
     </style>
-
 
     <style name="LogoImageView">
         <item name="android:tint">@color/colorWhite</item>
@@ -105,7 +184,7 @@
         <item name="android:src">@drawable/ic_arrow_right</item>
         <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">20dp</item>
-        <item name="tint">@color/colorGrey</item>
+        <item name="tint">@color/colorBlack40</item>
     </style>
 
 </resources>

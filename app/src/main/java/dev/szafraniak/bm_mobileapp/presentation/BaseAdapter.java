@@ -1,6 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -13,10 +14,15 @@ import java.util.List;
 
 public abstract class BaseAdapter<T> extends ArrayAdapter<T> {
 
+    @LayoutRes
+    protected int resourceId;
     protected List<T> items;
+    protected LayoutInflater inflater;
 
     public BaseAdapter(Context context, @LayoutRes int res) {
         this(context, res, new ArrayList<>());
+        inflater = LayoutInflater.from(context);
+        resourceId = res;
     }
 
     public BaseAdapter(Context context, @LayoutRes int res, List<T> list) {

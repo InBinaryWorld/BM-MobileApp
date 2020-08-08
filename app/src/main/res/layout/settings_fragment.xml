@@ -29,76 +29,74 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_switch_google"
                 android:layout_height="64dp"
-                style="@style/PaddingContainer">
+                style="@style/WideContainer.SettingsRow.Switch">
 
                 <TextView
-                    style="@style/BaseTextView.RowSettings.Switch"
+                    style="@style/BaseTextView.RowSettings"
                     android:text="@string/settings_login_with_google"
+                    android:layout_marginEnd="8dp"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/sw_google"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Switch
+                <com.google.android.material.switchmaterial.SwitchMaterial
                     android:id="@+id/sw_google"
-                    style="@style/BaseSwitch"
-                    android:clickable="false"
+                    style="@style/BaseSwitch.SettingRow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                style="@style/Divider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_switch_facebook"
                 android:layout_height="64dp"
-                style="@style/PaddingContainer">
+                style="@style/WideContainer.SettingsRow.Switch">
 
                 <TextView
-                    style="@style/BaseTextView.RowSettings.Switch"
+                    style="@style/BaseTextView.RowSettings"
                     android:text="@string/settings_login_with_facebook"
+                    android:layout_marginEnd="8dp"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/sw_facebook"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Switch
+                <com.google.android.material.switchmaterial.SwitchMaterial
                     android:id="@+id/sw_facebook"
-                    style="@style/BaseSwitch"
-                    android:clickable="false"
+                    style="@style/BaseSwitch.SettingRow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                style="@style/Divider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_modify_company_data"
                 android:layout_height="64dp"
-                style="@style/PaddingContainer">
+                style="@style/WideContainer.SettingsRow.Array">
 
                 <TextView
                     android:id="@+id/textView"
-                    style="@style/BaseTextView.RowSettings.Switch"
-                    android:text="@string/modify_company_data"
+                    style="@style/BaseTextView.RowSettings"
+                    android:text="@string/settings_modify_company"
+                    android:layout_marginEnd="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_company"
                     app:layout_constraintStart_toStartOf="parent"
@@ -107,29 +105,57 @@
                 <ImageView
                     android:id="@+id/iv_company"
                     style="@style/NextImageView"
-                    android:layout_marginEnd="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                style="@style/Divider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_change_company"
+                android:layout_height="64dp"
+                style="@style/WideContainer.SettingsRow.Array">
+
+                <TextView
+                    style="@style/BaseTextView.RowSettings"
+                    android:text="@string/settings_change_company"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/iv_change_company"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_change_company"
+                    style="@style/NextImageView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                style="@style/Divider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_logout"
                 android:layout_height="64dp"
-                style="@style/PaddingContainer">
+                style="@style/WideContainer.SettingsRow.Array">
 
                 <TextView
-                    style="@style/BaseTextView.RowSettings.Switch"
+                    style="@style/BaseTextView.RowSettings"
                     android:text="@string/settings_logout"
+                    android:layout_marginEnd="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/iv_logout"
                     app:layout_constraintStart_toStartOf="parent"
@@ -138,20 +164,17 @@
                 <ImageView
                     android:id="@+id/iv_logout"
                     style="@style/NextImageView"
-                    android:layout_marginEnd="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                style="@style/Divider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

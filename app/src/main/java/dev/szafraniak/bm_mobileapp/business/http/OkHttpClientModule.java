@@ -25,9 +25,9 @@ public class OkHttpClientModule {
                 .authenticator(new TokenAuthenticator(app))
                 .addInterceptor(new AuthInterceptor(app))
                 .addInterceptor(new LoggingInterceptor())
-                .readTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS)
-                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(30, TimeUnit.SECONDS)
                 .build();
     }
 
@@ -45,9 +45,9 @@ public class OkHttpClientModule {
     OkHttpClient provideHttpClientWithoutAuth(Application app) {
         return new OkHttpClient.Builder()
                 .addInterceptor(new LoggingInterceptor())
-                .readTimeout(10, TimeUnit.SECONDS)
-                .writeTimeout(10, TimeUnit.SECONDS)
-                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(30, TimeUnit.SECONDS)
                 .build();
     }
 }

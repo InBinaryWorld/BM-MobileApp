@@ -8,8 +8,10 @@ import dev.szafraniak.bm_mobileapp.business.http.RetrofitModule;
 import dev.szafraniak.bm_mobileapp.business.http.api.ServerApiModule;
 import dev.szafraniak.bm_mobileapp.business.http.interceptors.AuthInterceptor;
 import dev.szafraniak.bm_mobileapp.business.http.interceptors.TokenAuthenticator;
-import dev.szafraniak.bm_mobileapp.business.http.service.ServicesModule;
-import dev.szafraniak.bm_mobileapp.business.http.service.UserService;
+import dev.szafraniak.bm_mobileapp.business.http.service.BaseCompanyService;
+import dev.szafraniak.bm_mobileapp.business.http.service.BaseProductService;
+import dev.szafraniak.bm_mobileapp.business.http.service.BaseServicesModule;
+import dev.szafraniak.bm_mobileapp.business.http.service.BaseUserService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthModule;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.LoginService;
@@ -52,7 +54,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsPresenterM
 @Singleton
 @Component(modules = {
         AppModule.class, MemoryManagementModule.class, OkHttpClientModule.class,
-        ServerApiModule.class, RetrofitModule.class, ServicesModule.class,
+        ServerApiModule.class, RetrofitModule.class, BaseServicesModule.class,
         LoginActivityPresenterModule.class, MenuPresenterModule.class,
         AuthModule.class, DashboardPresenterModule.class, SettingsPresenterModule.class,
         ContactsPresenterModule.class, ResourcesPresenterModule.class,
@@ -68,7 +70,7 @@ public interface AppComponent {
 
     void inject(MenuActivity menuActivity);
 
-    void inject(UserService userService);
+    void inject(BaseUserService userService);
 
     void inject(LoginPresenter loginPresenter);
 
@@ -117,4 +119,8 @@ public interface AppComponent {
     void inject(CompanyCreatePresenter companyCreatePresenter);
 
     void inject(CompanyCreateFragment companyCreateFragment);
+
+    void inject(BaseCompanyService baseCompanyService);
+
+    void inject(BaseProductService baseProductService);
 }

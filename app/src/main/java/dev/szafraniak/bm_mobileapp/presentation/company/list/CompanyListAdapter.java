@@ -1,28 +1,45 @@
 package dev.szafraniak.bm_mobileapp.presentation.company.list;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import dev.szafraniak.bm_mobileapp.R;
+import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
 import dev.szafraniak.bm_mobileapp.presentation.BaseAdapter;
 
-public class CompanyListAdapter extends BaseAdapter<Company> {
+public class CompanyListAdapter extends BaseAdapter<CompanyListModel> {
 
     public CompanyListAdapter(Context context, int res) {
         super(context, res);
     }
 
+    static class ViewHolder {
+        TextView companyName;
+        TextView address;
+        TextView productValue;
+    }
+
     @Override
     protected View createView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService
-                (Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(R.layout.support_simple_spinner_dropdown_item, null);
-
-        ((TextView) rowView.getRootView()).setText(items.get(position).getName());
-        return rowView;
+        if (convertView == null) {
+            convertView = inflater.inflate(resourceId, null);
+            ViewHolder viewHolder = new ViewHolder();
+            viewHolder.companyName = convertView.findViewById(R.id.tv_company_name);
+            viewHolder.address = convertView.findViewById(R.id.tv_address);
+            viewHolder.productValue = convertView.findViewById(R.id.tv_product_value);
+            convertView.setTag(viewHolder);
+        }
+        CompanyListModel item = items.get(position);
+        ViewHolder holder = (ViewHolder) convertView.getTag();
+        Company company = item.getCompany();
+        Address address = company.getHeadquarter();
+        holder.companyName.setText(company.getName());
+        holder.address.setText(String.format("%s, %s", address.getCity(), address.getCountry()));
+        holder.productValue.setText(item.getProductsValue());
+        return convertView;
     }
+
 }

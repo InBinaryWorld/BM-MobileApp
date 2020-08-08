@@ -1,7 +1,8 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.settings;
 
-import android.widget.Switch;
 import android.widget.TextView;
+
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -12,16 +13,18 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
+import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
+import dev.szafraniak.bm_mobileapp.presentation.company.activity.CompanyActivity_;
 
 @EFragment(R.layout.settings_fragment)
 public class SettingsFragment extends BaseFragment implements SettingsView {
 
     @ViewById(R.id.sw_google)
-    Switch switchGoogle;
+    SwitchMaterial switchGoogle;
 
     @ViewById(R.id.sw_facebook)
-    Switch switchFacebook;
+    SwitchMaterial switchFacebook;
 
     @ViewById(R.id.tv_header_text)
     TextView headerTextView;
@@ -56,6 +59,11 @@ public class SettingsFragment extends BaseFragment implements SettingsView {
     @Click(R.id.cl_modify_company_data)
     public void modifyCompanyData() {
         presenter.modifyCompanyDataAction();
+    }
+
+    @Click(R.id.cl_change_company)
+    public void changeCompany() {
+        Navigator.startActivityOnEmptyStack(getContext(), CompanyActivity_.class);
     }
 
     @Click(R.id.cl_logout)

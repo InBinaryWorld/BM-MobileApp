@@ -9,6 +9,7 @@ import androidx.annotation.IdRes;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
@@ -75,7 +76,6 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
     }
 
     private void showProgress() {
-        listView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
     }
@@ -83,22 +83,24 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
     public void showError() {
         errorView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
-        setRefresh(false);
+        setRefreshing(false);
     }
 
     private void showData() {
         listView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
-        setRefresh(false);
+        setRefreshing(false);
     }
 
     private void viewOnRefresh() {
         progressBar.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
+        setData(new ArrayList<>());
     }
 
     @Override
     public void onRefresh() {
+        setRefreshing(true);
         viewOnRefresh();
         loadData();
     }
