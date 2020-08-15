@@ -14,11 +14,11 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.BaseAdapter;
-import dev.szafraniak.bm_mobileapp.presentation.BaseListFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuActivity_;
+import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragment;
 
-@EFragment(R.layout.company_list_fragment)
+@EFragment(R.layout.fragment_company_list)
 public class CompanyListFragment extends BaseListFragment<CompanyListModel> implements CompanyListView {
 
 
@@ -33,11 +33,12 @@ public class CompanyListFragment extends BaseListFragment<CompanyListModel> impl
 
     @AfterViews
     public void initialize() {
+        @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText("Choose Company");
+        headerTextView.setText(R.string.header_choose_company);
         presenter.setView(this);
-        loadData();
+        firstLoadData();
     }
 
     @Override
@@ -47,7 +48,7 @@ public class CompanyListFragment extends BaseListFragment<CompanyListModel> impl
 
     @Override
     protected BaseAdapter<CompanyListModel> createAdapter() {
-        return new CompanyListAdapter(getContext(), R.layout.list_item_company_card);
+        return new CompanyListAdapter(getContext(), R.layout.row_card_company);
     }
 
     @Override

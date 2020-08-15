@@ -25,7 +25,7 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.Constance;
 
 @SuppressLint("Registered")
-@EActivity(R.layout.login_activity)
+@EActivity(R.layout.activity_login)
 public class LoginActivity extends LoginView {
 
     @ViewById(R.id.cl_logo_component)
@@ -72,8 +72,6 @@ public class LoginActivity extends LoginView {
         super.onStart();
         moveLogo(1000, 0);
         if (presenter.isSilentLoginEnabled()) {
-            System.out.println(presenter.isSilentLoginEnabled());
-            System.out.println("silent");
             setSilentComponentVisibility(View.VISIBLE, 500, 500);
             new Handler().postDelayed(presenter::performSilentLogin, 1000);
         } else {

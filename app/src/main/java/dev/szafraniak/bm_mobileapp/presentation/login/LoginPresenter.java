@@ -66,7 +66,6 @@ public class LoginPresenter {
     }
 
     private boolean isGoogleSilentLoginEnabled() {
-        System.out.println("google silent: " + userPreferences.getGoogleSilentLoginEnabled());
         return userPreferences.getGoogleSilentLoginEnabled();
     }
 

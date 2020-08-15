@@ -12,7 +12,7 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
 
-@EFragment(R.layout.resources_fragment)
+@EFragment(R.layout.fragment_resources)
 public class ResourcesFragment extends BaseFragment implements ResourcesView {
 
     @ViewById(R.id.tv_header_text)
@@ -23,9 +23,10 @@ public class ResourcesFragment extends BaseFragment implements ResourcesView {
 
     @AfterViews
     public void initialize() {
+        @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText("Resources");
+        headerTextView.setText(R.string.header_resources);
     }
 
 }

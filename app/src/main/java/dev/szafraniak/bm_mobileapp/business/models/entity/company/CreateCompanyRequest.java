@@ -6,8 +6,6 @@ import lombok.Data;
 @Data
 public class CreateCompanyRequest {
 
-    private Long nextInvoiceNumber;
-
     private String name;
 
     private String invoicePrefix;

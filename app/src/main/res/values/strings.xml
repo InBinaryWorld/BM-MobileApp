@@ -24,4 +24,21 @@
     <string name="company_card_products_value">Products Value</string>
     <string name="company_list_btn_create">CREATE NEW COMPANY</string>
     <string name="settings_change_company">Change the company</string>
+    <string name="create_company_header">Create Company</string>
+    <string name="header_action_status">Action Status</string>
+    <string name="action_status_back_to_home">BACK TO HOME</string>
+    <string name="header_finances">Finances</string>
+    <string name="header_contacts">Contacts</string>
+    <string name="header_dashboard">Dashboard</string>
+    <string name="header_resources">Resources</string>
+    <string name="header_modify_company">Modify Company Data</string>
+    <string name="iv_succeed_icon">Succeed Icon</string>
+    <string name="action_status_succeeded">Operation Succeeded</string>
+    <string name="iv_fail_icon">Fail Icon</string>
+    <string name="action_status_failed">Operation Failed</string>
+    <string name="header_choose_company">Choose Company</string>
+    <string name="iv_next">Next</string>
+    <string name="error_component_error_occurred">Error occurred</string>
+    <string name="error_component_please_try_to_refresh">Please try to refresh</string>
+    <string name="iv_list_error">Failed</string>
 </resources>

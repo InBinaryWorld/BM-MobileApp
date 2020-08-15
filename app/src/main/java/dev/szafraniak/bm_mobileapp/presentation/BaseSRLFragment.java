@@ -24,18 +24,16 @@ public abstract class BaseSRLFragment extends BaseFragment implements SwipeRefre
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(
                 R.color.colorBlueLight,
+                R.color.colorCoral,
                 R.color.colorBlueDark);
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-
     protected void setRefreshing(boolean visible) {
         swipeRefreshLayout.setRefreshing(visible);
-        swipeRefreshLayout.setEnabled(!visible);
+    }
+
+    protected void setRefreshEnabled(boolean enabled) {
+        swipeRefreshLayout.setEnabled(enabled);
     }
 
 }

@@ -17,6 +17,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.resources.ResourcesFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragment_;
 
 
 public abstract class FragmentFactory {
@@ -28,6 +29,7 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_FINANCES_ID = 400;
     public static final int FRAGMENT_SETTINGS_ID = 500;
     public static final int FRAGMENT_SETTINGS_COMPANY_ID = 501;
+    public static final int FRAGMENT_ACTION_STATUS = 600;
 
     public static final Map<Integer, Integer> menuMap = new HashMap<Integer, Integer>() {{
         put(R.id.menu_dashboard, FRAGMENT_DASHBOARD_ID);
@@ -66,6 +68,9 @@ public abstract class FragmentFactory {
             case FRAGMENT_SETTINGS_COMPANY_ID:
                 fragment = new ModifyCompanyFragment_();
                 break;
+            case FRAGMENT_ACTION_STATUS:
+                fragment = new ActionStatusFragment_();
+                break;
             default:
                 throw new Resources.NotFoundException("Not found fragment with id: " + fragmentId);
         }
@@ -74,6 +79,7 @@ public abstract class FragmentFactory {
         return fragment;
     }
 
+    @SuppressWarnings("ConstantConditions")
     public static int parseMenuIdToFragmentId(Integer menuId) {
         return menuMap.get(menuId);
     }

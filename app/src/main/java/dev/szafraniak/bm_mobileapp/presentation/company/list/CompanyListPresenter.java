@@ -1,5 +1,6 @@
 package dev.szafraniak.bm_mobileapp.presentation.company.list;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 
 import java.math.BigDecimal;
@@ -38,6 +39,8 @@ public class CompanyListPresenter {
         ((BMApplication) app).getAppComponent().inject(this);
     }
 
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadListData() {
         baseCompanyService.getCompanies()
                 .flatMap(this::getCompanyListModelList)

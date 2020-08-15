@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/WrapperContainer">
+
+    <ImageView
+        style="@style/ErrorIconImageView"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_error_first_line"
+        app:layout_constraintEnd_toStartOf="@+id/tv_error_first_line"
+        app:layout_constraintTop_toTopOf="@+id/tv_error_first_line"
+        android:contentDescription="@string/iv_list_error" />
+
+    <TextView
+        android:id="@+id/tv_error_first_line"
+        style="@style/BaseTextView.Error.S"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/error_component_error_occurred"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/BaseTextView.Error.M"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/error_component_please_try_to_refresh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_error_first_line" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

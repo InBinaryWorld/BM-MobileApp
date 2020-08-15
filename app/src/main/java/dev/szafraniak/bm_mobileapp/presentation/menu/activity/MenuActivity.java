@@ -23,7 +23,7 @@ import dev.szafraniak.bm_mobileapp.presentation.BaseActivity;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment;
 
 @SuppressLint("Registered")
-@EActivity(R.layout.menu_activity)
+@EActivity(R.layout.activity_menu)
 public class MenuActivity extends BaseActivity implements MenuView, BottomNavigationView.OnNavigationItemSelectedListener {
 
     @ViewById(R.id.fl_navigator_container)

@@ -13,6 +13,8 @@ public class CreateInvoiceRequest {
 
     private InvoiceContact receiver;
 
+    private String invoiceNumber;
+
     private String bankAccount;
 
     private LocalDate dueDate;

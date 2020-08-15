@@ -8,7 +8,7 @@ import android.widget.TextView;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
-import dev.szafraniak.bm_mobileapp.presentation.BaseAdapter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
 
 public class CompanyListAdapter extends BaseAdapter<CompanyListModel> {
 
@@ -25,7 +25,7 @@ public class CompanyListAdapter extends BaseAdapter<CompanyListModel> {
     @Override
     protected View createView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = inflater.inflate(resourceId, null);
+            convertView = inflater.inflate(resourceId, parent, false);
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.companyName = convertView.findViewById(R.id.tv_company_name);
             viewHolder.address = convertView.findViewById(R.id.tv_address);

@@ -12,7 +12,7 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
 
-@EFragment(R.layout.contacts_fragment)
+@EFragment(R.layout.fragment_contacts)
 public class ContactsFragment extends BaseFragment implements ContactsView {
 
 
@@ -24,9 +24,10 @@ public class ContactsFragment extends BaseFragment implements ContactsView {
 
     @AfterViews
     public void initialize() {
+        @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText("Contacts");
+        headerTextView.setText(R.string.header_contacts);
     }
 
 }

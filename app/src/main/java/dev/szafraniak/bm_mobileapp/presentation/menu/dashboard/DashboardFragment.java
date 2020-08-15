@@ -12,7 +12,7 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
 
-@EFragment(R.layout.dashboard_fragment)
+@EFragment(R.layout.fragment_dashboard)
 public class DashboardFragment extends BaseFragment implements DashboardView {
 
     @ViewById(R.id.tv_header_text)
@@ -23,9 +23,10 @@ public class DashboardFragment extends BaseFragment implements DashboardView {
 
     @AfterViews
     public void initialize() {
+        @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText("Dashboard");
+        headerTextView.setText(R.string.header_dashboard);
     }
 
 

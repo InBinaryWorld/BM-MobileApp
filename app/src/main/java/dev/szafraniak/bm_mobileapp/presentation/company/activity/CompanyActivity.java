@@ -13,7 +13,7 @@ import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.BaseActivity;
 
 @SuppressLint("Registered")
-@EActivity(R.layout.company_activity)
+@EActivity(R.layout.activity_company)
 public class CompanyActivity extends BaseActivity {
 
     @Inject

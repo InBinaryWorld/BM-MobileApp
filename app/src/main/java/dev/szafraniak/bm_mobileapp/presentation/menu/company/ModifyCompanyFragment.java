@@ -13,7 +13,7 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesView;
 
-@EFragment(R.layout.modify_company_fragment)
+@EFragment(R.layout.fragment_modify_company)
 public class ModifyCompanyFragment extends BaseFragment implements FinancesView {
 
     @ViewById(R.id.tv_header_text)
@@ -24,9 +24,10 @@ public class ModifyCompanyFragment extends BaseFragment implements FinancesView 
 
     @AfterViews
     public void initialize() {
+        @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText("Modify Company Data");
+        headerTextView.setText(R.string.header_modify_company);
     }
 
 }

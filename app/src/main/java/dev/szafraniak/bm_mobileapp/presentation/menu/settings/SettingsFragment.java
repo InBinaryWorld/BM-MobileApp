@@ -17,7 +17,7 @@ import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
 import dev.szafraniak.bm_mobileapp.presentation.company.activity.CompanyActivity_;
 
-@EFragment(R.layout.settings_fragment)
+@EFragment(R.layout.fragment_settings)
 public class SettingsFragment extends BaseFragment implements SettingsView {
 
     @ViewById(R.id.sw_google)
@@ -34,6 +34,7 @@ public class SettingsFragment extends BaseFragment implements SettingsView {
 
     @AfterViews
     public void initialize() {
+        @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         headerTextView.setText(R.string.header_settings);
