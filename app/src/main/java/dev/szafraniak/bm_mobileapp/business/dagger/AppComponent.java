@@ -8,10 +8,11 @@ import dev.szafraniak.bm_mobileapp.business.http.RetrofitModule;
 import dev.szafraniak.bm_mobileapp.business.http.api.ServerApiModule;
 import dev.szafraniak.bm_mobileapp.business.http.interceptors.AuthInterceptor;
 import dev.szafraniak.bm_mobileapp.business.http.interceptors.TokenAuthenticator;
-import dev.szafraniak.bm_mobileapp.business.http.service.BaseCompanyService;
-import dev.szafraniak.bm_mobileapp.business.http.service.BaseProductService;
-import dev.szafraniak.bm_mobileapp.business.http.service.BaseServicesModule;
-import dev.szafraniak.bm_mobileapp.business.http.service.BaseUserService;
+import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
+import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
+import dev.szafraniak.bm_mobileapp.business.http.service.ProductService;
+import dev.szafraniak.bm_mobileapp.business.http.service.ServicesModule;
+import dev.szafraniak.bm_mobileapp.business.http.service.UserService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthModule;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.LoginService;
@@ -34,6 +35,14 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.company.ModifyCompanyFragme
 import dev.szafraniak.bm_mobileapp.presentation.menu.company.ModifyCompanyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.CompanyContactListFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.CompanyContactListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create.CompanyContactCreateFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create.CompanyContactCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.IndividualContactListFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.IndividualContactListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.IndividualContactCreateFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.IndividualContactCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment;
@@ -47,7 +56,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragme
 @Singleton
 @Component(modules = {
         AppModule.class, MemoryManagementModule.class, OkHttpClientModule.class,
-        ServerApiModule.class, RetrofitModule.class, BaseServicesModule.class,
+        ServerApiModule.class, RetrofitModule.class, ServicesModule.class,
         LoginActivityPresenterModule.class, MenuModule.class, AuthModule.class,
         CompanyActivityModule.class
 })
@@ -59,7 +68,7 @@ public interface AppComponent {
 
     void inject(MenuActivity menuActivity);
 
-    void inject(BaseUserService userService);
+    void inject(UserService userService);
 
     void inject(LoginPresenter loginPresenter);
 
@@ -109,9 +118,27 @@ public interface AppComponent {
 
     void inject(CompanyCreateFragment companyCreateFragment);
 
-    void inject(BaseCompanyService baseCompanyService);
+    void inject(CompanyService companyService);
 
-    void inject(BaseProductService baseProductService);
+    void inject(ProductService productService);
 
     void inject(ActionStatusFragment actionStatusFragment);
+
+    void inject(ContactsService contactsService);
+
+    void inject(IndividualContactListPresenter individualContactListPresenter);
+
+    void inject(IndividualContactListFragment individualContactListFragment);
+
+    void inject(CompanyContactListFragment companyContactListFragment);
+
+    void inject(CompanyContactListPresenter companyContactListPresenter);
+
+    void inject(CompanyContactCreateFragment companyContactCreateFragment);
+
+    void inject(CompanyContactCreatePresenter companyContactCreatePresenter);
+
+    void inject(IndividualContactCreatePresenter individualContactCreatePresenter);
+
+    void inject(IndividualContactCreateFragment individualContactCreateFragment);
 }

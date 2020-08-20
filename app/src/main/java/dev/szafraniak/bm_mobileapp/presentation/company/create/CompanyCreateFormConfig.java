@@ -7,10 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.CreateCompanyRequest;
-import dev.szafraniak.bm_mobileapp.business.utils.FormInputFormatter;
-import dev.szafraniak.bm_mobileapp.business.utils.Validator;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.SimpleBaseConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowDisableMode;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.SimpleBaseConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRow;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRowConfig;
@@ -42,99 +40,58 @@ public class CompanyCreateFormConfig extends SimpleBaseConfig<CreateCompanyReque
     }
 
     private EditTextFormRowConfig<CreateCompanyRequest> getCompanyNameConfig() {
-        EditTextFormRowConfig<CreateCompanyRequest> config = getBaseCompanyEditConfig();
-        config.setLabelText("Company name");
-        config.setInvalidMessage("2-40 Signs");
-        config.setValidator(Validator::validateCompanyName);
+        EditTextFormRowConfig<CreateCompanyRequest> config = FormConfigurations.getCompanyNameConfig();
         config.setFulFiller(CreateCompanyRequest::setName);
         return config;
     }
 
     private EditTextFormRowConfig<CreateCompanyRequest> getInvoicePrefixConfig() {
-        EditTextFormRowConfig<CreateCompanyRequest> config = getBaseCompanyEditConfig();
-        config.setLabelText("Invoice Prefix");
-        config.setInvalidMessage("2-14 Signs, Last No Digit");
-        config.setValidator(Validator::validateInvoicePrefix);
+        EditTextFormRowConfig<CreateCompanyRequest> config = FormConfigurations.getInvoicePrefixConfig();
         config.setFulFiller(CreateCompanyRequest::setInvoicePrefix);
         return config;
     }
 
     private EditTextFormRowConfig<CreateCompanyRequest> getTaxIdentityNumberConfig() {
-        EditTextFormRowConfig<CreateCompanyRequest> config = getBaseCompanyEditConfig();
-        config.setLabelText("Tax Identity Number");
-        config.setInvalidMessage("10 Digits");
-        config.setValidator(Validator::validateTaxIdentityNumber);
+        EditTextFormRowConfig<CreateCompanyRequest> config = FormConfigurations.getTaxIdentityNumberConfig();
         config.setFulFiller(CreateCompanyRequest::setTaxIdentityNumber);
         return config;
     }
 
     private EditTextFormRowConfig<CreateCompanyRequest> getCountryConfig() {
-        EditTextFormRowConfig<CreateCompanyRequest> config = getBaseCompanyEditConfig();
-        config.setLabelText("Country");
-        config.setInitValue("Poland");
-        config.setEnabled(false);
-        config.setDisableCustomValue("Poland");
-        config.setDisableValueMode(FormRowDisableMode.CUSTOM);
-        config.setValidator(Validator::validateCountry);
+        EditTextFormRowConfig<CreateCompanyRequest> config = FormConfigurations.getCountryConfig();
         config.setFulFiller((company, value) -> company.getHeadquarter().setCountry(value));
         return config;
     }
 
     private EditTextFormRowConfig<CreateCompanyRequest> getCityConfig() {
-        EditTextFormRowConfig<CreateCompanyRequest> config = getBaseCompanyEditConfig();
-        config.setLabelText("City");
-        config.setInvalidMessage("2-30 Signs");
-        config.setValidator(Validator::validateCity);
+        EditTextFormRowConfig<CreateCompanyRequest> config = FormConfigurations.getCityConfig();
         config.setFulFiller((company, value) -> company.getHeadquarter().setCity(value));
         return config;
     }
 
     private EditTextFormRowConfig<CreateCompanyRequest> getPostalCodeConfig() {
-        EditTextFormRowConfig<CreateCompanyRequest> config = getBaseCompanyEditConfig();
-        config.setLabelText("Postal Code");
-        config.setInvalidMessage("Pattern XX-XXX");
-        config.setValidator(Validator::validatePostalCode);
+        EditTextFormRowConfig<CreateCompanyRequest> config = FormConfigurations.getPostalCodeConfig();
         config.setFulFiller((company, value) -> company.getHeadquarter().setPostalCode(value));
         return config;
     }
 
     private EditTextFormRowConfig<CreateCompanyRequest> getStreetConfig() {
-        EditTextFormRowConfig<CreateCompanyRequest> config = getBaseCompanyEditConfig();
-        config.setLabelText("Street");
-        config.setInvalidMessage("2-30 Signs");
-        config.setValidator(Validator::validateStreet);
+        EditTextFormRowConfig<CreateCompanyRequest> config = FormConfigurations.getStreetConfig();
         config.setFulFiller((company, value) -> company.getHeadquarter().setStreet(value));
         return config;
     }
 
     private EditTextFormRowConfig<CreateCompanyRequest> getHouseNumberConfig() {
-        EditTextFormRowConfig<CreateCompanyRequest> config = getBaseCompanyEditConfig();
-        config.setLabelText("House Number");
-        config.setInvalidMessage("1-3 Digits And Optional Letter");
-        config.setValidator(Validator::validateHouseNumber);
+        EditTextFormRowConfig<CreateCompanyRequest> config = FormConfigurations.getHouseNumberConfig();
         config.setFulFiller((company, value) -> company.getHeadquarter().setHouseNumber(value));
         return config;
     }
 
     private EditTextFormRowConfig<CreateCompanyRequest> getApartmentNumberConfig() {
-        EditTextFormRowConfig<CreateCompanyRequest> config = getBaseCompanyEditConfig();
-        config.setRequired(false);
-        config.setLabelText("Apartment Number");
-        config.setInvalidMessage("1-3 Digits And Optional Letter");
-        config.setValidator(Validator::validateApartmentNumber);
+        EditTextFormRowConfig<CreateCompanyRequest> config = FormConfigurations.getApartmentNumberConfig();
         config.setFulFiller((company, value) -> company.getHeadquarter().setApartmentNumber(value));
         return config;
     }
 
-    private EditTextFormRowConfig<CreateCompanyRequest> getBaseCompanyEditConfig() {
-        EditTextFormRowConfig<CreateCompanyRequest> config = new EditTextFormRowConfig<>();
-        config.setEnabled(true);
-        config.setRequired(true);
-        config.setInitValue(null);
-        config.setInvalidMessage("Invalid Value");
-        config.setDisableValueMode(FormRowDisableMode.NULL);
-        config.setFormatter(FormInputFormatter::formatNull);
-        return config;
-    }
 }
 

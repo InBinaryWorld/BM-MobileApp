@@ -4,7 +4,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.address.CreateAddressR
 import lombok.Data;
 
 @Data
-public class CreateContactRequest {
+public abstract class CreateContactRequest {
 
     private CreateAddressRequest address;
 

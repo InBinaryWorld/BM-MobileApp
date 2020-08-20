@@ -15,6 +15,7 @@ import java.util.List;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
 import dev.szafraniak.bm_mobileapp.presentation.BaseView;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.FormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.progress.BaseProgressRow;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.submit.BaseSubmitRow;

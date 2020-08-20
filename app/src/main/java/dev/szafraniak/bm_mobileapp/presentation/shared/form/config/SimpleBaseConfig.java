@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.shared.form;
+package dev.szafraniak.bm_mobileapp.presentation.shared.form.config;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

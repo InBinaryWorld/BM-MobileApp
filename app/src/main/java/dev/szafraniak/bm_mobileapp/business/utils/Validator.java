@@ -26,6 +26,14 @@ public final class Validator {
     public final static String CURRENCY = UPPERCASE_LETTER + "{2,4}";
     public final static String TAX_IDENTITY_NUMBER = "\\d{10}";
 
+    public static boolean validateLastName(String value) {
+        return Pattern.matches(BASE_1_20, value);
+    }
+
+    public static boolean validateFirstName(String value) {
+        return Pattern.matches(BASE_1_20, value);
+    }
+
     public static boolean validateCompanyName(String value) {
         return Pattern.matches(BASE_2_40, value);
     }
@@ -60,6 +68,10 @@ public final class Validator {
 
     public static boolean validateHouseNumber(String value) {
         return Pattern.matches(HOUSE_NUMBER, value);
+    }
+
+    public static boolean validatePhoneNumber(String value) {
+        return Pattern.matches(PHONE_4_12, value);
     }
 
     private static boolean length(String value, int min, int max) {

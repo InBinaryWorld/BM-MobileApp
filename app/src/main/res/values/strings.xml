@@ -41,4 +41,8 @@
     <string name="error_component_error_occurred">Error occurred</string>
     <string name="error_component_please_try_to_refresh">Please try to refresh</string>
     <string name="iv_list_error">Failed</string>
+    <string name="list_component_no_data_found">No data found</string>
+    <string name="header_individual_contact_list">Individual Contacts</string>
+    <string name="contact_list_create_contact">Create Contact</string>
+    <string name="header_create_contact">Create Contact</string>
 </resources>

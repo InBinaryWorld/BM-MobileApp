@@ -4,7 +4,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.address.UpdateAddressR
 import lombok.Data;
 
 @Data
-public class UpdateContactRequest {
+public abstract class UpdateContactRequest {
 
     private UpdateAddressRequest address;
 

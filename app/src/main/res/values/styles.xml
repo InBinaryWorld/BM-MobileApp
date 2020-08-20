@@ -56,6 +56,10 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="Row.ContactList">
+        <item name="android:layout_height">80dp</item>
+    </style>
+
     <style name="Row.Form">
         <item name="android:paddingHorizontal">18dp</item>
     </style>
@@ -70,15 +74,14 @@
 
     <style name="Row.SettingsRow">
         <item name="android:layout_height">64dp</item>
+        <item name="android:paddingHorizontal">18dp</item>
     </style>
 
     <style name="Row.SettingsRow.Switch">
-        <item name="android:layout_marginEnd">10dp</item>
+        <item name="paddingEnd">10dp</item>
     </style>
 
-    <style name="Row.SettingsRow.Array">
-        <item name="android:layout_marginEnd">20dp</item>
-    </style>
+    <style name="Row.SettingsRow.Array"></style>
 
     <style name="BottomNavigationView">
         <item name="android:layout_height">wrap_content</item>
@@ -148,6 +151,44 @@
         <item name="android:layout_width">wrap_content</item>
     </style>
 
+    <style name="BaseTextView.Title">
+        <item name="android:textSize">24sp</item>
+        <item name="android:letterSpacing">-0.05</item>
+        <item name="android:textColor">@color/colorBlueDark</item>
+    </style>
+
+    <style name="BaseTextView.Label">
+        <item name="android:textColor">@color/colorBlack60a</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:letterSpacing">-0.02</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="BaseTextView.Value">
+
+    </style>
+
+    <style name="BaseTextView.Value.Accent">
+        <item name="android:textColor">@color/colorCoral</item>
+    </style>
+
+    <style name="BaseTextView.ContactList">
+        <item name="android:textColor">@color/colorError</item>
+    </style>
+
+    <style name="BaseTextView.Title.ContactListRow">
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+    </style>
+
+    <style name="BaseTextView.ContactList.Label">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="BaseTextView.ContactList.Value">
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="BaseTextView.Error">
         <item name="android:textColor">@color/colorError</item>
     </style>
@@ -158,6 +199,11 @@
     </style>
 
     <style name="BaseTextView.Error.M">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="BaseTextView.Empty">
+        <item name="android:textColor">@color/colorBlack60a</item>
         <item name="android:textSize">18sp</item>
     </style>
 
@@ -191,32 +237,6 @@
         <item name="android:fontFamily">@font/roboto_light</item>
         <item name="android:letterSpacing">-0.02</item>
         <item name="android:textSize">14sp</item>
-    </style>
-
-
-    <style name="BaseTextView.Card">
-
-    </style>
-
-    <style name="BaseTextView.Card.Title">
-        <item name="android:textSize">24sp</item>
-        <item name="android:letterSpacing">-0.05</item>
-        <item name="android:textColor">@color/colorBlueDark</item>
-    </style>
-
-    <style name="BaseTextView.Card.Header">
-        <item name="android:textColor">@color/colorBlack60a</item>
-        <item name="android:fontFamily">@font/roboto_light</item>
-        <item name="android:letterSpacing">-0.02</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="BaseTextView.Card.Value">
-
-    </style>
-
-    <style name="BaseTextView.Card.Value.Accent">
-        <item name="android:textColor">@color/colorCoral</item>
     </style>
 
     <style name="BaseTextView.RowSettings">

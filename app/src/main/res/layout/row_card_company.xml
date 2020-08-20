@@ -13,7 +13,7 @@
             <TextView
                 android:id="@+id/tv_company_name"
                 android:layout_marginStart="20dp"
-                style="@style/BaseTextView.Card.Title"
+                style="@style/BaseTextView.Title"
                 app:layout_constraintBottom_toTopOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="My Company Name" />
@@ -39,14 +39,14 @@
                 android:id="@+id/tv_address_label"
                 android:text="@string/address"
                 android:layout_marginStart="20dp"
-                style="@style/BaseTextView.Card.Header"
+                style="@style/BaseTextView.Label"
                 app:layout_constraintBottom_toTopOf="@+id/guideline1"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tv_address"
                 android:layout_marginStart="20dp"
-                style="@style/BaseTextView.Card.Value"
+                style="@style/BaseTextView.Value"
                 app:layout_constraintBottom_toTopOf="@+id/guideline5"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="Komorniki, Poland" />
@@ -60,7 +60,7 @@
 
             <TextView
                 android:id="@+id/tv_product_value_label"
-                style="@style/BaseTextView.Card.Header"
+                style="@style/BaseTextView.Label"
                 android:text="@string/company_card_products_value"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
@@ -68,7 +68,7 @@
 
             <TextView
                 android:id="@+id/tv_product_value"
-                style="@style/BaseTextView.Card.Value.Accent"
+                style="@style/BaseTextView.Value.Accent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_address"

@@ -89,25 +89,33 @@ public class Navigator {
         fm.popBackStack(tag, 0);
     }
 
-    public static void backToStartAndNavigateTo(BaseView view, Integer fragmentId) {
+    public static void backToStartAndNavigateTo(BaseView view, int fragmentId) {
         backAndNavigateTo(view, fragmentId, TAG_START, null);
     }
 
-    public static void backToStartAndNavigateTo(BaseView view, Integer fragmentId, Bundle args) {
+    public static void backToStartAndNavigateTo(BaseView view, int fragmentId, Bundle args) {
         backAndNavigateTo(view, fragmentId, TAG_START, args);
     }
 
-    public static void backAndNavigateTo(BaseView view, Integer fragmentId, int backToFragmentId) {
+    public static void backOneAndNavigateTo(BaseView view, int fragmentId) {
+        backOneAndNavigateTo(view, fragmentId, null);
+    }
+
+    public static void backOneAndNavigateTo(BaseView view, int fragmentId, Bundle args) {
+        backAndNavigateTo(view, fragmentId, null, args);
+    }
+
+    public static void backAndNavigateTo(BaseView view, int fragmentId, int backToFragmentId) {
         String tag = getFragmentTag(backToFragmentId);
         backAndNavigateTo(view, fragmentId, tag, null);
     }
 
-    public static void backAndNavigateTo(BaseView view, Integer fragmentId, int backToFragmentId, Bundle args) {
+    public static void backAndNavigateTo(BaseView view, int fragmentId, int backToFragmentId, Bundle args) {
         String tag = getFragmentTag(backToFragmentId);
         backAndNavigateTo(view, fragmentId, tag, args);
     }
 
-    private static void backAndNavigateTo(BaseView view, Integer fragmentId, String backToTag, Bundle args) {
+    private static void backAndNavigateTo(BaseView view, int fragmentId, String backToTag, Bundle args) {
         FragmentManager fragmentManager = view.getFManager();
         Fragment fragment = FragmentFactory.getFragmentById(fragmentId);
         backAndNavigateTo(fragmentManager, fragment, backToTag, args);
@@ -118,13 +126,13 @@ public class Navigator {
         navigateTo(fm, fragment, args);
     }
 
-    public static void navigateTo(BaseView view, Integer fragmentId) {
+    public static void navigateTo(BaseView view, int fragmentId) {
         FragmentManager fragmentManager = view.getFManager();
         Fragment fragment = FragmentFactory.getFragmentById(fragmentId);
         navigateTo(fragmentManager, fragment, null);
     }
 
-    public static void navigateTo(BaseView view, Integer fragmentId, Bundle args) {
+    public static void navigateTo(BaseView view, int fragmentId, Bundle args) {
         FragmentManager fragmentManager = view.getFManager();
         Fragment fragment = FragmentFactory.getFragmentById(fragmentId);
         navigateTo(fragmentManager, fragment, args);

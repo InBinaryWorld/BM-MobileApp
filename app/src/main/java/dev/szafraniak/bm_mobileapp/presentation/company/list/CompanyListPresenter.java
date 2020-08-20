@@ -12,8 +12,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.BaseCompanyService;
-import dev.szafraniak.bm_mobileapp.business.http.service.BaseProductService;
+import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
+import dev.szafraniak.bm_mobileapp.business.http.service.ProductService;
 import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.Product;
@@ -29,10 +29,10 @@ public class CompanyListPresenter {
     CompanyListView view;
 
     @Inject
-    BaseCompanyService baseCompanyService;
+    CompanyService companyService;
 
     @Inject
-    BaseProductService baseProductService;
+    ProductService productService;
 
 
     public CompanyListPresenter(Application app) {
@@ -42,7 +42,7 @@ public class CompanyListPresenter {
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadListData() {
-        baseCompanyService.getCompanies()
+        companyService.getCompanies()
                 .flatMap(this::getCompanyListModelList)
                 .compose(view.bindToLifecycle())
                 .subscribe(view::setData, view::setError);
@@ -59,7 +59,7 @@ public class CompanyListPresenter {
 
 
     private Observable<CompanyListModel> getCompanyListModel(Company company) {
-        return baseProductService.getProducts(company.getId())
+        return productService.getProducts(company.getId())
                 .map(this::countSumOfProductValues)
                 .map(new FullFillCompanyListModel(company));
     }

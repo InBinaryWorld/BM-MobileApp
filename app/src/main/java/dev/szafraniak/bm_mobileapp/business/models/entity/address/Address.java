@@ -18,4 +18,19 @@ public class Address {
     private String houseNumber;
 
     private String apartmentNumber;
+
+
+    public String getFullNumber() {
+        String apartmentPart = apartmentNumber != null ? String.format("/%s", apartmentNumber) : "";
+        return String.format("%s%s", houseNumber, apartmentPart);
+    }
+
+    public String getShortAddress() {
+        return String.format("%s, %s", city, country);
+    }
+
+    public String getFullAddress() {
+        return String.format("%s %s, %s %s, %s", street, getFullNumber(), postalCode, city, country);
+    }
+
 }

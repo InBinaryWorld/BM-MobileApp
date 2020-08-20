@@ -13,6 +13,10 @@ import dev.szafraniak.bm_mobileapp.presentation.company.create.CompanyCreateFrag
 import dev.szafraniak.bm_mobileapp.presentation.company.list.CompanyListFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.company.ModifyCompanyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.CompanyContactListFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create.CompanyContactCreateFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.IndividualContactListFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.IndividualContactCreateFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.resources.ResourcesFragment_;
@@ -25,6 +29,10 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_COMPANY_CREATE_ID = 11;
     public static final int FRAGMENT_DASHBOARD_ID = 100;
     public static final int FRAGMENT_CONTACTS_ID = 200;
+    public static final int FRAGMENT_INDIVIDUAL_CONTACTS_ID = 210;
+    public static final int FRAGMENT_INDIVIDUAL_CONTACTS_CREATE_ID = 211;
+    public static final int FRAGMENT_COMPANY_CONTACTS_ID = 220;
+    public static final int FRAGMENT_COMPANY_CONTACTS_CREATE_ID = 221;
     public static final int FRAGMENT_RESOURCES_ID = 300;
     public static final int FRAGMENT_FINANCES_ID = 400;
     public static final int FRAGMENT_SETTINGS_ID = 500;
@@ -55,6 +63,18 @@ public abstract class FragmentFactory {
                 break;
             case FRAGMENT_CONTACTS_ID:
                 fragment = new ContactsFragment_();
+                break;
+            case FRAGMENT_INDIVIDUAL_CONTACTS_ID:
+                fragment = new IndividualContactListFragment_();
+                break;
+            case FRAGMENT_INDIVIDUAL_CONTACTS_CREATE_ID:
+                fragment = new IndividualContactCreateFragment_();
+                break;
+            case FRAGMENT_COMPANY_CONTACTS_ID:
+                fragment = new CompanyContactListFragment_();
+                break;
+            case FRAGMENT_COMPANY_CONTACTS_CREATE_ID:
+                fragment = new CompanyContactCreateFragment_();
                 break;
             case FRAGMENT_RESOURCES_ID:
                 fragment = new ResourcesFragment_();

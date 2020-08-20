@@ -7,16 +7,17 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
 import lombok.Data;
 
 @Data
-public class Contact {
+public abstract class Contact {
 
     private Long id;
-
-    private String name;
 
     private String phone;
 
     private Address address;
 
     private List<Invoice> invoices;
+
+    public abstract String getName();
+
 
 }

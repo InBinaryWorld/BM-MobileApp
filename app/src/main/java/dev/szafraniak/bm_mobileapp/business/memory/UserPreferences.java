@@ -48,4 +48,8 @@ public class UserPreferences {
         return gson.fromJson(json, Company.class);
     }
 
+    public Long getCompanyId() {
+        return getCompany().getId();
+    }
+
 }

@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.shared.form;
+package dev.szafraniak.bm_mobileapp.presentation.shared.form.config;
 
 import java.util.List;
 

@@ -12,4 +12,9 @@ public class IndividualContact extends Contact {
 
     private String lastName;
 
+    @Override
+    public String getName() {
+        return String.format("%s %s", firstName, lastName);
+    }
+
 }

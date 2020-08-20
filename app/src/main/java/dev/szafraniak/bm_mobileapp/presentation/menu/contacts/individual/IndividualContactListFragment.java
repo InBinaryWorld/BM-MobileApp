@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.company.list;
+package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual;
 
 import android.widget.TextView;
 
@@ -11,32 +11,30 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuActivity_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactListAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragment;
 
-@EFragment(R.layout.fragment_company_list)
-public class CompanyListFragment extends BaseListFragment<CompanyListModel> implements CompanyListView {
+@EFragment(R.layout.fragment_contact_list)
+public class IndividualContactListFragment extends BaseListFragment<IndividualContact>
+        implements IndividualContactListView {
 
 
     @ViewById(R.id.tv_header_text)
     TextView headerTextView;
 
     @Inject
-    CompanyListPresenter presenter;
-
-    @Inject
-    UserPreferences userPreferences;
+    IndividualContactListPresenter presenter;
 
     @AfterViews
     public void initialize() {
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText(R.string.header_choose_company);
+        headerTextView.setText(R.string.header_individual_contact_list);
         presenter.setView(this);
         firstLoadData();
     }
@@ -47,18 +45,16 @@ public class CompanyListFragment extends BaseListFragment<CompanyListModel> impl
     }
 
     @Override
-    protected BaseAdapter<CompanyListModel> createAdapter() {
-        return new CompanyListAdapter(getContext());
+    protected BaseAdapter<IndividualContact> createAdapter() {
+        return new ContactListAdapter<>(getContext());
     }
 
     @Override
-    public void onItemClick(CompanyListModel item) {
-        userPreferences.setCompany(item.getCompany());
-        Navigator.startActivity(getContext(), MenuActivity_.class);
+    public void onItemClick(IndividualContact item) {
     }
 
-    @Click(R.id.flb_create_company)
-    public void createCompanyAction() {
-        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CREATE_ID);
+    @Click(R.id.flb_create)
+    public void createContactAction() {
+        Navigator.backOneAndNavigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACTS_CREATE_ID);
     }
 }

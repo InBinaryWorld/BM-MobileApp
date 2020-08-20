@@ -12,8 +12,8 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
 
 public class CompanyListAdapter extends BaseAdapter<CompanyListModel> {
 
-    public CompanyListAdapter(Context context, int res) {
-        super(context, res);
+    public CompanyListAdapter(Context context) {
+        super(context, R.layout.row_card_company);
     }
 
     static class ViewHolder {
@@ -32,12 +32,12 @@ public class CompanyListAdapter extends BaseAdapter<CompanyListModel> {
             viewHolder.productValue = convertView.findViewById(R.id.tv_product_value);
             convertView.setTag(viewHolder);
         }
-        CompanyListModel item = items.get(position);
+        CompanyListModel item = getItem(position);
         ViewHolder holder = (ViewHolder) convertView.getTag();
         Company company = item.getCompany();
         Address address = company.getHeadquarter();
         holder.companyName.setText(company.getName());
-        holder.address.setText(String.format("%s, %s", address.getCity(), address.getCountry()));
+        holder.address.setText(address.getShortAddress());
         holder.productValue.setText(item.getProductsValue());
         return convertView;
     }
