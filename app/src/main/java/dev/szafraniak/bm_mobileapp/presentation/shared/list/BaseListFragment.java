@@ -3,13 +3,14 @@ package dev.szafraniak.bm_mobileapp.presentation.shared.list;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.StringRes;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
@@ -29,6 +30,8 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
     protected ListView listView;
 
     protected BaseAdapter<T> adapter;
+
+    protected TextView headerTextView;
 
     @IdRes
     protected int getListViewId() {
@@ -50,16 +53,27 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
         return R.id.empty_list;
     }
 
+    @IdRes
+    protected int getHeaderTextViewId() {
+        return R.id.tv_header_text;
+    }
+
+    @StringRes
+    protected abstract int getHeaderTextResourceId();
+
     @AfterViews
     public void initializeBaseListFragment() {
         listView = (ListView) findViewById(getListViewId());
         errorView = findViewById(getErrorViewId());
         progressBar = findViewById(getProgressBarViewId());
         emptyListView = findViewById(getEmptyViewId());
-        listView.setOnItemClickListener(this);
+        headerTextView = (TextView) findViewById(getHeaderTextViewId());
+
+        headerTextView.setText(getHeaderTextResourceId());
 
         adapter = createAdapter();
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(this);
     }
 
     protected abstract void loadData();
@@ -67,10 +81,6 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
     public abstract void onItemClick(T item);
 
     protected abstract BaseAdapter<T> createAdapter();
-
-    private void clearList() {
-        adapter.setAllItems(new ArrayList<>());
-    }
 
     @Override
     public synchronized void setData(BMCollection<T> collection) {

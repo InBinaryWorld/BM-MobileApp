@@ -12,4 +12,8 @@ public class CompanyContact extends Contact {
 
     private String taxIdentityNumber;
 
+    @Override
+    public String getDescriptionForFilter() {
+        return String.format("%s %s", super.getDescriptionForFilter(), taxIdentityNumber);
+    }
 }

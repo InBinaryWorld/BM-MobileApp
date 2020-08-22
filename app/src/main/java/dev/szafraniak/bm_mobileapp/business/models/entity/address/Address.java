@@ -1,9 +1,10 @@
 package dev.szafraniak.bm_mobileapp.business.models.entity.address;
 
+import dev.szafraniak.bm_mobileapp.presentation.shared.search.FilterValue;
 import lombok.Data;
 
 @Data
-public class Address {
+public class Address extends FilterValue {
 
     private Long id;
 
@@ -33,4 +34,8 @@ public class Address {
         return String.format("%s %s, %s %s, %s", street, getFullNumber(), postalCode, city, country);
     }
 
+    @Override
+    protected String createDescriptionForFilter() {
+        return String.format("%s %s %s %s %s", street, getFullNumber(), postalCode, city, country);
+    }
 }

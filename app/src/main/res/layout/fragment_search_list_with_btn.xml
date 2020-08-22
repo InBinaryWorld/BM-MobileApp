@@ -12,6 +12,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <FrameLayout
+        android:id="@+id/fl_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        android:background="@color/colorBlueDark"
+        android:paddingHorizontal="18dp"
+        android:paddingBottom="10dp">
+
+        <SearchView
+            android:id="@+id/sv_search"
+            android:queryHint="@string/search_list_search_view_query_hint"
+            android:layout_width="match_parent"
+            android:queryBackground="@android:color/transparent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:backgroundTint="@color/browser_actions_bg_grey"
+            android:background="@drawable/shape_rounded" />
+
+    </FrameLayout>
+
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/srl_swipe_refresh_layout"
@@ -19,7 +42,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header">
+        app:layout_constraintTop_toBottomOf="@+id/fl_search">
 
         <ListView
             android:id="@+id/list"
@@ -65,12 +88,11 @@
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/flb_create"
+        android:id="@+id/flb_list_button"
         style="@style/ExtendedFloatingButton.Wide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="@string/contact_list_create_contact"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

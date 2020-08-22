@@ -1,11 +1,9 @@
 package dev.szafraniak.bm_mobileapp.presentation.company.list;
 
-import android.widget.TextView;
+import android.view.View;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
 
@@ -16,14 +14,10 @@ import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuActivity_;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
-import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWithBtn;
 
-@EFragment(R.layout.fragment_company_list)
-public class CompanyListFragment extends BaseListFragment<CompanyListModel> implements CompanyListView {
-
-
-    @ViewById(R.id.tv_header_text)
-    TextView headerTextView;
+@EFragment(R.layout.fragment_base_list_with_btn)
+public class CompanyListFragment extends BaseListFragmentWithBtn<CompanyListModel> implements CompanyListView {
 
     @Inject
     CompanyListPresenter presenter;
@@ -36,9 +30,13 @@ public class CompanyListFragment extends BaseListFragment<CompanyListModel> impl
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText(R.string.header_choose_company);
         presenter.setView(this);
         firstLoadData();
+    }
+
+    @Override
+    protected int getHeaderTextResourceId() {
+        return R.string.header_choose_company;
     }
 
     @Override
@@ -57,8 +55,13 @@ public class CompanyListFragment extends BaseListFragment<CompanyListModel> impl
         Navigator.startActivity(getContext(), MenuActivity_.class);
     }
 
-    @Click(R.id.flb_create_company)
-    public void createCompanyAction() {
+    @Override
+    protected int getFlButtonTextId() {
+        return R.string.company_list_fl_btn_text;
+    }
+
+    @Override
+    protected void onFlButtonClick(View view) {
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CREATE_ID);
     }
 }

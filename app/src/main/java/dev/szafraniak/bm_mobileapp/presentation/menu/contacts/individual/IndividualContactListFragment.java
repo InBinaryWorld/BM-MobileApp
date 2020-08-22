@@ -1,11 +1,9 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual;
 
-import android.widget.TextView;
+import android.view.View;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
 
@@ -16,15 +14,11 @@ import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactListAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
-import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.search.SearchListFragmentWithBtn;
 
-@EFragment(R.layout.fragment_contact_list)
-public class IndividualContactListFragment extends BaseListFragment<IndividualContact>
+@EFragment(R.layout.fragment_search_list_with_btn)
+public class IndividualContactListFragment extends SearchListFragmentWithBtn<IndividualContact>
         implements IndividualContactListView {
-
-
-    @ViewById(R.id.tv_header_text)
-    TextView headerTextView;
 
     @Inject
     IndividualContactListPresenter presenter;
@@ -34,9 +28,23 @@ public class IndividualContactListFragment extends BaseListFragment<IndividualCo
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText(R.string.header_individual_contact_list);
         presenter.setView(this);
         firstLoadData();
+    }
+
+    @Override
+    protected int getHeaderTextResourceId() {
+        return R.string.header_individual_contact_list;
+    }
+
+    @Override
+    protected int getFlButtonTextId() {
+        return R.string.contact_list_fl_btn_create;
+    }
+
+    @Override
+    protected void onFlButtonClick(View view) {
+        Navigator.backOneAndNavigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACTS_CREATE_ID);
     }
 
     @Override
@@ -53,8 +61,4 @@ public class IndividualContactListFragment extends BaseListFragment<IndividualCo
     public void onItemClick(IndividualContact item) {
     }
 
-    @Click(R.id.flb_create)
-    public void createContactAction() {
-        Navigator.backOneAndNavigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACTS_CREATE_ID);
-    }
 }

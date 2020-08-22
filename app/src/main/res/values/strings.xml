@@ -22,7 +22,7 @@
     <string name="settings_logout">Logout</string>
     <string name="address">Address</string>
     <string name="company_card_products_value">Products Value</string>
-    <string name="company_list_btn_create">CREATE NEW COMPANY</string>
+    <string name="base_list_btn_default">CREATE NEW</string>
     <string name="settings_change_company">Change the company</string>
     <string name="create_company_header">Create Company</string>
     <string name="header_action_status">Action Status</string>
@@ -43,6 +43,9 @@
     <string name="iv_list_error">Failed</string>
     <string name="list_component_no_data_found">No data found</string>
     <string name="header_individual_contact_list">Individual Contacts</string>
-    <string name="contact_list_create_contact">Create Contact</string>
+    <string name="contact_list_fl_btn_create">Create Contact</string>
     <string name="header_create_contact">Create Contact</string>
+    <string name="search_list_search_view_query_hint">Search</string>
+    <string name="company_list_fl_btn_text">CREATE NEW COMPANY</string>
+    <string name="header_company_contacts_list">Company Contacts</string>
 </resources>
