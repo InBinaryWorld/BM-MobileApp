@@ -48,4 +48,6 @@
     <string name="search_list_search_view_query_hint">Search</string>
     <string name="company_list_fl_btn_text">CREATE NEW COMPANY</string>
     <string name="header_company_contacts_list">Company Contacts</string>
+    <string name="header_contact_details">Conatact Details</string>
+    <string name="contact_details_fl_btn_text">MODIFY CONTACT</string>
 </resources>

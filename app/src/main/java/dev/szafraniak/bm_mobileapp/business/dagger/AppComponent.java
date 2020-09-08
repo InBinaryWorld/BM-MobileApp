@@ -39,10 +39,18 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.CompanyCon
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.CompanyContactListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create.CompanyContactCreateFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create.CompanyContactCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.details.CompanyContactDetailsFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.details.CompanyContactDetailsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.modify.CompanyContactModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.modify.CompanyContactModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.IndividualContactListFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.IndividualContactListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.IndividualContactCreateFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.IndividualContactCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details.IndividualContactDetailsFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details.IndividualContactDetailsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment;
@@ -141,4 +149,20 @@ public interface AppComponent {
     void inject(IndividualContactCreatePresenter individualContactCreatePresenter);
 
     void inject(IndividualContactCreateFragment individualContactCreateFragment);
+
+    void inject(CompanyContactModifyPresenter companyContactModifyPresenter);
+
+    void inject(CompanyContactModifyFragment companyContactModifyFragment);
+
+    void inject(CompanyContactDetailsFragment companyContactDetailsFragment);
+
+    void inject(CompanyContactDetailsPresenter companyContactDetailsPresenter);
+
+    void inject(IndividualContactDetailsFragment individualContactDetailsFragment);
+
+    void inject(IndividualContactDetailsPresenter individualContactDetailsPresenter);
+
+    void inject(IndividualContactModifyFragment individualContactModifyFragment);
+
+    void inject(IndividualContactModifyPresenter individualContactModifyPresenter);
 }

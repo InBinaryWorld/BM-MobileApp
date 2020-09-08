@@ -13,12 +13,11 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
-import java.util.Objects;
-
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
+import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
 
@@ -58,7 +57,8 @@ public class ActionStatusFragment extends BaseFragment {
 
     @Click(R.id.btn_action_status)
     public void buttonAction() {
-        Objects.requireNonNull(getActivity()).onBackPressed();
+        Navigator.backToStart(this);
+//        Navigator.back(this);
     }
 
     public void updateUI(Bundle bundle) {

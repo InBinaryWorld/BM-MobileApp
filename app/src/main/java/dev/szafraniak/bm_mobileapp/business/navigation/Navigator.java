@@ -79,6 +79,11 @@ public class Navigator {
         backTo(view, TAG_START);
     }
 
+    public static void back(BaseView view) {
+        FragmentManager fm = view.getFManager();
+        fm.popBackStack(null, 0);
+    }
+
     public static void backTo(BaseView view, int fragmentId) {
         String tag = getFragmentTag(fragmentId);
         backTo(view, tag);

@@ -1,10 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.company.create;
 
-import android.widget.TextView;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
 
@@ -18,9 +15,6 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.FormConfig;
 @EFragment(R.layout.fragment_base_form)
 public class CompanyCreateFragment extends BaseFormFragment<CreateCompanyRequest> implements CompanyCreateView {
 
-    @ViewById(R.id.tv_header_text)
-    TextView headerTextView;
-
     @Inject
     CompanyCreatePresenter presenter;
 
@@ -29,8 +23,8 @@ public class CompanyCreateFragment extends BaseFormFragment<CreateCompanyRequest
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText(R.string.create_company_header);
         presenter.setView(this);
+        super.initialize();
     }
 
     @Override
@@ -50,4 +44,8 @@ public class CompanyCreateFragment extends BaseFormFragment<CreateCompanyRequest
         return new CompanyCreateFormConfig(inflater, layout);
     }
 
+    @Override
+    protected int getHeaderTextResourceId() {
+        return R.string.create_company_header;
+    }
 }

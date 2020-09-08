@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.shared.form.row.base;
+package dev.szafraniak.bm_mobileapp.presentation.shared;
 
 
 import android.view.View;

@@ -3,6 +3,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.resources;
 import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
@@ -29,4 +30,18 @@ public class ResourcesFragment extends BaseFragment implements ResourcesView {
         headerTextView.setText(R.string.header_resources);
     }
 
+    @Click(R.id.btn_products)
+    public void productsClick() {
+
+    }
+
+    @Click(R.id.btn_services)
+    public void servicesClick() {
+
+    }
+
+    @Click(R.id.btn_warehouses)
+    public void warehousesClick() {
+
+    }
 }

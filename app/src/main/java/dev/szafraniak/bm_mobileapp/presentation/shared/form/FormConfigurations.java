@@ -8,7 +8,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTex
 public final class FormConfigurations {
 
     public static <T> EditTextFormRowConfig<T> getFirstNameConfig() {
-        EditTextFormRowConfig<T> config = getBaseCompanyEditConfig();
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
         config.setLabelText("First Name");
         config.setInvalidMessage("1-20 Signs");
         config.setValidator(Validator::validateFirstName);
@@ -16,7 +16,7 @@ public final class FormConfigurations {
     }
 
     public static <T> EditTextFormRowConfig<T> getLastNameConfig() {
-        EditTextFormRowConfig<T> config = getBaseCompanyEditConfig();
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
         config.setLabelText("Last Name");
         config.setInvalidMessage("1-20 Signs");
         config.setValidator(Validator::validateLastName);
@@ -24,7 +24,7 @@ public final class FormConfigurations {
     }
 
     public static <T> EditTextFormRowConfig<T> getInvoicePrefixConfig() {
-        EditTextFormRowConfig<T> config = getBaseCompanyEditConfig();
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
         config.setLabelText("Invoice Prefix");
         config.setInvalidMessage("2-14 Signs, Last No Digit");
         config.setValidator(Validator::validateInvoicePrefix);
@@ -32,7 +32,7 @@ public final class FormConfigurations {
     }
 
     public static <T> EditTextFormRowConfig<T> getCompanyNameConfig() {
-        EditTextFormRowConfig<T> config = getBaseCompanyEditConfig();
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
         config.setLabelText("Company name");
         config.setInvalidMessage("2-40 Signs");
         config.setValidator(Validator::validateCompanyName);
@@ -40,7 +40,7 @@ public final class FormConfigurations {
     }
 
     public static <T> EditTextFormRowConfig<T> getTaxIdentityNumberConfig() {
-        EditTextFormRowConfig<T> config = getBaseCompanyEditConfig();
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
         config.setLabelText("Tax Identity Number");
         config.setInvalidMessage("10 Digits");
         config.setValidator(Validator::validateTaxIdentityNumber);
@@ -48,7 +48,7 @@ public final class FormConfigurations {
     }
 
     public static <T> EditTextFormRowConfig<T> getPhoneConfig() {
-        EditTextFormRowConfig<T> config = getBaseCompanyEditConfig();
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
         config.setRequired(false);
         config.setLabelText("Phone Number");
         config.setInvalidMessage("4-12 Digits, With Optional Plus Sign");
@@ -57,7 +57,7 @@ public final class FormConfigurations {
     }
 
     public static <T> EditTextFormRowConfig<T> getCountryConfig() {
-        EditTextFormRowConfig<T> config = getBaseCompanyEditConfig();
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
         config.setLabelText("Country");
         config.setInitValue("Poland");
         config.setEnabled(false);
@@ -68,7 +68,7 @@ public final class FormConfigurations {
     }
 
     public static <T> EditTextFormRowConfig<T> getCityConfig() {
-        EditTextFormRowConfig<T> config = getBaseCompanyEditConfig();
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
         config.setLabelText("City");
         config.setInvalidMessage("2-30 Signs");
         config.setValidator(Validator::validateCity);
@@ -76,7 +76,7 @@ public final class FormConfigurations {
     }
 
     public static <T> EditTextFormRowConfig<T> getPostalCodeConfig() {
-        EditTextFormRowConfig<T> config = getBaseCompanyEditConfig();
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
         config.setLabelText("Postal Code");
         config.setInvalidMessage("Pattern XX-XXX");
         config.setValidator(Validator::validatePostalCode);
@@ -84,7 +84,7 @@ public final class FormConfigurations {
     }
 
     public static <T> EditTextFormRowConfig<T> getStreetConfig() {
-        EditTextFormRowConfig<T> config = getBaseCompanyEditConfig();
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
         config.setLabelText("Street");
         config.setInvalidMessage("2-30 Signs");
         config.setValidator(Validator::validateStreet);
@@ -92,7 +92,7 @@ public final class FormConfigurations {
     }
 
     public static <T> EditTextFormRowConfig<T> getHouseNumberConfig() {
-        EditTextFormRowConfig<T> config = getBaseCompanyEditConfig();
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
         config.setLabelText("House Number");
         config.setInvalidMessage("1-3 Digits And Optional Letter");
         config.setValidator(Validator::validateHouseNumber);
@@ -100,7 +100,7 @@ public final class FormConfigurations {
     }
 
     public static <T> EditTextFormRowConfig<T> getApartmentNumberConfig() {
-        EditTextFormRowConfig<T> config = getBaseCompanyEditConfig();
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
         config.setRequired(false);
         config.setLabelText("Apartment Number");
         config.setInvalidMessage("1-3 Digits And Optional Letter");
@@ -108,8 +108,8 @@ public final class FormConfigurations {
         return config;
     }
 
-    private static <T> EditTextFormRowConfig<T> getBaseCompanyEditConfig() {
-        EditTextFormRowConfig<T> config = new EditTextFormRowConfig<T>();
+    private static <T> EditTextFormRowConfig<T> getBaseEditConfig() {
+        EditTextFormRowConfig<T> config = new EditTextFormRowConfig<>();
         config.setEnabled(true);
         config.setRequired(true);
         config.setInitValue(null);

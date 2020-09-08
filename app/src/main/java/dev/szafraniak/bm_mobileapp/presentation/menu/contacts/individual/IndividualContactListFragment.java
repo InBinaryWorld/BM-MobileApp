@@ -1,6 +1,9 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual;
 
+import android.os.Bundle;
 import android.view.View;
+
+import com.google.gson.Gson;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -13,6 +16,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.Indi
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactListAdapter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details.IndividualContactDetailsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.SearchListFragmentWithBtn;
 
@@ -44,7 +48,7 @@ public class IndividualContactListFragment extends SearchListFragmentWithBtn<Ind
 
     @Override
     protected void onFlButtonClick(View view) {
-        Navigator.backOneAndNavigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACTS_CREATE_ID);
+        Navigator.backOneAndNavigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_CREATE_ID);
     }
 
     @Override
@@ -59,6 +63,9 @@ public class IndividualContactListFragment extends SearchListFragmentWithBtn<Ind
 
     @Override
     public void onItemClick(IndividualContact item) {
+        Bundle args = new Bundle();
+        args.putString(IndividualContactDetailsFragment.KEY_INDIVIDUAL_CONTACT, new Gson().toJson(item));
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_DETAILS_ID, args);
     }
 
 }

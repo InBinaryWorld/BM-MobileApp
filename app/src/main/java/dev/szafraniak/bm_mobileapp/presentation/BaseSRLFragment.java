@@ -9,7 +9,7 @@ import org.androidannotations.annotations.EFragment;
 import dev.szafraniak.bm_mobileapp.R;
 
 @EFragment
-public abstract class BaseSRLFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
+public abstract class BaseSRLFragment extends BaseHeaderFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     protected SwipeRefreshLayout swipeRefreshLayout;
 

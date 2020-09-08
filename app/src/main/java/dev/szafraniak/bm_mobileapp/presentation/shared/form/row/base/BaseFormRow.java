@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.BaseFormRowConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowFormatter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowFulFiller;

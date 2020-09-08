@@ -8,12 +8,12 @@ import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.CreateIndividualContactRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.SimpleBaseConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.BaseFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRow;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRowConfig;
 
-public class CompanyIndividualCreateFormConfig extends SimpleBaseConfig<CreateIndividualContactRequest> {
+public class CompanyIndividualCreateFormConfig extends BaseFormConfig<CreateIndividualContactRequest> {
 
     public CompanyIndividualCreateFormConfig(LayoutInflater inflater, ViewGroup viewGroup) {
         super(inflater, viewGroup);
@@ -21,7 +21,7 @@ public class CompanyIndividualCreateFormConfig extends SimpleBaseConfig<CreateIn
 
     @Override
     protected String getSubmitButtonText() {
-        return "CREATE COMPANY";
+        return "CREATE CONTACT";
     }
 
     @Override

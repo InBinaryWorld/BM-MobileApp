@@ -35,12 +35,12 @@ public class ContactsFragment extends BaseFragment implements ContactsView {
 
     @Click(R.id.btn_individual)
     public void onIndividualClick() {
-        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACTS_ID);
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_LIST_ID);
     }
 
     @Click(R.id.btn_company)
     public void onCompanyClick() {
-        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACTS_ID);
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_LIST_ID);
     }
 
 }

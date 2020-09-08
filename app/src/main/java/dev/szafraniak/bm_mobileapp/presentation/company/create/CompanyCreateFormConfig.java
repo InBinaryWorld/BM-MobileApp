@@ -8,12 +8,12 @@ import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.CreateCompanyRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.SimpleBaseConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.BaseFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRow;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRowConfig;
 
-public class CompanyCreateFormConfig extends SimpleBaseConfig<CreateCompanyRequest> {
+public class CompanyCreateFormConfig extends BaseFormConfig<CreateCompanyRequest> {
 
     public CompanyCreateFormConfig(LayoutInflater inflater, ViewGroup viewGroup) {
         super(inflater, viewGroup);

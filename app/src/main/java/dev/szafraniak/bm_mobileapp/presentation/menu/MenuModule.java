@@ -11,8 +11,12 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.company.ModifyCompanyPresen
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.CompanyContactListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create.CompanyContactCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.details.CompanyContactDetailsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.modify.CompanyContactModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.IndividualContactListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.IndividualContactCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details.IndividualContactDetailsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.resources.ResourcesPresenter;
@@ -86,4 +90,29 @@ public class MenuModule {
     public IndividualContactCreatePresenter provideIndividualContactCreatePresenter(Application app) {
         return new IndividualContactCreatePresenter(app);
     }
+
+    @Provides
+    @Singleton
+    public CompanyContactModifyPresenter provideCompanyContactModifyPresenter(Application app) {
+        return new CompanyContactModifyPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public CompanyContactDetailsPresenter provideCompanyContactDetailsPresenter(Application app) {
+        return new CompanyContactDetailsPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public IndividualContactDetailsPresenter provideIndividualContactDetailsPresenter(Application app) {
+        return new IndividualContactDetailsPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public IndividualContactModifyPresenter provideIndividualContactModifyPresenter(Application app) {
+        return new IndividualContactModifyPresenter(app);
+    }
+
 }

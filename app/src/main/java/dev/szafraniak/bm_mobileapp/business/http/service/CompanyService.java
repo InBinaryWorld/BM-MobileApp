@@ -9,6 +9,7 @@ import dev.szafraniak.bm_mobileapp.business.http.api.BmResourcesApi;
 import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.CreateCompanyRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.company.UpdateCompanyRequest;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -29,6 +30,12 @@ public class CompanyService {
 
     public Observable<Company> createCompany(CreateCompanyRequest request) {
         return bmResourcesApi.createCompany(request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<Company> modifyCompany(Long companyId, UpdateCompanyRequest request) {
+        return bmResourcesApi.modifyCompany(companyId, request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

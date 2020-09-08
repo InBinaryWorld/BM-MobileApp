@@ -1,10 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create;
 
-import android.widget.TextView;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
 
@@ -18,10 +15,6 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.FormConfig;
 @EFragment(R.layout.fragment_base_form)
 public class CompanyContactCreateFragment extends BaseFormFragment<CreateCompanyContactRequest> implements CompanyContactCreateView {
 
-    @ViewById(R.id.tv_header_text)
-    TextView headerTextView;
-
-
     @Inject
     CompanyContactCreatePresenter presenter;
 
@@ -30,8 +23,8 @@ public class CompanyContactCreateFragment extends BaseFormFragment<CreateCompany
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText(R.string.header_create_contact);
         presenter.setView(this);
+        super.initialize();
     }
 
     @Override
@@ -51,4 +44,8 @@ public class CompanyContactCreateFragment extends BaseFormFragment<CreateCompany
         return new CompanyContactCreateFormConfig(inflater, layout);
     }
 
+    @Override
+    protected int getHeaderTextResourceId() {
+        return R.string.header_create_contact;
+    }
 }

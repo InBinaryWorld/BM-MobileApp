@@ -1,6 +1,9 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company;
 
+import android.os.Bundle;
 import android.view.View;
+
+import com.google.gson.Gson;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -13,6 +16,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.Company
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactListAdapter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.details.CompanyContactDetailsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.SearchListFragmentWithBtn;
 
@@ -49,6 +53,9 @@ public class CompanyContactListFragment extends SearchListFragmentWithBtn<Compan
 
     @Override
     public void onItemClick(CompanyContact item) {
+        Bundle args = new Bundle();
+        args.putString(CompanyContactDetailsFragment.KEY_COMPANY_CONTACT, new Gson().toJson(item));
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_DETAILS_ID, args);
     }
 
     @Override
@@ -58,6 +65,6 @@ public class CompanyContactListFragment extends SearchListFragmentWithBtn<Compan
 
     @Override
     protected void onFlButtonClick(View view) {
-        Navigator.backOneAndNavigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACTS_CREATE_ID);
+        Navigator.backOneAndNavigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_CREATE_ID);
     }
 }

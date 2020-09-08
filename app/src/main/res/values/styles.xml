@@ -44,11 +44,16 @@
     <style name="LinearLayout">
         <item name="android:clipToPadding">false</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="LinearLayout.Form">
-        <item name="android:paddingVertical">10dp</item>
+        <item name="android:paddingVertical">12dp</item>
+    </style>
+
+    <style name="LinearLayout.Details">
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">84dp</item>
     </style>
 
     <style name="Row">

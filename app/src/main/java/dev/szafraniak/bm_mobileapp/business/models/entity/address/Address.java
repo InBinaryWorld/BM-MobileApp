@@ -2,8 +2,10 @@ package dev.szafraniak.bm_mobileapp.business.models.entity.address;
 
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.FilterValue;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class Address extends FilterValue {
 
     private Long id;

@@ -15,8 +15,12 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.company.ModifyCompanyFragme
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.CompanyContactListFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create.CompanyContactCreateFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.details.CompanyContactDetailsFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.modify.CompanyContactModifyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.IndividualContactListFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.IndividualContactCreateFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details.IndividualContactDetailsFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.resources.ResourcesFragment_;
@@ -29,10 +33,14 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_COMPANY_CREATE_ID = 11;
     public static final int FRAGMENT_DASHBOARD_ID = 100;
     public static final int FRAGMENT_CONTACTS_ID = 200;
-    public static final int FRAGMENT_INDIVIDUAL_CONTACTS_ID = 210;
-    public static final int FRAGMENT_INDIVIDUAL_CONTACTS_CREATE_ID = 211;
-    public static final int FRAGMENT_COMPANY_CONTACTS_ID = 220;
-    public static final int FRAGMENT_COMPANY_CONTACTS_CREATE_ID = 221;
+    public static final int FRAGMENT_INDIVIDUAL_CONTACT_LIST_ID = 210;
+    public static final int FRAGMENT_INDIVIDUAL_CONTACT_CREATE_ID = 211;
+    public static final int FRAGMENT_INDIVIDUAL_CONTACT_MODIFY_ID = 212;
+    public static final int FRAGMENT_INDIVIDUAL_CONTACT_DETAILS_ID = 213;
+    public static final int FRAGMENT_COMPANY_CONTACT_LIST_ID = 220;
+    public static final int FRAGMENT_COMPANY_CONTACT_CREATE_ID = 221;
+    public static final int FRAGMENT_COMPANY_CONTACT_MODIFY_ID = 222;
+    public static final int FRAGMENT_COMPANY_CONTACT_DETAILS_ID = 223;
     public static final int FRAGMENT_RESOURCES_ID = 300;
     public static final int FRAGMENT_FINANCES_ID = 400;
     public static final int FRAGMENT_SETTINGS_ID = 500;
@@ -64,17 +72,29 @@ public abstract class FragmentFactory {
             case FRAGMENT_CONTACTS_ID:
                 fragment = new ContactsFragment_();
                 break;
-            case FRAGMENT_INDIVIDUAL_CONTACTS_ID:
+            case FRAGMENT_INDIVIDUAL_CONTACT_LIST_ID:
                 fragment = new IndividualContactListFragment_();
                 break;
-            case FRAGMENT_INDIVIDUAL_CONTACTS_CREATE_ID:
+            case FRAGMENT_INDIVIDUAL_CONTACT_CREATE_ID:
                 fragment = new IndividualContactCreateFragment_();
                 break;
-            case FRAGMENT_COMPANY_CONTACTS_ID:
+            case FRAGMENT_INDIVIDUAL_CONTACT_MODIFY_ID:
+                fragment = new IndividualContactModifyFragment_();
+                break;
+            case FRAGMENT_INDIVIDUAL_CONTACT_DETAILS_ID:
+                fragment = new IndividualContactDetailsFragment_();
+                break;
+            case FRAGMENT_COMPANY_CONTACT_LIST_ID:
                 fragment = new CompanyContactListFragment_();
                 break;
-            case FRAGMENT_COMPANY_CONTACTS_CREATE_ID:
+            case FRAGMENT_COMPANY_CONTACT_CREATE_ID:
                 fragment = new CompanyContactCreateFragment_();
+                break;
+            case FRAGMENT_COMPANY_CONTACT_MODIFY_ID:
+                fragment = new CompanyContactModifyFragment_();
+                break;
+            case FRAGMENT_COMPANY_CONTACT_DETAILS_ID:
+                fragment = new CompanyContactDetailsFragment_();
                 break;
             case FRAGMENT_RESOURCES_ID:
                 fragment = new ResourcesFragment_();

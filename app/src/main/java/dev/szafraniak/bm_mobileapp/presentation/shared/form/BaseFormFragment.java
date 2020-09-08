@@ -7,13 +7,12 @@ import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 
 import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
+import dev.szafraniak.bm_mobileapp.presentation.BaseHeaderFragment;
 import dev.szafraniak.bm_mobileapp.presentation.BaseView;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.FormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.progress.BaseProgressRow;
@@ -21,7 +20,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowInterface
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.submit.BaseSubmitRow;
 
 @EFragment
-public abstract class BaseFormFragment<T> extends BaseFragment implements BaseView {
+public abstract class BaseFormFragment<T> extends BaseHeaderFragment implements BaseView {
 
     private boolean inProgress;
     private FormConfig<T> formConfig;
@@ -57,8 +56,7 @@ public abstract class BaseFormFragment<T> extends BaseFragment implements BaseVi
 
     protected abstract T getFormModel();
 
-    @AfterViews
-    public void initializeBaseFormFragment() {
+    public void initialize() {
         inflater = LayoutInflater.from(getContext());
         layout = (LinearLayout) findViewById(getLinearLayoutId());
         this.prepareView();
@@ -71,7 +69,7 @@ public abstract class BaseFormFragment<T> extends BaseFragment implements BaseVi
         return formConfig;
     }
 
-    private void prepareView() {
+    protected void prepareView() {
         FormConfig<T> config = getFormConfig();
         layout.removeAllViews();
         for (FormRowInterface<T> row : config.getRowsConfiguration()) {
@@ -127,6 +125,12 @@ public abstract class BaseFormFragment<T> extends BaseFragment implements BaseVi
         FormConfig<T> config = getFormConfig();
         BaseSubmitRow submitRow = config.getBaseSubmitRow();
         submitRow.setSubmitEnabled(enabled);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        formConfig = null;
     }
 
     public interface Callback {

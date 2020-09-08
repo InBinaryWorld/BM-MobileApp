@@ -9,12 +9,12 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.submit.BaseSubmitRow
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.submit.FormSubmitRowConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.submit.SimpleSubmitFormRow;
 
-public abstract class SimpleBaseConfig<T> extends FormConfig<T> {
+public abstract class BaseFormConfig<T> extends FormConfig<T> {
 
     protected final LayoutInflater inflater;
     protected final ViewGroup viewGroup;
 
-    public SimpleBaseConfig(LayoutInflater inflater, ViewGroup viewGroup) {
+    public BaseFormConfig(LayoutInflater inflater, ViewGroup viewGroup) {
         this.inflater = inflater;
         this.viewGroup = viewGroup;
     }
