@@ -70,7 +70,7 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
 
     @Override
     protected void loadData() {
-        presenter.loadData(contact);
+        presenter.loadData(contact.getId());
     }
 
     @Override

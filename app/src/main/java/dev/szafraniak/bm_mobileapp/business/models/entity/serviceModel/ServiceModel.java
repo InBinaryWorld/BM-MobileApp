@@ -1,10 +1,13 @@
 package dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
+import dev.szafraniak.bm_mobileapp.presentation.shared.search.FilterValue;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
-public class ServiceModel {
+@EqualsAndHashCode(callSuper = false)
+public class ServiceModel extends FilterValue {
 
     private Long id;
 
@@ -14,4 +17,8 @@ public class ServiceModel {
 
     private Price priceSuggestion;
 
+    @Override
+    protected String createDescriptionForFilter() {
+        return name;
+    }
 }

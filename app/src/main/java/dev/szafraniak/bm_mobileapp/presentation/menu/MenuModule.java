@@ -24,6 +24,10 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.products.create.ProductMode
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.details.ProductModelDetailsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.modify.ProductModelModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.resources.ResourcesPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.ServiceModelListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.create.ServiceModelCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.details.ServiceModelDetailsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsPresenter;
 
 @Module
@@ -141,6 +145,30 @@ public class MenuModule {
     @Singleton
     public ProductModelDetailsPresenter provideProductModelDetailsPresenter(Application app) {
         return new ProductModelDetailsPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public ServiceModelListPresenter provideServiceModelListPresenter(Application app) {
+        return new ServiceModelListPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public ServiceModelDetailsPresenter provideServiceModelDetailsPresenter(Application app) {
+        return new ServiceModelDetailsPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public ServiceModelModifyPresenter provideServiceModelModifyPresenter(Application app) {
+        return new ServiceModelModifyPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public ServiceModelCreatePresenter provideServiceModelCreatePresenter(Application app) {
+        return new ServiceModelCreatePresenter(app);
     }
 
 }

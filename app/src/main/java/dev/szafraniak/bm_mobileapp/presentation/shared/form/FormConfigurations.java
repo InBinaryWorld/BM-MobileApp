@@ -8,6 +8,14 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.price.PriceFormR
 
 public final class FormConfigurations {
 
+    public static <T> EditTextFormRowConfig<T> getServiceModelNameConfig() {
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
+        config.setLabelText("Service Name");
+        config.setInvalidMessage("2-60 Signs");
+        config.setValidator(Validator::validateProductModelName);
+        return config;
+    }
+
     public static <T> EditTextFormRowConfig<T> getProductModelNameConfig() {
         EditTextFormRowConfig<T> config = getBaseEditConfig();
         config.setLabelText("Product Name");

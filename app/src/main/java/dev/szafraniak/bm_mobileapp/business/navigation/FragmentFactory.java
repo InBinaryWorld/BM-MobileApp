@@ -28,6 +28,10 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.products.create.ProductMode
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.details.ProductModelDetailsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.modify.ProductModelModifyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.resources.ResourcesFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.ServiceModelListFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.create.ServiceModelCreateFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.details.ServiceModelDetailsFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragment_;
 
@@ -54,6 +58,10 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_PRODUCT_MODEL_MODIFY = 701;
     public static final int FRAGMENT_PRODUCT_MODEL_CREATE = 702;
     public static final int FRAGMENT_PRODUCT_MODEL_DETAILS = 703;
+    public static final int FRAGMENT_SERVICE_MODEL_LIST = 800;
+    public static final int FRAGMENT_SERVICE_MODEL_DETAILS = 801;
+    public static final int FRAGMENT_SERVICE_MODEL_MODIFY = 802;
+    public static final int FRAGMENT_SERVICE_MODEL_CREATE = 803;
 
     public static final Map<Integer, Integer> menuMap = new HashMap<Integer, Integer>() {{
         put(R.id.menu_dashboard, FRAGMENT_DASHBOARD_ID);
@@ -130,6 +138,18 @@ public abstract class FragmentFactory {
                 break;
             case FRAGMENT_PRODUCT_MODEL_DETAILS:
                 fragment = new ProductModelDetailsFragment_();
+                break;
+            case FRAGMENT_SERVICE_MODEL_LIST:
+                fragment = new ServiceModelListFragment_();
+                break;
+            case FRAGMENT_SERVICE_MODEL_DETAILS:
+                fragment = new ServiceModelDetailsFragment_();
+                break;
+            case FRAGMENT_SERVICE_MODEL_MODIFY:
+                fragment = new ServiceModelModifyFragment_();
+                break;
+            case FRAGMENT_SERVICE_MODEL_CREATE:
+                fragment = new ServiceModelCreateFragment_();
                 break;
             default:
                 throw new Resources.NotFoundException("Not found fragment with id: " + fragmentId);

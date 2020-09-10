@@ -15,6 +15,9 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.product.Product;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.CreateProductModelRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.UpdateProductModelRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.CreateServiceModelRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
+import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.UpdateServiceModelRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.user.User;
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -57,8 +60,28 @@ public interface BmResourcesApi {
                                                 @Path("productModelId") Long productModelId,
                                                 @Body UpdateProductModelRequest model);
 
+    @GET("/api/companies/{companyId}/services/models")
+    Observable<BMCollection<ServiceModel>> getServiceModels(@Path("companyId") Long companyId);
+
+    @GET("/api/companies/{companyId}/services/models/{serviceModelId}")
+    Observable<ServiceModel> getServiceModel(@Path("companyId") Long companyId,
+                                             @Path("serviceModelId") Long serviceModelId);
+
+    @POST("/api/companies/{companyId}/services/models")
+    Observable<ServiceModel> createServiceModel(@Path("companyId") Long companyId,
+                                                @Body CreateServiceModelRequest model);
+
+    @PUT("/api/companies/{companyId}/services/models/{serviceModelId}")
+    Observable<ServiceModel> modifyServiceModel(@Path("companyId") Long companyId,
+                                                @Path("serviceModelId") Long serviceModelId,
+                                                @Body UpdateServiceModelRequest model);
+
     @GET("/api/companies/{companyId}/contacts/company")
     Observable<BMCollection<CompanyContact>> getCompanyContacts(@Path("companyId") Long companyId);
+
+    @GET("/api/companies/{companyId}/contacts/company/{contactId}")
+    Observable<CompanyContact> getCompanyContact(@Path("companyId") Long companyId,
+                                                 @Path("contactId") Long contactId);
 
     @POST("/api/companies/{companyId}/contacts/company")
     Observable<CompanyContact> createCompanyContact(@Path("companyId") Long companyId,
@@ -71,6 +94,10 @@ public interface BmResourcesApi {
 
     @GET("/api/companies/{companyId}/contacts/individual")
     Observable<BMCollection<IndividualContact>> getIndividualContacts(@Path("companyId") Long companyId);
+
+    @GET("/api/companies/{companyId}/contacts/individual/{contactId}")
+    Observable<IndividualContact> getIndividualContact(@Path("companyId") Long companyId,
+                                                       @Path("contactId") Long contactId);
 
     @POST("/api/companies/{companyId}/contacts/individual")
     Observable<IndividualContact> createIndividualContact(@Path("companyId") Long companyId,

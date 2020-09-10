@@ -1,6 +1,6 @@
 package dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel;
 
-import dev.szafraniak.bm_mobileapp.business.models.entity.price.CreatePriceRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import lombok.Data;
 
 @Data
@@ -10,6 +10,6 @@ public class CreateServiceModelRequest {
 
     private String quantityUnit;
 
-    private CreatePriceRequest priceSuggestion;
+    private Price priceSuggestion;
 
 }

@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details;
+package dev.szafraniak.bm_mobileapp.presentation.menu.services.details;
 
 import android.os.Bundle;
 import android.view.View;
@@ -14,32 +14,32 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
+import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.BaseDetailsFragmentWithBtn;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.config.DetailsConfig;
 
 @EFragment(R.layout.fragment_base_details)
-public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn<IndividualContact>
-        implements IndividualContactDetailsView {
+public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<ServiceModel>
+        implements ServiceModelDetailsView {
 
-    public final static String KEY_INDIVIDUAL_CONTACT = "INDIVIDUAL_CONTACT_KEY";
+    public final static String KEY_SERVICE_MODEL = "SERVICE_MODEL_KEY";
 
     @Inject
-    IndividualContactDetailsPresenter presenter;
+    ServiceModelDetailsPresenter presenter;
 
-    IndividualContact contact;
+    ServiceModel serviceModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() == null || !getArguments().containsKey(KEY_INDIVIDUAL_CONTACT)) {
+        if (getArguments() == null || !getArguments().containsKey(KEY_SERVICE_MODEL)) {
             Navigator.back(this);
         }
-        String companyJSON = getArguments().getString(KEY_INDIVIDUAL_CONTACT);
-        contact = new Gson().fromJson(companyJSON, IndividualContact.class);
+        String companyJSON = getArguments().getString(KEY_SERVICE_MODEL);
+        serviceModel = new Gson().fromJson(companyJSON, ServiceModel.class);
     }
 
     @AfterViews
@@ -53,29 +53,29 @@ public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_contact_details;
+        return R.string.header_service_model_details;
     }
 
     @Override
     protected int getFblBtnTextResourceId() {
-        return R.string.contact_details_fl_btn_text;
+        return R.string.service_model_details_fl_btn_text;
     }
 
     @Override
     protected void onFblClick(View view) {
         Bundle args = new Bundle();
-        args.putString(IndividualContactModifyFragment.KEY_INDIVIDUAL_CONTACT, new Gson().toJson(contact));
-        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_MODIFY_ID, args);
+        args.putString(ServiceModelModifyFragment.KEY_SERVICE_MODEL, new Gson().toJson(serviceModel));
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_SERVICE_MODEL_MODIFY, args);
 
     }
 
     @Override
     protected void loadData() {
-        presenter.loadData(contact.getId());
+        presenter.loadData(serviceModel.getId());
     }
 
     @Override
-    protected DetailsConfig<IndividualContact> createDetailsConfig() {
-        return new IndividualContactDetailsConfig(inflater, layout);
+    protected DetailsConfig<ServiceModel> createDetailsConfig() {
+        return new ServiceModelDetailsConfig(inflater, layout);
     }
 }

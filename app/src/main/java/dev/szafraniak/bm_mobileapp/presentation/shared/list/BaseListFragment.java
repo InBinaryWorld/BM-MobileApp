@@ -129,6 +129,7 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
         listView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
+        emptyListView.setVisibility(View.GONE);
     }
 
     @Override

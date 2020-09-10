@@ -10,6 +10,12 @@ public final class DetailsConfigurations {
         return config;
     }
 
+    public static <T> SimpleTextViewDetailsRowConfig<T> getServiceNameConfig() {
+        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+        config.setLabel("Service Name");
+        return config;
+    }
+
     public static <T> SimpleTextViewDetailsRowConfig<T> getFirstNameConfig() {
         SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
         config.setLabel("First Name");

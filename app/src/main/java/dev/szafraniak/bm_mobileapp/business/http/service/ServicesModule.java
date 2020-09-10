@@ -40,4 +40,10 @@ public class ServicesModule {
         return new ProductModelService(app);
     }
 
+    @Provides
+    @Singleton
+    public ServiceModelService provideServiceModelService(Application app) {
+        return new ServiceModelService(app);
+    }
+
 }

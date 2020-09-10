@@ -66,12 +66,11 @@ public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<Prod
         Bundle args = new Bundle();
         args.putString(ProductModelModifyFragment.KEY_PRODUCT_MODEL, new Gson().toJson(productModel));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_PRODUCT_MODEL_MODIFY, args);
-
     }
 
     @Override
     protected void loadData() {
-        presenter.loadData(productModel);
+        presenter.loadData(productModel.getId());
     }
 
     @Override

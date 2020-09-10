@@ -57,4 +57,10 @@
     <string name="header_product_model_modify">Modify Product Model</string>
     <string name="header_product_model_details">Product Model Details</string>
     <string name="header_product_model_create">Create Product Model</string>
+    <string name="header_service_model_list">Servces</string>
+    <string name="service_model_list_fl_btn_text">CREATE SERVICE</string>
+    <string name="header_service_model_details">Service Model Details</string>
+    <string name="service_model_details_fl_btn_text">MODIFY SERVICE MODEL</string>
+    <string name="header_service_model_create">Modify Service</string>
+    <string name="header_create_service_model">Create Service</string>
 </resources>

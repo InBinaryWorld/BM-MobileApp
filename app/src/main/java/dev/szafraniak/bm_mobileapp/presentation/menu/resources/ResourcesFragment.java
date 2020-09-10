@@ -15,6 +15,7 @@ import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
 
 import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_PRODUCT_MODEL_LIST;
+import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_SERVICE_MODEL_LIST;
 
 @EFragment(R.layout.fragment_resources)
 public class ResourcesFragment extends BaseFragment implements ResourcesView {
@@ -40,7 +41,7 @@ public class ResourcesFragment extends BaseFragment implements ResourcesView {
 
     @Click(R.id.btn_services)
     public void servicesClick() {
-
+        Navigator.navigateTo(this, FRAGMENT_SERVICE_MODEL_LIST);
     }
 
     @Click(R.id.btn_warehouses)

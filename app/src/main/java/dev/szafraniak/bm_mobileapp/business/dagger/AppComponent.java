@@ -12,6 +12,7 @@ import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ProductService;
+import dev.szafraniak.bm_mobileapp.business.http.service.ServiceModelService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ServicesModule;
 import dev.szafraniak.bm_mobileapp.business.http.service.UserService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthModule;
@@ -66,6 +67,14 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.products.modify.ProductMode
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.modify.ProductModelModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.resources.ResourcesFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.resources.ResourcesPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.ServiceModelListFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.ServiceModelListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.create.ServiceModelCreateFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.create.ServiceModelCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.details.ServiceModelDetailsFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.details.ServiceModelDetailsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragment;
@@ -192,4 +201,22 @@ public interface AppComponent {
     void inject(ProductModelDetailsFragment productModelDetailsFragment);
 
     void inject(ProductModelDetailsPresenter productModelDetailsPresenter);
+
+    void inject(ServiceModelListFragment serviceModelListFragment);
+
+    void inject(ServiceModelService serviceModelService);
+
+    void inject(ServiceModelListPresenter serviceModelListPresenter);
+
+    void inject(ServiceModelDetailsFragment serviceModelDetailsFragment);
+
+    void inject(ServiceModelDetailsPresenter serviceModelDetailsPresenter);
+
+    void inject(ServiceModelModifyFragment serviceModelModifyFragment);
+
+    void inject(ServiceModelModifyPresenter serviceModelModifyPresenter);
+
+    void inject(ServiceModelCreateFragment serviceModelCreateFragment);
+
+    void inject(ServiceModelCreatePresenter serviceModelCreatePresenter);
 }

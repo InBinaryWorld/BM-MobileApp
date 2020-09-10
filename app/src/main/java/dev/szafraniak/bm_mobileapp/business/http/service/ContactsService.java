@@ -26,14 +26,14 @@ public class ContactsService {
         ((BMApplication) app).getAppComponent().inject(this);
     }
 
-    public Observable<BMCollection<IndividualContact>> getIndividualContacts(Long companyId) {
-        return bmResourcesApi.getIndividualContacts(companyId)
+    public Observable<BMCollection<CompanyContact>> getCompanyContacts(Long companyId) {
+        return bmResourcesApi.getCompanyContacts(companyId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observable<BMCollection<CompanyContact>> getCompanyContacts(Long companyId) {
-        return bmResourcesApi.getCompanyContacts(companyId)
+    public Observable<CompanyContact> getCompanyContact(Long companyId, Long contactId) {
+        return bmResourcesApi.getCompanyContact(companyId, contactId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
@@ -49,6 +49,18 @@ public class ContactsService {
                                                            Long contactId,
                                                            UpdateCompanyContactRequest request) {
         return bmResourcesApi.updateCompanyContact(companyId, contactId, request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<BMCollection<IndividualContact>> getIndividualContacts(Long companyId) {
+        return bmResourcesApi.getIndividualContacts(companyId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<IndividualContact> getIndividualContact(Long companyId, Long contactId) {
+        return bmResourcesApi.getIndividualContact(companyId, contactId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

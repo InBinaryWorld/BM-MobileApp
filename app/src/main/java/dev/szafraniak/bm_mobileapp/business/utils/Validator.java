@@ -39,6 +39,10 @@ public final class Validator {
         return Pattern.matches(BASE_2_60, value);
     }
 
+    public static boolean validateServiceModelName(String value) {
+        return Pattern.matches(BASE_2_60, value);
+    }
+
     public static boolean validateCompanyName(String value) {
         return Pattern.matches(BASE_2_40, value);
     }
