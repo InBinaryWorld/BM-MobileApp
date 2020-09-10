@@ -11,7 +11,10 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
+import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
+
+import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_PRODUCT_MODEL_LIST;
 
 @EFragment(R.layout.fragment_resources)
 public class ResourcesFragment extends BaseFragment implements ResourcesView {
@@ -32,7 +35,7 @@ public class ResourcesFragment extends BaseFragment implements ResourcesView {
 
     @Click(R.id.btn_products)
     public void productsClick() {
-
+        Navigator.navigateTo(this, FRAGMENT_PRODUCT_MODEL_LIST);
     }
 
     @Click(R.id.btn_services)

@@ -1,5 +1,6 @@
 package dev.szafraniak.bm_mobileapp.business.utils;
 
+import java.math.BigDecimal;
 import java.util.regex.Pattern;
 
 public final class Validator {
@@ -34,8 +35,20 @@ public final class Validator {
         return Pattern.matches(BASE_1_20, value);
     }
 
+    public static boolean validateProductModelName(String value) {
+        return Pattern.matches(BASE_2_60, value);
+    }
+
     public static boolean validateCompanyName(String value) {
         return Pattern.matches(BASE_2_40, value);
+    }
+
+    public static boolean validateQuantityUnit(String value) {
+        return Pattern.matches(BASE_2_6, value);
+    }
+
+    public static boolean validateBareCode(String value) {
+        return Pattern.matches(BARCODE_5_20, value);
     }
 
     public static boolean validateInvoicePrefix(String value) {
@@ -72,6 +85,14 @@ public final class Validator {
 
     public static boolean validatePhoneNumber(String value) {
         return Pattern.matches(PHONE_4_12, value);
+    }
+
+    public static boolean validateNetPrice(BigDecimal number) {
+        return number.signum() >= 0 && number.scale() <= 2;
+    }
+
+    public static boolean validateTaxRate(BigDecimal number) {
+        return number.signum() >= 0 && number.scale() == 0;
     }
 
     private static boolean length(String value, int min, int max) {

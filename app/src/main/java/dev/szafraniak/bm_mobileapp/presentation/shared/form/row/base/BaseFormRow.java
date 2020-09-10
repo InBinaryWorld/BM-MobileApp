@@ -5,15 +5,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.BaseFormRowConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowFormatter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowFulFiller;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowValidator;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.SimpleFormRowConfig;
 import lombok.Getter;
 
 public abstract class BaseFormRow<T, R, H extends BaseViewHolder,
-        C extends BaseFormRowConfig<T, R>> implements FormRowInterface<T> {
+        C extends SimpleFormRowConfig<T, R>> implements FormRowInterface<T> {
 
     @Getter
     private final C config;

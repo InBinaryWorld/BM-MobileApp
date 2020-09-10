@@ -8,9 +8,7 @@ public class BaseFormRowConfig<E, T> {
     private boolean enabled;
     private boolean required;
     private T disableCustomValue;
-    private FormRowValidator<T> validator;
     private FormRowFulFiller<E, T> fulFiller;
-    private FormRowFormatter<T> formatter;
     private FormRowDisableMode disableValueMode;
 
 }

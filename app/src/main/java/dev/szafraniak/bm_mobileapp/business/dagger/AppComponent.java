@@ -10,6 +10,7 @@ import dev.szafraniak.bm_mobileapp.business.http.interceptors.AuthInterceptor;
 import dev.szafraniak.bm_mobileapp.business.http.interceptors.TokenAuthenticator;
 import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
+import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ProductService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ServicesModule;
 import dev.szafraniak.bm_mobileapp.business.http.service.UserService;
@@ -55,6 +56,14 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.ProductsListFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.ProductsListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.create.ProductModelCreateFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.create.ProductModelCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.details.ProductModelDetailsFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.details.ProductModelDetailsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.modify.ProductModelModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.modify.ProductModelModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.resources.ResourcesFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.resources.ResourcesPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsFragment;
@@ -165,4 +174,22 @@ public interface AppComponent {
     void inject(IndividualContactModifyFragment individualContactModifyFragment);
 
     void inject(IndividualContactModifyPresenter individualContactModifyPresenter);
+
+    void inject(ProductsListFragment productsListFragment);
+
+    void inject(ProductsListPresenter productsListPresenter);
+
+    void inject(ProductModelModifyFragment productModelModifyFragment);
+
+    void inject(ProductModelModifyPresenter productModelModifyPresenter);
+
+    void inject(ProductModelService productModelService);
+
+    void inject(ProductModelCreateFragment productModelCreateFragment);
+
+    void inject(ProductModelCreatePresenter productModelCreatePresenter);
+
+    void inject(ProductModelDetailsFragment productModelDetailsFragment);
+
+    void inject(ProductModelDetailsPresenter productModelDetailsPresenter);
 }

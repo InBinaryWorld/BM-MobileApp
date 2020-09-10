@@ -34,4 +34,10 @@ public class ServicesModule {
         return new ContactsService(app);
     }
 
+    @Provides
+    @Singleton
+    public ProductModelService provideProductModelService(Application app) {
+        return new ProductModelService(app);
+    }
+
 }

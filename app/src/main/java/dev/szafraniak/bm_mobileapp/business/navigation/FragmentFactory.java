@@ -23,6 +23,10 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.ProductsListFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.create.ProductModelCreateFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.details.ProductModelDetailsFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.modify.ProductModelModifyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.resources.ResourcesFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragment_;
@@ -46,6 +50,10 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_SETTINGS_ID = 500;
     public static final int FRAGMENT_SETTINGS_COMPANY_ID = 501;
     public static final int FRAGMENT_ACTION_STATUS = 600;
+    public static final int FRAGMENT_PRODUCT_MODEL_LIST = 700;
+    public static final int FRAGMENT_PRODUCT_MODEL_MODIFY = 701;
+    public static final int FRAGMENT_PRODUCT_MODEL_CREATE = 702;
+    public static final int FRAGMENT_PRODUCT_MODEL_DETAILS = 703;
 
     public static final Map<Integer, Integer> menuMap = new HashMap<Integer, Integer>() {{
         put(R.id.menu_dashboard, FRAGMENT_DASHBOARD_ID);
@@ -110,6 +118,18 @@ public abstract class FragmentFactory {
                 break;
             case FRAGMENT_ACTION_STATUS:
                 fragment = new ActionStatusFragment_();
+                break;
+            case FRAGMENT_PRODUCT_MODEL_LIST:
+                fragment = new ProductsListFragment_();
+                break;
+            case FRAGMENT_PRODUCT_MODEL_MODIFY:
+                fragment = new ProductModelModifyFragment_();
+                break;
+            case FRAGMENT_PRODUCT_MODEL_CREATE:
+                fragment = new ProductModelCreateFragment_();
+                break;
+            case FRAGMENT_PRODUCT_MODEL_DETAILS:
+                fragment = new ProductModelDetailsFragment_();
                 break;
             default:
                 throw new Resources.NotFoundException("Not found fragment with id: " + fragmentId);

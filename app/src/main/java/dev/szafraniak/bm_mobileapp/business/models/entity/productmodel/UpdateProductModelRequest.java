@@ -1,6 +1,6 @@
 package dev.szafraniak.bm_mobileapp.business.models.entity.productmodel;
 
-import dev.szafraniak.bm_mobileapp.business.models.entity.price.UpdatePriceRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import lombok.Data;
 
 @Data
@@ -12,7 +12,7 @@ public class UpdateProductModelRequest {
 
     private String bareCode;
 
-    private UpdatePriceRequest priceSuggestion;
+    private Price priceSuggestion;
 
     private Long productGroupId;
 

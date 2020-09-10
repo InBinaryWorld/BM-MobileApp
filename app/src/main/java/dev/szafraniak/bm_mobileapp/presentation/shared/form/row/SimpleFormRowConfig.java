@@ -7,6 +7,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class SimpleFormRowConfig<E, T> extends BaseFormRowConfig<E, T> {
 
+    private FormRowValidator<T> validator;
+    private FormRowFormatter<T> formatter;
     private T initValue;
     private String labelText;
     private String invalidMessage;

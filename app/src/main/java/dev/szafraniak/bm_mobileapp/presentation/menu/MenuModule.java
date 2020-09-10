@@ -19,6 +19,10 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.ProductsListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.create.ProductModelCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.details.ProductModelDetailsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.products.modify.ProductModelModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.resources.ResourcesPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsPresenter;
 
@@ -113,6 +117,30 @@ public class MenuModule {
     @Singleton
     public IndividualContactModifyPresenter provideIndividualContactModifyPresenter(Application app) {
         return new IndividualContactModifyPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public ProductsListPresenter provideProductsListPresenter(Application app) {
+        return new ProductsListPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public ProductModelModifyPresenter provideProductModelModifyPresenter(Application app) {
+        return new ProductModelModifyPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public ProductModelCreatePresenter provideProductModelCreatePresenter(Application app) {
+        return new ProductModelCreatePresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public ProductModelDetailsPresenter provideProductModelDetailsPresenter(Application app) {
+        return new ProductModelDetailsPresenter(app);
     }
 
 }

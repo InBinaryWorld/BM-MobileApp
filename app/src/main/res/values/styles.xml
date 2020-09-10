@@ -61,7 +61,7 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="Row.ContactList">
+    <style name="Row.Base">
         <item name="android:layout_height">80dp</item>
     </style>
 

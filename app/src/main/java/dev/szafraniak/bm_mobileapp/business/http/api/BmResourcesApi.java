@@ -12,6 +12,9 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.Crea
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.UpdateIndividualContactRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.Product;
+import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.CreateProductModelRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
+import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.UpdateProductModelRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.user.User;
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -37,6 +40,22 @@ public interface BmResourcesApi {
 
     @GET("/api/companies/{companyId}/products")
     Observable<BMCollection<Product>> getProducts(@Path("companyId") Long companyId);
+
+    @GET("/api/companies/{companyId}/products/models")
+    Observable<BMCollection<ProductModel>> getProductModels(@Path("companyId") Long companyId);
+
+    @GET("/api/companies/{companyId}/products/models/{productModelId}")
+    Observable<ProductModel> getProductModel(@Path("companyId") Long companyId,
+                                             @Path("productModelId") Long productModelId);
+
+    @POST("/api/companies/{companyId}/products/models")
+    Observable<ProductModel> createProductModel(@Path("companyId") Long companyId,
+                                                @Body CreateProductModelRequest model);
+
+    @PUT("/api/companies/{companyId}/products/models/{productModelId}")
+    Observable<ProductModel> modifyProductModel(@Path("companyId") Long companyId,
+                                                @Path("productModelId") Long productModelId,
+                                                @Body UpdateProductModelRequest model);
 
     @GET("/api/companies/{companyId}/contacts/company")
     Observable<BMCollection<CompanyContact>> getCompanyContacts(@Path("companyId") Long companyId);

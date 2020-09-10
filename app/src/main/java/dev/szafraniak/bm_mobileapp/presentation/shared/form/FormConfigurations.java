@@ -1,11 +1,20 @@
 package dev.szafraniak.bm_mobileapp.presentation.shared.form;
 
-import dev.szafraniak.bm_mobileapp.business.utils.FormInputFormatter;
+import dev.szafraniak.bm_mobileapp.business.utils.Formatters;
 import dev.szafraniak.bm_mobileapp.business.utils.Validator;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowDisableMode;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRowConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.price.PriceFormRowConfig;
 
 public final class FormConfigurations {
+
+    public static <T> EditTextFormRowConfig<T> getProductModelNameConfig() {
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
+        config.setLabelText("Product Name");
+        config.setInvalidMessage("2-60 Signs");
+        config.setValidator(Validator::validateProductModelName);
+        return config;
+    }
 
     public static <T> EditTextFormRowConfig<T> getFirstNameConfig() {
         EditTextFormRowConfig<T> config = getBaseEditConfig();
@@ -20,6 +29,23 @@ public final class FormConfigurations {
         config.setLabelText("Last Name");
         config.setInvalidMessage("1-20 Signs");
         config.setValidator(Validator::validateLastName);
+        return config;
+    }
+
+    public static <T> EditTextFormRowConfig<T> getQuantityUnitConfig() {
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
+        config.setLabelText("Quantity Unit");
+        config.setInvalidMessage("2-6 Signs");
+        config.setValidator(Validator::validateQuantityUnit);
+        return config;
+    }
+
+    public static <T> EditTextFormRowConfig<T> getBareCodeConfig() {
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
+        config.setRequired(false);
+        config.setLabelText("Bare Code");
+        config.setInvalidMessage("5-20 Signs");
+        config.setValidator(Validator::validateBareCode);
         return config;
     }
 
@@ -115,7 +141,25 @@ public final class FormConfigurations {
         config.setInitValue(null);
         config.setInvalidMessage("Invalid Value");
         config.setDisableValueMode(FormRowDisableMode.NULL);
-        config.setFormatter(FormInputFormatter::formatNull);
+        config.setFormatter(Formatters::formatNull);
+        return config;
+    }
+
+    public static <T> PriceFormRowConfig<T> getPriceConfig() {
+        PriceFormRowConfig<T> config = new PriceFormRowConfig<>();
+        config.setEnabled(true);
+        config.setRequired(true);
+        config.setNetInitValue("0");
+        config.setGrossInitValue("0");
+        config.setTaxRateInitValue("0");
+        config.setNetLabel("Net Price");
+        config.setGrossLabel("Gross Price");
+        config.setTaxRateLabel("Tax Rate");
+        config.setNetInvalidMessage("Required positive number");
+        config.setTaxInvalidMessage("Required positive decimal number");
+        config.setNetValidator(Validator::validateNetPrice);
+        config.setTaxRateValidator(Validator::validateTaxRate);
+        config.setDisableValueMode(FormRowDisableMode.NULL);
         return config;
     }
 }

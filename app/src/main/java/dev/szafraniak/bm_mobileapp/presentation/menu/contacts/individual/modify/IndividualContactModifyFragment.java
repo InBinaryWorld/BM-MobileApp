@@ -68,6 +68,6 @@ public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndi
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_create_contact;
+        return R.string.header_individual_contact_modify;
     }
 }
