@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.models.entity.address.CreateAddressRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.CreateCompanyContactRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.FormConfig;
@@ -30,7 +30,7 @@ public class CompanyContactCreateFragment extends BaseFormFragment<CreateCompany
     @Override
     protected CreateCompanyContactRequest getFormModel() {
         CreateCompanyContactRequest model = new CreateCompanyContactRequest();
-        model.setAddress(new CreateAddressRequest());
+        model.setAddress(new Address());
         return model;
     }
 

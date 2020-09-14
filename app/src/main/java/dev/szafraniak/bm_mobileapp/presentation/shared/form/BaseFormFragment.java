@@ -73,7 +73,7 @@ public abstract class BaseFormFragment<T> extends BaseHeaderFragment implements 
         FormConfig<T> config = getFormConfig();
         layout.removeAllViews();
         for (FormRowInterface<T> row : config.getRowsConfiguration()) {
-            row.setOnValueChange(this::onValueChangeProvided);
+            row.setOnChangeWithValidValue(this::onValueChangeProvided);
             layout.addView(row.getView());
         }
         BaseSubmitRow submitRow = config.getBaseSubmitRow();

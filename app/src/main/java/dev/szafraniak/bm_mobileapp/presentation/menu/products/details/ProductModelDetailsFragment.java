@@ -25,7 +25,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.config.DetailsCon
 public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<ProductModel>
         implements ProductModelDetailsView {
 
-    public final static String KEY_PRODUCT_MODEL = "PRODUCT_MODEL_KEY";
+    public final static String KEY_WAREHOUSE = "PRODUCT_MODEL_KEY";
 
     @Inject
     ProductModelDetailsPresenter presenter;
@@ -35,10 +35,10 @@ public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<Prod
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() == null || !getArguments().containsKey(KEY_PRODUCT_MODEL)) {
+        if (getArguments() == null || !getArguments().containsKey(KEY_WAREHOUSE)) {
             Navigator.back(this);
         }
-        String companyJSON = getArguments().getString(KEY_PRODUCT_MODEL);
+        String companyJSON = getArguments().getString(KEY_WAREHOUSE);
         productModel = new Gson().fromJson(companyJSON, ProductModel.class);
     }
 

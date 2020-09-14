@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.company.create;
+package dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -7,16 +7,16 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
-import dev.szafraniak.bm_mobileapp.business.models.entity.company.CreateCompanyRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.CreateWarehouseRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.FormConfig;
 
 @EFragment(R.layout.fragment_base_form)
-public class CompanyCreateFragment extends BaseFormFragment<CreateCompanyRequest> implements CompanyCreateView {
+public class WarehouseCreateFragment extends BaseFormFragment<CreateWarehouseRequest>
+        implements WarehouseCreateView {
 
     @Inject
-    CompanyCreatePresenter presenter;
+    WarehouseCreatePresenter presenter;
 
     @AfterViews
     public void initialize() {
@@ -28,24 +28,22 @@ public class CompanyCreateFragment extends BaseFormFragment<CreateCompanyRequest
     }
 
     @Override
-    protected CreateCompanyRequest getFormModel() {
-        CreateCompanyRequest model = new CreateCompanyRequest();
-        model.setHeadquarter(new Address());
-        return model;
+    protected CreateWarehouseRequest getFormModel() {
+        return new CreateWarehouseRequest();
     }
 
     @Override
-    protected void onSubmit(CreateCompanyRequest object) {
-        presenter.createCompany(object);
+    protected void onSubmit(CreateWarehouseRequest object) {
+        presenter.createWarehouse(object);
     }
 
     @Override
-    protected FormConfig<CreateCompanyRequest> createFormConfig() {
-        return new CompanyCreateFormConfig(inflater, layout);
+    protected FormConfig<CreateWarehouseRequest> createFormConfig() {
+        return new WarehouseCreateFormConfig(inflater, layout);
     }
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.create_company_header;
+        return R.string.header_warehouse_create;
     }
 }

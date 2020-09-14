@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.models.entity.address.CreateAddressRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.CreateIndividualContactRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.FormConfig;
@@ -30,7 +30,7 @@ public class IndividualContactCreateFragment extends BaseFormFragment<CreateIndi
     @Override
     protected CreateIndividualContactRequest getFormModel() {
         CreateIndividualContactRequest model = new CreateIndividualContactRequest();
-        model.setAddress(new CreateAddressRequest());
+        model.setAddress(new Address());
         return model;
     }
 
@@ -41,7 +41,7 @@ public class IndividualContactCreateFragment extends BaseFormFragment<CreateIndi
 
     @Override
     protected FormConfig<CreateIndividualContactRequest> createFormConfig() {
-        return new CompanyIndividualCreateFormConfig(inflater, layout);
+        return new IndividualContactCreateFormConfig(inflater, layout);
     }
 
     @Override

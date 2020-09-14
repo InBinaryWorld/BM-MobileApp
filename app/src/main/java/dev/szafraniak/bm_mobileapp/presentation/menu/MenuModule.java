@@ -29,6 +29,8 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.services.create.ServiceMode
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.details.ServiceModelDetailsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.WarehouseListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create.WarehouseCreatePresenter;
 
 @Module
 public class MenuModule {
@@ -169,6 +171,18 @@ public class MenuModule {
     @Singleton
     public ServiceModelCreatePresenter provideServiceModelCreatePresenter(Application app) {
         return new ServiceModelCreatePresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public WarehouseListPresenter provideWarehouseListPresenter(Application app) {
+        return new WarehouseListPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public WarehouseCreatePresenter provideWarehouseCreatePresenter(Application app) {
+        return new WarehouseCreatePresenter(app);
     }
 
 }

@@ -13,7 +13,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.models.entity.address.UpdateAddressRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.CompanyContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.UpdateCompanyContactRequest;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
@@ -52,7 +52,7 @@ public class CompanyContactModifyFragment extends BaseFormFragment<UpdateCompany
     @Override
     protected UpdateCompanyContactRequest getFormModel() {
         UpdateCompanyContactRequest model = new UpdateCompanyContactRequest();
-        model.setAddress(new UpdateAddressRequest());
+        model.setAddress(new Address());
         return model;
     }
 

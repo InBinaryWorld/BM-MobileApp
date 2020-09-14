@@ -1,6 +1,6 @@
 package dev.szafraniak.bm_mobileapp.business.models.entity.company;
 
-import dev.szafraniak.bm_mobileapp.business.models.entity.address.CreateAddressRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import lombok.Data;
 
 @Data
@@ -12,6 +12,6 @@ public class CreateCompanyRequest {
 
     private String taxIdentityNumber;
 
-    private CreateAddressRequest headquarter;
+    private Address headquarter;
 
 }

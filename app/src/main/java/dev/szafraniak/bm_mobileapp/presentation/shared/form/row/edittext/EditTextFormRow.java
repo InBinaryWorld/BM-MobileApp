@@ -13,13 +13,12 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.base.BaseFormRow;
 
-public class EditTextFormRow<T> extends BaseFormRow<T, String, EditTextViewHolder, EditTextFormRowConfig<T>> {
+public class EditTextFormRow<T> extends BaseFormRow<T, String, String, EditTextViewHolder, EditTextFormRowConfig<T>> {
 
     @LayoutRes
-    private final int layoutId = R.layout.row_form_edit_text;
+    private final static int layoutId = R.layout.row_form_edit_text;
 
     public EditTextFormRow(LayoutInflater inflater, ViewGroup viewGroup, EditTextFormRowConfig<T> config) {
         super(inflater, viewGroup, config);
@@ -43,24 +42,18 @@ public class EditTextFormRow<T> extends BaseFormRow<T, String, EditTextViewHolde
         textInputEditText.addTextChangedListener(new AfterTextChangeListener() {
             @Override
             public void afterTextChanged(Editable editable) {
-                setError(!isValid());
+                updateView();
+                onValueChange();
             }
         });
         return holder;
     }
 
     @Override
-    protected String getOriginalValue() {
+    protected String getValueToParse() {
         EditTextViewHolder holder = getViewHolder();
         EditText view = holder.getTextInputEditText();
         return view.getText().toString();
-    }
-
-    @Override
-    protected boolean isEnabled() {
-        EditTextViewHolder holder = getViewHolder();
-        TextInputLayout layout = holder.getTextInputLayout();
-        return layout.isEnabled();
     }
 
     @Override
@@ -71,26 +64,15 @@ public class EditTextFormRow<T> extends BaseFormRow<T, String, EditTextViewHolde
         layout.setEnabled(enabled);
     }
 
-    protected void setError(boolean enabled) {
+    protected void updateView() {
+        boolean isValid = isValid();
         EditTextViewHolder holder = getViewHolder();
         TextInputLayout layout = holder.getTextInputLayout();
-        String err = enabled ? getConfig().getInvalidMessage() : null;
-        layout.setErrorEnabled(enabled);
+        String err = isValid ? null : getConfig().getInvalidMessage();
+        layout.setErrorEnabled(!isValid);
         layout.setError(err);
     }
 
-    @Override
-    public void setOnValueChange(BaseFormFragment.Callback onValueChange) {
-        EditTextViewHolder holder = getViewHolder();
-        EditText inputEditText = holder.getTextInputEditText();
-        inputEditText.addTextChangedListener(new AfterTextChangeListener() {
-            @Override
-            public void afterTextChanged(Editable editable) {
-                onValueChange.call();
-            }
-        });
-
-    }
 
     private abstract static class AfterTextChangeListener implements TextWatcher {
 

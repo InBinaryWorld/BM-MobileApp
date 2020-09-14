@@ -46,4 +46,10 @@ public class ServicesModule {
         return new ServiceModelService(app);
     }
 
+    @Provides
+    @Singleton
+    public WarehouseService provideWarehouseService(Application app) {
+        return new WarehouseService(app);
+    }
+
 }

@@ -2,9 +2,11 @@ package dev.szafraniak.bm_mobileapp.presentation.shared.form;
 
 import dev.szafraniak.bm_mobileapp.business.utils.Formatters;
 import dev.szafraniak.bm_mobileapp.business.utils.Validator;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowDisableMode;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.base.FormRowDisableMode;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRowConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.price.PriceFormParser;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.price.PriceFormRowConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.price.PriceValidator;
 
 public final class FormConfigurations {
 
@@ -12,6 +14,14 @@ public final class FormConfigurations {
         EditTextFormRowConfig<T> config = getBaseEditConfig();
         config.setLabelText("Service Name");
         config.setInvalidMessage("2-60 Signs");
+        config.setValidator(Validator::validateProductModelName);
+        return config;
+    }
+
+    public static <T> EditTextFormRowConfig<T> getWarehouseName() {
+        EditTextFormRowConfig<T> config = getBaseEditConfig();
+        config.setLabelText("Warehouse Name");
+        config.setInvalidMessage("2-40 Signs");
         config.setValidator(Validator::validateProductModelName);
         return config;
     }
@@ -149,7 +159,7 @@ public final class FormConfigurations {
         config.setInitValue(null);
         config.setInvalidMessage("Invalid Value");
         config.setDisableValueMode(FormRowDisableMode.NULL);
-        config.setFormatter(Formatters::formatNull);
+        config.setParser(Formatters::parseNullIfEmpty);
         return config;
     }
 
@@ -165,8 +175,8 @@ public final class FormConfigurations {
         config.setTaxRateLabel("Tax Rate");
         config.setNetInvalidMessage("Required positive number");
         config.setTaxInvalidMessage("Required positive decimal number");
-        config.setNetValidator(Validator::validateNetPrice);
-        config.setTaxRateValidator(Validator::validateTaxRate);
+        config.setValidator(new PriceValidator());
+        config.setParser(new PriceFormParser());
         config.setDisableValueMode(FormRowDisableMode.NULL);
         return config;
     }

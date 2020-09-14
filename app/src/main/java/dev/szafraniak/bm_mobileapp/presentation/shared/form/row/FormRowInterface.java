@@ -8,7 +8,7 @@ public interface FormRowInterface<T> {
 
     View getView();
 
-    void setOnValueChange(BaseFormFragment.Callback onValueChange);
+    void setOnChangeWithValidValue(BaseFormFragment.Callback onValueChange);
 
     void fillModel(T model);
 

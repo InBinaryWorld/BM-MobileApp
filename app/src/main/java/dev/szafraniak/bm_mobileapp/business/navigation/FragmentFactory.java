@@ -33,6 +33,8 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.services.create.ServiceMode
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.details.ServiceModelDetailsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.WarehouseListFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create.WarehouseCreateFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragment_;
 
 
@@ -62,6 +64,8 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_SERVICE_MODEL_DETAILS = 801;
     public static final int FRAGMENT_SERVICE_MODEL_MODIFY = 802;
     public static final int FRAGMENT_SERVICE_MODEL_CREATE = 803;
+    public static final int FRAGMENT_WAREHOUSE_LIST = 900;
+    public static final int FRAGMENT_WAREHOUSE_CREATE = 901;
 
     public static final Map<Integer, Integer> menuMap = new HashMap<Integer, Integer>() {{
         put(R.id.menu_dashboard, FRAGMENT_DASHBOARD_ID);
@@ -150,6 +154,12 @@ public abstract class FragmentFactory {
                 break;
             case FRAGMENT_SERVICE_MODEL_CREATE:
                 fragment = new ServiceModelCreateFragment_();
+                break;
+            case FRAGMENT_WAREHOUSE_LIST:
+                fragment = new WarehouseListFragment_();
+                break;
+            case FRAGMENT_WAREHOUSE_CREATE:
+                fragment = new WarehouseCreateFragment_();
                 break;
             default:
                 throw new Resources.NotFoundException("Not found fragment with id: " + fragmentId);

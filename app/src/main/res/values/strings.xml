@@ -63,4 +63,7 @@
     <string name="service_model_details_fl_btn_text">MODIFY SERVICE MODEL</string>
     <string name="header_service_model_create">Modify Service</string>
     <string name="header_create_service_model">Create Service</string>
+    <string name="header_warehouse_list">Warehouses</string>
+    <string name="wrehouse_list_fl_btn_text">CREATE WAREHOUSE</string>
+    <string name="header_warehouse_create">CREATE WAREHOUSE</string>
 </resources>

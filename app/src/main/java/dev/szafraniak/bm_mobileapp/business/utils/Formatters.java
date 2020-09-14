@@ -14,7 +14,7 @@ public final class Formatters {
         return trimmed.isEmpty() ? null : trimmed;
     }
 
-    public static String formatNull(String value) {
+    public static String parseNullIfEmpty(String value) {
         return value.trim().isEmpty() ? null : value;
     }
 

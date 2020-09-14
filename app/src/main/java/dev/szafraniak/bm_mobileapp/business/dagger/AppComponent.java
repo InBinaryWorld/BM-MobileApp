@@ -15,6 +15,7 @@ import dev.szafraniak.bm_mobileapp.business.http.service.ProductService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ServiceModelService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ServicesModule;
 import dev.szafraniak.bm_mobileapp.business.http.service.UserService;
+import dev.szafraniak.bm_mobileapp.business.http.service.WarehouseService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthModule;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.LoginService;
@@ -77,6 +78,10 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceMode
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.WarehouseListFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.WarehouseListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create.WarehouseCreateFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create.WarehouseCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragment;
 
 @Singleton
@@ -219,4 +224,14 @@ public interface AppComponent {
     void inject(ServiceModelCreateFragment serviceModelCreateFragment);
 
     void inject(ServiceModelCreatePresenter serviceModelCreatePresenter);
+
+    void inject(WarehouseListFragment warehouseListFragment);
+
+    void inject(WarehouseListPresenter warehouseListPresenter);
+
+    void inject(WarehouseService warehouseService);
+
+    void inject(WarehouseCreateFragment warehouseCreateFragment);
+
+    void inject(WarehouseCreatePresenter warehouseCreatePresenter);
 }

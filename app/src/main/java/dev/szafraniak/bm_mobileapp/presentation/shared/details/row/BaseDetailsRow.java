@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.DetailsRowValueExtractor;
 import lombok.Getter;
 
 public abstract class BaseDetailsRow<T, R, H extends BaseViewHolder,

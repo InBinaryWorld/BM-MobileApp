@@ -19,6 +19,9 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.CreateSer
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.UpdateServiceModelRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.user.User;
+import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.CreateWarehouseRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.UpdateWarehouseRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
 import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -107,5 +110,21 @@ public interface BmResourcesApi {
     Observable<IndividualContact> updateIndividualContact(@Path("companyId") Long companyId,
                                                           @Path("contactId") Long contactId,
                                                           @Body UpdateIndividualContactRequest requestBody);
+
+    @GET("/api/companies/{companyId}/warehouses")
+    Observable<BMCollection<Warehouse>> getWarehouses(@Path("companyId") Long companyId);
+
+    @GET("/api/companies/{companyId}/warehouses/{warehouseId}")
+    Observable<Warehouse> getWarehouse(@Path("companyId") Long companyId,
+                                       @Path("warehouseId") Long warehouseId);
+
+    @POST("/api/companies/{companyId}/warehouses")
+    Observable<Warehouse> createWarehouse(@Path("companyId") Long companyId,
+                                          @Body CreateWarehouseRequest request);
+
+    @PUT("/api/companies/{companyId}/warehouse/{warehouseId}")
+    Observable<Warehouse> modifyWarehouse(@Path("companyId") Long companyId,
+                                          @Path("warehouseId") Long warehouseId,
+                                          @Body UpdateWarehouseRequest requestBody);
 
 }

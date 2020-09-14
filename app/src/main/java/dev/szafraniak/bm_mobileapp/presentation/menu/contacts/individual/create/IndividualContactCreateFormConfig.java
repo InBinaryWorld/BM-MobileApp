@@ -13,9 +13,9 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowInterface
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRow;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRowConfig;
 
-public class CompanyIndividualCreateFormConfig extends BaseFormConfig<CreateIndividualContactRequest> {
+public class IndividualContactCreateFormConfig extends BaseFormConfig<CreateIndividualContactRequest> {
 
-    public CompanyIndividualCreateFormConfig(LayoutInflater inflater, ViewGroup viewGroup) {
+    public IndividualContactCreateFormConfig(LayoutInflater inflater, ViewGroup viewGroup) {
         super(inflater, viewGroup);
     }
 

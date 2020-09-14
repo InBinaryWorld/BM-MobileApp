@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.models.entity.address.UpdateAddressRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.UpdateCompanyRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormFragment;
@@ -48,7 +48,7 @@ public class ModifyCompanyFragment extends BaseFormFragment<UpdateCompanyRequest
     @Override
     protected UpdateCompanyRequest getFormModel() {
         UpdateCompanyRequest model = new UpdateCompanyRequest();
-        model.setHeadquarter(new UpdateAddressRequest());
+        model.setHeadquarter(new Address());
         return model;
     }
 
