@@ -52,4 +52,10 @@ public class ServicesModule {
         return new WarehouseService(app);
     }
 
+    @Provides
+    @Singleton
+    public InvoiceService provideInvoiceService(Application app) {
+        return new InvoiceService(app);
+    }
+
 }

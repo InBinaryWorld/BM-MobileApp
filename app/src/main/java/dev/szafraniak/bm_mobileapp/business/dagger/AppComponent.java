@@ -10,6 +10,7 @@ import dev.szafraniak.bm_mobileapp.business.http.interceptors.AuthInterceptor;
 import dev.szafraniak.bm_mobileapp.business.http.interceptors.TokenAuthenticator;
 import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
+import dev.szafraniak.bm_mobileapp.business.http.service.InvoiceService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ProductService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ServiceModelService;
@@ -58,6 +59,8 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.ProductsListFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.ProductsListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.create.ProductModelCreateFragment;
@@ -82,6 +85,10 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.WarehouseListFrag
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.WarehouseListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create.WarehouseCreateFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create.WarehouseCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.details.WarehouseDetailsFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.details.WarehouseDetailsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.modify.WarehouseModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.modify.WarehouseModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragment;
 
 @Singleton
@@ -234,4 +241,18 @@ public interface AppComponent {
     void inject(WarehouseCreateFragment warehouseCreateFragment);
 
     void inject(WarehouseCreatePresenter warehouseCreatePresenter);
+
+    void inject(WarehouseModifyFragment warehouseModifyFragment);
+
+    void inject(WarehouseModifyPresenter warehouseModifyPresenter);
+
+    void inject(WarehouseDetailsFragment warehouseDetailsFragment);
+
+    void inject(WarehouseDetailsPresenter warehouseDetailsPresenter);
+
+    void inject(InvoicesFragment invoicesFragment);
+
+    void inject(InvoicesPresenter invoicesPresenter);
+
+    void inject(InvoiceService invoiceService);
 }

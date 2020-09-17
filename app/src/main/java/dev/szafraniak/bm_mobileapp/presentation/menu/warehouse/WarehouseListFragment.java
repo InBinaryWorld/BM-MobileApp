@@ -15,7 +15,7 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.menu.products.details.ProductModelDetailsFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.details.WarehouseDetailsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWithBtn;
 
@@ -42,7 +42,7 @@ public class WarehouseListFragment extends BaseListFragmentWithBtn<Warehouse>
 
     @Override
     protected int getFlButtonTextId() {
-        return R.string.wrehouse_list_fl_btn_text;
+        return R.string.warehouse_list_fl_btn_text;
     }
 
     @Override
@@ -63,8 +63,8 @@ public class WarehouseListFragment extends BaseListFragmentWithBtn<Warehouse>
     @Override
     public void onItemClick(Warehouse item) {
         Bundle args = new Bundle();
-        args.putString(ProductModelDetailsFragment.KEY_WAREHOUSE, new Gson().toJson(item));
-//        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_PRODUCT_MODEL_DETAILS, args);
+        args.putString(WarehouseDetailsFragment.KEY_WAREHOUSE, new Gson().toJson(item));
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_WAREHOUSE_DETAILS, args);
     }
 
 }

@@ -55,7 +55,7 @@ public class CompanyContactListFragment extends SearchListFragmentWithBtn<Compan
     public void onItemClick(CompanyContact item) {
         Bundle args = new Bundle();
         args.putString(CompanyContactDetailsFragment.KEY_COMPANY_CONTACT, new Gson().toJson(item));
-        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_DETAILS_ID, args);
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_DETAILS, args);
     }
 
     @Override
@@ -65,6 +65,6 @@ public class CompanyContactListFragment extends SearchListFragmentWithBtn<Compan
 
     @Override
     protected void onFlButtonClick(View view) {
-        Navigator.backOneAndNavigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_CREATE_ID);
+        Navigator.backOneAndNavigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_CREATE);
     }
 }

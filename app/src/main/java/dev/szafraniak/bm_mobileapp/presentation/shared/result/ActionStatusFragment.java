@@ -18,11 +18,11 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
+import dev.szafraniak.bm_mobileapp.presentation.BaseHeaderFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
 
 @EFragment(R.layout.fragment_action_status)
-public class ActionStatusFragment extends BaseFragment {
+public class ActionStatusFragment extends BaseHeaderFragment {
     public final static String BUTTON_TEXT_KEY = "BUTTON_TEXT_KEY";
     public final static String STATE_KEY = "STATE_KEY";
     public final static String STATE_FAILED = "STATE_FAILED";
@@ -48,7 +48,6 @@ public class ActionStatusFragment extends BaseFragment {
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText(R.string.header_action_status);
         Bundle bundle = getArguments();
         if (bundle != null) {
             updateUI(bundle);
@@ -77,4 +76,8 @@ public class ActionStatusFragment extends BaseFragment {
         }
     }
 
+    @Override
+    protected int getHeaderTextResourceId() {
+        return R.string.header_action_status;
+    }
 }

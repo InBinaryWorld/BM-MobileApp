@@ -21,7 +21,7 @@ public abstract class BaseFilterAdapter<T extends FilterValue> extends BaseAdapt
         List<String> keywords = Arrays.asList(searchText.toLowerCase().split(" "));
         List<T> list = new ArrayList<>();
         for (T filterValue : allItemsList) {
-            String itemString = filterValue.getDescriptionForFilter();
+            String itemString = filterValue.getDescriptionForFilter().toLowerCase();
             if (keywords.stream().allMatch(itemString::contains)) {
                 list.add(filterValue);
             }

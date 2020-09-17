@@ -48,7 +48,7 @@ public class IndividualContactListFragment extends SearchListFragmentWithBtn<Ind
 
     @Override
     protected void onFlButtonClick(View view) {
-        Navigator.backOneAndNavigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_CREATE_ID);
+        Navigator.backOneAndNavigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_CREATE);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class IndividualContactListFragment extends SearchListFragmentWithBtn<Ind
     public void onItemClick(IndividualContact item) {
         Bundle args = new Bundle();
         args.putString(IndividualContactDetailsFragment.KEY_INDIVIDUAL_CONTACT, new Gson().toJson(item));
-        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_DETAILS_ID, args);
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_DETAILS, args);
     }
 
 }

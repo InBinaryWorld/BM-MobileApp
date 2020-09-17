@@ -4,6 +4,12 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.Simp
 
 public final class DetailsConfigurations {
 
+    public static <T> SimpleTextViewDetailsRowConfig<T> getWarehouseName() {
+        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+        config.setLabel("Warehouse Name");
+        return config;
+    }
+
     public static <T> SimpleTextViewDetailsRowConfig<T> getProductNameConfig() {
         SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
         config.setLabel("Product Name");

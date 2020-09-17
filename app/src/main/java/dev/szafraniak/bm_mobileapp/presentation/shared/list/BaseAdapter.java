@@ -35,7 +35,6 @@ public abstract class BaseAdapter<T> extends ArrayAdapter<T> {
     }
 
     public void setAllItems(List<T> list) {
-        this.filter = null;
         this.allItems = list;
         this.filteredItems = list;
         notifyDataSetChanged();

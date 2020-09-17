@@ -12,14 +12,14 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
+import dev.szafraniak.bm_mobileapp.presentation.BaseHeaderFragment;
 
 import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_PRODUCT_MODEL_LIST;
 import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_SERVICE_MODEL_LIST;
 import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_WAREHOUSE_LIST;
 
 @EFragment(R.layout.fragment_resources)
-public class ResourcesFragment extends BaseFragment implements ResourcesView {
+public class ResourcesFragment extends BaseHeaderFragment implements ResourcesView {
 
     @ViewById(R.id.tv_header_text)
     TextView headerTextView;
@@ -32,7 +32,6 @@ public class ResourcesFragment extends BaseFragment implements ResourcesView {
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText(R.string.header_resources);
     }
 
     @Click(R.id.btn_products)
@@ -48,5 +47,10 @@ public class ResourcesFragment extends BaseFragment implements ResourcesView {
     @Click(R.id.btn_warehouses)
     public void warehousesClick() {
         Navigator.navigateTo(this, FRAGMENT_WAREHOUSE_LIST);
+    }
+
+    @Override
+    protected int getHeaderTextResourceId() {
+        return R.string.header_resources;
     }
 }

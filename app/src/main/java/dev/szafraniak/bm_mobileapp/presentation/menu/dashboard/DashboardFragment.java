@@ -10,10 +10,10 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
+import dev.szafraniak.bm_mobileapp.presentation.BaseHeaderFragment;
 
 @EFragment(R.layout.fragment_dashboard)
-public class DashboardFragment extends BaseFragment implements DashboardView {
+public class DashboardFragment extends BaseHeaderFragment implements DashboardView {
 
     @ViewById(R.id.tv_header_text)
     TextView headerTextView;
@@ -26,8 +26,11 @@ public class DashboardFragment extends BaseFragment implements DashboardView {
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText(R.string.header_dashboard);
     }
 
 
+    @Override
+    protected int getHeaderTextResourceId() {
+        return R.string.header_dashboard;
+    }
 }

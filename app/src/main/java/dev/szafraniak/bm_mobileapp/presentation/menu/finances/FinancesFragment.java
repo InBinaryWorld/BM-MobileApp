@@ -10,10 +10,10 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
+import dev.szafraniak.bm_mobileapp.presentation.BaseHeaderFragment;
 
 @EFragment(R.layout.fragment_finances)
-public class FinancesFragment extends BaseFragment implements FinancesView {
+public class FinancesFragment extends BaseHeaderFragment implements FinancesView {
 
     @ViewById(R.id.tv_header_text)
     TextView headerTextView;
@@ -26,7 +26,10 @@ public class FinancesFragment extends BaseFragment implements FinancesView {
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText(R.string.header_finances);
     }
 
+    @Override
+    protected int getHeaderTextResourceId() {
+        return R.string.header_finances;
+    }
 }

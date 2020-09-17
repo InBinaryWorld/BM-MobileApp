@@ -14,9 +14,9 @@
         android:icon="@drawable/ic_resources"
         android:title="@string/resources" />
     <item
-        android:id="@+id/menu_finances"
-        android:icon="@drawable/ic_finances"
-        android:title="@string/finances" />
+        android:id="@+id/menu_invoices"
+        android:icon="@drawable/ic_invoices"
+        android:title="@string/invoices" />
     <item
         android:id="@+id/menu_settings"
         android:icon="@drawable/ic_settings"

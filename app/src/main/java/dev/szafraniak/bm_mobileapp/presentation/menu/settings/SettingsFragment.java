@@ -14,11 +14,11 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
+import dev.szafraniak.bm_mobileapp.presentation.BaseHeaderFragment;
 import dev.szafraniak.bm_mobileapp.presentation.company.activity.CompanyActivity_;
 
 @EFragment(R.layout.fragment_settings)
-public class SettingsFragment extends BaseFragment implements SettingsView {
+public class SettingsFragment extends BaseHeaderFragment implements SettingsView {
 
     @ViewById(R.id.sw_google)
     SwitchMaterial switchGoogle;
@@ -37,7 +37,6 @@ public class SettingsFragment extends BaseFragment implements SettingsView {
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText(R.string.header_settings);
         presenter.setView(this);
         presenter.loadSettings();
     }
@@ -70,5 +69,10 @@ public class SettingsFragment extends BaseFragment implements SettingsView {
     @Click(R.id.cl_logout)
     public void logout() {
         presenter.logoutAction();
+    }
+
+    @Override
+    protected int getHeaderTextResourceId() {
+        return R.string.header_settings;
     }
 }

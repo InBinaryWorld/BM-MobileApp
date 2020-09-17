@@ -25,7 +25,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.config.DetailsCon
 public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<ProductModel>
         implements ProductModelDetailsView {
 
-    public final static String KEY_WAREHOUSE = "PRODUCT_MODEL_KEY";
+    public final static String KEY_WAREHOUSE = "KEY_WAREHOUSE";
 
     @Inject
     ProductModelDetailsPresenter presenter;

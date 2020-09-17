@@ -19,6 +19,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.ProductsListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.create.ProductModelCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.details.ProductModelDetailsPresenter;
@@ -31,6 +32,8 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceMode
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.WarehouseListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create.WarehouseCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.details.WarehouseDetailsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.modify.WarehouseModifyPresenter;
 
 @Module
 public class MenuModule {
@@ -183,6 +186,24 @@ public class MenuModule {
     @Singleton
     public WarehouseCreatePresenter provideWarehouseCreatePresenter(Application app) {
         return new WarehouseCreatePresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public WarehouseModifyPresenter provideWarehouseModifyPresenter(Application app) {
+        return new WarehouseModifyPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public WarehouseDetailsPresenter provideWarehouseDetailsPresenter(Application app) {
+        return new WarehouseDetailsPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public InvoicesPresenter provideInvoicesPresenter(Application app) {
+        return new InvoicesPresenter(app);
     }
 
 }

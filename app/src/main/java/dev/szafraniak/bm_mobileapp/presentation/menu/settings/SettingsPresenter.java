@@ -10,7 +10,7 @@ import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import lombok.Setter;
 
-import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_SETTINGS_COMPANY_ID;
+import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_SETTINGS_COMPANY;
 
 public class SettingsPresenter {
 
@@ -55,6 +55,6 @@ public class SettingsPresenter {
     }
 
     public void modifyCompanyDataAction() {
-        Navigator.navigateTo(view, FRAGMENT_SETTINGS_COMPANY_ID);
+        Navigator.navigateTo(view, FRAGMENT_SETTINGS_COMPANY);
     }
 }

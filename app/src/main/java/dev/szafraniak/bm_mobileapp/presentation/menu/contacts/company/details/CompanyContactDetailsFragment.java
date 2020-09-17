@@ -65,7 +65,7 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
     protected void onFblClick(View view) {
         Bundle args = new Bundle();
         args.putString(CompanyContactModifyFragment.KEY_COMPANY_CONTACT, new Gson().toJson(contact));
-        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_MODIFY_ID, args);
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_MODIFY, args);
     }
 
     @Override

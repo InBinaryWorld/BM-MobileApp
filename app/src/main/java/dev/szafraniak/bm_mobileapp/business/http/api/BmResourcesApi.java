@@ -11,6 +11,9 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.UpdateC
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.CreateIndividualContactRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.UpdateIndividualContactRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.CreateInvoiceRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
+import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.UpdateInvoiceRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.Product;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.CreateProductModelRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
@@ -34,6 +37,8 @@ public interface BmResourcesApi {
     @GET("/api/user")
     Observable<User> getUser();
 
+    //    ###########  COMPANY  ##########
+
     @GET("/api/companies")
     Observable<BMCollection<Company>> getCompanies();
 
@@ -44,8 +49,12 @@ public interface BmResourcesApi {
     Observable<Company> modifyCompany(@Path("companyId") Long companyId,
                                       @Body UpdateCompanyRequest requestBody);
 
+    //    ###########  PRODUCT  ##########
+
     @GET("/api/companies/{companyId}/products")
     Observable<BMCollection<Product>> getProducts(@Path("companyId") Long companyId);
+
+    //    ###########  PRODUCT MODEL  ##########
 
     @GET("/api/companies/{companyId}/products/models")
     Observable<BMCollection<ProductModel>> getProductModels(@Path("companyId") Long companyId);
@@ -63,6 +72,8 @@ public interface BmResourcesApi {
                                                 @Path("productModelId") Long productModelId,
                                                 @Body UpdateProductModelRequest model);
 
+    //    ###########  SERVICE MODEL  ##########
+
     @GET("/api/companies/{companyId}/services/models")
     Observable<BMCollection<ServiceModel>> getServiceModels(@Path("companyId") Long companyId);
 
@@ -78,6 +89,8 @@ public interface BmResourcesApi {
     Observable<ServiceModel> modifyServiceModel(@Path("companyId") Long companyId,
                                                 @Path("serviceModelId") Long serviceModelId,
                                                 @Body UpdateServiceModelRequest model);
+
+    //    ###########  COMPANY CONTACT  ##########
 
     @GET("/api/companies/{companyId}/contacts/company")
     Observable<BMCollection<CompanyContact>> getCompanyContacts(@Path("companyId") Long companyId);
@@ -95,6 +108,8 @@ public interface BmResourcesApi {
                                                     @Path("contactId") Long contactId,
                                                     @Body UpdateCompanyContactRequest requestBody);
 
+    //    ###########  INDIVIDUAL CONTACT  ##########
+
     @GET("/api/companies/{companyId}/contacts/individual")
     Observable<BMCollection<IndividualContact>> getIndividualContacts(@Path("companyId") Long companyId);
 
@@ -111,6 +126,8 @@ public interface BmResourcesApi {
                                                           @Path("contactId") Long contactId,
                                                           @Body UpdateIndividualContactRequest requestBody);
 
+    //    ###########  WAREHOUSE  ##########
+
     @GET("/api/companies/{companyId}/warehouses")
     Observable<BMCollection<Warehouse>> getWarehouses(@Path("companyId") Long companyId);
 
@@ -122,9 +139,28 @@ public interface BmResourcesApi {
     Observable<Warehouse> createWarehouse(@Path("companyId") Long companyId,
                                           @Body CreateWarehouseRequest request);
 
-    @PUT("/api/companies/{companyId}/warehouse/{warehouseId}")
+    @PUT("/api/companies/{companyId}/warehouses/{warehouseId}")
     Observable<Warehouse> modifyWarehouse(@Path("companyId") Long companyId,
                                           @Path("warehouseId") Long warehouseId,
                                           @Body UpdateWarehouseRequest requestBody);
+
+    //    ###########  INVOICE  ##########
+
+    @GET("/api/companies/{companyId}/invoices")
+    Observable<BMCollection<Invoice>> getInvoices(@Path("companyId") Long companyId);
+
+    @GET("/api/companies/{companyId}/invoices/{invoiceId}")
+    Observable<Invoice> getInvoice(@Path("companyId") Long companyId,
+                                   @Path("invoiceId") Long invoiceId);
+
+    @POST("/api/companies/{companyId}/invoices")
+    Observable<Invoice> createInvoice(@Path("companyId") Long companyId,
+                                      @Body CreateInvoiceRequest request);
+
+    @PUT("/api/companies/{companyId}/invoices/{invoiceId}")
+    Observable<Invoice> modifyInvoice(@Path("companyId") Long companyId,
+                                      @Path("invoiceId") Long invoiceId,
+                                      @Body UpdateInvoiceRequest requestBody);
+
 
 }

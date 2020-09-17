@@ -7,41 +7,43 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.api.BmResourcesApi;
 import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
-import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.CreateWarehouseRequest;
-import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.UpdateWarehouseRequest;
-import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
+import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.CreateInvoiceRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
+import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.UpdateInvoiceRequest;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class WarehouseService {
+public class InvoiceService {
     @Inject
     BmResourcesApi bmResourcesApi;
 
-    public WarehouseService(Application app) {
+    public InvoiceService(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
     }
 
-    public Observable<BMCollection<Warehouse>> getWarehouses(Long companyId) {
-        return bmResourcesApi.getWarehouses(companyId)
+    public Observable<BMCollection<Invoice>> getInvoices(Long companyId) {
+        return bmResourcesApi.getInvoices(companyId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observable<Warehouse> getWarehouse(Long companyId, Long warehouseId) {
-        return bmResourcesApi.getWarehouse(companyId, warehouseId)
+    public Observable<Invoice> getInvoice(Long companyId, Long invoiceId) {
+        return bmResourcesApi.getInvoice(companyId, invoiceId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observable<Warehouse> createWarehouse(Long companyId, CreateWarehouseRequest request) {
-        return bmResourcesApi.createWarehouse(companyId, request)
+    public Observable<Invoice> createInvoice(Long companyId, CreateInvoiceRequest model) {
+        return bmResourcesApi.createInvoice(companyId, model)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observable<Warehouse> modifyWarehouse(Long companyId, Long warehouseId, UpdateWarehouseRequest request) {
-        return bmResourcesApi.modifyWarehouse(companyId, warehouseId, request)
+    public Observable<Invoice> modifyInvoice(Long companyId,
+                                             Long invoiceId,
+                                             UpdateInvoiceRequest model) {
+        return bmResourcesApi.modifyInvoice(companyId, invoiceId, model)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

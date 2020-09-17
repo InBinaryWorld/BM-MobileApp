@@ -13,10 +13,10 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.BaseFragment;
+import dev.szafraniak.bm_mobileapp.presentation.BaseHeaderFragment;
 
 @EFragment(R.layout.fragment_contacts)
-public class ContactsFragment extends BaseFragment implements ContactsView {
+public class ContactsFragment extends BaseHeaderFragment implements ContactsView {
 
 
     @ViewById(R.id.tv_header_text)
@@ -30,17 +30,20 @@ public class ContactsFragment extends BaseFragment implements ContactsView {
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        headerTextView.setText(R.string.header_contacts);
     }
 
     @Click(R.id.btn_individual)
     public void onIndividualClick() {
-        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_LIST_ID);
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_LIST);
     }
 
     @Click(R.id.btn_company)
     public void onCompanyClick() {
-        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_LIST_ID);
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_LIST);
     }
 
+    @Override
+    protected int getHeaderTextResourceId() {
+        return R.string.header_contacts;
+    }
 }

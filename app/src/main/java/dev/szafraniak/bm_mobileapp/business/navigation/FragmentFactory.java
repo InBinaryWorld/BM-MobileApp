@@ -23,6 +23,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.ProductsListFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.create.ProductModelCreateFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.details.ProductModelDetailsFragment_;
@@ -35,26 +36,28 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceMode
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.WarehouseListFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create.WarehouseCreateFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.details.WarehouseDetailsFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.modify.WarehouseModifyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragment_;
 
 
 public abstract class FragmentFactory {
-    public static final int FRAGMENT_COMPANY_LIST_ID = 10;
-    public static final int FRAGMENT_COMPANY_CREATE_ID = 11;
-    public static final int FRAGMENT_DASHBOARD_ID = 100;
-    public static final int FRAGMENT_CONTACTS_ID = 200;
-    public static final int FRAGMENT_INDIVIDUAL_CONTACT_LIST_ID = 210;
-    public static final int FRAGMENT_INDIVIDUAL_CONTACT_CREATE_ID = 211;
-    public static final int FRAGMENT_INDIVIDUAL_CONTACT_MODIFY_ID = 212;
-    public static final int FRAGMENT_INDIVIDUAL_CONTACT_DETAILS_ID = 213;
-    public static final int FRAGMENT_COMPANY_CONTACT_LIST_ID = 220;
-    public static final int FRAGMENT_COMPANY_CONTACT_CREATE_ID = 221;
-    public static final int FRAGMENT_COMPANY_CONTACT_MODIFY_ID = 222;
-    public static final int FRAGMENT_COMPANY_CONTACT_DETAILS_ID = 223;
-    public static final int FRAGMENT_RESOURCES_ID = 300;
-    public static final int FRAGMENT_FINANCES_ID = 400;
-    public static final int FRAGMENT_SETTINGS_ID = 500;
-    public static final int FRAGMENT_SETTINGS_COMPANY_ID = 501;
+    public static final int FRAGMENT_COMPANY_LIST = 10;
+    public static final int FRAGMENT_COMPANY_CREATE = 11;
+    public static final int FRAGMENT_DASHBOARD = 100;
+    public static final int FRAGMENT_CONTACTS = 200;
+    public static final int FRAGMENT_INDIVIDUAL_CONTACT_LIST = 210;
+    public static final int FRAGMENT_INDIVIDUAL_CONTACT_CREATE = 211;
+    public static final int FRAGMENT_INDIVIDUAL_CONTACT_MODIFY = 212;
+    public static final int FRAGMENT_INDIVIDUAL_CONTACT_DETAILS = 213;
+    public static final int FRAGMENT_COMPANY_CONTACT_LIST = 220;
+    public static final int FRAGMENT_COMPANY_CONTACT_CREATE = 221;
+    public static final int FRAGMENT_COMPANY_CONTACT_MODIFY = 222;
+    public static final int FRAGMENT_COMPANY_CONTACT_DETAILS = 223;
+    public static final int FRAGMENT_RESOURCES = 300;
+    public static final int FRAGMENT_INVOICES = 400;
+    public static final int FRAGMENT_SETTINGS = 500;
+    public static final int FRAGMENT_SETTINGS_COMPANY = 501;
     public static final int FRAGMENT_ACTION_STATUS = 600;
     public static final int FRAGMENT_PRODUCT_MODEL_LIST = 700;
     public static final int FRAGMENT_PRODUCT_MODEL_MODIFY = 701;
@@ -66,13 +69,16 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_SERVICE_MODEL_CREATE = 803;
     public static final int FRAGMENT_WAREHOUSE_LIST = 900;
     public static final int FRAGMENT_WAREHOUSE_CREATE = 901;
+    public static final int FRAGMENT_WAREHOUSE_MODIFY = 902;
+    public static final int FRAGMENT_WAREHOUSE_DETAILS = 903;
+    public static final int FRAGMENT_FINANCES = 1000;
 
     public static final Map<Integer, Integer> menuMap = new HashMap<Integer, Integer>() {{
-        put(R.id.menu_dashboard, FRAGMENT_DASHBOARD_ID);
-        put(R.id.menu_contacts, FRAGMENT_CONTACTS_ID);
-        put(R.id.menu_resources, FRAGMENT_RESOURCES_ID);
-        put(R.id.menu_finances, FRAGMENT_FINANCES_ID);
-        put(R.id.menu_settings, FRAGMENT_SETTINGS_ID);
+        put(R.id.menu_dashboard, FRAGMENT_DASHBOARD);
+        put(R.id.menu_contacts, FRAGMENT_CONTACTS);
+        put(R.id.menu_resources, FRAGMENT_RESOURCES);
+        put(R.id.menu_invoices, FRAGMENT_INVOICES);
+        put(R.id.menu_settings, FRAGMENT_SETTINGS);
     }};
 
 
@@ -80,52 +86,55 @@ public abstract class FragmentFactory {
         Fragment fragment;
 
         switch (fragmentId) {
-            case FRAGMENT_COMPANY_CREATE_ID:
+            case FRAGMENT_COMPANY_CREATE:
                 fragment = new CompanyCreateFragment_();
                 break;
-            case FRAGMENT_COMPANY_LIST_ID:
+            case FRAGMENT_COMPANY_LIST:
                 fragment = new CompanyListFragment_();
                 break;
-            case FRAGMENT_DASHBOARD_ID:
+            case FRAGMENT_DASHBOARD:
                 fragment = new DashboardFragment_();
                 break;
-            case FRAGMENT_CONTACTS_ID:
+            case FRAGMENT_CONTACTS:
                 fragment = new ContactsFragment_();
                 break;
-            case FRAGMENT_INDIVIDUAL_CONTACT_LIST_ID:
+            case FRAGMENT_INDIVIDUAL_CONTACT_LIST:
                 fragment = new IndividualContactListFragment_();
                 break;
-            case FRAGMENT_INDIVIDUAL_CONTACT_CREATE_ID:
+            case FRAGMENT_INDIVIDUAL_CONTACT_CREATE:
                 fragment = new IndividualContactCreateFragment_();
                 break;
-            case FRAGMENT_INDIVIDUAL_CONTACT_MODIFY_ID:
+            case FRAGMENT_INDIVIDUAL_CONTACT_MODIFY:
                 fragment = new IndividualContactModifyFragment_();
                 break;
-            case FRAGMENT_INDIVIDUAL_CONTACT_DETAILS_ID:
+            case FRAGMENT_INDIVIDUAL_CONTACT_DETAILS:
                 fragment = new IndividualContactDetailsFragment_();
                 break;
-            case FRAGMENT_COMPANY_CONTACT_LIST_ID:
+            case FRAGMENT_COMPANY_CONTACT_LIST:
                 fragment = new CompanyContactListFragment_();
                 break;
-            case FRAGMENT_COMPANY_CONTACT_CREATE_ID:
+            case FRAGMENT_COMPANY_CONTACT_CREATE:
                 fragment = new CompanyContactCreateFragment_();
                 break;
-            case FRAGMENT_COMPANY_CONTACT_MODIFY_ID:
+            case FRAGMENT_COMPANY_CONTACT_MODIFY:
                 fragment = new CompanyContactModifyFragment_();
                 break;
-            case FRAGMENT_COMPANY_CONTACT_DETAILS_ID:
+            case FRAGMENT_COMPANY_CONTACT_DETAILS:
                 fragment = new CompanyContactDetailsFragment_();
                 break;
-            case FRAGMENT_RESOURCES_ID:
+            case FRAGMENT_RESOURCES:
                 fragment = new ResourcesFragment_();
                 break;
-            case FRAGMENT_FINANCES_ID:
+            case FRAGMENT_INVOICES:
+                fragment = new InvoicesFragment_();
+                break;
+            case FRAGMENT_FINANCES:
                 fragment = new FinancesFragment_();
                 break;
-            case FRAGMENT_SETTINGS_ID:
+            case FRAGMENT_SETTINGS:
                 fragment = new SettingsFragment_();
                 break;
-            case FRAGMENT_SETTINGS_COMPANY_ID:
+            case FRAGMENT_SETTINGS_COMPANY:
                 fragment = new ModifyCompanyFragment_();
                 break;
             case FRAGMENT_ACTION_STATUS:
@@ -161,6 +170,12 @@ public abstract class FragmentFactory {
             case FRAGMENT_WAREHOUSE_CREATE:
                 fragment = new WarehouseCreateFragment_();
                 break;
+            case FRAGMENT_WAREHOUSE_MODIFY:
+                fragment = new WarehouseModifyFragment_();
+                break;
+            case FRAGMENT_WAREHOUSE_DETAILS:
+                fragment = new WarehouseDetailsFragment_();
+                break;
             default:
                 throw new Resources.NotFoundException("Not found fragment with id: " + fragmentId);
         }
@@ -175,11 +190,11 @@ public abstract class FragmentFactory {
     }
 
     public static int getCompanyMainFragmentId() {
-        return FRAGMENT_COMPANY_LIST_ID;
+        return FRAGMENT_COMPANY_LIST;
     }
 
     public static int getMenuMainFragmentId() {
-        return FRAGMENT_DASHBOARD_ID;
+        return FRAGMENT_DASHBOARD;
     }
 
 }
