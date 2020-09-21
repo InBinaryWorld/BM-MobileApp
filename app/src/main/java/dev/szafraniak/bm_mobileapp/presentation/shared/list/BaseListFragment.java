@@ -97,45 +97,50 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
     }
 
     protected void showFirstProgress() {
-        dataContainerView.setVisibility(View.GONE);
+        listView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         emptyListView.setVisibility(View.GONE);
+        dataContainerView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
         setRefreshEnabled(false);
     }
 
     protected void showError() {
-        dataContainerView.setVisibility(View.GONE);
-        errorView.setVisibility(View.VISIBLE);
+        listView.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
         emptyListView.setVisibility(View.GONE);
+        dataContainerView.setVisibility(View.GONE);
+        errorView.setVisibility(View.VISIBLE);
         setRefreshEnabled(true);
         setRefreshing(false);
     }
 
     protected void showEmptyList() {
-        dataContainerView.setVisibility(View.GONE);
+        listView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
         emptyListView.setVisibility(View.VISIBLE);
+        dataContainerView.setVisibility(View.VISIBLE);
         setRefreshEnabled(true);
         setRefreshing(false);
     }
 
     protected void showData() {
-        dataContainerView.setVisibility(View.VISIBLE);
         errorView.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
         emptyListView.setVisibility(View.GONE);
+        listView.setVisibility(View.VISIBLE);
+        dataContainerView.setVisibility(View.VISIBLE);
         setRefreshEnabled(true);
         setRefreshing(false);
     }
 
     protected void viewOnRefresh() {
-        dataContainerView.setVisibility(View.GONE);
+        listView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
         emptyListView.setVisibility(View.GONE);
+        dataContainerView.setVisibility(View.GONE);
     }
 
     @Override

@@ -35,7 +35,6 @@
 
     </FrameLayout>
 
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/srl_swipe_refresh_layout"
         style="@style/MatchConstrainContainer"
@@ -44,13 +43,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fl_search">
 
-        <ListView
-            android:id="@+id/list"
-            style="@style/ListView.NoDivider.CompanyList"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        </ListView>
+            <ListView
+                android:id="@+id/list"
+                style="@style/ListView.NoDivider.CompanyList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <include
+                android:id="@+id/empty_list"
+                android:visibility="gone"
+                android:layout_marginTop="56dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/component_list_empty" />
+
+        </LinearLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -76,16 +88,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
-    <include
-        android:id="@+id/empty_list"
-        android:visibility="gone"
-        android:layout_marginTop="96dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/component_list_empty"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/flb_list_button"

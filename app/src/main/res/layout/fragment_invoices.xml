@@ -46,9 +46,16 @@
                 android:id="@+id/list"
                 style="@style/ListView.NoDivider.CompanyList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent" />
 
-            </ListView>
+            <include
+                android:id="@+id/empty_list"
+                android:visibility="gone"
+                android:layout_marginTop="56dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/component_list_empty" />
+
         </LinearLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
@@ -81,17 +88,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         layout="@layout/component_list_error"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header" />
-
-    <include
-        android:id="@+id/empty_list"
-        android:visibility="gone"
-        android:layout_marginTop="144dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/component_list_empty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
