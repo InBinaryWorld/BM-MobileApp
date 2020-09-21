@@ -52,7 +52,7 @@ public class ServiceModelListFragment extends SearchListFragmentWithBtn<ServiceM
 
     @Override
     protected void loadData() {
-        presenter.loadListData();
+        presenter.loadData();
     }
 
     @Override

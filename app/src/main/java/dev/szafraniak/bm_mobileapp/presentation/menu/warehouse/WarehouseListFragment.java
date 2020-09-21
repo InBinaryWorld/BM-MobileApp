@@ -52,7 +52,7 @@ public class WarehouseListFragment extends BaseListFragmentWithBtn<Warehouse>
 
     @Override
     protected void loadData() {
-        presenter.loadListData();
+        presenter.loadData();
     }
 
     @Override

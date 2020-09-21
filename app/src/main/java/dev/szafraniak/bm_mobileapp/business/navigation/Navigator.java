@@ -80,8 +80,7 @@ public class Navigator {
     }
 
     public static void back(BaseView view) {
-        FragmentManager fm = view.getFManager();
-        fm.popBackStack(null, 0);
+        backTo(view, null);
     }
 
     public static void backTo(BaseView view, int fragmentId) {
@@ -127,8 +126,11 @@ public class Navigator {
     }
 
     private static void backAndNavigateTo(FragmentManager fm, Fragment fragment, String backToTag, Bundle args) {
+        if (isAlreadyLoaded(fm, fragment)) {
+            return;
+        }
         fm.popBackStack(backToTag, 0);
-        navigateTo(fm, fragment, args);
+        navigate(fm, fragment, args);
     }
 
     public static void navigateTo(BaseView view, int fragmentId) {
@@ -147,6 +149,10 @@ public class Navigator {
         if (isAlreadyLoaded(fragmentManager, fragment)) {
             return;
         }
+        navigate(fragmentManager, fragment, args);
+    }
+
+    private static void navigate(FragmentManager fragmentManager, Fragment fragment, Bundle args) {
         fragment.setArguments(args);
         String tag = getFragmentTag(fragment);
         FragmentTransaction transaction = fragmentManager.beginTransaction();

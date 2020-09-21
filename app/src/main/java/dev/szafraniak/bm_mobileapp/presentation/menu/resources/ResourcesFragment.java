@@ -1,6 +1,10 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.resources;
 
+import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -11,15 +15,18 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
+import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
+import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.BaseHeaderFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.details.WarehouseDetailsFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWithBtn;
 
 import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_PRODUCT_MODEL_LIST;
 import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_SERVICE_MODEL_LIST;
-import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_WAREHOUSE_LIST;
 
 @EFragment(R.layout.fragment_resources)
-public class ResourcesFragment extends BaseHeaderFragment implements ResourcesView {
+public class ResourcesFragment extends BaseListFragmentWithBtn<Warehouse> implements ResourcesView {
 
     @ViewById(R.id.tv_header_text)
     TextView headerTextView;
@@ -32,6 +39,33 @@ public class ResourcesFragment extends BaseHeaderFragment implements ResourcesVi
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
+        presenter.setView(this);
+        firstLoadData();
+    }
+
+    @Override
+    protected int getHeaderTextResourceId() {
+        return R.string.header_resources;
+    }
+
+    @Override
+    protected int getFlButtonTextId() {
+        return R.string.resources_fl_btn_text;
+    }
+
+    @Override
+    protected void onFlButtonClick(View view) {
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_WAREHOUSE_CREATE);
+    }
+
+    @Override
+    protected void loadData() {
+        presenter.loadData();
+    }
+
+    @Override
+    protected BaseAdapter<Warehouse> createAdapter() {
+        return new ResourcesListAdapter(getContext());
     }
 
     @Click(R.id.btn_products)
@@ -44,13 +78,12 @@ public class ResourcesFragment extends BaseHeaderFragment implements ResourcesVi
         Navigator.navigateTo(this, FRAGMENT_SERVICE_MODEL_LIST);
     }
 
-    @Click(R.id.btn_warehouses)
-    public void warehousesClick() {
-        Navigator.navigateTo(this, FRAGMENT_WAREHOUSE_LIST);
+    @Override
+    public void onItemClick(Warehouse item) {
+        Bundle args = new Bundle();
+        args.putString(WarehouseDetailsFragment.KEY_WAREHOUSE, new Gson().toJson(item));
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_WAREHOUSE_DETAILS, args);
     }
 
-    @Override
-    protected int getHeaderTextResourceId() {
-        return R.string.header_resources;
-    }
 }
+

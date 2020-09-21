@@ -65,10 +65,12 @@
     <string name="header_create_service_model">Create Service</string>
     <string name="header_warehouse_list">Warehouses</string>
     <string name="warehouse_list_fl_btn_text">Create Warehouse</string>
+    <string name="resources_fl_btn_text">New Warehouse</string>
     <string name="header_warehouse_create">Create Warehouse</string>
     <string name="header_modify_warehouse">Modify Warehouse</string>
     <string name="header_warehouse_details">Warehouse Details</string>
     <string name="fragment_warehouse_details_fl_btn_text">MODIFY WAREHOUSE</string>
     <string name="invoice_list_fl_btn_text">CREATE NEW INVOICE</string>
     <string name="header_invoices_list_text">Invoices</string>
+    <string name="finances_list_fl_btn_text">NEW RECORD</string>
 </resources>

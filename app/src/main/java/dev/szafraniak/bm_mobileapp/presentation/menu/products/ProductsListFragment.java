@@ -52,7 +52,7 @@ public class ProductsListFragment extends SearchListFragmentWithBtn<ProductModel
 
     @Override
     protected void loadData() {
-        presenter.loadListData();
+        presenter.loadData();
     }
 
     @Override

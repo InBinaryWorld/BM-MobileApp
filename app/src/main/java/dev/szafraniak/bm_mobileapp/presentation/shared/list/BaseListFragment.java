@@ -25,10 +25,11 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
 
     protected View emptyListView;
 
+    protected View dataContainerView;
+
     protected ListView listView;
 
     protected BaseAdapter<T> adapter;
-
 
     @IdRes
     protected int getListViewId() {
@@ -50,13 +51,18 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
         return R.id.empty_list;
     }
 
+    @IdRes
+    protected int getDataContainerId() {
+        return R.id.srl_swipe_refresh_layout;
+    }
+
     @AfterViews
     public void initializeBaseListFragment() {
         listView = (ListView) findViewById(getListViewId());
         errorView = findViewById(getErrorViewId());
         progressBar = findViewById(getProgressBarViewId());
         emptyListView = findViewById(getEmptyViewId());
-
+        dataContainerView = findViewById(getDataContainerId());
 
         adapter = createAdapter();
         listView.setAdapter(adapter);
@@ -91,7 +97,7 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
     }
 
     protected void showFirstProgress() {
-        listView.setVisibility(View.GONE);
+        dataContainerView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         emptyListView.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
@@ -99,7 +105,7 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
     }
 
     protected void showError() {
-        listView.setVisibility(View.GONE);
+        dataContainerView.setVisibility(View.GONE);
         errorView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
         emptyListView.setVisibility(View.GONE);
@@ -108,7 +114,7 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
     }
 
     protected void showEmptyList() {
-        listView.setVisibility(View.GONE);
+        dataContainerView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
         emptyListView.setVisibility(View.VISIBLE);
@@ -117,7 +123,7 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
     }
 
     protected void showData() {
-        listView.setVisibility(View.VISIBLE);
+        dataContainerView.setVisibility(View.VISIBLE);
         errorView.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
         emptyListView.setVisibility(View.GONE);
@@ -126,7 +132,7 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
     }
 
     protected void viewOnRefresh() {
-        listView.setVisibility(View.GONE);
+        dataContainerView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
         progressBar.setVisibility(View.GONE);
         emptyListView.setVisibility(View.GONE);
@@ -148,6 +154,5 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
         T item = adapter.getItem(position);
         onItemClick(item);
     }
-
 
 }

@@ -27,7 +27,7 @@ public class IndividualContactListPresenter {
 
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public void loadListData() {
+    public void loadData() {
         contactsService.getIndividualContacts(userPreferences.getCompanyId())
                 .compose(view.bindToLifecycle())
                 .subscribe(view::setData, view::setError);

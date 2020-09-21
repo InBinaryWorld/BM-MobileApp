@@ -14,4 +14,6 @@ public class FinancesPresenter {
         ((BMApplication) app).getAppComponent().inject(this);
     }
 
+    public void loadData() {
+    }
 }

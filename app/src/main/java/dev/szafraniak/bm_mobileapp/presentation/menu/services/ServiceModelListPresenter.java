@@ -27,7 +27,7 @@ public class ServiceModelListPresenter {
 
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public void loadListData() {
+    public void loadData() {
         serviceModelService.getServiceModels(userPreferences.getCompanyId())
                 .compose(view.bindToLifecycle())
                 .subscribe(view::setData, view::setError);

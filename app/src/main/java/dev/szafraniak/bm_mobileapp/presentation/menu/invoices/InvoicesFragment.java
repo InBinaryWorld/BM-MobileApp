@@ -13,6 +13,8 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
+import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
+import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWithBtn;
 
@@ -56,7 +58,7 @@ public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice> implement
 
     @Click(R.id.btn_show_finances)
     public void showFinances() {
-
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_FINANCES);
     }
 
     @Override

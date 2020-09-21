@@ -27,7 +27,7 @@ public class ProductsListPresenter {
 
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public void loadListData() {
+    public void loadData() {
         productModelService.getProductModels(userPreferences.getCompanyId())
                 .compose(view.bindToLifecycle())
                 .subscribe(view::setData, view::setError);

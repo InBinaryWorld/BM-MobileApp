@@ -41,7 +41,7 @@ public class CompanyListPresenter {
 
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public void loadListData() {
+    public void loadData() {
         companyService.getCompanies()
                 .flatMap(this::getCompanyListModelList)
                 .compose(view.bindToLifecycle())

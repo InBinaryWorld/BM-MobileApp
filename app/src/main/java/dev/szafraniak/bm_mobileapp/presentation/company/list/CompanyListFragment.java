@@ -41,7 +41,7 @@ public class CompanyListFragment extends BaseListFragmentWithBtn<CompanyListMode
 
     @Override
     protected void loadData() {
-        presenter.loadListData();
+        presenter.loadData();
     }
 
     @Override

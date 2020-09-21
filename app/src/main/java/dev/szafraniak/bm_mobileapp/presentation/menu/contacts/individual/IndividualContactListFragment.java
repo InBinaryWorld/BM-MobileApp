@@ -53,7 +53,7 @@ public class IndividualContactListFragment extends SearchListFragmentWithBtn<Ind
 
     @Override
     protected void loadData() {
-        presenter.loadListData();
+        presenter.loadData();
     }
 
     @Override

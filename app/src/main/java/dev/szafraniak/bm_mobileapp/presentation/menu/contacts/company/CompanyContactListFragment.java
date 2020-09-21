@@ -43,7 +43,7 @@ public class CompanyContactListFragment extends SearchListFragmentWithBtn<Compan
 
     @Override
     protected void loadData() {
-        presenter.loadListData();
+        presenter.loadData();
     }
 
     @Override
