@@ -53,7 +53,7 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
 
     @IdRes
     protected int getDataContainerId() {
-        return R.id.srl_swipe_refresh_layout;
+        return R.id.ll_data_container;
     }
 
     @AfterViews
