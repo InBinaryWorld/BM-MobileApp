@@ -46,6 +46,7 @@ public class MenuActivity extends BaseActivity implements MenuView, BottomNaviga
     public void initialize() {
         Navigator.startMenuNavigation(this);
         navigationView.setOnNavigationItemSelectedListener(this);
+
     }
 
     @Override

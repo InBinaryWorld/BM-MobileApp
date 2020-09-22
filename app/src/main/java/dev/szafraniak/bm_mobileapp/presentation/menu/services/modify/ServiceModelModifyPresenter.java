@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.ServiceModelService;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.UpdateServiceModelRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormPresenter;
@@ -18,7 +18,7 @@ public class ServiceModelModifyPresenter extends BaseFormPresenter<ServiceModelM
     ServiceModelService serviceModelService;
 
     @Inject
-    UserPreferences userPreferences;
+    SessionManager sessionManager;
 
     public ServiceModelModifyPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
@@ -27,7 +27,7 @@ public class ServiceModelModifyPresenter extends BaseFormPresenter<ServiceModelM
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void modifyServiceModel(UpdateServiceModelRequest object, Long serviceModelId) {
-        Long companyId = userPreferences.getCompanyId();
+        Long companyId = sessionManager.getCompanyId();
         serviceModelService.modifyServiceModel(companyId, serviceModelId, object)
                 .compose(view.bindToLifecycle())
                 .subscribe(this::onSuccess, this::onError);

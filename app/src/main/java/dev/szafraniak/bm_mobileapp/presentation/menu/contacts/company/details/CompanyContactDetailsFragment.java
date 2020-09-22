@@ -30,6 +30,9 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
     @Inject
     CompanyContactDetailsPresenter presenter;
 
+    @Inject
+    Gson gson;
+
     CompanyContact contact;
 
     @Override
@@ -39,7 +42,7 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
             Navigator.back(this);
         }
         String companyJSON = getArguments().getString(KEY_COMPANY_CONTACT);
-        contact = new Gson().fromJson(companyJSON, CompanyContact.class);
+        contact = gson.fromJson(companyJSON, CompanyContact.class);
     }
 
     @AfterViews
@@ -48,7 +51,6 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
-        firstLoadData();
     }
 
     @Override
@@ -64,7 +66,7 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
     @Override
     protected void onFblClick(View view) {
         Bundle args = new Bundle();
-        args.putString(CompanyContactModifyFragment.KEY_COMPANY_CONTACT, new Gson().toJson(contact));
+        args.putString(CompanyContactModifyFragment.KEY_COMPANY_CONTACT, gson.toJson(contact));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_MODIFY, args);
     }
 

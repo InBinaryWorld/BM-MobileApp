@@ -1,10 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.company;
 
-import android.widget.TextView;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
 
@@ -18,9 +15,6 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.FormConfig;
 
 @EFragment(R.layout.fragment_base_form)
 public class ModifyCompanyFragment extends BaseFormFragment<UpdateCompanyRequest> implements ModifyCompanyView {
-
-    @ViewById(R.id.tv_header_text)
-    TextView headerTextView;
 
     @Inject
     ModifyCompanyPresenter presenter;
@@ -37,7 +31,7 @@ public class ModifyCompanyFragment extends BaseFormFragment<UpdateCompanyRequest
     @Override
     protected FormConfig<UpdateCompanyRequest> createFormConfig() {
         Company activeCompany = presenter.getActiveCompany();
-        return new ModifyCompanyFormConfig(inflater, layout, activeCompany);
+        return new ModifyCompanyFormConfig(inflater, formLayout, activeCompany);
     }
 
     @Override

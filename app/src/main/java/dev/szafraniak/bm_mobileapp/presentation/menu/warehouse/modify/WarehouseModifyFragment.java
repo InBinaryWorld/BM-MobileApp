@@ -28,6 +28,9 @@ public class WarehouseModifyFragment extends BaseFormFragment<UpdateWarehouseReq
     @Inject
     WarehouseModifyPresenter presenter;
 
+    @Inject
+    Gson gson;
+
     Warehouse contact;
 
     @Override
@@ -37,7 +40,7 @@ public class WarehouseModifyFragment extends BaseFormFragment<UpdateWarehouseReq
             Navigator.back(this);
         }
         String companyJSON = getArguments().getString(KEY_WAREHOUSE);
-        contact = new Gson().fromJson(companyJSON, Warehouse.class);
+        contact = gson.fromJson(companyJSON, Warehouse.class);
     }
 
     @AfterViews
@@ -63,7 +66,7 @@ public class WarehouseModifyFragment extends BaseFormFragment<UpdateWarehouseReq
 
     @Override
     protected FormConfig<UpdateWarehouseRequest> createFormConfig() {
-        return new WarehouseModifyFormConfig(inflater, layout, contact);
+        return new WarehouseModifyFormConfig(inflater, formLayout, contact);
     }
 
     @Override

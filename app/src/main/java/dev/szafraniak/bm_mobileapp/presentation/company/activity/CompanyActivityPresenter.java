@@ -5,7 +5,7 @@ import android.app.Application;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.settings.SettingsPreferences;
 import lombok.Setter;
 
 public class CompanyActivityPresenter {
@@ -14,7 +14,7 @@ public class CompanyActivityPresenter {
     CompanyActivity view;
 
     @Inject
-    UserPreferences userPreferences;
+    SettingsPreferences settingsPreferences;
 
 
     public CompanyActivityPresenter(Application app) {

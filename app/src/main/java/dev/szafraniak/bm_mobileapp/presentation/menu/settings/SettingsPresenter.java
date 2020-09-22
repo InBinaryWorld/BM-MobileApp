@@ -5,8 +5,8 @@ import android.app.Application;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
+import dev.szafraniak.bm_mobileapp.business.memory.settings.SettingsPreferences;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import lombok.Setter;
 
@@ -18,7 +18,7 @@ public class SettingsPresenter {
     SettingsView view;
 
     @Inject
-    UserPreferences userPreferences;
+    SettingsPreferences settingsPreferences;
 
     @Inject
     SessionManager sessionManager;
@@ -29,24 +29,24 @@ public class SettingsPresenter {
     }
 
     private void saveSettingsAndUpdateUI(boolean silentGoogle, boolean silentFacebook) {
-        userPreferences.setFacebookSilentLoginEnabled(silentFacebook);
-        userPreferences.setGoogleSilentLoginEnabled(silentGoogle);
+        settingsPreferences.setFacebookSilentLoginEnabled(silentFacebook);
+        settingsPreferences.setGoogleSilentLoginEnabled(silentGoogle);
         view.updateUI(silentGoogle, silentFacebook);
     }
 
     public void loadSettings() {
-        boolean silentGoogle = userPreferences.getGoogleSilentLoginEnabled();
-        boolean silentFacebook = userPreferences.getFacebookSilentLoginEnabled();
+        boolean silentGoogle = settingsPreferences.getGoogleSilentLoginEnabled();
+        boolean silentFacebook = settingsPreferences.getFacebookSilentLoginEnabled();
         view.updateUI(silentGoogle, silentFacebook);
     }
 
     public void negateFacebookSilentSetting() {
-        boolean silentFacebook = userPreferences.getFacebookSilentLoginEnabled();
+        boolean silentFacebook = settingsPreferences.getFacebookSilentLoginEnabled();
         saveSettingsAndUpdateUI(false, !silentFacebook);
     }
 
     public void negateGoogleSilentSetting() {
-        boolean silentGoogle = userPreferences.getGoogleSilentLoginEnabled();
+        boolean silentGoogle = settingsPreferences.getGoogleSilentLoginEnabled();
         saveSettingsAndUpdateUI(!silentGoogle, false);
     }
 

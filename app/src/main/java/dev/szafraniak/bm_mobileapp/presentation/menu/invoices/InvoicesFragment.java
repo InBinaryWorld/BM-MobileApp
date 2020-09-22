@@ -1,12 +1,10 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.invoices;
 
 import android.view.View;
-import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
 
@@ -21,9 +19,6 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWith
 @EFragment(R.layout.fragment_invoices)
 public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice> implements InvoicesView {
 
-    @ViewById(R.id.tv_header_text)
-    TextView headerTextView;
-
     @Inject
     InvoicesPresenter presenter;
 
@@ -33,7 +28,6 @@ public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice> implement
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
-        firstLoadData();
     }
 
     @Override

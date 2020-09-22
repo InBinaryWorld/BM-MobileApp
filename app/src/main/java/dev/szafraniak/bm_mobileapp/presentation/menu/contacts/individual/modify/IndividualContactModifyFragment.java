@@ -28,6 +28,9 @@ public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndi
     @Inject
     IndividualContactModifyPresenter presenter;
 
+    @Inject
+    Gson gson;
+
     IndividualContact contact;
 
     @Override
@@ -37,7 +40,7 @@ public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndi
             Navigator.back(this);
         }
         String companyJSON = getArguments().getString(KEY_INDIVIDUAL_CONTACT);
-        contact = new Gson().fromJson(companyJSON, IndividualContact.class);
+        contact = gson.fromJson(companyJSON, IndividualContact.class);
     }
 
     @AfterViews
@@ -63,7 +66,7 @@ public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndi
 
     @Override
     protected FormConfig<UpdateIndividualContactRequest> createFormConfig() {
-        return new IndividualContactModifyFormConfig(inflater, layout, contact);
+        return new IndividualContactModifyFormConfig(inflater, formLayout, contact);
     }
 
     @Override

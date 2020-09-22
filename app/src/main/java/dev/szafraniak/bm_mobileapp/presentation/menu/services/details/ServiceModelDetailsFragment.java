@@ -30,6 +30,9 @@ public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<Serv
     @Inject
     ServiceModelDetailsPresenter presenter;
 
+    @Inject
+    Gson gson;
+
     ServiceModel serviceModel;
 
     @Override
@@ -39,7 +42,7 @@ public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<Serv
             Navigator.back(this);
         }
         String companyJSON = getArguments().getString(KEY_SERVICE_MODEL);
-        serviceModel = new Gson().fromJson(companyJSON, ServiceModel.class);
+        serviceModel = gson.fromJson(companyJSON, ServiceModel.class);
     }
 
     @AfterViews
@@ -48,7 +51,6 @@ public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<Serv
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
-        firstLoadData();
     }
 
     @Override
@@ -64,7 +66,7 @@ public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<Serv
     @Override
     protected void onFblClick(View view) {
         Bundle args = new Bundle();
-        args.putString(ServiceModelModifyFragment.KEY_SERVICE_MODEL, new Gson().toJson(serviceModel));
+        args.putString(ServiceModelModifyFragment.KEY_SERVICE_MODEL, gson.toJson(serviceModel));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_SERVICE_MODEL_MODIFY, args);
 
     }

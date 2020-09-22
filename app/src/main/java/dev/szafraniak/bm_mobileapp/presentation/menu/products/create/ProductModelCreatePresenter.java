@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.CreateProductModelRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormPresenter;
@@ -18,7 +18,7 @@ public class ProductModelCreatePresenter extends BaseFormPresenter<ProductModelC
     ProductModelService productModelService;
 
     @Inject
-    UserPreferences userPreferences;
+    SessionManager sessionManager;
 
     public ProductModelCreatePresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
@@ -27,7 +27,7 @@ public class ProductModelCreatePresenter extends BaseFormPresenter<ProductModelC
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void createProductModel(CreateProductModelRequest object) {
-        productModelService.createProductModel(userPreferences.getCompanyId(), object)
+        productModelService.createProductModel(sessionManager.getCompanyId(), object)
                 .compose(view.bindToLifecycle())
                 .subscribe(this::onSuccess, this::onError);
     }

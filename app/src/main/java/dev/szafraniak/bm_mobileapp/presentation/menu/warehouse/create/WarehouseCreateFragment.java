@@ -39,7 +39,7 @@ public class WarehouseCreateFragment extends BaseFormFragment<CreateWarehouseReq
 
     @Override
     protected FormConfig<CreateWarehouseRequest> createFormConfig() {
-        return new WarehouseCreateFormConfig(inflater, layout);
+        return new WarehouseCreateFormConfig(inflater, formLayout);
     }
 
     @Override

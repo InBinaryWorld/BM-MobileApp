@@ -2,7 +2,6 @@ package dev.szafraniak.bm_mobileapp.presentation.shared.result;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -36,9 +35,6 @@ public class ActionStatusFragment extends BaseHeaderFragment {
 
     @ViewById(R.id.btn_action_status)
     MaterialButton button;
-
-    @ViewById(R.id.tv_header_text)
-    TextView headerTextView;
 
     @Inject
     DashboardPresenter presenter;

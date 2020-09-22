@@ -1,11 +1,8 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.contacts;
 
-import android.widget.TextView;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
 
@@ -17,10 +14,6 @@ import dev.szafraniak.bm_mobileapp.presentation.BaseHeaderFragment;
 
 @EFragment(R.layout.fragment_contacts)
 public class ContactsFragment extends BaseHeaderFragment implements ContactsView {
-
-
-    @ViewById(R.id.tv_header_text)
-    TextView headerTextView;
 
     @Inject
     ContactsPresenter presenter;

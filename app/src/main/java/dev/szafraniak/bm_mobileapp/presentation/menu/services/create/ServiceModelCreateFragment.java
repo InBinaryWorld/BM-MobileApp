@@ -39,7 +39,7 @@ public class ServiceModelCreateFragment extends BaseFormFragment<CreateServiceMo
 
     @Override
     protected FormConfig<CreateServiceModelRequest> createFormConfig() {
-        return new ServiceModelCreateFormConfig(inflater, layout);
+        return new ServiceModelCreateFormConfig(inflater, formLayout);
     }
 
     @Override

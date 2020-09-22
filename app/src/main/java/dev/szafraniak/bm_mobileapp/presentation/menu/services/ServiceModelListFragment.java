@@ -26,13 +26,15 @@ public class ServiceModelListFragment extends SearchListFragmentWithBtn<ServiceM
     @Inject
     ServiceModelListPresenter presenter;
 
+    @Inject
+    Gson gson;
+
     @AfterViews
     public void initialize() {
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
-        firstLoadData();
     }
 
     @Override
@@ -63,7 +65,7 @@ public class ServiceModelListFragment extends SearchListFragmentWithBtn<ServiceM
     @Override
     public void onItemClick(ServiceModel item) {
         Bundle args = new Bundle();
-        args.putString(ServiceModelDetailsFragment.KEY_SERVICE_MODEL, new Gson().toJson(item));
+        args.putString(ServiceModelDetailsFragment.KEY_SERVICE_MODEL, gson.toJson(item));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_SERVICE_MODEL_DETAILS, args);
     }
 

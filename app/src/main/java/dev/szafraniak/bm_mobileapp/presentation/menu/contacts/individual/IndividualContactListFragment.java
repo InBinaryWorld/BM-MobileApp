@@ -27,13 +27,16 @@ public class IndividualContactListFragment extends SearchListFragmentWithBtn<Ind
     @Inject
     IndividualContactListPresenter presenter;
 
+    @Inject
+    Gson gson;
+
+
     @AfterViews
     public void initialize() {
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
-        firstLoadData();
     }
 
     @Override
@@ -64,7 +67,7 @@ public class IndividualContactListFragment extends SearchListFragmentWithBtn<Ind
     @Override
     public void onItemClick(IndividualContact item) {
         Bundle args = new Bundle();
-        args.putString(IndividualContactDetailsFragment.KEY_INDIVIDUAL_CONTACT, new Gson().toJson(item));
+        args.putString(IndividualContactDetailsFragment.KEY_INDIVIDUAL_CONTACT, gson.toJson(item));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_DETAILS, args);
     }
 

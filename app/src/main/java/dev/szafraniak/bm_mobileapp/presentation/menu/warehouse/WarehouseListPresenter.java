@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.WarehouseService;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import lombok.Setter;
 
 public class WarehouseListPresenter {
@@ -19,7 +19,7 @@ public class WarehouseListPresenter {
     WarehouseService warehouseService;
 
     @Inject
-    UserPreferences userPreferences;
+    SessionManager sessionManager;
 
     public WarehouseListPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
@@ -28,7 +28,7 @@ public class WarehouseListPresenter {
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData() {
-        warehouseService.getWarehouses(userPreferences.getCompanyId())
+        warehouseService.getWarehouses(sessionManager.getCompanyId())
                 .compose(view.bindToLifecycle())
                 .subscribe(view::setData, view::setError);
     }

@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.HttpUtils;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationService;
-import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.auth.AuthorizationResponse;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import okhttp3.Request;
@@ -43,7 +43,7 @@ public class TokenAuthenticator implements okhttp3.Authenticator {
             return null;
         }
 
-        session.setSession(tokenResponse);
+        session.setTokens(tokenResponse);
         return HttpUtils.addAuthToRequest(response.request(), session.getFullAuthToken());
     }
 }

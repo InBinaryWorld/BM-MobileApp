@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.HttpUtils;
-import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;

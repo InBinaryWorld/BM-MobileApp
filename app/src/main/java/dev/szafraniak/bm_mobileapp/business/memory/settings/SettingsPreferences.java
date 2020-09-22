@@ -1,25 +1,28 @@
-package dev.szafraniak.bm_mobileapp.business.memory;
+package dev.szafraniak.bm_mobileapp.business.memory.settings;
 
-import android.content.Context;
+import android.app.Application;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 
-import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
+import javax.inject.Inject;
+
+import dev.szafraniak.bm_mobileapp.business.BMApplication;
 
 import static android.content.Context.MODE_PRIVATE;
 import static dev.szafraniak.bm_mobileapp.business.Constance.PREFERENCES_USER_PREFIX;
 
-public class UserPreferences {
+public class SettingsPreferences {
     private final SharedPreferences preferences;
     private final static String GOOGLE_SILENT_LOGIN_ENABLED = "google.silent.login.enabled";
     private final static String FACEBOOK_SILENT_LOGIN_ENABLED = "facebook.silent.login.enabled";
-    private final static String CURRENT_COMPANY = "current.company";
 
-    private final static Gson gson = new Gson();
+    @Inject
+    Gson gson;
 
-    public UserPreferences(Context ctx) {
-        preferences = ctx.getSharedPreferences(PREFERENCES_USER_PREFIX, MODE_PRIVATE);
+    public SettingsPreferences(Application app) {
+        ((BMApplication) app).getAppComponent().inject(this);
+        preferences = app.getSharedPreferences(PREFERENCES_USER_PREFIX, MODE_PRIVATE);
     }
 
     public void setGoogleSilentLoginEnabled(boolean state) {
@@ -36,20 +39,6 @@ public class UserPreferences {
 
     public boolean getFacebookSilentLoginEnabled() {
         return preferences.getBoolean(FACEBOOK_SILENT_LOGIN_ENABLED, false);
-    }
-
-    public void setCompany(Company company) {
-        String json = gson.toJson(company);
-        preferences.edit().putString(CURRENT_COMPANY, json).apply();
-    }
-
-    public Company getCompany() {
-        String json = preferences.getString(CURRENT_COMPANY, null);
-        return gson.fromJson(json, Company.class);
-    }
-
-    public Long getCompanyId() {
-        return getCompany().getId();
     }
 
 }

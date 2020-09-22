@@ -3,6 +3,7 @@ package dev.szafraniak.bm_mobileapp.business.dagger;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import dev.szafraniak.bm_mobileapp.business.http.GsonModule;
 import dev.szafraniak.bm_mobileapp.business.http.OkHttpClientModule;
 import dev.szafraniak.bm_mobileapp.business.http.RetrofitModule;
 import dev.szafraniak.bm_mobileapp.business.http.api.ServerApiModule;
@@ -21,7 +22,11 @@ import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthModule;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.LoginService;
 import dev.szafraniak.bm_mobileapp.business.memory.MemoryManagementModule;
-import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
+import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsManager;
+import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.settings.SettingsPreferences;
 import dev.szafraniak.bm_mobileapp.presentation.company.CompanyActivityModule;
 import dev.szafraniak.bm_mobileapp.presentation.company.activity.CompanyActivity;
 import dev.szafraniak.bm_mobileapp.presentation.company.activity.CompanyActivityPresenter;
@@ -61,6 +66,8 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataFormPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.ProductsListFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.ProductsListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.create.ProductModelCreateFragment;
@@ -94,7 +101,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragme
 @Singleton
 @Component(modules = {
         AppModule.class, MemoryManagementModule.class, OkHttpClientModule.class,
-        ServerApiModule.class, RetrofitModule.class, ServicesModule.class,
+        ServerApiModule.class, RetrofitModule.class, ServicesModule.class, GsonModule.class,
         LoginActivityPresenterModule.class, MenuModule.class, AuthModule.class,
         CompanyActivityModule.class
 })
@@ -255,4 +262,16 @@ public interface AppComponent {
     void inject(InvoicesPresenter invoicesPresenter);
 
     void inject(InvoiceService invoiceService);
+
+    void inject(FormsManager formsManager);
+
+    void inject(FormsPreferences formsPreferences);
+
+    void inject(SessionPreferences sessionPreferences);
+
+    void inject(SettingsPreferences settingsPreferences);
+
+    void inject(CreateInvoiceBaseDataFormFragment createInvoiceBaseDataFormFragment);
+
+    void inject(CreateInvoiceBaseDataFormPresenter createInvoiceBaseDataFormPresenter);
 }

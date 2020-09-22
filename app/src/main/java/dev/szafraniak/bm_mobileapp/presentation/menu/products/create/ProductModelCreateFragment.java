@@ -38,7 +38,7 @@ public class ProductModelCreateFragment extends BaseFormFragment<CreateProductMo
 
     @Override
     protected FormConfig<CreateProductModelRequest> createFormConfig() {
-        return new ProductModelCreateFormConfig(inflater, layout);
+        return new ProductModelCreateFormConfig(inflater, formLayout);
     }
 
     @Override

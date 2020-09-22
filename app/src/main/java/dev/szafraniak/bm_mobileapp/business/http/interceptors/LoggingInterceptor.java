@@ -39,7 +39,8 @@ public class LoggingInterceptor implements Interceptor {
 
     private void logRequest(Request request) {
         String parameters = "";
-        if (request.method().equalsIgnoreCase("post")) {
+        String method = request.method().toLowerCase();
+        if (method.equals("post") || method.equals("put")) {
             parameters = "Body: {\n" + parseBody(request) + "\n}";
         }
         Timber.d("[SENT][%s][%s] %s", request.method(), request.url(), parameters);

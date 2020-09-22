@@ -19,12 +19,14 @@ public class RetrofitModule {
     @Singleton
     @Named("Retrofit")
     Retrofit provideResourceServerRetrofit(
-            @Named("OkHttpClientWithAuth") OkHttpClient okHttpClient) {
+            @Named("OkHttpClientWithAuth") OkHttpClient okHttpClient,
+            GsonConverterFactory gsonConverterFactory
+    ) {
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(BuildConfig.RESOURCE_SERVER_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(gsonConverterFactory)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
@@ -33,12 +35,14 @@ public class RetrofitModule {
     @Singleton
     @Named("RetrofitWithoutAuth")
     Retrofit provideAuthorizationServerRetrofit(
-            @Named("OkHttpClientWithoutAuth") OkHttpClient okHttpClient) {
+            @Named("OkHttpClientWithoutAuth") OkHttpClient okHttpClient,
+            GsonConverterFactory gsonConverterFactory
+    ) {
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(BuildConfig.RESOURCE_SERVER_URL)
                 .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(gsonConverterFactory)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }

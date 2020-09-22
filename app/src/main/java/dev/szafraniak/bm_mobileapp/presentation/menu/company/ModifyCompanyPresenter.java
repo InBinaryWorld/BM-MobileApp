@@ -7,7 +7,8 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionPreferences;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.UpdateCompanyRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormPresenter;
@@ -18,7 +19,10 @@ public class ModifyCompanyPresenter extends BaseFormPresenter<ModifyCompanyView,
     CompanyService companyService;
 
     @Inject
-    UserPreferences userPreferences;
+    SessionManager sessionManager;
+
+    @Inject
+    SessionPreferences sessionPreferences;
 
     public ModifyCompanyPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
@@ -27,7 +31,7 @@ public class ModifyCompanyPresenter extends BaseFormPresenter<ModifyCompanyView,
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void modifyCompanyData(UpdateCompanyRequest request) {
-        Long companyId = userPreferences.getCompanyId();
+        Long companyId = sessionManager.getCompanyId();
         companyService.modifyCompany(companyId, request)
                 .compose(view.bindToLifecycle())
                 .subscribe(this::onSuccess, this::onError);
@@ -35,6 +39,6 @@ public class ModifyCompanyPresenter extends BaseFormPresenter<ModifyCompanyView,
     }
 
     public Company getActiveCompany() {
-        return userPreferences.getCompany();
+        return sessionPreferences.getCompany();
     }
 }

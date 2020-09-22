@@ -7,8 +7,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class InvoiceIndividual extends InvoiceContact {
 
-    private String type = "individual";
-
     private String firstName;
 
     private String lastName;

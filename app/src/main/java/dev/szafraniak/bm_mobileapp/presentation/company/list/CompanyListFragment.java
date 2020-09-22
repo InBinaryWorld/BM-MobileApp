@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionPreferences;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuActivity_;
@@ -23,7 +23,7 @@ public class CompanyListFragment extends BaseListFragmentWithBtn<CompanyListMode
     CompanyListPresenter presenter;
 
     @Inject
-    UserPreferences userPreferences;
+    SessionPreferences sessionPreferences;
 
     @AfterViews
     public void initialize() {
@@ -31,7 +31,6 @@ public class CompanyListFragment extends BaseListFragmentWithBtn<CompanyListMode
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
-        firstLoadData();
     }
 
     @Override
@@ -51,7 +50,7 @@ public class CompanyListFragment extends BaseListFragmentWithBtn<CompanyListMode
 
     @Override
     public void onItemClick(CompanyListModel item) {
-        userPreferences.setCompany(item.getCompany());
+        sessionPreferences.setCompany(item.getCompany());
         Navigator.startActivity(getContext(), MenuActivity_.class);
     }
 

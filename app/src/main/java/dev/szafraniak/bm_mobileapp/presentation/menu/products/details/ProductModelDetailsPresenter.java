@@ -7,14 +7,14 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.BaseDetailsPresenter;
 
 public class ProductModelDetailsPresenter extends BaseDetailsPresenter<ProductModelDetailsView, ProductModel> {
 
     @Inject
-    UserPreferences userPreferences;
+    SessionManager sessionManager;
 
     @Inject
     ProductModelService productModelService;
@@ -26,7 +26,7 @@ public class ProductModelDetailsPresenter extends BaseDetailsPresenter<ProductMo
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData(Long productModelId) {
-        Long companyId = userPreferences.getCompanyId();
+        Long companyId = sessionManager.getCompanyId();
         productModelService.getProductModel(companyId, productModelId)
                 .compose(view.bindToLifecycle())
                 .subscribe(this::onSuccess, this::onError);

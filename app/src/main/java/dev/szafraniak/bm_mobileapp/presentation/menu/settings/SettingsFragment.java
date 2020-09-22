@@ -1,7 +1,5 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.settings;
 
-import android.widget.TextView;
-
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import org.androidannotations.annotations.AfterViews;
@@ -25,9 +23,6 @@ public class SettingsFragment extends BaseHeaderFragment implements SettingsView
 
     @ViewById(R.id.sw_facebook)
     SwitchMaterial switchFacebook;
-
-    @ViewById(R.id.tv_header_text)
-    TextView headerTextView;
 
     @Inject
     SettingsPresenter presenter;

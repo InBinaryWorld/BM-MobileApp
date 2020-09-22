@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.UpdateIndividualContactRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormPresenter;
@@ -18,7 +18,7 @@ public class IndividualContactModifyPresenter extends BaseFormPresenter<Individu
     ContactsService contactsService;
 
     @Inject
-    UserPreferences userPreferences;
+    SessionManager sessionManager;
 
     public IndividualContactModifyPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
@@ -27,7 +27,7 @@ public class IndividualContactModifyPresenter extends BaseFormPresenter<Individu
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void updateCompany(UpdateIndividualContactRequest object, Long contactId) {
-        Long companyId = userPreferences.getCompanyId();
+        Long companyId = sessionManager.getCompanyId();
         contactsService.updateIndividualContact(companyId, contactId, object)
                 .compose(view.bindToLifecycle())
                 .subscribe(this::onSuccess, this::onError);

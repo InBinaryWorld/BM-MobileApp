@@ -26,13 +26,16 @@ public class ProductsListFragment extends SearchListFragmentWithBtn<ProductModel
     @Inject
     ProductsListPresenter presenter;
 
+    @Inject
+    Gson gson;
+
+
     @AfterViews
     public void initialize() {
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
-        firstLoadData();
     }
 
     @Override
@@ -63,7 +66,7 @@ public class ProductsListFragment extends SearchListFragmentWithBtn<ProductModel
     @Override
     public void onItemClick(ProductModel item) {
         Bundle args = new Bundle();
-        args.putString(ProductModelDetailsFragment.KEY_WAREHOUSE, new Gson().toJson(item));
+        args.putString(ProductModelDetailsFragment.KEY_WAREHOUSE, gson.toJson(item));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_PRODUCT_MODEL_DETAILS, args);
     }
 

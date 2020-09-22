@@ -2,14 +2,12 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.resources;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
 
@@ -28,11 +26,11 @@ import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FR
 @EFragment(R.layout.fragment_resources)
 public class ResourcesFragment extends BaseListFragmentWithBtn<Warehouse> implements ResourcesView {
 
-    @ViewById(R.id.tv_header_text)
-    TextView headerTextView;
-
     @Inject
     ResourcesPresenter presenter;
+
+    @Inject
+    Gson gson;
 
     @AfterViews
     public void initialize() {
@@ -40,7 +38,6 @@ public class ResourcesFragment extends BaseListFragmentWithBtn<Warehouse> implem
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
-        firstLoadData();
     }
 
     @Override
@@ -81,7 +78,7 @@ public class ResourcesFragment extends BaseListFragmentWithBtn<Warehouse> implem
     @Override
     public void onItemClick(Warehouse item) {
         Bundle args = new Bundle();
-        args.putString(WarehouseDetailsFragment.KEY_WAREHOUSE, new Gson().toJson(item));
+        args.putString(WarehouseDetailsFragment.KEY_WAREHOUSE, gson.toJson(item));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_WAREHOUSE_DETAILS, args);
     }
 

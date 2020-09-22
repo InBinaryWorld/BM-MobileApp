@@ -28,6 +28,12 @@ public class CompanyService {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Observable<Company> getCompany(Long companyId) {
+        return bmResourcesApi.getCompany(companyId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
     public Observable<Company> createCompany(CreateCompanyRequest request) {
         return bmResourcesApi.createCompany(request)
                 .subscribeOn(Schedulers.io())

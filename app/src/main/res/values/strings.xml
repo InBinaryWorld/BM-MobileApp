@@ -73,4 +73,6 @@
     <string name="invoice_list_fl_btn_text">CREATE NEW INVOICE</string>
     <string name="header_invoices_list_text">Invoices</string>
     <string name="finances_list_fl_btn_text">NEW RECORD</string>
+    <string name="header_create_invoice_base_data_form">Fill Invoice Data</string>
+    <string name="fragment_create_invoice_base_invoice_name_hint">Invoice Number</string>
 </resources>

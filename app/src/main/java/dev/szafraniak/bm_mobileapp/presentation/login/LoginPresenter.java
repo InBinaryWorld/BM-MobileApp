@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.LoginService;
-import dev.szafraniak.bm_mobileapp.business.memory.SessionManager;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
+import dev.szafraniak.bm_mobileapp.business.memory.settings.SettingsPreferences;
 import dev.szafraniak.bm_mobileapp.business.models.auth.AuthorizationResponse;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.company.activity.CompanyActivity_;
@@ -27,7 +27,7 @@ public class LoginPresenter {
     SessionManager session;
 
     @Inject
-    UserPreferences userPreferences;
+    SettingsPreferences settingsPreferences;
 
     private LoginService loginService;
 
@@ -66,17 +66,17 @@ public class LoginPresenter {
     }
 
     private boolean isGoogleSilentLoginEnabled() {
-        return userPreferences.getGoogleSilentLoginEnabled();
+        return settingsPreferences.getGoogleSilentLoginEnabled();
     }
 
     private boolean isFacebookSilentLoginEnabled() {
-        return userPreferences.getFacebookSilentLoginEnabled();
+        return settingsPreferences.getFacebookSilentLoginEnabled();
     }
 
     private class LoginCallbackImpl implements LoginService.LoginCallback {
         @Override
         public void onSuccess(AuthorizationResponse response) {
-            session.setSession(response);
+            session.setTokens(response);
             Navigator.startActivityOnEmptyStack(view.getContext(), CompanyActivity_.class);
         }
 

@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.WarehouseService;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.BaseDetailsPresenter;
 
@@ -17,7 +17,7 @@ public class WarehouseDetailsPresenter extends BaseDetailsPresenter<WarehouseDet
     WarehouseService warehouseService;
 
     @Inject
-    UserPreferences userPreferences;
+    SessionManager sessionManager;
 
     public WarehouseDetailsPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
@@ -26,7 +26,7 @@ public class WarehouseDetailsPresenter extends BaseDetailsPresenter<WarehouseDet
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData(Long contactId) {
-        Long companyId = userPreferences.getCompanyId();
+        Long companyId = sessionManager.getCompanyId();
         warehouseService.getWarehouse(companyId, contactId)
                 .compose(view.bindToLifecycle())
                 .subscribe(this::onSuccess, this::onError);

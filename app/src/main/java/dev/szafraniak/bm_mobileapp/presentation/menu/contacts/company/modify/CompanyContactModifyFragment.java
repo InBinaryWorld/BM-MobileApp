@@ -28,6 +28,9 @@ public class CompanyContactModifyFragment extends BaseFormFragment<UpdateCompany
     @Inject
     CompanyContactModifyPresenter presenter;
 
+    @Inject
+    Gson gson;
+
     CompanyContact contact;
 
     @Override
@@ -37,7 +40,7 @@ public class CompanyContactModifyFragment extends BaseFormFragment<UpdateCompany
             Navigator.back(this);
         }
         String companyJSON = getArguments().getString(KEY_COMPANY_CONTACT);
-        contact = new Gson().fromJson(companyJSON, CompanyContact.class);
+        contact = gson.fromJson(companyJSON, CompanyContact.class);
     }
 
     @AfterViews
@@ -63,7 +66,7 @@ public class CompanyContactModifyFragment extends BaseFormFragment<UpdateCompany
 
     @Override
     protected FormConfig<UpdateCompanyContactRequest> createFormConfig() {
-        return new CompanyContactModifyFormConfig(inflater, layout, contact);
+        return new CompanyContactModifyFormConfig(inflater, formLayout, contact);
     }
 
     @Override

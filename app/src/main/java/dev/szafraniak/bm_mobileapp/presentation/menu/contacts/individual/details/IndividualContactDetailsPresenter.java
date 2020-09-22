@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.BaseDetailsPresenter;
 
@@ -17,7 +17,7 @@ public class IndividualContactDetailsPresenter extends BaseDetailsPresenter<Indi
     ContactsService contactsService;
 
     @Inject
-    UserPreferences userPreferences;
+    SessionManager sessionManager;
 
 
     public IndividualContactDetailsPresenter(Application app) {
@@ -27,7 +27,7 @@ public class IndividualContactDetailsPresenter extends BaseDetailsPresenter<Indi
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData(Long contactId) {
-        Long companyId = userPreferences.getCompanyId();
+        Long companyId = sessionManager.getCompanyId();
         contactsService.getIndividualContact(companyId, contactId)
                 .compose(view.bindToLifecycle())
                 .subscribe(this::onSuccess, this::onError);

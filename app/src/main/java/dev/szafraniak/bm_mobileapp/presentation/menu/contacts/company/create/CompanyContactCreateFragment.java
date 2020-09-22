@@ -41,7 +41,7 @@ public class CompanyContactCreateFragment extends BaseFormFragment<CreateCompany
 
     @Override
     protected FormConfig<CreateCompanyContactRequest> createFormConfig() {
-        return new CompanyContactCreateFormConfig(inflater, layout);
+        return new CompanyContactCreateFormConfig(inflater, formLayout);
     }
 
     @Override

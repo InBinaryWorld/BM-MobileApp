@@ -25,10 +25,10 @@ public abstract class BaseFormFragment<T> extends BaseHeaderFragment implements 
     private boolean inProgress;
     private FormConfig<T> formConfig;
     protected LayoutInflater inflater;
-    protected LinearLayout layout;
+    protected LinearLayout formLayout;
 
     @IdRes
-    protected int getLinearLayoutId() {
+    protected int getFormLayout() {
         return R.id.ll_form;
     }
 
@@ -58,7 +58,7 @@ public abstract class BaseFormFragment<T> extends BaseHeaderFragment implements 
 
     public void initialize() {
         inflater = LayoutInflater.from(getContext());
-        layout = (LinearLayout) findViewById(getLinearLayoutId());
+        formLayout = (LinearLayout) findViewById(getFormLayout());
         this.prepareView();
     }
 
@@ -71,16 +71,16 @@ public abstract class BaseFormFragment<T> extends BaseHeaderFragment implements 
 
     protected void prepareView() {
         FormConfig<T> config = getFormConfig();
-        layout.removeAllViews();
+        formLayout.removeAllViews();
         for (FormRowInterface<T> row : config.getRowsConfiguration()) {
             row.setOnChangeWithValidValue(this::onValueChangeProvided);
-            layout.addView(row.getView());
+            formLayout.addView(row.getView());
         }
         BaseSubmitRow submitRow = config.getBaseSubmitRow();
         submitRow.setOnClickListener(this::onClick);
-        layout.addView(submitRow.getView());
+        formLayout.addView(submitRow.getView());
         BaseProgressRow progressBarRow = config.getProgressRow();
-        layout.addView(progressBarRow.getView());
+        formLayout.addView(progressBarRow.getView());
         onValueChangeProvided();
         hideProgress();
     }

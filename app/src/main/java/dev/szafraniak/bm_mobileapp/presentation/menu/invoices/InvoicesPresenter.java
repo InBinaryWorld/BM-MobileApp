@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.InvoiceService;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import lombok.Setter;
 
 public class InvoicesPresenter {
@@ -15,7 +15,7 @@ public class InvoicesPresenter {
     InvoicesView view;
 
     @Inject
-    UserPreferences userPreferences;
+    SessionManager sessionManager;
 
     @Inject
     InvoiceService invoiceService;
@@ -25,7 +25,7 @@ public class InvoicesPresenter {
     }
 
     public void loadData() {
-        Long companyId = userPreferences.getCompanyId();
+        Long companyId = sessionManager.getCompanyId();
         invoiceService.getInvoices(companyId)
                 .compose(view.bindToLifecycle())
                 .subscribe(view::setData, view::setError);

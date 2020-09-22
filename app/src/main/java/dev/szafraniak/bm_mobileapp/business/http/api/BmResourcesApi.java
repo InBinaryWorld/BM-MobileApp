@@ -42,6 +42,9 @@ public interface BmResourcesApi {
     @GET("/api/companies")
     Observable<BMCollection<Company>> getCompanies();
 
+    @GET("/api/companies/{companyId}")
+    Observable<Company> getCompany(@Path("companyId") Long companyId);
+
     @POST("/api/companies")
     Observable<Company> createCompany(@Body CreateCompanyRequest requestBody);
 

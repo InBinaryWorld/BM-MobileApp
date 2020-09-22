@@ -41,7 +41,7 @@ public class IndividualContactCreateFragment extends BaseFormFragment<CreateIndi
 
     @Override
     protected FormConfig<CreateIndividualContactRequest> createFormConfig() {
-        return new IndividualContactCreateFormConfig(inflater, layout);
+        return new IndividualContactCreateFormConfig(inflater, formLayout);
     }
 
     @Override

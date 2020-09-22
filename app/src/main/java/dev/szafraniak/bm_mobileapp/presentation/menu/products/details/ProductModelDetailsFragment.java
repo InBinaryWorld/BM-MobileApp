@@ -30,6 +30,10 @@ public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<Prod
     @Inject
     ProductModelDetailsPresenter presenter;
 
+    @Inject
+    Gson gson;
+
+
     ProductModel productModel;
 
     @Override
@@ -39,7 +43,7 @@ public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<Prod
             Navigator.back(this);
         }
         String companyJSON = getArguments().getString(KEY_WAREHOUSE);
-        productModel = new Gson().fromJson(companyJSON, ProductModel.class);
+        productModel = gson.fromJson(companyJSON, ProductModel.class);
     }
 
     @AfterViews
@@ -48,7 +52,6 @@ public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<Prod
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
-        firstLoadData();
     }
 
     @Override
@@ -64,7 +67,7 @@ public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<Prod
     @Override
     protected void onFblClick(View view) {
         Bundle args = new Bundle();
-        args.putString(ProductModelModifyFragment.KEY_PRODUCT_MODEL, new Gson().toJson(productModel));
+        args.putString(ProductModelModifyFragment.KEY_PRODUCT_MODEL, gson.toJson(productModel));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_PRODUCT_MODEL_MODIFY, args);
     }
 

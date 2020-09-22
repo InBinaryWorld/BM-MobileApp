@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import lombok.Setter;
 
 public class ProductsListPresenter {
@@ -19,7 +19,7 @@ public class ProductsListPresenter {
     ProductModelService productModelService;
 
     @Inject
-    UserPreferences userPreferences;
+    SessionManager sessionManager;
 
     public ProductsListPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
@@ -28,7 +28,7 @@ public class ProductsListPresenter {
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData() {
-        productModelService.getProductModels(userPreferences.getCompanyId())
+        productModelService.getProductModels(sessionManager.getCompanyId())
                 .compose(view.bindToLifecycle())
                 .subscribe(view::setData, view::setError);
     }

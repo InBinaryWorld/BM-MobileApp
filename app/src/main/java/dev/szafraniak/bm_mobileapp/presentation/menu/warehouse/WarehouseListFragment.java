@@ -26,13 +26,16 @@ public class WarehouseListFragment extends BaseListFragmentWithBtn<Warehouse>
     @Inject
     WarehouseListPresenter presenter;
 
+    @Inject
+    Gson gson;
+
+
     @AfterViews
     public void initialize() {
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
-        firstLoadData();
     }
 
     @Override
@@ -63,7 +66,7 @@ public class WarehouseListFragment extends BaseListFragmentWithBtn<Warehouse>
     @Override
     public void onItemClick(Warehouse item) {
         Bundle args = new Bundle();
-        args.putString(WarehouseDetailsFragment.KEY_WAREHOUSE, new Gson().toJson(item));
+        args.putString(WarehouseDetailsFragment.KEY_WAREHOUSE, gson.toJson(item));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_WAREHOUSE_DETAILS, args);
     }
 

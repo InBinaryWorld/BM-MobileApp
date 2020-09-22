@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
-import dev.szafraniak.bm_mobileapp.business.memory.UserPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import lombok.Setter;
 
 public class IndividualContactListPresenter {
@@ -19,7 +19,7 @@ public class IndividualContactListPresenter {
     ContactsService contactsService;
 
     @Inject
-    UserPreferences userPreferences;
+    SessionManager sessionManager;
 
     public IndividualContactListPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
@@ -28,7 +28,7 @@ public class IndividualContactListPresenter {
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData() {
-        contactsService.getIndividualContacts(userPreferences.getCompanyId())
+        contactsService.getIndividualContacts(sessionManager.getCompanyId())
                 .compose(view.bindToLifecycle())
                 .subscribe(view::setData, view::setError);
     }

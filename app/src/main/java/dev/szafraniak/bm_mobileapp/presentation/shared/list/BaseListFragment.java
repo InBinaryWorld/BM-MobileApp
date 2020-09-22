@@ -13,19 +13,13 @@ import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
-import dev.szafraniak.bm_mobileapp.presentation.BaseSRLFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.load.BaseSRLLoadFragment;
 import timber.log.Timber;
 
 @EFragment
-public abstract class BaseListFragment<T> extends BaseSRLFragment implements BaseListView<T>, AdapterView.OnItemClickListener {
-
-    private View progressBar;
-
-    protected View errorView;
+public abstract class BaseListFragment<T> extends BaseSRLLoadFragment implements BaseListView<T>, AdapterView.OnItemClickListener {
 
     protected View emptyListView;
-
-    protected View dataContainerView;
 
     protected ListView listView;
 
@@ -37,32 +31,14 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
     }
 
     @IdRes
-    protected int getErrorViewId() {
-        return R.id.error;
-    }
-
-    @IdRes
-    protected int getProgressBarViewId() {
-        return R.id.progress_bar;
-    }
-
-    @IdRes
     protected int getEmptyViewId() {
         return R.id.empty_list;
     }
 
-    @IdRes
-    protected int getDataContainerId() {
-        return R.id.ll_data_container;
-    }
-
     @AfterViews
     public void initializeBaseListFragment() {
-        listView = (ListView) findViewById(getListViewId());
-        errorView = findViewById(getErrorViewId());
-        progressBar = findViewById(getProgressBarViewId());
         emptyListView = findViewById(getEmptyViewId());
-        dataContainerView = findViewById(getDataContainerId());
+        listView = (ListView) findViewById(getListViewId());
 
         adapter = createAdapter();
         listView.setAdapter(adapter);
@@ -96,25 +72,6 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
         showError();
     }
 
-    protected void showFirstProgress() {
-        listView.setVisibility(View.GONE);
-        errorView.setVisibility(View.GONE);
-        emptyListView.setVisibility(View.GONE);
-        dataContainerView.setVisibility(View.GONE);
-        progressBar.setVisibility(View.VISIBLE);
-        setRefreshEnabled(false);
-    }
-
-    protected void showError() {
-        listView.setVisibility(View.GONE);
-        progressBar.setVisibility(View.GONE);
-        emptyListView.setVisibility(View.GONE);
-        dataContainerView.setVisibility(View.GONE);
-        errorView.setVisibility(View.VISIBLE);
-        setRefreshEnabled(true);
-        setRefreshing(false);
-    }
-
     protected void showEmptyList() {
         listView.setVisibility(View.GONE);
         errorView.setVisibility(View.GONE);
@@ -125,34 +82,20 @@ public abstract class BaseListFragment<T> extends BaseSRLFragment implements Bas
         setRefreshing(false);
     }
 
+    @Override
     protected void showData() {
-        errorView.setVisibility(View.GONE);
-        progressBar.setVisibility(View.GONE);
+        super.showData();
         emptyListView.setVisibility(View.GONE);
         listView.setVisibility(View.VISIBLE);
-        dataContainerView.setVisibility(View.VISIBLE);
-        setRefreshEnabled(true);
-        setRefreshing(false);
-    }
-
-    protected void viewOnRefresh() {
-        listView.setVisibility(View.GONE);
-        errorView.setVisibility(View.GONE);
-        progressBar.setVisibility(View.GONE);
-        emptyListView.setVisibility(View.GONE);
-        dataContainerView.setVisibility(View.GONE);
     }
 
     @Override
-    public void onRefresh() {
-        viewOnRefresh();
-        loadData();
+    protected void viewOnSRLRefresh() {
+        super.viewOnSRLRefresh();
+        listView.setVisibility(View.GONE);
+        emptyListView.setVisibility(View.GONE);
     }
 
-    protected void firstLoadData() {
-        showFirstProgress();
-        loadData();
-    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {

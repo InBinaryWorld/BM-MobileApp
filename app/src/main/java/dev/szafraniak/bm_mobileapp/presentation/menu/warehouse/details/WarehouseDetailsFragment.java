@@ -30,6 +30,9 @@ public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehou
     @Inject
     WarehouseDetailsPresenter presenter;
 
+    @Inject
+    Gson gson;
+
     Warehouse warehouse;
 
     @Override
@@ -39,7 +42,7 @@ public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehou
             Navigator.back(this);
         }
         String companyJSON = getArguments().getString(KEY_WAREHOUSE);
-        warehouse = new Gson().fromJson(companyJSON, Warehouse.class);
+        warehouse = gson.fromJson(companyJSON, Warehouse.class);
     }
 
     @AfterViews
@@ -48,7 +51,6 @@ public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehou
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
-        firstLoadData();
     }
 
     @Override
@@ -64,7 +66,7 @@ public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehou
     @Override
     protected void onFblClick(View view) {
         Bundle args = new Bundle();
-        args.putString(WarehouseModifyFragment.KEY_WAREHOUSE, new Gson().toJson(warehouse));
+        args.putString(WarehouseModifyFragment.KEY_WAREHOUSE, gson.toJson(warehouse));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_WAREHOUSE_MODIFY, args);
     }
 

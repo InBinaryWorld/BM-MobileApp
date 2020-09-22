@@ -28,6 +28,9 @@ public class ProductModelModifyFragment extends BaseFormFragment<UpdateProductMo
     @Inject
     ProductModelModifyPresenter presenter;
 
+    @Inject
+    Gson gson;
+
     ProductModel productModel;
 
     @Override
@@ -37,7 +40,7 @@ public class ProductModelModifyFragment extends BaseFormFragment<UpdateProductMo
             Navigator.back(this);
         }
         String companyJSON = getArguments().getString(KEY_PRODUCT_MODEL);
-        productModel = new Gson().fromJson(companyJSON, ProductModel.class);
+        productModel = gson.fromJson(companyJSON, ProductModel.class);
     }
 
     @AfterViews
@@ -63,7 +66,7 @@ public class ProductModelModifyFragment extends BaseFormFragment<UpdateProductMo
 
     @Override
     protected FormConfig<UpdateProductModelRequest> createFormConfig() {
-        return new ProductModelModifyFormConfig(inflater, layout, productModel);
+        return new ProductModelModifyFormConfig(inflater, formLayout, productModel);
     }
 
     @Override

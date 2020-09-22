@@ -28,6 +28,9 @@ public class ServiceModelModifyFragment extends BaseFormFragment<UpdateServiceMo
     @Inject
     ServiceModelModifyPresenter presenter;
 
+    @Inject
+    Gson gson;
+
     ServiceModel serviceModel;
 
     @Override
@@ -37,7 +40,7 @@ public class ServiceModelModifyFragment extends BaseFormFragment<UpdateServiceMo
             Navigator.back(this);
         }
         String companyJSON = getArguments().getString(KEY_SERVICE_MODEL);
-        serviceModel = new Gson().fromJson(companyJSON, ServiceModel.class);
+        serviceModel = gson.fromJson(companyJSON, ServiceModel.class);
     }
 
     @AfterViews
@@ -63,7 +66,7 @@ public class ServiceModelModifyFragment extends BaseFormFragment<UpdateServiceMo
 
     @Override
     protected FormConfig<UpdateServiceModelRequest> createFormConfig() {
-        return new ServiceModelModifyFormConfig(inflater, layout, serviceModel);
+        return new ServiceModelModifyFormConfig(inflater, formLayout, serviceModel);
     }
 
     @Override

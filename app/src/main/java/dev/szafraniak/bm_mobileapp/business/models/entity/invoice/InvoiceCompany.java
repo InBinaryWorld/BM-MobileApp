@@ -7,9 +7,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class InvoiceCompany extends InvoiceContact {
 
-
-    private String type = "company";
-
     private String name;
 
     private String taxIdentityNumber;

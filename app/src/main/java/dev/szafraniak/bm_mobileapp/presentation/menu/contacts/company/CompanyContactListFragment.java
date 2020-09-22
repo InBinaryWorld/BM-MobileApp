@@ -27,13 +27,15 @@ public class CompanyContactListFragment extends SearchListFragmentWithBtn<Compan
     @Inject
     CompanyContactListPresenter presenter;
 
+    @Inject
+    Gson gson;
+
     @AfterViews
     public void initialize() {
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
-        firstLoadData();
     }
 
     @Override
@@ -54,7 +56,7 @@ public class CompanyContactListFragment extends SearchListFragmentWithBtn<Compan
     @Override
     public void onItemClick(CompanyContact item) {
         Bundle args = new Bundle();
-        args.putString(CompanyContactDetailsFragment.KEY_COMPANY_CONTACT, new Gson().toJson(item));
+        args.putString(CompanyContactDetailsFragment.KEY_COMPANY_CONTACT, gson.toJson(item));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_DETAILS, args);
     }
 

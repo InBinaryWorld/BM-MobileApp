@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.business.memory;
+package dev.szafraniak.bm_mobileapp.business.memory.session;
 
 import android.app.Application;
 import android.content.Context;
@@ -9,6 +9,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
+import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsManager;
 import dev.szafraniak.bm_mobileapp.business.models.auth.AuthorizationResponse;
 
 public class SessionManager {
@@ -20,6 +21,9 @@ public class SessionManager {
     SessionPreferences session;
 
     @Inject
+    FormsManager formsManager;
+
+    @Inject
     Context context;
 
     public SessionManager(Application app) {
@@ -27,12 +31,14 @@ public class SessionManager {
     }
 
     public void clearSession() {
+        session.setCompanyId(null);
         session.setTokenType(null);
         session.setAccessToken(null);
         session.setRefreshToken(null);
+        formsManager.clearForms();
     }
 
-    public void setSession(AuthorizationResponse authorization) {
+    public void setTokens(AuthorizationResponse authorization) {
         session.setTokenType(authorization.getTokenType());
         session.setAccessToken(authorization.getAccessToken());
         session.setRefreshToken(authorization.getRefreshToken());
@@ -54,6 +60,14 @@ public class SessionManager {
         LoginManager.getInstance().logOut();
         googleClient.signOut();
         clearSession();
+    }
+
+    public Long getCompanyId() {
+        return session.getCompanyId();
+    }
+
+    public void setCompanyId(Long companyId) {
+        session.setCompanyId(companyId);
     }
 
 }
