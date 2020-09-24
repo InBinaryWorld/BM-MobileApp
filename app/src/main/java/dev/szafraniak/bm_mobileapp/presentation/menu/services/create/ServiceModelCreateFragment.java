@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.CreateServiceModelRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.FormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
 
 @EFragment(R.layout.fragment_base_form)
 public class ServiceModelCreateFragment extends BaseFormFragment<CreateServiceModelRequest>

@@ -66,7 +66,7 @@ public class ProductsListFragment extends SearchListFragmentWithBtn<ProductModel
     @Override
     public void onItemClick(ProductModel item) {
         Bundle args = new Bundle();
-        args.putString(ProductModelDetailsFragment.KEY_WAREHOUSE, gson.toJson(item));
+        args.putString(ProductModelDetailsFragment.KEY_PRODUCT_MODEL, gson.toJson(item));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_PRODUCT_MODEL_DETAILS, args);
     }
 

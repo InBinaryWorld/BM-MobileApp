@@ -1,7 +1,9 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.details;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
@@ -18,8 +20,8 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.modify.WarehouseModifyFragment;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.BaseDetailsFragmentWithBtn;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.config.DetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsFragmentWithBtn;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.DetailsInterface;
 
 @EFragment(R.layout.fragment_base_details)
 public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehouse>
@@ -38,8 +40,14 @@ public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehou
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() == null || !getArguments().containsKey(KEY_WAREHOUSE)) {
+        fetchArgumentsData();
+    }
+
+    private void fetchArgumentsData() {
+        Bundle args = getArguments();
+        if (args == null || !args.containsKey(KEY_WAREHOUSE)) {
             Navigator.back(this);
+            return;
         }
         String companyJSON = getArguments().getString(KEY_WAREHOUSE);
         warehouse = gson.fromJson(companyJSON, Warehouse.class);
@@ -54,13 +62,14 @@ public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehou
     }
 
     @Override
-    protected int getHeaderTextResourceId() {
-        return R.string.header_warehouse_details;
+    protected void loadData() {
+        presenter.loadData(warehouse.getId());
     }
 
     @Override
-    protected int getFblBtnTextResourceId() {
-        return R.string.fragment_warehouse_details_fl_btn_text;
+    protected DetailsInterface<Warehouse> createForm(LayoutInflater inflater, LinearLayout linearLayout) {
+        WarehouseDetailsConfig config = presenter.createConfig();
+        return new WarehouseDetails(inflater, detailsLayout, config);
     }
 
     @Override
@@ -71,12 +80,13 @@ public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehou
     }
 
     @Override
-    protected void loadData() {
-        presenter.loadData(warehouse.getId());
+    protected int getHeaderTextResourceId() {
+        return R.string.header_warehouse_details;
     }
 
     @Override
-    protected DetailsConfig<Warehouse> createDetailsConfig() {
-        return new WarehouseDetailsConfig(inflater, layout);
+    protected int getFlBtnTextResourceId() {
+        return R.string.fragment_warehouse_details_fl_btn_text;
     }
+
 }

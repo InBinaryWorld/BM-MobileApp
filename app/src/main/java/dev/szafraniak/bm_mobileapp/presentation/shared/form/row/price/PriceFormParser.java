@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
+import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.base.FormRowParser;
 
 public class PriceFormParser implements FormRowParser<PriceViewValue, Price> {
@@ -25,18 +26,11 @@ public class PriceFormParser implements FormRowParser<PriceViewValue, Price> {
     }
 
     public BigDecimal parseNet(String netValue) {
-        return parseToBigDecimal(netValue);
+        return Parsers.safeToBigDecimal(netValue);
     }
 
     public BigDecimal parseTax(String taxValue) {
-        return parseToBigDecimal(taxValue);
+        return Parsers.safeToBigDecimal(taxValue);
     }
 
-    private BigDecimal parseToBigDecimal(String value) {
-        try {
-            return new BigDecimal(value);
-        } catch (NumberFormatException e) {
-            return null;
-        }
-    }
 }

@@ -8,12 +8,12 @@ import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.CreateWarehouseRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.BaseFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRow;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRowConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.base.BaseFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextFormRow;
 
-public class WarehouseCreateFormConfig extends BaseFormConfig<CreateWarehouseRequest> {
+public class WarehouseCreateFormConfig extends BaseFormRow.BaseFormConfig<CreateWarehouseRequest> {
 
     public WarehouseCreateFormConfig(LayoutInflater inflater, ViewGroup viewGroup) {
         super(inflater, viewGroup);
@@ -27,54 +27,54 @@ public class WarehouseCreateFormConfig extends BaseFormConfig<CreateWarehouseReq
     @Override
     public List<FormRowInterface<CreateWarehouseRequest>> createRowsConfiguration() {
         List<FormRowInterface<CreateWarehouseRequest>> configs = new ArrayList<>();
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getNameConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getCountryConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getCityConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getPostalCodeConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getStreetConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getHouseNumberConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getApartmentNumberConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getNameConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getCountryConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getCityConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getPostalCodeConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getStreetConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getHouseNumberConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getApartmentNumberConfig()));
         return configs;
     }
 
-    private EditTextFormRowConfig<CreateWarehouseRequest> getNameConfig() {
-        EditTextFormRowConfig<CreateWarehouseRequest> config = FormConfigurations.getWarehouseName();
+    private TextFormConfig<CreateWarehouseRequest> getNameConfig() {
+        TextFormConfig<CreateWarehouseRequest> config = FormConfigurations.getWarehouseName();
         config.setFulFiller(CreateWarehouseRequest::setName);
         return config;
     }
 
-    private EditTextFormRowConfig<CreateWarehouseRequest> getCountryConfig() {
-        EditTextFormRowConfig<CreateWarehouseRequest> config = FormConfigurations.getCountryConfig();
+    private TextFormConfig<CreateWarehouseRequest> getCountryConfig() {
+        TextFormConfig<CreateWarehouseRequest> config = FormConfigurations.getCountryConfig();
         config.setFulFiller((company, value) -> company.getAddress().setCountry(value));
         return config;
     }
 
-    private EditTextFormRowConfig<CreateWarehouseRequest> getCityConfig() {
-        EditTextFormRowConfig<CreateWarehouseRequest> config = FormConfigurations.getCityConfig();
+    private TextFormConfig<CreateWarehouseRequest> getCityConfig() {
+        TextFormConfig<CreateWarehouseRequest> config = FormConfigurations.getCityConfig();
         config.setFulFiller((company, value) -> company.getAddress().setCity(value));
         return config;
     }
 
-    private EditTextFormRowConfig<CreateWarehouseRequest> getPostalCodeConfig() {
-        EditTextFormRowConfig<CreateWarehouseRequest> config = FormConfigurations.getPostalCodeConfig();
+    private TextFormConfig<CreateWarehouseRequest> getPostalCodeConfig() {
+        TextFormConfig<CreateWarehouseRequest> config = FormConfigurations.getPostalCodeConfig();
         config.setFulFiller((company, value) -> company.getAddress().setPostalCode(value));
         return config;
     }
 
-    private EditTextFormRowConfig<CreateWarehouseRequest> getStreetConfig() {
-        EditTextFormRowConfig<CreateWarehouseRequest> config = FormConfigurations.getStreetConfig();
+    private TextFormConfig<CreateWarehouseRequest> getStreetConfig() {
+        TextFormConfig<CreateWarehouseRequest> config = FormConfigurations.getStreetConfig();
         config.setFulFiller((company, value) -> company.getAddress().setStreet(value));
         return config;
     }
 
-    private EditTextFormRowConfig<CreateWarehouseRequest> getHouseNumberConfig() {
-        EditTextFormRowConfig<CreateWarehouseRequest> config = FormConfigurations.getHouseNumberConfig();
+    private TextFormConfig<CreateWarehouseRequest> getHouseNumberConfig() {
+        TextFormConfig<CreateWarehouseRequest> config = FormConfigurations.getHouseNumberConfig();
         config.setFulFiller((company, value) -> company.getAddress().setHouseNumber(value));
         return config;
     }
 
-    private EditTextFormRowConfig<CreateWarehouseRequest> getApartmentNumberConfig() {
-        EditTextFormRowConfig<CreateWarehouseRequest> config = FormConfigurations.getApartmentNumberConfig();
+    private TextFormConfig<CreateWarehouseRequest> getApartmentNumberConfig() {
+        TextFormConfig<CreateWarehouseRequest> config = FormConfigurations.getApartmentNumberConfig();
         config.setFulFiller((company, value) -> company.getAddress().setApartmentNumber(value));
         return config;
     }

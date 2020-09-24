@@ -1,133 +1,166 @@
 package dev.szafraniak.bm_mobileapp.presentation.shared.details;
 
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.SimpleTextViewDetailsRowConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.models.address.AddressDetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.models.price.PriceDetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.SimpleDetailsConfig;
 
 public final class DetailsConfigurations {
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getWarehouseName() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getWarehouseName() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Warehouse Name");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getProductNameConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getProductNameConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Product Name");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getServiceNameConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getProductGroupNameConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
+        config.setLabel("Product Group Name");
+        return config;
+    }
+
+    public static <T> SimpleDetailsConfig<T> getServiceNameConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Service Name");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getFirstNameConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getFirstNameConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("First Name");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getLastNameConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getLastNameConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Last Name");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getInvoicePrefixConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getInvoicePrefixConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Invoice Prefix");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getQuantityUnitConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getQuantityUnitConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Quantity Unit");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getNetPriceConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getNetPriceConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Net Price");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getTaxRateConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getTaxRateConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Tax Rate");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getGrossPriceConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getGrossPriceConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Gross Price");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getBareCodeConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getBareCodeConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Bare Code");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getCompanyNameConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getCompanyNameConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Company Name");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getTaxIdentityNumberConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getTaxIdConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Tax Identity Number");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getPhoneConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getPhoneConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Phone");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getCountryConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getCountryConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Country");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getCityConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getCityConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("City");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getPostalCodeConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getPostalCodeConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("First Name");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getStreetConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getStreetConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Street");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getHouseNumberConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getHouseNumberConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("House Number");
         return config;
     }
 
-    public static <T> SimpleTextViewDetailsRowConfig<T> getApartmentNumberConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = getSimpleTextViewConfig();
+    public static <T> SimpleDetailsConfig<T> getApartmentNumberConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel("Apartment Number");
         return config;
     }
 
-    private static <T> SimpleTextViewDetailsRowConfig<T> getSimpleTextViewConfig() {
-        SimpleTextViewDetailsRowConfig<T> config = new SimpleTextViewDetailsRowConfig<>();
-        config.setDefaultValue("");
-        config.setVisibleOnNull(false);
+    private static <T> SimpleDetailsConfig<T> getSimpleConfig() {
+        SimpleDetailsConfig<T> config = new SimpleDetailsConfig<>();
+        config.setVisibleOnSetValueNull(false);
+        config.setLabel(null);
+        config.setInitValue(null);
+        config.setDefaultValue(null);
+        return config;
+    }
+
+    public static AddressDetailsConfig getAddressConfig() {
+        AddressDetailsConfig config = new AddressDetailsConfig();
+        config.setDefaultValue(null);
+        config.setVisibleOnSetValueNull(false);
+        config.setCountryConfig(getCountryConfig());
+        config.setCityConfig(getCityConfig());
+        config.setPostalCodeConfig(getPostalCodeConfig());
+        config.setStreetConfig(getStreetConfig());
+        config.setHouseNumberConfig(getHouseNumberConfig());
+        config.setApartmentNumberConfig(getApartmentNumberConfig());
+        return config;
+    }
+
+    public static PriceDetailsConfig getPriceConfig() {
+        PriceDetailsConfig config = new PriceDetailsConfig();
+        config.setDefaultValue(null);
+        config.setVisibleOnSetValueNull(false);
+        config.setNetConfig(getNetPriceConfig());
+        config.setTaxConfig(getTaxRateConfig());
+        config.setGrossConfig(getGrossPriceConfig());
         return config;
     }
 }

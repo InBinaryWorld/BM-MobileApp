@@ -11,7 +11,7 @@ import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionPreferences;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.UpdateCompanyRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormPresenter;
 
 public class ModifyCompanyPresenter extends BaseFormPresenter<ModifyCompanyView, Company> {
 

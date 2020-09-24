@@ -1,16 +1,16 @@
 package dev.szafraniak.bm_mobileapp.presentation.shared.form.row;
 
-import android.view.View;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.DetailsInterface;
 
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormFragment;
+public interface FormRowInterface<T> extends DetailsInterface<T> {
 
-public interface FormRowInterface<T> {
+    void setOnValidationStateChanged(Callback onValidationStateChangeCallback);
 
-    View getView();
-
-    void setOnChangeWithValidValue(BaseFormFragment.Callback onValueChange);
-
-    void fillModel(T model);
+    T getValue();
 
     boolean isValid();
+
+    interface Callback {
+        void notifyValidationStateChanged();
+    }
 }

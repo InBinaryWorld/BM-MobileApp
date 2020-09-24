@@ -17,8 +17,8 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.CompanyContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.UpdateCompanyContactRequest;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.FormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
 
 @EFragment(R.layout.fragment_base_form)
 public class CompanyContactModifyFragment extends BaseFormFragment<UpdateCompanyContactRequest> implements CompanyContactModifyView {

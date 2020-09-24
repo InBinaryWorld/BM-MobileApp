@@ -18,16 +18,16 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.utils.Formatters;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.base.BaseFormRow;
 
-public class PriceFormRow<T> extends BaseFormRow<T, PriceViewValue, Price, PriceViewHolder, PriceFormRowConfig<T>> {
+public class PriceFormRow<T> extends BaseFormRow<T, PriceViewValue, Price, PriceViewHolder, PriceFormConfig<T>> {
     @LayoutRes
     private static final int layoutId = R.layout.row_form_price;
 
-    public PriceFormRow(LayoutInflater inflater, ViewGroup viewGroup, PriceFormRowConfig<T> config) {
+    public PriceFormRow(LayoutInflater inflater, ViewGroup viewGroup, PriceFormConfig<T> config) {
         super(inflater, viewGroup, config);
     }
 
     @Override
-    protected PriceViewHolder createViewHolder(LayoutInflater inflater, ViewGroup viewGroup, PriceFormRowConfig<T> config) {
+    protected PriceViewHolder createViewHolder(LayoutInflater inflater, ViewGroup viewGroup, PriceFormConfig<T> config) {
         View view = inflater.inflate(layoutId, viewGroup, false);
         TextInputLayout netPriceLayout = view.findViewById(R.id.til_net_price);
         TextInputEditText netPriceEditText = view.findViewById(R.id.et_net_price);
@@ -75,7 +75,7 @@ public class PriceFormRow<T> extends BaseFormRow<T, PriceViewValue, Price, Price
     }
 
     @Override
-    protected void setEnabled(boolean enabled) {
+    protected void disableView(boolean enabled) {
         PriceViewHolder holder = getViewHolder();
         TextInputLayout netLayout = holder.getNetPriceLayout();
         TextInputLayout taxLayout = holder.getTaxRateLayout();

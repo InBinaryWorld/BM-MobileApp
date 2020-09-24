@@ -9,9 +9,10 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.CompanyContact;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.BaseDetailsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsPresenter;
 
-public class CompanyContactDetailsPresenter extends BaseDetailsPresenter<CompanyContactDetailsView, CompanyContact> {
+public class CompanyContactDetailsPresenter extends BaseDetailsPresenter<CompanyContact, CompanyContactDetailsView, CompanyContactDetailsConfig> {
 
     @Inject
     ContactsService contactsService;
@@ -29,6 +30,18 @@ public class CompanyContactDetailsPresenter extends BaseDetailsPresenter<Company
         Long companyId = sessionManager.getCompanyId();
         contactsService.getCompanyContact(companyId, contactId)
                 .compose(view.bindToLifecycle())
-                .subscribe(this::onSuccess, this::onError);
+                .subscribe(view::setData, view::setError);
+    }
+
+    @Override
+    public CompanyContactDetailsConfig createConfig() {
+        CompanyContactDetailsConfig config = new CompanyContactDetailsConfig();
+        config.setDefaultValue(null);
+        config.setVisibleOnSetValueNull(true);
+        config.setCompanyNameConfig(DetailsConfigurations.getCompanyNameConfig());
+        config.setTaxIdConfig(DetailsConfigurations.getTaxIdConfig());
+        config.setPhoneConfig(DetailsConfigurations.getPhoneConfig());
+        config.setAddressConfig(DetailsConfigurations.getAddressConfig());
+        return config;
     }
 }

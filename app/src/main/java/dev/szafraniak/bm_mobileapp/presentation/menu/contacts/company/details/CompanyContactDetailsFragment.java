@@ -1,7 +1,9 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.details;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
@@ -18,8 +20,8 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.Company
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.modify.CompanyContactModifyFragment;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.BaseDetailsFragmentWithBtn;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.config.DetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsFragmentWithBtn;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.DetailsInterface;
 
 @EFragment(R.layout.fragment_base_details)
 public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<CompanyContact>
@@ -33,15 +35,21 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
     @Inject
     Gson gson;
 
-    CompanyContact contact;
+    private CompanyContact contact;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() == null || !getArguments().containsKey(KEY_COMPANY_CONTACT)) {
+        fetchArgumentsData();
+    }
+
+    private void fetchArgumentsData() {
+        Bundle args = getArguments();
+        if (args == null || !args.containsKey(KEY_COMPANY_CONTACT)) {
             Navigator.back(this);
+            return;
         }
-        String companyJSON = getArguments().getString(KEY_COMPANY_CONTACT);
+        String companyJSON = args.getString(KEY_COMPANY_CONTACT);
         contact = gson.fromJson(companyJSON, CompanyContact.class);
     }
 
@@ -54,13 +62,14 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
     }
 
     @Override
-    protected int getHeaderTextResourceId() {
-        return R.string.header_contact_details;
+    protected void loadData() {
+        presenter.loadData(contact.getId());
     }
 
     @Override
-    protected int getFblBtnTextResourceId() {
-        return R.string.contact_details_fl_btn_text;
+    protected DetailsInterface<CompanyContact> createForm(LayoutInflater inflater, LinearLayout detailsLayout) {
+        CompanyContactDetailsConfig config = presenter.createConfig();
+        return new CompanyContactDetails(inflater, detailsLayout, config);
     }
 
     @Override
@@ -71,12 +80,13 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
     }
 
     @Override
-    protected void loadData() {
-        presenter.loadData(contact.getId());
+    protected int getHeaderTextResourceId() {
+        return R.string.header_contact_details;
     }
 
     @Override
-    protected DetailsConfig<CompanyContact> createDetailsConfig() {
-        return new CompanyContactDetailsConfig(inflater, layout);
+    protected int getFlBtnTextResourceId() {
+        return R.string.contact_details_fl_btn_text;
     }
+
 }

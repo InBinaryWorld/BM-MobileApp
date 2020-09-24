@@ -1,7 +1,9 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
@@ -18,8 +20,8 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.Indi
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyFragment;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.BaseDetailsFragmentWithBtn;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.config.DetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsFragmentWithBtn;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.DetailsInterface;
 
 @EFragment(R.layout.fragment_base_details)
 public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn<IndividualContact>
@@ -38,12 +40,19 @@ public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() == null || !getArguments().containsKey(KEY_INDIVIDUAL_CONTACT)) {
+        fetchArgumentsData();
+    }
+
+    private void fetchArgumentsData() {
+        Bundle args = getArguments();
+        if (args == null || !args.containsKey(KEY_INDIVIDUAL_CONTACT)) {
             Navigator.back(this);
+            return;
         }
         String companyJSON = getArguments().getString(KEY_INDIVIDUAL_CONTACT);
         contact = gson.fromJson(companyJSON, IndividualContact.class);
     }
+
 
     @AfterViews
     public void initialize() {
@@ -54,12 +63,24 @@ public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn
     }
 
     @Override
+    protected void loadData() {
+        presenter.loadData(contact.getId());
+    }
+
+
+    @Override
+    protected DetailsInterface<IndividualContact> createForm(LayoutInflater inflater, LinearLayout linearLayout) {
+        IndividualContactDetailsConfig config = presenter.createConfig();
+        return new IndividualContactDetails(inflater, detailsLayout, config);
+    }
+
+    @Override
     protected int getHeaderTextResourceId() {
         return R.string.header_contact_details;
     }
 
     @Override
-    protected int getFblBtnTextResourceId() {
+    protected int getFlBtnTextResourceId() {
         return R.string.contact_details_fl_btn_text;
     }
 
@@ -68,16 +89,6 @@ public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn
         Bundle args = new Bundle();
         args.putString(IndividualContactModifyFragment.KEY_INDIVIDUAL_CONTACT, gson.toJson(contact));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_MODIFY, args);
-
     }
 
-    @Override
-    protected void loadData() {
-        presenter.loadData(contact.getId());
-    }
-
-    @Override
-    protected DetailsConfig<IndividualContact> createDetailsConfig() {
-        return new IndividualContactDetailsConfig(inflater, layout);
-    }
 }

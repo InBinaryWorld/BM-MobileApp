@@ -9,8 +9,8 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.CreateCompanyRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.FormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
 
 @EFragment(R.layout.fragment_base_form)
 public class CompanyCreateFragment extends BaseFormFragment<CreateCompanyRequest> implements CompanyCreateView {

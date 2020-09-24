@@ -7,5 +7,5 @@ import lombok.Data;
 
 @Data
 public class BaseViewHolder {
-    private View view;
+    public View view;
 }

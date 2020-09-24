@@ -11,14 +11,14 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceMo
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.UpdateServiceModelRequest;
 import dev.szafraniak.bm_mobileapp.business.utils.Formatters;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.BaseFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRow;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRowConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.base.BaseFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.price.PriceFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.price.PriceFormRow;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.price.PriceFormRowConfig;
 
-public class ServiceModelModifyFormConfig extends BaseFormConfig<UpdateServiceModelRequest> {
+public class ServiceModelModifyFormConfig extends BaseFormRow.BaseFormConfig<UpdateServiceModelRequest> {
 
     private final ServiceModel serviceModel;
 
@@ -35,29 +35,29 @@ public class ServiceModelModifyFormConfig extends BaseFormConfig<UpdateServiceMo
     @Override
     public List<FormRowInterface<UpdateServiceModelRequest>> createRowsConfiguration() {
         List<FormRowInterface<UpdateServiceModelRequest>> configs = new ArrayList<>();
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getNameConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getQuantityUnitConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getNameConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getQuantityUnitConfig()));
         configs.add(new PriceFormRow<>(this.inflater, this.viewGroup, getPriceConfig()));
         return configs;
     }
 
-    private EditTextFormRowConfig<UpdateServiceModelRequest> getNameConfig() {
-        EditTextFormRowConfig<UpdateServiceModelRequest> config = FormConfigurations.getServiceModelNameConfig();
+    private TextFormConfig<UpdateServiceModelRequest> getNameConfig() {
+        TextFormConfig<UpdateServiceModelRequest> config = FormConfigurations.getServiceModelNameConfig();
         config.setFulFiller(UpdateServiceModelRequest::setName);
         config.setInitValue(serviceModel.getName());
         return config;
     }
 
-    private EditTextFormRowConfig<UpdateServiceModelRequest> getQuantityUnitConfig() {
-        EditTextFormRowConfig<UpdateServiceModelRequest> config = FormConfigurations.getQuantityUnitConfig();
+    private TextFormConfig<UpdateServiceModelRequest> getQuantityUnitConfig() {
+        TextFormConfig<UpdateServiceModelRequest> config = FormConfigurations.getQuantityUnitConfig();
         config.setFulFiller(UpdateServiceModelRequest::setQuantityUnit);
         config.setInitValue(serviceModel.getQuantityUnit());
         return config;
     }
 
-    private PriceFormRowConfig<UpdateServiceModelRequest> getPriceConfig() {
+    private PriceFormConfig<UpdateServiceModelRequest> getPriceConfig() {
         Price price = serviceModel.getPriceSuggestion();
-        PriceFormRowConfig<UpdateServiceModelRequest> config = FormConfigurations.getPriceConfig();
+        PriceFormConfig<UpdateServiceModelRequest> config = FormConfigurations.getPriceConfig();
         config.setNetInitValue(Formatters.formatWithFraction(price.getNet()));
         config.setGrossInitValue(Formatters.formatWithFraction(price.getGross()));
         config.setTaxRateInitValue(Formatters.formatNoFraction(price.getTaxRate()));

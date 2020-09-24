@@ -1,7 +1,9 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.services.details;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
@@ -18,8 +20,8 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceMo
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyFragment;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.BaseDetailsFragmentWithBtn;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.config.DetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsFragmentWithBtn;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.DetailsInterface;
 
 @EFragment(R.layout.fragment_base_details)
 public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<ServiceModel>
@@ -38,8 +40,14 @@ public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<Serv
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() == null || !getArguments().containsKey(KEY_SERVICE_MODEL)) {
+        fetchArgumentsData();
+    }
+
+    private void fetchArgumentsData() {
+        Bundle args = getArguments();
+        if (args == null || !args.containsKey(KEY_SERVICE_MODEL)) {
             Navigator.back(this);
+            return;
         }
         String companyJSON = getArguments().getString(KEY_SERVICE_MODEL);
         serviceModel = gson.fromJson(companyJSON, ServiceModel.class);
@@ -54,13 +62,14 @@ public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<Serv
     }
 
     @Override
-    protected int getHeaderTextResourceId() {
-        return R.string.header_service_model_details;
+    protected void loadData() {
+        presenter.loadData(serviceModel.getId());
     }
 
     @Override
-    protected int getFblBtnTextResourceId() {
-        return R.string.service_model_details_fl_btn_text;
+    protected DetailsInterface<ServiceModel> createForm(LayoutInflater inflater, LinearLayout linearLayout) {
+        ServiceModelDetailsConfig config = presenter.createConfig();
+        return new ServiceModelDetails(inflater, detailsLayout, config);
     }
 
     @Override
@@ -72,12 +81,14 @@ public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<Serv
     }
 
     @Override
-    protected void loadData() {
-        presenter.loadData(serviceModel.getId());
+    protected int getHeaderTextResourceId() {
+        return R.string.header_service_model_details;
     }
 
     @Override
-    protected DetailsConfig<ServiceModel> createDetailsConfig() {
-        return new ServiceModelDetailsConfig(inflater, layout);
+    protected int getFlBtnTextResourceId() {
+        return R.string.service_model_details_fl_btn_text;
     }
+
+
 }

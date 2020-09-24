@@ -9,12 +9,12 @@ import java.util.List;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.UpdateIndividualContactRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.BaseFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRow;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRowConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.base.BaseFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextFormRow;
 
-public class IndividualContactModifyFormConfig extends BaseFormConfig<UpdateIndividualContactRequest> {
+public class IndividualContactModifyFormConfig extends BaseFormRow.BaseFormConfig<UpdateIndividualContactRequest> {
 
     private final IndividualContact individualContact;
 
@@ -31,76 +31,76 @@ public class IndividualContactModifyFormConfig extends BaseFormConfig<UpdateIndi
     @Override
     public List<FormRowInterface<UpdateIndividualContactRequest>> createRowsConfiguration() {
         List<FormRowInterface<UpdateIndividualContactRequest>> configs = new ArrayList<>();
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getFirstNameConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getLastNameConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getPhoneConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getCountryConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getCityConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getPostalCodeConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getStreetConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getHouseNumberConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getApartmentNumberConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getFirstNameConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getLastNameConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getPhoneConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getCountryConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getCityConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getPostalCodeConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getStreetConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getHouseNumberConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getApartmentNumberConfig()));
         return configs;
     }
 
-    private EditTextFormRowConfig<UpdateIndividualContactRequest> getFirstNameConfig() {
-        EditTextFormRowConfig<UpdateIndividualContactRequest> config = FormConfigurations.getFirstNameConfig();
+    private TextFormConfig<UpdateIndividualContactRequest> getFirstNameConfig() {
+        TextFormConfig<UpdateIndividualContactRequest> config = FormConfigurations.getFirstNameConfig();
         config.setFulFiller(UpdateIndividualContactRequest::setFirstName);
         config.setInitValue(individualContact.getFirstName());
         return config;
     }
 
-    private EditTextFormRowConfig<UpdateIndividualContactRequest> getLastNameConfig() {
-        EditTextFormRowConfig<UpdateIndividualContactRequest> config = FormConfigurations.getLastNameConfig();
+    private TextFormConfig<UpdateIndividualContactRequest> getLastNameConfig() {
+        TextFormConfig<UpdateIndividualContactRequest> config = FormConfigurations.getLastNameConfig();
         config.setFulFiller(UpdateIndividualContactRequest::setLastName);
         config.setInitValue(individualContact.getLastName());
         return config;
     }
 
-    private EditTextFormRowConfig<UpdateIndividualContactRequest> getPhoneConfig() {
-        EditTextFormRowConfig<UpdateIndividualContactRequest> config = FormConfigurations.getPhoneConfig();
+    private TextFormConfig<UpdateIndividualContactRequest> getPhoneConfig() {
+        TextFormConfig<UpdateIndividualContactRequest> config = FormConfigurations.getPhoneConfig();
         config.setFulFiller(UpdateIndividualContactRequest::setPhone);
         config.setInitValue(individualContact.getPhone());
         return config;
     }
 
-    private EditTextFormRowConfig<UpdateIndividualContactRequest> getCountryConfig() {
-        EditTextFormRowConfig<UpdateIndividualContactRequest> config = FormConfigurations.getCountryConfig();
+    private TextFormConfig<UpdateIndividualContactRequest> getCountryConfig() {
+        TextFormConfig<UpdateIndividualContactRequest> config = FormConfigurations.getCountryConfig();
         config.setFulFiller((company, value) -> company.getAddress().setCountry(value));
         config.setInitValue(individualContact.getAddress().getCountry());
         return config;
     }
 
-    private EditTextFormRowConfig<UpdateIndividualContactRequest> getCityConfig() {
-        EditTextFormRowConfig<UpdateIndividualContactRequest> config = FormConfigurations.getCityConfig();
+    private TextFormConfig<UpdateIndividualContactRequest> getCityConfig() {
+        TextFormConfig<UpdateIndividualContactRequest> config = FormConfigurations.getCityConfig();
         config.setFulFiller((company, value) -> company.getAddress().setCity(value));
         config.setInitValue(individualContact.getAddress().getCity());
         return config;
     }
 
-    private EditTextFormRowConfig<UpdateIndividualContactRequest> getPostalCodeConfig() {
-        EditTextFormRowConfig<UpdateIndividualContactRequest> config = FormConfigurations.getPostalCodeConfig();
+    private TextFormConfig<UpdateIndividualContactRequest> getPostalCodeConfig() {
+        TextFormConfig<UpdateIndividualContactRequest> config = FormConfigurations.getPostalCodeConfig();
         config.setFulFiller((company, value) -> company.getAddress().setPostalCode(value));
         config.setInitValue(individualContact.getAddress().getPostalCode());
         return config;
     }
 
-    private EditTextFormRowConfig<UpdateIndividualContactRequest> getStreetConfig() {
-        EditTextFormRowConfig<UpdateIndividualContactRequest> config = FormConfigurations.getStreetConfig();
+    private TextFormConfig<UpdateIndividualContactRequest> getStreetConfig() {
+        TextFormConfig<UpdateIndividualContactRequest> config = FormConfigurations.getStreetConfig();
         config.setFulFiller((company, value) -> company.getAddress().setStreet(value));
         config.setInitValue(individualContact.getAddress().getStreet());
         return config;
     }
 
-    private EditTextFormRowConfig<UpdateIndividualContactRequest> getHouseNumberConfig() {
-        EditTextFormRowConfig<UpdateIndividualContactRequest> config = FormConfigurations.getHouseNumberConfig();
+    private TextFormConfig<UpdateIndividualContactRequest> getHouseNumberConfig() {
+        TextFormConfig<UpdateIndividualContactRequest> config = FormConfigurations.getHouseNumberConfig();
         config.setFulFiller((company, value) -> company.getAddress().setHouseNumber(value));
         config.setInitValue(individualContact.getAddress().getHouseNumber());
         return config;
     }
 
-    private EditTextFormRowConfig<UpdateIndividualContactRequest> getApartmentNumberConfig() {
-        EditTextFormRowConfig<UpdateIndividualContactRequest> config = FormConfigurations.getApartmentNumberConfig();
+    private TextFormConfig<UpdateIndividualContactRequest> getApartmentNumberConfig() {
+        TextFormConfig<UpdateIndividualContactRequest> config = FormConfigurations.getApartmentNumberConfig();
         config.setFulFiller((company, value) -> company.getAddress().setApartmentNumber(value));
         config.setInitValue(individualContact.getAddress().getApartmentNumber());
         return config;

@@ -8,7 +8,7 @@ import android.widget.Button;
 import androidx.annotation.LayoutRes;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
 import lombok.Data;
 import lombok.Getter;
 

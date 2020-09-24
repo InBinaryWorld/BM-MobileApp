@@ -10,7 +10,7 @@ import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.CompanyContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.UpdateCompanyContactRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormPresenter;
 
 public class CompanyContactModifyPresenter extends BaseFormPresenter<CompanyContactModifyView, CompanyContact> {
 

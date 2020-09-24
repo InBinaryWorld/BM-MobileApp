@@ -6,7 +6,7 @@ import android.widget.EditText;
 
 public class ViewUtils {
 
-    public static void addOnTextChangeListener(EditText editText, OnTextChange onTextChange) {
+    public static void addOnTextChangeListener(EditText editText, OnValueChange onValueChange) {
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -18,13 +18,21 @@ public class ViewUtils {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                onTextChange.onChange(editText.getText().toString());
+                onValueChange.onChange();
             }
         });
     }
 
-    public interface OnTextChange {
-        void onChange(String newValue);
+    public static void addOnTextChangeListener(EditText editText, OnNewValue onTextChange) {
+        ViewUtils.addOnTextChangeListener(editText, () -> onTextChange.onNewValue(editText.getText().toString()));
+    }
+
+    public interface OnNewValue {
+        void onNewValue(String newValue);
+    }
+
+    public interface OnValueChange {
+        void onChange();
     }
 
 }

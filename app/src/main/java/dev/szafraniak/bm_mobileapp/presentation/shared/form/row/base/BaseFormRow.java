@@ -1,107 +1,81 @@
 package dev.szafraniak.bm_mobileapp.presentation.shared.form.row.base;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetails;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowInterface;
-import lombok.Getter;
 
-public abstract class BaseFormRow<P, R, S, T extends BaseViewHolder,
-        U extends BaseFormRowConfig<P, R, S>> implements FormRowInterface<P> {
+public abstract class BaseFormRow<T, H extends BaseViewHolder,
+        C extends BaseFormConfig<T>> extends BaseDetails<T, H, C> implements FormRowInterface<T> {
 
-    @Getter
-    private final U config;
+    private final FormRowValidator<T> validator;
 
-    @Getter
-    private final T viewHolder;
+    private Boolean lastValidationResult;
+    private Callback parentCallback;
 
-    private final FormRowParser<R, S> parser;
-    private final FormRowFulFiller<P, S> fulFiller;
-    private final FormRowValidator<S> validator;
-    private BaseFormFragment.Callback formCallback;
-
-    public BaseFormRow(LayoutInflater inflater, ViewGroup viewGroup, U config) {
-        this.config = config;
-        this.parser = config.getParser();
-        this.fulFiller = config.getFulFiller();
+    public BaseFormRow(LayoutInflater inflater, ViewGroup viewGroup, C config) {
+        super(inflater, viewGroup, config);
         this.validator = config.getValidator();
-        this.viewHolder = createViewHolder(inflater, viewGroup, config);
-        this.setEnabled(config.isEnabled());
-    }
-
-    protected abstract T createViewHolder(LayoutInflater inflater, ViewGroup viewGroup, U config);
-
-    protected abstract R getValueToParse();
-
-    protected abstract void setEnabled(boolean enabled);
-
-    protected S getValidateValue() {
-        S value = getCurrentValue();
-        if (!isValid(value)) {
-            return null;
+        if (!config.isEnabled()) {
+            this.disableView();
         }
-        return value;
     }
 
-    private S getCurrentValue() {
-        if (config.isEnabled()) {
-            return getValueFromView();
-        }
-        return getDisabledValue();
-    }
+    protected abstract T getValueFromView();
 
-    private S getDisabledValue() {
-        switch (config.getDisableValueMode()) {
+    protected abstract void disableView();
+
+    private T getDisabledValue() {
+        switch (getConfig().getDisableValueMode()) {
             case NULL:
                 return null;
             case CUSTOM:
-                return config.getDisableCustomValue();
+                return getConfig().getDisableCustomValue();
+            case VALUE:
             default:
                 return getValueFromView();
         }
     }
 
-    protected S getValueFromView() {
-        R value = getValueToParse();
-        return parser.parse(value);
-    }
-
     @Override
-    public View getView() {
-        T holder = getViewHolder();
-        return holder.getView();
-    }
-
-    @Override
-    public void fillModel(P model) {
-        S value = getValidateValue();
-        fulFiller.fulfill(model, value);
+    public T getValue() {
+        if (getConfig().isEnabled()) {
+            return getValueFromView();
+        }
+        return getDisabledValue();
     }
 
     @Override
     public boolean isValid() {
-        S value = getCurrentValue();
+        T value = getValue();
         return isValid(value);
     }
 
-    protected boolean isValid(S value) {
+    protected boolean isValid(T value) {
         if (value == null) {
-            return !config.isRequired();
+            return !getConfig().isRequired();
         }
-        return validator.validate(value);
+        if (validator != null) {
+            return validator.validate(value);
+        }
+        return true;
     }
 
     protected void onValueChange() {
-        if (formCallback != null && isValid()) {
-            formCallback.call();
+        boolean isValid = isValid();
+        if (isValid != lastValidationResult) {
+            lastValidationResult = isValid;
+            if (parentCallback != null) {
+                parentCallback.notifyValidationStateChanged();
+            }
         }
     }
 
     @Override
-    public void setOnChangeWithValidValue(BaseFormFragment.Callback onValueChange) {
-        formCallback = onValueChange;
+    public void setOnValidationStateChanged(Callback onValidationStateChangeCallback) {
+        this.parentCallback = onValidationStateChangeCallback;
     }
+
 }

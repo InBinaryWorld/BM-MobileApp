@@ -10,7 +10,7 @@ import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.CreateProductModelRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormPresenter;
 
 public class ProductModelCreatePresenter extends BaseFormPresenter<ProductModelCreateView, ProductModel> {
 

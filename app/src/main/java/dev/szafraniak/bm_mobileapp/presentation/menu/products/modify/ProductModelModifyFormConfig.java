@@ -11,14 +11,14 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductMo
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.UpdateProductModelRequest;
 import dev.szafraniak.bm_mobileapp.business.utils.Formatters;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.BaseFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRow;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.edittext.EditTextFormRowConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.base.BaseFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.price.PriceFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.price.PriceFormRow;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.price.PriceFormRowConfig;
 
-public class ProductModelModifyFormConfig extends BaseFormConfig<UpdateProductModelRequest> {
+public class ProductModelModifyFormConfig extends BaseFormRow.BaseFormConfig<UpdateProductModelRequest> {
 
     private final ProductModel productModel;
 
@@ -35,37 +35,37 @@ public class ProductModelModifyFormConfig extends BaseFormConfig<UpdateProductMo
     @Override
     public List<FormRowInterface<UpdateProductModelRequest>> createRowsConfiguration() {
         List<FormRowInterface<UpdateProductModelRequest>> configs = new ArrayList<>();
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getNameConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getQuantityUnitConfig()));
-        configs.add(new EditTextFormRow<>(this.inflater, this.viewGroup, getBareCodeConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getNameConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getQuantityUnitConfig()));
+        configs.add(new TextFormRow<>(this.inflater, this.viewGroup, getBareCodeConfig()));
         configs.add(new PriceFormRow<>(this.inflater, this.viewGroup, getPriceConfig()));
         return configs;
     }
 
-    private EditTextFormRowConfig<UpdateProductModelRequest> getNameConfig() {
-        EditTextFormRowConfig<UpdateProductModelRequest> config = FormConfigurations.getProductModelNameConfig();
+    private TextFormConfig<UpdateProductModelRequest> getNameConfig() {
+        TextFormConfig<UpdateProductModelRequest> config = FormConfigurations.getProductModelNameConfig();
         config.setFulFiller(UpdateProductModelRequest::setName);
         config.setInitValue(productModel.getName());
         return config;
     }
 
-    private EditTextFormRowConfig<UpdateProductModelRequest> getQuantityUnitConfig() {
-        EditTextFormRowConfig<UpdateProductModelRequest> config = FormConfigurations.getQuantityUnitConfig();
+    private TextFormConfig<UpdateProductModelRequest> getQuantityUnitConfig() {
+        TextFormConfig<UpdateProductModelRequest> config = FormConfigurations.getQuantityUnitConfig();
         config.setFulFiller(UpdateProductModelRequest::setQuantityUnit);
         config.setInitValue(productModel.getQuantityUnit());
         return config;
     }
 
-    private EditTextFormRowConfig<UpdateProductModelRequest> getBareCodeConfig() {
-        EditTextFormRowConfig<UpdateProductModelRequest> config = FormConfigurations.getBareCodeConfig();
+    private TextFormConfig<UpdateProductModelRequest> getBareCodeConfig() {
+        TextFormConfig<UpdateProductModelRequest> config = FormConfigurations.getBareCodeConfig();
         config.setFulFiller(UpdateProductModelRequest::setBareCode);
         config.setInitValue(productModel.getBareCode());
         return config;
     }
 
-    private PriceFormRowConfig<UpdateProductModelRequest> getPriceConfig() {
+    private PriceFormConfig<UpdateProductModelRequest> getPriceConfig() {
         Price price = productModel.getPriceSuggestion();
-        PriceFormRowConfig<UpdateProductModelRequest> config = FormConfigurations.getPriceConfig();
+        PriceFormConfig<UpdateProductModelRequest> config = FormConfigurations.getPriceConfig();
         config.setNetInitValue(Formatters.formatWithFraction(price.getNet()));
         config.setGrossInitValue(Formatters.formatWithFraction(price.getGross()));
         config.setTaxRateInitValue(Formatters.formatNoFraction(price.getTaxRate()));

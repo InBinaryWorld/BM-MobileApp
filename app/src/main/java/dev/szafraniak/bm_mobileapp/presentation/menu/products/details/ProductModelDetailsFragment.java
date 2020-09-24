@@ -1,7 +1,9 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.products.details;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
@@ -18,14 +20,14 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductMo
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.products.modify.ProductModelModifyFragment;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.BaseDetailsFragmentWithBtn;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.config.DetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsFragmentWithBtn;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.DetailsInterface;
 
 @EFragment(R.layout.fragment_base_details)
 public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<ProductModel>
         implements ProductModelDetailsView {
 
-    public final static String KEY_WAREHOUSE = "KEY_WAREHOUSE";
+    public final static String KEY_PRODUCT_MODEL = "KEY_PRODUCT_MODEL";
 
     @Inject
     ProductModelDetailsPresenter presenter;
@@ -33,16 +35,21 @@ public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<Prod
     @Inject
     Gson gson;
 
-
     ProductModel productModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() == null || !getArguments().containsKey(KEY_WAREHOUSE)) {
+        fetchArgumentsData();
+    }
+
+    private void fetchArgumentsData() {
+        Bundle args = getArguments();
+        if (args == null || !args.containsKey(KEY_PRODUCT_MODEL)) {
             Navigator.back(this);
+            return;
         }
-        String companyJSON = getArguments().getString(KEY_WAREHOUSE);
+        String companyJSON = getArguments().getString(KEY_PRODUCT_MODEL);
         productModel = gson.fromJson(companyJSON, ProductModel.class);
     }
 
@@ -55,13 +62,9 @@ public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<Prod
     }
 
     @Override
-    protected int getHeaderTextResourceId() {
-        return R.string.header_product_model_details;
-    }
-
-    @Override
-    protected int getFblBtnTextResourceId() {
-        return R.string.product_model_details_fl_btn_text;
+    protected DetailsInterface<ProductModel> createForm(LayoutInflater inflater, LinearLayout linearLayout) {
+        ProductModelDetailsConfig config = presenter.createConfig();
+        return new ProductModelDetails(inflater, detailsLayout, config);
     }
 
     @Override
@@ -77,7 +80,12 @@ public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<Prod
     }
 
     @Override
-    protected DetailsConfig<ProductModel> createDetailsConfig() {
-        return new ProductModelDetailsConfig(inflater, layout);
+    protected int getHeaderTextResourceId() {
+        return R.string.header_product_model_details;
+    }
+
+    @Override
+    protected int getFlBtnTextResourceId() {
+        return R.string.product_model_details_fl_btn_text;
     }
 }

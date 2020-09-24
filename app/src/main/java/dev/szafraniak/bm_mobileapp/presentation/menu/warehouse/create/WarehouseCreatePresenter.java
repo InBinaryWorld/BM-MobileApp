@@ -10,7 +10,7 @@ import dev.szafraniak.bm_mobileapp.business.http.service.WarehouseService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.CreateWarehouseRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.BaseFormPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormPresenter;
 
 public class WarehouseCreatePresenter extends BaseFormPresenter<WarehouseCreateView, Warehouse> {
 
