@@ -10,9 +10,10 @@ import dev.szafraniak.bm_mobileapp.business.http.service.ServiceModelService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.UpdateServiceModelRequest;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormPresenter;
 
-public class ServiceModelModifyPresenter extends BaseFormPresenter<ServiceModelModifyView, ServiceModel> {
+public class ServiceModelModifyPresenter extends BaseFormPresenter<ServiceModel, ServiceModelModifyView, ModifyServiceModelFormConfig> {
 
     @Inject
     ServiceModelService serviceModelService;
@@ -31,5 +32,22 @@ public class ServiceModelModifyPresenter extends BaseFormPresenter<ServiceModelM
         serviceModelService.modifyServiceModel(companyId, serviceModelId, object)
                 .compose(view.bindToLifecycle())
                 .subscribe(this::onSuccess, this::onError);
+    }
+
+    @Override
+    public ModifyServiceModelFormConfig createConfig() {
+        ModifyServiceModelFormConfig config = new ModifyServiceModelFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setNameConfig(FormConfigurations.getProductModelNameConfig());
+        config.setQuantityUniteConfig(FormConfigurations.getQuantityUnitConfig());
+        config.setPriceFormConfig(FormConfigurations.getPriceConfig());
+        return config;
+    }
+
+    public void loadData(Long serviceModelId) {
+        Long companyId = sessionManager.getCompanyId();
+        serviceModelService.getServiceModel(companyId, serviceModelId)
+                .compose(view.bindToLifecycle())
+                .subscribe(view::setModifyModel, view::setError);
     }
 }

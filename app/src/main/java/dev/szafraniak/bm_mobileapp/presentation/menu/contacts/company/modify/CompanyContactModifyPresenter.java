@@ -10,9 +10,10 @@ import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.CompanyContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.UpdateCompanyContactRequest;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormPresenter;
 
-public class CompanyContactModifyPresenter extends BaseFormPresenter<CompanyContactModifyView, CompanyContact> {
+public class CompanyContactModifyPresenter extends BaseFormPresenter<CompanyContact, CompanyContactModifyView, CompanyContactModifyFormConfig> {
 
     @Inject
     ContactsService contactsService;
@@ -33,4 +34,21 @@ public class CompanyContactModifyPresenter extends BaseFormPresenter<CompanyCont
                 .subscribe(this::onSuccess, this::onError);
     }
 
+    @Override
+    public CompanyContactModifyFormConfig createConfig() {
+        CompanyContactModifyFormConfig config = new CompanyContactModifyFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setNameConfig(FormConfigurations.getCompanyNameConfig());
+        config.setPhoneConfig(FormConfigurations.getPhoneConfig());
+        config.setTaxIdConfig(FormConfigurations.getTaxIdentityNumberConfig());
+        config.setAddressConfig(FormConfigurations.getAddressConfig());
+        return config;
+    }
+
+    public void loadData(Long contactId) {
+        Long companyId = sessionManager.getCompanyId();
+        contactsService.getCompanyContact(companyId, contactId)
+                .compose(view.bindToLifecycle())
+                .subscribe(view::setModifyModel, view::setError);
+    }
 }

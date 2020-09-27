@@ -7,133 +7,118 @@ import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 
-import java.util.List;
-
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.presentation.BaseHeaderFragment;
-import dev.szafraniak.bm_mobileapp.presentation.BaseView;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.FormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.progress.BaseProgressRow;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.FormRowInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.submit.BaseSubmitRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
+import dev.szafraniak.bm_mobileapp.presentation.shared.load.BaseSRLLoadFragment;
+import timber.log.Timber;
 
 @EFragment
-public abstract class BaseFormFragment<T> extends BaseHeaderFragment implements BaseView {
+public abstract class BaseFormFragment<T, C> extends BaseSRLLoadFragment implements BaseFormView {
 
-    private boolean inProgress;
-    private FormConfig<T> formConfig;
-    protected LayoutInflater inflater;
+    protected View button;
+    protected View buttonProgress;
     protected LinearLayout formLayout;
+    protected FormInterface<T> formComponent;
 
-    @IdRes
-    protected int getFormLayout() {
+    @Override
+    protected int getDataContainerId() {
         return R.id.ll_form;
     }
 
-    protected abstract FormConfig<T> createFormConfig();
-
-    protected void showProgress() {
-        View progressBarView = getFormConfig().getProgressRow().getView();
-        View submitButtonView = getFormConfig().getBaseSubmitRow().getView();
-        submitButtonView.setVisibility(View.GONE);
-        progressBarView.setVisibility(View.VISIBLE);
+    @IdRes
+    protected int getFormLayoutId() {
+        return R.id.ll_form;
     }
 
-    protected void hideProgress() {
-        View progressBarView = getFormConfig().getProgressRow().getView();
-        View submitButtonView = getFormConfig().getBaseSubmitRow().getView();
-        submitButtonView.setVisibility(View.VISIBLE);
-        progressBarView.setVisibility(View.GONE);
+    @IdRes
+    protected int getButtonId() {
+        return R.id.flb_form_button;
+    }
+
+    @IdRes
+    protected int getButtonProgressBarId() {
+        return R.id.v_button_progress;
+    }
+
+    @AfterViews
+    public void initializeBaseFormFragment() {
+        buttonProgress = findViewById(getButtonProgressBarId());
+        formLayout = (LinearLayout) findViewById(getFormLayoutId());
+        button = findViewById(getButtonId());
+        button.setOnClickListener(this::onButtonClick);
+        button.setEnabled(false);
+    }
+
+    protected void startForm(C config) {
+        formComponent = buildForm(config);
+        formLayout.removeAllViews();
+        formLayout.addView(formComponent.getView());
+        onFormStateChange(formComponent.isValid());
+        showData();
+    }
+
+    protected void startForm(C config, T modifyValue) {
+        formComponent = buildForm(config);
+        formComponent.setValue(modifyValue);
+        formLayout.removeAllViews();
+        formLayout.addView(formComponent.getView());
+        onFormStateChange(formComponent.isValid());
+        showData();
+    }
+
+    private FormInterface<T> buildForm(C config) {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        FormInterface<T> form = createForm(inflater, formLayout, config);
+        form.setOnValidationStateChanged(this::onFormStateChange);
+        return form;
+    }
+
+    public void setError(Throwable e) {
+        Timber.e(e);
+        showError();
+    }
+
+    protected abstract FormInterface<T> createForm(LayoutInflater inflater, LinearLayout linearLayout, C config);
+
+    protected void onFormStateChange(boolean isValid) {
+        button.setEnabled(isValid);
+    }
+
+    protected abstract void onSubmit(T object);
+
+    private void onButtonClick(View view) {
+        this.startButtonProgress();
+        T formModel = formComponent.getValue();
+        this.onSubmit(formModel);
+    }
+
+    private void startButtonProgress() {
+        button.setVisibility(View.GONE);
+        buttonProgress.setVisibility(View.VISIBLE);
+    }
+
+    protected void hideButtonProgress() {
+        button.setVisibility(View.VISIBLE);
+        buttonProgress.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setActionFailed(Throwable e) {
+        Timber.e(e);
+        errorToast();
+        hideButtonProgress();
+    }
+
+    @Override
+    public void setActionSucceed() {
+        hideButtonProgress();
     }
 
     public void errorToast() {
         Toast.makeText(getContext(), "Action Failed", Toast.LENGTH_SHORT).show();
     }
 
-    protected abstract void onSubmit(T object);
-
-    protected abstract T getFormModel();
-
-    public void initialize() {
-        inflater = LayoutInflater.from(getContext());
-        formLayout = (LinearLayout) findViewById(getFormLayout());
-        this.prepareView();
-    }
-
-    protected FormConfig<T> getFormConfig() {
-        if (formConfig == null) {
-            formConfig = createFormConfig();
-        }
-        return formConfig;
-    }
-
-    protected void prepareView() {
-        FormConfig<T> config = getFormConfig();
-        formLayout.removeAllViews();
-        for (FormRowInterface<T> row : config.getRowsConfiguration()) {
-            row.setOnValidationStateChanged(this::onValueChangeProvided);
-            formLayout.addView(row.getView());
-        }
-        BaseSubmitRow submitRow = config.getBaseSubmitRow();
-        submitRow.setOnClickListener(this::onClick);
-        formLayout.addView(submitRow.getView());
-        BaseProgressRow progressBarRow = config.getProgressRow();
-        formLayout.addView(progressBarRow.getView());
-        onValueChangeProvided();
-        hideProgress();
-    }
-
-    private void onValueChangeProvided() {
-        updateSubmitButton();
-    }
-
-    private void updateSubmitButton() {
-        FormConfig<T> config = getFormConfig();
-        boolean allValid = config.getRowsConfiguration()
-                .stream().allMatch(FormRowInterface::isValid);
-        this.setSubmitEnabled(allValid && !this.inProgress);
-    }
-
-    private void fillModel(T model) {
-        FormConfig<T> config = getFormConfig();
-        List<FormRowInterface<T>> rows = config.getRowsConfiguration();
-        rows.forEach(row -> row.getValue(model));
-    }
-
-    private void startProgress() {
-        this.inProgress = true;
-        this.showProgress();
-        this.setSubmitEnabled(false);
-    }
-
-    public void stopProgress() {
-        this.inProgress = false;
-        this.hideProgress();
-        this.updateSubmitButton();
-    }
-
-    private void onClick() {
-        T formModel = getFormModel();
-        this.fillModel(formModel);
-        this.startProgress();
-        this.onSubmit(formModel);
-    }
-
-    private void setSubmitEnabled(boolean enabled) {
-        FormConfig<T> config = getFormConfig();
-        BaseSubmitRow submitRow = config.getBaseSubmitRow();
-        submitRow.setSubmitEnabled(enabled);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        formConfig = null;
-    }
-
-    public interface Callback {
-        void call();
-    }
 }

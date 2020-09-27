@@ -1,8 +1,8 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify;
 
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 
@@ -13,15 +13,14 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.UpdateIndividualContactRequest;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.FormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
 
 @EFragment(R.layout.fragment_base_form)
-public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndividualContactRequest> implements IndividualContactModifyView {
+public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndividualContactRequest, IndividualContactModifyFormConfig> implements IndividualContactModifyView {
 
     public final static String KEY_INDIVIDUAL_CONTACT = "INDIVIDUAL_CONTACT_KEY";
 
@@ -33,13 +32,14 @@ public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndi
 
     IndividualContact contact;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() == null || !getArguments().containsKey(KEY_INDIVIDUAL_CONTACT)) {
+
+    private void fetchArgumentsData() {
+        Bundle args = getArguments();
+        if (args == null || !args.containsKey(KEY_INDIVIDUAL_CONTACT)) {
             Navigator.back(this);
+            return;
         }
-        String companyJSON = getArguments().getString(KEY_INDIVIDUAL_CONTACT);
+        String companyJSON = args.getString(KEY_INDIVIDUAL_CONTACT);
         contact = gson.fromJson(companyJSON, IndividualContact.class);
     }
 
@@ -48,15 +48,18 @@ public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndi
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
+        fetchArgumentsData();
         presenter.setView(this);
-        super.initialize();
     }
 
     @Override
-    protected UpdateIndividualContactRequest getFormModel() {
-        UpdateIndividualContactRequest model = new UpdateIndividualContactRequest();
-        model.setAddress(new Address());
-        return model;
+    protected void loadData() {
+        presenter.loadData(contact.getId());
+    }
+
+    @Override
+    protected FormInterface<UpdateIndividualContactRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, IndividualContactModifyFormConfig config) {
+        return new IndividualContactModifyForm(inflater, linearLayout, config);
     }
 
     @Override
@@ -65,12 +68,20 @@ public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndi
     }
 
     @Override
-    protected FormConfig<UpdateIndividualContactRequest> createFormConfig() {
-        return new IndividualContactModifyFormConfig(inflater, formLayout, contact);
+    protected int getHeaderTextResourceId() {
+        return R.string.header_contact_modify;
     }
 
     @Override
-    protected int getHeaderTextResourceId() {
-        return R.string.header_individual_contact_modify;
+    public void setModifyModel(IndividualContact individualContact) {
+
+        UpdateIndividualContactRequest model = new UpdateIndividualContactRequest();
+        model.setFirstName(contact.getFirstName());
+        model.setLastName(contact.getLastName());
+        model.setPhone(contact.getPhone());
+        model.setAddress(contact.getAddress());
+
+        IndividualContactModifyFormConfig config = presenter.createConfig();
+        startForm(config, model);
     }
 }

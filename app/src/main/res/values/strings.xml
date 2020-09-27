@@ -53,7 +53,7 @@
     <string name="header_company_contacts_list">Company Contacts</string>
     <string name="header_contact_details">Contact Details</string>
     <string name="header_product_model_list">Product Models</string>
-    <string name="header_individual_contact_modify">Modify Contact</string>
+    <string name="header_contact_modify">Modify Contact</string>
     <string name="header_product_model_modify">Modify Product Model</string>
     <string name="header_product_model_details">Product Model Details</string>
     <string name="header_product_model_create">Create Product Model</string>

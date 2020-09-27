@@ -11,8 +11,8 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.EditTextViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.editText.number.IntegerEditTextDetails;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.number.DecimalTextViewDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.number.IntegerTextViewDetails;
 
 public class PriceDetails extends BaseDetails<Price, BaseViewHolder, PriceDetailsConfig> {
 
@@ -20,7 +20,7 @@ public class PriceDetails extends BaseDetails<Price, BaseViewHolder, PriceDetail
     private final int layoutId = R.layout.form_base_group;
 
     DecimalTextViewDetails netRow;
-    IntegerEditTextDetails taxRow;
+    IntegerTextViewDetails taxRow;
     DecimalTextViewDetails grossRow;
 
     public PriceDetails(LayoutInflater inflater, ViewGroup viewGroup, PriceDetailsConfig config) {
@@ -45,7 +45,7 @@ public class PriceDetails extends BaseDetails<Price, BaseViewHolder, PriceDetail
         LinearLayout groupList = (LinearLayout) inflater.inflate(layoutId, viewGroup, false);
 
         netRow = new DecimalTextViewDetails(inflater, groupList, config.getNetConfig());
-        taxRow = new IntegerEditTextDetails(inflater, groupList, config.getTaxConfig());
+        taxRow = new IntegerTextViewDetails(inflater, groupList, config.getTaxConfig());
         grossRow = new DecimalTextViewDetails(inflater, groupList, config.getGrossConfig());
 
         groupList.addView(netRow.getView());

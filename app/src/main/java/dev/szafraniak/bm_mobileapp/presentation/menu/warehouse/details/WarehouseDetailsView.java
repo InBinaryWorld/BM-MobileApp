@@ -5,4 +5,5 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDeta
 
 public interface WarehouseDetailsView extends BaseDetailsView<Warehouse> {
 
+    void setData(Warehouse warehouse);
 }

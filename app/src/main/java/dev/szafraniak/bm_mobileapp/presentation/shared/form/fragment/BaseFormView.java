@@ -4,7 +4,9 @@ import dev.szafraniak.bm_mobileapp.presentation.BaseView;
 
 public interface BaseFormView extends BaseView {
 
-    void errorToast();
+    void setError(Throwable e);
 
-    void stopProgress();
+    void setActionFailed(Throwable e);
+
+    void setActionSucceed();
 }

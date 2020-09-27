@@ -2,7 +2,6 @@ package dev.szafraniak.bm_mobileapp.presentation.shared.details;
 
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.models.address.AddressDetailsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.models.price.PriceDetailsConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.SimpleDetailsConfig;
 
 public final class DetailsConfigurations {
 
@@ -136,7 +135,6 @@ public final class DetailsConfigurations {
         SimpleDetailsConfig<T> config = new SimpleDetailsConfig<>();
         config.setVisibleOnSetValueNull(false);
         config.setLabel(null);
-        config.setInitValue(null);
         config.setDefaultValue(null);
         return config;
     }

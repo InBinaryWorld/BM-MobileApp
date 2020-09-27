@@ -10,9 +10,10 @@ import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.UpdateIndividualContactRequest;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormPresenter;
 
-public class IndividualContactModifyPresenter extends BaseFormPresenter<IndividualContactModifyView, IndividualContact> {
+public class IndividualContactModifyPresenter extends BaseFormPresenter<IndividualContact, IndividualContactModifyView, IndividualContactModifyFormConfig> {
 
     @Inject
     ContactsService contactsService;
@@ -32,5 +33,24 @@ public class IndividualContactModifyPresenter extends BaseFormPresenter<Individu
                 .compose(view.bindToLifecycle())
                 .subscribe(this::onSuccess, this::onError);
     }
+
+    @Override
+    public IndividualContactModifyFormConfig createConfig() {
+        IndividualContactModifyFormConfig config = new IndividualContactModifyFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setFirstNameConfig(FormConfigurations.getFirstNameConfig());
+        config.setLastNameConfig(FormConfigurations.getLastNameConfig());
+        config.setPhoneConfig(FormConfigurations.getPhoneConfig());
+        config.setAddressConfig(FormConfigurations.getAddressConfig());
+        return config;
+    }
+
+    public void loadData(Long contactId) {
+        Long companyId = sessionManager.getCompanyId();
+        contactsService.getIndividualContact(companyId, contactId)
+                .compose(view.bindToLifecycle())
+                .subscribe(view::setModifyModel, view::setError);
+    }
+
 
 }

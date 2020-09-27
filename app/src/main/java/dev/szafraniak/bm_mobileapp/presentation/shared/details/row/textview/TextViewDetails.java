@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import androidx.annotation.LayoutRes;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.SimpleDetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetails;
 
 public abstract class TextViewDetails<T, C extends SimpleDetailsConfig<T>> extends BaseDetails<T, TextViewHolder, C> {
@@ -40,7 +40,6 @@ public abstract class TextViewDetails<T, C extends SimpleDetailsConfig<T>> exten
     protected void setupView(C config) {
         TextViewHolder holder = getViewHolder();
         holder.label.setText(config.getLabel());
-        showValueOnView(config.getInitValue());
     }
 
 

@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import androidx.annotation.Nullable;
-
 import com.google.gson.Gson;
 
 import org.androidannotations.annotations.AfterViews;
@@ -20,11 +18,11 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.Company
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.modify.CompanyContactModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsFragmentWithBtn;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.DetailsInterface;
 
 @EFragment(R.layout.fragment_base_details)
-public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<CompanyContact>
+public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<CompanyContact, CompanyContactDetailsConfig>
         implements CompanyContactDetailsView {
 
     public final static String KEY_COMPANY_CONTACT = "COMPANY_CONTACT_KEY";
@@ -36,12 +34,6 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
     Gson gson;
 
     private CompanyContact contact;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        fetchArgumentsData();
-    }
 
     private void fetchArgumentsData() {
         Bundle args = getArguments();
@@ -58,6 +50,7 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
+        fetchArgumentsData();
         presenter.setView(this);
     }
 
@@ -66,9 +59,13 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
         presenter.loadData(contact.getId());
     }
 
-    @Override
-    protected DetailsInterface<CompanyContact> createForm(LayoutInflater inflater, LinearLayout detailsLayout) {
+    public void setData(CompanyContact model) {
         CompanyContactDetailsConfig config = presenter.createConfig();
+        startForm(config, model);
+    }
+
+    @Override
+    protected DetailsInterface<CompanyContact> createForm(LayoutInflater inflater, LinearLayout detailsLayout, CompanyContactDetailsConfig config) {
         return new CompanyContactDetails(inflater, detailsLayout, config);
     }
 

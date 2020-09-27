@@ -6,14 +6,12 @@ import android.widget.EditText;
 
 import androidx.annotation.LayoutRes;
 
-import com.google.android.material.textfield.TextInputLayout;
-
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.shared.EditTextViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.base.BaseFormRow;
 import dev.szafraniak.bm_mobileapp.presentation.shared.utils.ViewUtils;
 
-public abstract class EditTextFormRow<T, C extends EditTextFormConfig<T>> extends BaseFormRow<T, EditTextViewHolder, C> {
+public abstract class EditTextFormRow<T, C extends EditTextFormRowConfig<T>> extends BaseFormRow<T, EditTextViewHolder, C> {
 
     @LayoutRes
     private final static int layoutId = R.layout.row_edit_text;
@@ -27,7 +25,7 @@ public abstract class EditTextFormRow<T, C extends EditTextFormConfig<T>> extend
     protected abstract String parseToDisplay(T value);
 
     @Override
-    protected T getValueFromView() {
+    public T getValue() {
         EditTextViewHolder holder = getViewHolder();
         EditText view = holder.getEditText();
         String textValue = view.getText().toString();
@@ -42,17 +40,8 @@ public abstract class EditTextFormRow<T, C extends EditTextFormConfig<T>> extend
     }
 
     @Override
-    protected void disableView() {
-        EditTextViewHolder holder = getViewHolder();
-        TextInputLayout layout = holder.getLayout();
-        layout.setEndIconVisible(false);
-        layout.setEnabled(false);
-    }
-
-    @Override
     protected void setupView(C config) {
         EditTextViewHolder holder = getViewHolder();
-        showValueOnView(config.getInitValue());
         holder.layout.setHint(config.getLabelText());
         ViewUtils.addOnTextChangeListener(holder.editText, this::onValueChange);
     }

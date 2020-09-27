@@ -5,4 +5,5 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDeta
 
 public interface IndividualContactDetailsView extends BaseDetailsView<IndividualContact> {
 
+    void setData(IndividualContact individualContact);
 }

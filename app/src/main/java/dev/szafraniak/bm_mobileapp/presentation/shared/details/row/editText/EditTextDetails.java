@@ -7,7 +7,7 @@ import androidx.annotation.LayoutRes;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.shared.EditTextViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.SimpleDetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetails;
 
 public abstract class EditTextDetails<T, C extends SimpleDetailsConfig<T>> extends BaseDetails<T, EditTextViewHolder, C> {
@@ -43,8 +43,6 @@ public abstract class EditTextDetails<T, C extends SimpleDetailsConfig<T>> exten
         holder.layout.setHint(config.getLabel());
         holder.layout.setEndIconVisible(false);
         holder.layout.setEnabled(false);
-
-        showValueOnView(config.getInitValue());
     }
 
 }

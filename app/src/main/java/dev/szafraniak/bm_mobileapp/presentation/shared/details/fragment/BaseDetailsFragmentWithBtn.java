@@ -11,9 +11,10 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 
 import dev.szafraniak.bm_mobileapp.R;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetailsConfig;
 
 @EFragment
-public abstract class BaseDetailsFragmentWithBtn<T> extends BaseDetailsFragment<T> {
+public abstract class BaseDetailsFragmentWithBtn<T, C extends BaseDetailsConfig<T>> extends BaseDetailsFragment<T, C> {
 
     protected ExtendedFloatingActionButton fblBtn;
 

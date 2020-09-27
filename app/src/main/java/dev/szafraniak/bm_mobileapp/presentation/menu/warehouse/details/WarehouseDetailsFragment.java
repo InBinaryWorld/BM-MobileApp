@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import androidx.annotation.Nullable;
-
 import com.google.gson.Gson;
 
 import org.androidannotations.annotations.AfterViews;
@@ -20,11 +18,11 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.modify.WarehouseModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsFragmentWithBtn;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.DetailsInterface;
 
 @EFragment(R.layout.fragment_base_details)
-public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehouse>
+public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehouse, WarehouseDetailsConfig>
         implements WarehouseDetailsView {
 
     public final static String KEY_WAREHOUSE = "KEY_WAREHOUSE";
@@ -36,12 +34,6 @@ public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehou
     Gson gson;
 
     Warehouse warehouse;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        fetchArgumentsData();
-    }
 
     private void fetchArgumentsData() {
         Bundle args = getArguments();
@@ -58,6 +50,7 @@ public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehou
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
+        fetchArgumentsData();
         presenter.setView(this);
     }
 
@@ -66,9 +59,13 @@ public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehou
         presenter.loadData(warehouse.getId());
     }
 
-    @Override
-    protected DetailsInterface<Warehouse> createForm(LayoutInflater inflater, LinearLayout linearLayout) {
+    public void setData(Warehouse model) {
         WarehouseDetailsConfig config = presenter.createConfig();
+        startForm(config, model);
+    }
+
+    @Override
+    protected DetailsInterface<Warehouse> createForm(LayoutInflater inflater, LinearLayout linearLayout, WarehouseDetailsConfig config) {
         return new WarehouseDetails(inflater, detailsLayout, config);
     }
 

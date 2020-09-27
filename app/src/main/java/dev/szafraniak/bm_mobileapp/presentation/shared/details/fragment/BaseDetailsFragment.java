@@ -9,12 +9,13 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.DetailsInterface;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsInterface;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetailsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.load.BaseSRLLoadFragment;
 import timber.log.Timber;
 
 @EFragment
-public abstract class BaseDetailsFragment<T> extends BaseSRLLoadFragment implements BaseDetailsView<T> {
+public abstract class BaseDetailsFragment<T, C extends BaseDetailsConfig<T>> extends BaseSRLLoadFragment implements BaseDetailsView<T> {
 
     protected LinearLayout detailsLayout;
     protected DetailsInterface<T> detailsComponent;
@@ -33,13 +34,22 @@ public abstract class BaseDetailsFragment<T> extends BaseSRLLoadFragment impleme
     public void initializeBaseDetailsFragment() {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         this.detailsLayout = (LinearLayout) findViewById(getDetailsLayoutId());
-        this.detailsComponent = createForm(inflater, detailsLayout);
-        this.detailsLayout.addView(detailsComponent.getView());
     }
 
-    @Override
-    public synchronized void setData(T item) {
+    protected void startForm(C config, T item) {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        detailsComponent = createForm(inflater, detailsLayout, config);
+        detailsLayout.removeAllViews();
+        detailsLayout.addView(detailsComponent.getView());
         detailsComponent.setValue(item);
+        showData();
+    }
+
+    protected void startForm(C config) {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        detailsComponent = createForm(inflater, detailsLayout, config);
+        detailsLayout.removeAllViews();
+        detailsLayout.addView(detailsComponent.getView());
         showData();
     }
 
@@ -49,6 +59,6 @@ public abstract class BaseDetailsFragment<T> extends BaseSRLLoadFragment impleme
         showError();
     }
 
-    protected abstract DetailsInterface<T> createForm(LayoutInflater inflater, LinearLayout linearLayout);
+    protected abstract DetailsInterface<T> createForm(LayoutInflater inflater, LinearLayout linearLayout, C config);
 
 }

@@ -10,9 +10,10 @@ import dev.szafraniak.bm_mobileapp.business.http.service.ServiceModelService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.CreateServiceModelRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormPresenter;
 
-public class ServiceModelCreatePresenter extends BaseFormPresenter<ServiceModelCreateView, ServiceModel> {
+public class ServiceModelCreatePresenter extends BaseFormPresenter<ServiceModel, ServiceModelCreateView, CreateServiceFormConfig> {
 
     @Inject
     ServiceModelService serviceModelService;
@@ -32,4 +33,13 @@ public class ServiceModelCreatePresenter extends BaseFormPresenter<ServiceModelC
                 .subscribe(this::onSuccess, this::onError);
     }
 
+    @Override
+    public CreateServiceFormConfig createConfig() {
+        CreateServiceFormConfig config = new CreateServiceFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setNameConfig(FormConfigurations.getProductModelNameConfig());
+        config.setQuantityUniteConfig(FormConfigurations.getQuantityUnitConfig());
+        config.setPriceFormConfig(FormConfigurations.getPriceConfig());
+        return config;
+    }
 }

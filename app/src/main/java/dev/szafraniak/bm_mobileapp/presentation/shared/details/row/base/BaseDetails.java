@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.DetailsInterface;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsInterface;
 import lombok.Getter;
 
 public abstract class BaseDetails<T, H extends BaseViewHolder,

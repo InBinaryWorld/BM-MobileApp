@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import androidx.annotation.Nullable;
-
 import com.google.gson.Gson;
 
 import org.androidannotations.annotations.AfterViews;
@@ -20,11 +18,11 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.Indi
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsFragmentWithBtn;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.DetailsInterface;
 
 @EFragment(R.layout.fragment_base_details)
-public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn<IndividualContact>
+public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn<IndividualContact, IndividualContactDetailsConfig>
         implements IndividualContactDetailsView {
 
     public final static String KEY_INDIVIDUAL_CONTACT = "INDIVIDUAL_CONTACT_KEY";
@@ -37,10 +35,14 @@ public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn
 
     IndividualContact contact;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
+    @AfterViews
+    public void initialize() {
+        @SuppressWarnings("ConstantConditions")
+        BMApplication app = (BMApplication) getActivity().getApplication();
+        app.getAppComponent().inject(this);
         fetchArgumentsData();
+        presenter.setView(this);
     }
 
     private void fetchArgumentsData() {
@@ -53,15 +55,6 @@ public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn
         contact = gson.fromJson(companyJSON, IndividualContact.class);
     }
 
-
-    @AfterViews
-    public void initialize() {
-        @SuppressWarnings("ConstantConditions")
-        BMApplication app = (BMApplication) getActivity().getApplication();
-        app.getAppComponent().inject(this);
-        presenter.setView(this);
-    }
-
     @Override
     protected void loadData() {
         presenter.loadData(contact.getId());
@@ -69,10 +62,15 @@ public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn
 
 
     @Override
-    protected DetailsInterface<IndividualContact> createForm(LayoutInflater inflater, LinearLayout linearLayout) {
-        IndividualContactDetailsConfig config = presenter.createConfig();
+    protected DetailsInterface<IndividualContact> createForm(LayoutInflater inflater, LinearLayout linearLayout, IndividualContactDetailsConfig config) {
         return new IndividualContactDetails(inflater, detailsLayout, config);
     }
+
+    public void setData(IndividualContact model) {
+        IndividualContactDetailsConfig config = presenter.createConfig();
+        startForm(config, model);
+    }
+
 
     @Override
     protected int getHeaderTextResourceId() {

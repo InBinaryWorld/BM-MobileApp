@@ -6,5 +6,4 @@ public interface BaseDetailsView<T> extends BaseView {
 
     void setError(Throwable e);
 
-    void setData(T item);
 }

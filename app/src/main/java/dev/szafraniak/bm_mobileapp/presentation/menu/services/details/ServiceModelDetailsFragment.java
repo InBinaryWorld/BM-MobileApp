@@ -5,8 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import androidx.annotation.Nullable;
-
 import com.google.gson.Gson;
 
 import org.androidannotations.annotations.AfterViews;
@@ -20,11 +18,11 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceMo
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsFragmentWithBtn;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.DetailsInterface;
 
 @EFragment(R.layout.fragment_base_details)
-public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<ServiceModel>
+public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<ServiceModel, ServiceModelDetailsConfig>
         implements ServiceModelDetailsView {
 
     public final static String KEY_SERVICE_MODEL = "SERVICE_MODEL_KEY";
@@ -37,11 +35,6 @@ public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<Serv
 
     ServiceModel serviceModel;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        fetchArgumentsData();
-    }
 
     private void fetchArgumentsData() {
         Bundle args = getArguments();
@@ -58,6 +51,7 @@ public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<Serv
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
+        fetchArgumentsData();
         presenter.setView(this);
     }
 
@@ -66,9 +60,13 @@ public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<Serv
         presenter.loadData(serviceModel.getId());
     }
 
-    @Override
-    protected DetailsInterface<ServiceModel> createForm(LayoutInflater inflater, LinearLayout linearLayout) {
+    public void setData(ServiceModel model) {
         ServiceModelDetailsConfig config = presenter.createConfig();
+        startForm(config, model);
+    }
+
+    @Override
+    protected DetailsInterface<ServiceModel> createForm(LayoutInflater inflater, LinearLayout linearLayout, ServiceModelDetailsConfig config) {
         return new ServiceModelDetails(inflater, detailsLayout, config);
     }
 
@@ -77,7 +75,6 @@ public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<Serv
         Bundle args = new Bundle();
         args.putString(ServiceModelModifyFragment.KEY_SERVICE_MODEL, gson.toJson(serviceModel));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_SERVICE_MODEL_MODIFY, args);
-
     }
 
     @Override

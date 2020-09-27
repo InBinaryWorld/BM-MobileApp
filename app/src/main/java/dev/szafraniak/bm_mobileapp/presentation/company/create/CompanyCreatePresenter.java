@@ -9,9 +9,10 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.CreateCompanyRequest;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormPresenter;
 
-public class CompanyCreatePresenter extends BaseFormPresenter<CompanyCreateView, Company> {
+public class CompanyCreatePresenter extends BaseFormPresenter<Company, CompanyCreateView, CreateCompanyFormConfig> {
 
     @Inject
     CompanyService companyService;
@@ -26,5 +27,16 @@ public class CompanyCreatePresenter extends BaseFormPresenter<CompanyCreateView,
         companyService.createCompany(object)
                 .compose(view.bindToLifecycle())
                 .subscribe(this::onSuccess, this::onError);
+    }
+
+    @Override
+    public CreateCompanyFormConfig createConfig() {
+        CreateCompanyFormConfig config = new CreateCompanyFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setNameConfig(FormConfigurations.getCompanyNameConfig());
+        config.setInvoicePrefixConfig(FormConfigurations.getInvoicePrefixConfig());
+        config.setTaxIdentityConfig(FormConfigurations.getTaxIdentityNumberConfig());
+        config.setAddressConfig(FormConfigurations.getAddressConfig());
+        return config;
     }
 }

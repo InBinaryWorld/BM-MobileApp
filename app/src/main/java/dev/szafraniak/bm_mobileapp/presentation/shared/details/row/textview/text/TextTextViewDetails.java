@@ -3,7 +3,7 @@ package dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.tex
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.SimpleDetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.TextViewDetails;
 
 public class TextTextViewDetails extends TextViewDetails<String, SimpleDetailsConfig<String>> {

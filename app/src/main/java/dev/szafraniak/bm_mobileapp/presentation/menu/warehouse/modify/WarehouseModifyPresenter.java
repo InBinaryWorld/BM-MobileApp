@@ -10,9 +10,10 @@ import dev.szafraniak.bm_mobileapp.business.http.service.WarehouseService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.UpdateWarehouseRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormPresenter;
 
-public class WarehouseModifyPresenter extends BaseFormPresenter<WarehouseModifyView, Warehouse> {
+public class WarehouseModifyPresenter extends BaseFormPresenter<Warehouse, WarehouseModifyView, UpdateWarehouseFormConfig> {
 
     @Inject
     WarehouseService warehouseService;
@@ -33,4 +34,18 @@ public class WarehouseModifyPresenter extends BaseFormPresenter<WarehouseModifyV
                 .subscribe(this::onSuccess, this::onError);
     }
 
+    @Override
+    public UpdateWarehouseFormConfig createConfig() {
+        UpdateWarehouseFormConfig config = new UpdateWarehouseFormConfig();
+        config.setNameConfig(FormConfigurations.getWarehouseName());
+        config.setAddressConfig(FormConfigurations.getAddressConfig());
+        return config;
+    }
+
+    public void loadData(Long warehouseId) {
+        Long companyId = sessionManager.getCompanyId();
+        warehouseService.getWarehouse(companyId, warehouseId)
+                .compose(view.bindToLifecycle())
+                .subscribe(view::setModifyModel, view::setError);
+    }
 }

@@ -1,5 +1,8 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create;
 
+import android.view.LayoutInflater;
+import android.widget.LinearLayout;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 
@@ -8,11 +11,11 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.CreateWarehouseRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.config.FormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
 
 @EFragment(R.layout.fragment_base_form)
-public class WarehouseCreateFragment extends BaseFormFragment<CreateWarehouseRequest>
+public class WarehouseCreateFragment extends BaseFormFragment<CreateWarehouseRequest, CreateWarehouseFormConfig>
         implements WarehouseCreateView {
 
     @Inject
@@ -24,12 +27,11 @@ public class WarehouseCreateFragment extends BaseFormFragment<CreateWarehouseReq
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
-        super.initialize();
     }
 
     @Override
-    protected CreateWarehouseRequest getFormModel() {
-        return new CreateWarehouseRequest();
+    protected FormInterface<CreateWarehouseRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateWarehouseFormConfig config) {
+        return new CreateWarehouseForm(inflater, linearLayout, config);
     }
 
     @Override
@@ -38,12 +40,13 @@ public class WarehouseCreateFragment extends BaseFormFragment<CreateWarehouseReq
     }
 
     @Override
-    protected FormConfig<CreateWarehouseRequest> createFormConfig() {
-        return new WarehouseCreateFormConfig(inflater, formLayout);
+    protected int getHeaderTextResourceId() {
+        return R.string.header_warehouse_create;
     }
 
     @Override
-    protected int getHeaderTextResourceId() {
-        return R.string.header_warehouse_create;
+    protected void loadData() {
+        CreateWarehouseFormConfig config = presenter.createConfig();
+        startForm(config);
     }
 }

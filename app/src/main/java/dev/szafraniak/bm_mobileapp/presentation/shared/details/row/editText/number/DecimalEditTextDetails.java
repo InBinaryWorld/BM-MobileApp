@@ -5,8 +5,8 @@ import android.view.ViewGroup;
 
 import java.math.BigDecimal;
 
-import dev.szafraniak.bm_mobileapp.business.utils.Formatters;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.SimpleDetailsConfig;
+import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
+import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.editText.EditTextDetails;
 
 public class DecimalEditTextDetails extends EditTextDetails<BigDecimal, SimpleDetailsConfig<BigDecimal>> {
@@ -18,6 +18,6 @@ public class DecimalEditTextDetails extends EditTextDetails<BigDecimal, SimpleDe
 
     @Override
     protected String parseToDisplay(BigDecimal value) {
-        return Formatters.formatWithFraction(value);
+        return Parsers.safeFormatWithFraction(value);
     }
 }

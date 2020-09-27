@@ -5,4 +5,5 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDeta
 
 public interface CompanyContactDetailsView extends BaseDetailsView<CompanyContact> {
 
+    void setData(CompanyContact contact);
 }
