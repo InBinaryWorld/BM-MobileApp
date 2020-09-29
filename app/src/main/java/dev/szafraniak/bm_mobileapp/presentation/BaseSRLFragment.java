@@ -11,7 +11,9 @@ import dev.szafraniak.bm_mobileapp.R;
 @EFragment
 public abstract class BaseSRLFragment extends BaseHeaderFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-    protected SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
+    private boolean permanentDisabled = false;
 
     @IdRes
     public int getSwipeRefreshLayoutId() {
@@ -28,12 +30,19 @@ public abstract class BaseSRLFragment extends BaseHeaderFragment implements Swip
                 R.color.colorBlueDark);
     }
 
-    protected void setRefreshing(boolean visible) {
-        swipeRefreshLayout.setRefreshing(visible);
+    protected void hideSRLRefreshing() {
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     protected void setRefreshEnabled(boolean enabled) {
-        swipeRefreshLayout.setEnabled(enabled);
+        if (!permanentDisabled) {
+            swipeRefreshLayout.setEnabled(enabled);
+        }
+    }
+
+    protected void setRefreshPermanentDisabled() {
+        permanentDisabled = true;
+        swipeRefreshLayout.setEnabled(false);
     }
 
 }

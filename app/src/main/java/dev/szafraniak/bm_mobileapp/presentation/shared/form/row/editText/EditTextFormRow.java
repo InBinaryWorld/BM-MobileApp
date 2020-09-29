@@ -13,6 +13,8 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.utils.ViewUtils;
 
 public abstract class EditTextFormRow<T, C extends EditTextFormRowConfig<T>> extends BaseFormRow<T, EditTextViewHolder, C> {
 
+    private final static String REQUIRED_HINT_SUFFIX = " *";
+
     @LayoutRes
     private final static int layoutId = R.layout.row_edit_text;
 
@@ -42,7 +44,9 @@ public abstract class EditTextFormRow<T, C extends EditTextFormRowConfig<T>> ext
     @Override
     protected void setupView(C config) {
         EditTextViewHolder holder = getViewHolder();
-        holder.layout.setHint(config.getLabelText());
+        String suffix = config.isRequired() ? REQUIRED_HINT_SUFFIX : "";
+        String hint = String.format("%s%s", config.getLabelText(), suffix);
+        holder.layout.setHint(hint);
         ViewUtils.addOnTextChangeListener(holder.editText, this::onValueChange);
     }
 

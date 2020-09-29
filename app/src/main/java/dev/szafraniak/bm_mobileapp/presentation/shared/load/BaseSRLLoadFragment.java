@@ -71,7 +71,7 @@ public abstract class BaseSRLLoadFragment extends BaseSRLFragment {
         dataContainerView.setVisibility(View.GONE);
         errorView.setVisibility(View.VISIBLE);
         setRefreshEnabled(true);
-        setRefreshing(false);
+        hideSRLRefreshing();
     }
 
     protected void showData() {
@@ -79,7 +79,7 @@ public abstract class BaseSRLLoadFragment extends BaseSRLFragment {
         progressBar.setVisibility(View.GONE);
         dataContainerView.setVisibility(View.VISIBLE);
         setRefreshEnabled(true);
-        setRefreshing(false);
+        hideSRLRefreshing();
     }
 
     protected void viewOnSRLRefresh() {

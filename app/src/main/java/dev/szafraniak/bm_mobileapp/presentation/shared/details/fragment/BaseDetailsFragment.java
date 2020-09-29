@@ -37,6 +37,7 @@ public abstract class BaseDetailsFragment<T, C extends BaseDetailsConfig<T>> ext
     }
 
     protected void startForm(C config, T item) {
+        setRefreshPermanentDisabled();
         LayoutInflater inflater = LayoutInflater.from(getContext());
         detailsComponent = createForm(inflater, detailsLayout, config);
         detailsLayout.removeAllViews();
@@ -46,6 +47,7 @@ public abstract class BaseDetailsFragment<T, C extends BaseDetailsConfig<T>> ext
     }
 
     protected void startForm(C config) {
+        setRefreshPermanentDisabled();
         LayoutInflater inflater = LayoutInflater.from(getContext());
         detailsComponent = createForm(inflater, detailsLayout, config);
         detailsLayout.removeAllViews();

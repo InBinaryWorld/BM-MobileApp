@@ -79,7 +79,7 @@ public abstract class BaseListFragment<T> extends BaseSRLLoadFragment implements
         emptyListView.setVisibility(View.VISIBLE);
         dataContainerView.setVisibility(View.VISIBLE);
         setRefreshEnabled(true);
-        setRefreshing(false);
+        hideSRLRefreshing();
     }
 
     @Override

@@ -2,6 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -19,7 +20,7 @@ import timber.log.Timber;
 @EFragment
 public abstract class BaseFormFragment<T, C> extends BaseSRLLoadFragment implements BaseFormView {
 
-    protected View button;
+    protected Button button;
     protected View buttonProgress;
     protected LinearLayout formLayout;
     protected FormInterface<T> formComponent;
@@ -51,12 +52,14 @@ public abstract class BaseFormFragment<T, C> extends BaseSRLLoadFragment impleme
     public void initializeBaseFormFragment() {
         buttonProgress = findViewById(getButtonProgressBarId());
         formLayout = (LinearLayout) findViewById(getFormLayoutId());
-        button = findViewById(getButtonId());
+        button = (Button) findViewById(getButtonId());
         button.setOnClickListener(this::onButtonClick);
+        button.setText(getButtonTextId());
         button.setEnabled(false);
     }
 
     protected void startForm(C config) {
+        setRefreshPermanentDisabled();
         formComponent = buildForm(config);
         formLayout.removeAllViews();
         formLayout.addView(formComponent.getView());
@@ -65,6 +68,7 @@ public abstract class BaseFormFragment<T, C> extends BaseSRLLoadFragment impleme
     }
 
     protected void startForm(C config, T modifyValue) {
+        setRefreshPermanentDisabled();
         formComponent = buildForm(config);
         formComponent.setValue(modifyValue);
         formLayout.removeAllViews();
