@@ -29,6 +29,11 @@ public class CompanyCreateFragment extends BaseFormFragment<CreateCompanyRequest
     }
 
     @Override
+    protected int getButtonTextId() {
+        return R.string.header_company_create;
+    }
+
+    @Override
     protected FormInterface<CreateCompanyRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateCompanyFormConfig config) {
         return new CreateCompanyForm(inflater, linearLayout, config);
     }
@@ -40,7 +45,7 @@ public class CompanyCreateFragment extends BaseFormFragment<CreateCompanyRequest
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.create_company_header;
+        return R.string.header_company_create;
     }
 
     @Override

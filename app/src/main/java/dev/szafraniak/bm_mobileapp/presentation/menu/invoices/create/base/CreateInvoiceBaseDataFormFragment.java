@@ -69,7 +69,7 @@ public class CreateInvoiceBaseDataFormFragment extends BaseSRLLoadFragment {
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_create_invoice_base_data_form;
+        return R.string.header_invoice_base_data_create;
     }
 
 }

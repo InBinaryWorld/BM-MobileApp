@@ -58,6 +58,11 @@ public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndi
     }
 
     @Override
+    protected int getButtonTextId() {
+        return R.string.header_contact_modify;
+    }
+
+    @Override
     protected FormInterface<UpdateIndividualContactRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, IndividualContactModifyFormConfig config) {
         return new IndividualContactModifyForm(inflater, linearLayout, config);
     }

@@ -44,12 +44,12 @@ public class WarehouseListFragment extends BaseListFragmentWithBtn<Warehouse>
     }
 
     @Override
-    protected int getFlButtonTextId() {
-        return R.string.warehouse_list_fl_btn_text;
+    protected int getButtonTextId() {
+        return R.string.btn_text_warehouse_list;
     }
 
     @Override
-    protected void onFlButtonClick(View view) {
+    protected void onButtonClick(View view) {
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_WAREHOUSE_CREATE);
     }
 

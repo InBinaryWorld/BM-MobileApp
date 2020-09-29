@@ -29,6 +29,11 @@ public class CompanyContactCreateFragment extends BaseFormFragment<CreateCompany
     }
 
     @Override
+    protected int getButtonTextId() {
+        return R.string.btn_text_warehouse_list;
+    }
+
+    @Override
     protected FormInterface<CreateCompanyContactRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CompanyContactCreateFormConfig config) {
         return new CompanyContactCreateForm(inflater, linearLayout, config);
     }
@@ -47,6 +52,6 @@ public class CompanyContactCreateFragment extends BaseFormFragment<CreateCompany
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_create_contact;
+        return R.string.header_contact_create;
     }
 }

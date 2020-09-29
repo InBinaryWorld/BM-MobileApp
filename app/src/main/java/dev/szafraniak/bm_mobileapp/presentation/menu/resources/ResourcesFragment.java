@@ -46,12 +46,12 @@ public class ResourcesFragment extends BaseListFragmentWithBtn<Warehouse> implem
     }
 
     @Override
-    protected int getFlButtonTextId() {
-        return R.string.resources_fl_btn_text;
+    protected int getButtonTextId() {
+        return R.string.btn_text_resources;
     }
 
     @Override
-    protected void onFlButtonClick(View view) {
+    protected void onButtonClick(View view) {
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_WAREHOUSE_CREATE);
     }
 

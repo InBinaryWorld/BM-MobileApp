@@ -150,8 +150,12 @@ public final class FormConfigurations {
     }
 
     public static AddressFormConfig getAddressConfig() {
+        SimpleDetailsConfig<String> countryConfig = DetailsConfigurations.getCountryConfig();
+        countryConfig.setVisibleOnSetValueNull(true);
+        countryConfig.setDefaultValue("Poland");
+
         AddressFormConfig config = new AddressFormConfig();
-        config.setCountryConfig(DetailsConfigurations.getCountryConfig());
+        config.setCountryConfig(countryConfig);
         config.setCityConfig(getCityConfig());
         config.setVisibleOnSetValueNull(true);
         config.setCityConfig(getCityConfig());

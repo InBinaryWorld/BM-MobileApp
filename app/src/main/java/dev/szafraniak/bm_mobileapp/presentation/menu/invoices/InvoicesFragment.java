@@ -31,12 +31,12 @@ public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice> implement
     }
 
     @Override
-    protected int getFlButtonTextId() {
-        return R.string.invoice_list_fl_btn_text;
+    protected int getButtonTextId() {
+        return R.string.btn_text_invoice_list;
     }
 
     @Override
-    protected void onFlButtonClick(View view) {
+    protected void onButtonClick(View view) {
 //        Navigator.navigateTo(this, FragmentFactory.);
     }
 
@@ -62,6 +62,6 @@ public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice> implement
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_invoices_list_text;
+        return R.string.header_invoice_list;
     }
 }

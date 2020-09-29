@@ -29,7 +29,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/iv_succeed_icon" />
+            android:contentDescription="@string/content_description_action_status_succeed" />
 
         <TextView
             style="@style/BaseTextView.ActionResult.Success"
@@ -55,7 +55,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/iv_fail_icon" />
+            android:contentDescription="@string/content_description_action_status_fail" />
 
         <TextView
             style="@style/BaseTextView.ActionResult.Failed"

@@ -53,6 +53,11 @@ public class ServiceModelModifyFragment extends BaseFormFragment<UpdateServiceMo
     }
 
     @Override
+    protected int getButtonTextId() {
+        return R.string.header_service_model_modify;
+    }
+
+    @Override
     protected FormInterface<UpdateServiceModelRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, ModifyServiceModelFormConfig config) {
         return new ModifyServiceModelForm(inflater, linearLayout, config);
     }

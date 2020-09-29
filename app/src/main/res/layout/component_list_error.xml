@@ -9,7 +9,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_error_first_line"
         app:layout_constraintEnd_toStartOf="@+id/tv_error_first_line"
         app:layout_constraintTop_toTopOf="@+id/tv_error_first_line"
-        android:contentDescription="@string/iv_list_error" />
+        android:contentDescription="@string/content_description_list_component_error" />
 
     <TextView
         android:id="@+id/tv_error_first_line"

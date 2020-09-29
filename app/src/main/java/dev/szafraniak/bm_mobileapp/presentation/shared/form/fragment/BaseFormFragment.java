@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.StringRes;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -42,6 +43,9 @@ public abstract class BaseFormFragment<T, C> extends BaseSRLLoadFragment impleme
     protected int getButtonProgressBarId() {
         return R.id.v_button_progress;
     }
+
+    @StringRes
+    protected abstract int getButtonTextId();
 
     @AfterViews
     public void initializeBaseFormFragment() {

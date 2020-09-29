@@ -49,6 +49,7 @@
 
     <style name="LinearLayout.Form">
         <item name="android:paddingVertical">12dp</item>
+        <item name="android:paddingBottom">84dp</item>
     </style>
 
     <style name="LinearLayout.Details">

@@ -2,77 +2,87 @@
     <string name="app_name">Business Manager</string>
     <string name="facebook_app_id">255726149027121</string>
     <string name="fb_login_protocol_scheme">fb255726149027121</string>
-    <string name="app_icon">App Icon</string>
-    <string name="login_with_facebook">Login with Facebook</string>
-    <string name="login_with_google">Login with Google</string>
-    <string name="silent_login">Silent login in progress</string>
-    <string name="login_in_progress">Login in progress</string>
-    <string name="login_failed">Login failed</string>
-    <string name="menu_dashboard">Dashboard</string>
-    <string name="menu_settings">Settings</string>
+
+    <string name="address">Address</string>
     <string name="contacts">Contacts</string>
-    <string name="resources">Resources</string>
+    <string name="dashboard">Dashboard</string>
     <string name="invoices">Invoices</string>
+    <string name="resources">Resources</string>
+    <string name="settings">Settings</string>
+
+    <string name="login_login_in_progress">Login in progress</string>
+    <string name="login_login_with_facebook">Login with Facebook</string>
+    <string name="login_login_with_google">Login with Google</string>
+    <string name="login_silent_login">Silent login in progress</string>
+
+    <string name="settings_change_company">Change the company</string>
     <string name="settings_login_with_facebook">Automatic login with Facebook</string>
     <string name="settings_login_with_google">Automatic login with Google</string>
-    <string name="edit">Edit</string>
     <string name="settings_modify_company">Modify company data</string>
     <string name="settings_logout">Logout</string>
-    <string name="address">Address</string>
-    <string name="company_card_products_value">Products Value</string>
-    <string name="base_list_btn_default">CREATE NEW</string>
-    <string name="settings_change_company">Change the company</string>
-    <string name="create_company_header">Create Company</string>
+
     <string name="action_status_back_to_home">BACK TO HOME</string>
-    <string name="iv_succeed_icon">Succeed Icon</string>
     <string name="action_status_succeeded">Operation Succeeded</string>
-    <string name="iv_fail_icon">Fail Icon</string>
     <string name="action_status_failed">Operation Failed</string>
-    <string name="iv_next">Next</string>
+
+    <string name="list_component_no_data_to_display">No data to display</string>
+
+    <string name="row_company_list_products_value">Products Value</string>
+
+    <string name="toast_login_failed">Login failed</string>
+
     <string name="error_component_error_occurred">Error occurred</string>
     <string name="error_component_please_try_to_refresh">Please try to refresh</string>
-    <string name="iv_list_error">Failed</string>
-    <string name="list_component_no_data_to_display">No data to display</string>
-    <string name="contact_list_fl_btn_create">Create Contact</string>
-    <string name="search_list_search_view_query_hint">Search</string>
-    <string name="company_list_fl_btn_text">CREATE NEW COMPANY</string>
-    <string name="contact_details_fl_btn_text">MODIFY CONTACT</string>
-    <string name="product_model_list_fl_btn_create">CREATE PRODUCT MODEL</string>
-    <string name="product_model_details_fl_btn_text">MODIFY PRODUCT MODEL</string>
+
+    <string name="content_description_action_status_fail">Fail Icon</string>
+    <string name="content_description_action_status_succeed">Succeed Icon</string>
+    <string name="content_description_list_component_error">Failed</string>
+    <string name="content_description_login_app">App Icon</string>
+    <string name="content_description_settings_next">Next</string>
+
+    <string name="hint_invoice_create_base_invoice_name">Invoice Number</string>
+    <string name="hint_base_search_list_search_view">Search</string>
+
+    <string name="btn_text_base_list">CREATE NEW</string>
+    <string name="btn_text_company_list">CREATE NEW COMPANY</string>
+    <string name="btn_text_contact_details">MODIFY CONTACT</string>
+    <string name="btn_text_contact_list">Create Contact</string>
+    <string name="btn_text_finances_list">NEW RECORD</string>
+    <string name="btn_text_invoice_list">CREATE NEW INVOICE</string>
+    <string name="btn_text_product_model_details">MODIFY PRODUCT MODEL</string>
+    <string name="btn_text_product_model_list">CREATE PRODUCT MODEL</string>
+    <string name="btn_text_resources">New Warehouse</string>
+    <string name="btn_text_service_model_details">MODIFY SERVICE MODEL</string>
+    <string name="btn_text_service_model_list">CREATE SERVICE</string>
+    <string name="btn_text_warehouse_details">MODIFY WAREHOUSE</string>
+    <string name="btn_text_warehouse_list">Create Warehouse</string>
+
     <string name="header_settings">Settings</string>
-    <string name="header_companies">Companies</string>
     <string name="header_action_status">Action Status</string>
-    <string name="header_modify_company">Modify Company Data</string>
     <string name="header_finances">Finances</string>
     <string name="header_contacts">Contacts</string>
     <string name="header_dashboard">Dashboard</string>
     <string name="header_resources">Resources</string>
-    <string name="header_choose_company">Choose Company</string>
-    <string name="header_individual_contact_list">Individual Contacts</string>
-    <string name="header_create_contact">Create Contact</string>
+    <string name="header_company_list">Choose Company</string>
     <string name="header_company_contacts_list">Company Contacts</string>
+    <string name="header_company_create">Create Company</string>
+    <string name="header_company_modify">Modify Company Data</string>
+    <string name="header_contact_create">Create Contact</string>
     <string name="header_contact_details">Contact Details</string>
-    <string name="header_product_model_list">Product Models</string>
     <string name="header_contact_modify">Modify Contact</string>
-    <string name="header_product_model_modify">Modify Product Model</string>
-    <string name="header_product_model_details">Product Model Details</string>
+    <string name="header_individual_contact_list">Individual Contacts</string>
+    <string name="header_invoice_list">Invoices</string>
+    <string name="header_invoice_base_data_create">Fill Invoice Data</string>
     <string name="header_product_model_create">Create Product Model</string>
-    <string name="header_service_model_list">Services</string>
-    <string name="service_model_list_fl_btn_text">CREATE SERVICE</string>
+    <string name="header_product_model_details">Product Model Details</string>
+    <string name="header_product_model_list">Product Models</string>
+    <string name="header_product_model_modify">Modify Product Model</string>
+    <string name="header_service_model_create">Create Service</string>
     <string name="header_service_model_details">Service Model Details</string>
-    <string name="service_model_details_fl_btn_text">MODIFY SERVICE MODEL</string>
-    <string name="header_service_model_create">Modify Service</string>
-    <string name="header_create_service_model">Create Service</string>
-    <string name="header_warehouse_list">Warehouses</string>
-    <string name="warehouse_list_fl_btn_text">Create Warehouse</string>
-    <string name="resources_fl_btn_text">New Warehouse</string>
+    <string name="header_service_model_list">Services</string>
+    <string name="header_service_model_modify">Modify Service</string>
     <string name="header_warehouse_create">Create Warehouse</string>
-    <string name="header_modify_warehouse">Modify Warehouse</string>
     <string name="header_warehouse_details">Warehouse Details</string>
-    <string name="fragment_warehouse_details_fl_btn_text">MODIFY WAREHOUSE</string>
-    <string name="invoice_list_fl_btn_text">CREATE NEW INVOICE</string>
-    <string name="header_invoices_list_text">Invoices</string>
-    <string name="finances_list_fl_btn_text">NEW RECORD</string>
-    <string name="header_create_invoice_base_data_form">Fill Invoice Data</string>
-    <string name="fragment_create_invoice_base_invoice_name_hint">Invoice Number</string>
+    <string name="header_warehouse_list">Warehouses</string>
+    <string name="header_warehouse_modify">Modify Warehouse</string>
 </resources>

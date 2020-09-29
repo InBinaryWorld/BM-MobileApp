@@ -54,6 +54,11 @@ public class CompanyContactModifyFragment extends BaseFormFragment<UpdateCompany
     }
 
     @Override
+    protected int getButtonTextId() {
+        return R.string.header_contact_modify;
+    }
+
+    @Override
     protected FormInterface<UpdateCompanyContactRequest> createForm(
             LayoutInflater inflater, LinearLayout linearLayout, CompanyContactModifyFormConfig config) {
         return new CompanyContactModifyForm(inflater, linearLayout, config);

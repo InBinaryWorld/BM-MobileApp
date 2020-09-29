@@ -61,7 +61,7 @@
             <TextView
                 android:id="@+id/tv_product_value_label"
                 style="@style/BaseTextView.Label"
-                android:text="@string/company_card_products_value"
+                android:text="@string/row_company_list_products_value"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline4"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_address_label" />

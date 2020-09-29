@@ -82,7 +82,7 @@ public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<Prod
     }
 
     @Override
-    protected int getFlBtnTextResourceId() {
-        return R.string.product_model_details_fl_btn_text;
+    protected int getButtonTextId() {
+        return R.string.btn_text_product_model_details;
     }
 }

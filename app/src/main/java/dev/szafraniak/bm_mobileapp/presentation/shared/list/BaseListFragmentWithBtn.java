@@ -19,19 +19,19 @@ public abstract class BaseListFragmentWithBtn<T> extends BaseListFragment<T> {
     protected ExtendedFloatingActionButton flButton;
 
     @IdRes
-    protected int getFlButtonId() {
+    protected int getButtonId() {
         return R.id.flb_list_button;
     }
 
     @StringRes
-    protected abstract int getFlButtonTextId();
+    protected abstract int getButtonTextId();
 
-    protected abstract void onFlButtonClick(View view);
+    protected abstract void onButtonClick(View view);
 
     @AfterViews
     public void initializeFloatingButton() {
-        flButton = (ExtendedFloatingActionButton) findViewById(getFlButtonId());
-        flButton.setText(getFlButtonTextId());
-        flButton.setOnClickListener(this::onFlButtonClick);
+        flButton = (ExtendedFloatingActionButton) findViewById(getButtonId());
+        flButton.setText(getButtonTextId());
+        flButton.setOnClickListener(this::onButtonClick);
     }
 }

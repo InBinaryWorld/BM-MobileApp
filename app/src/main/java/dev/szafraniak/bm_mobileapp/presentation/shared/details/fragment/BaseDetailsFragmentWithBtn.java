@@ -19,19 +19,19 @@ public abstract class BaseDetailsFragmentWithBtn<T, C extends BaseDetailsConfig<
     protected ExtendedFloatingActionButton fblBtn;
 
     @IdRes
-    protected int getFlBtnId() {
+    protected int getButtonId() {
         return R.id.flb_details_button;
     }
 
     @StringRes
-    protected abstract int getFlBtnTextResourceId();
+    protected abstract int getButtonTextId();
 
     protected abstract void onFblClick(View view);
 
     @AfterViews
     public void initializeBaseDetailsFragmentWithBtn() {
-        this.fblBtn = (ExtendedFloatingActionButton) findViewById(getFlBtnId());
-        fblBtn.setText(getFlBtnTextResourceId());
+        this.fblBtn = (ExtendedFloatingActionButton) findViewById(getButtonId());
+        fblBtn.setText(getButtonTextId());
         fblBtn.setOnClickListener(this::onFblClick);
     }
 

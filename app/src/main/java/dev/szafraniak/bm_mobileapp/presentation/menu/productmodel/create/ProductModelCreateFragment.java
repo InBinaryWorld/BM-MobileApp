@@ -29,6 +29,11 @@ public class ProductModelCreateFragment extends BaseFormFragment<CreateProductMo
     }
 
     @Override
+    protected int getButtonTextId() {
+        return R.string.header_product_model_create;
+    }
+
+    @Override
     protected FormInterface<CreateProductModelRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateProductModelFormConfig config) {
         return new CreateProductModelForm(inflater, linearLayout, config);
     }

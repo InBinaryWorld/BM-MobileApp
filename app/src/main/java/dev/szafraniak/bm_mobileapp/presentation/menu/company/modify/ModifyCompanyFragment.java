@@ -38,6 +38,11 @@ public class ModifyCompanyFragment extends BaseFormFragment<UpdateCompanyRequest
     }
 
     @Override
+    protected int getButtonTextId() {
+        return R.string.header_company_modify;
+    }
+
+    @Override
     protected FormInterface<UpdateCompanyRequest> createForm(
             LayoutInflater inflater, LinearLayout linearLayout, ModifyCompanyFormConfig config) {
         return new ModifyCompanyForm(inflater, linearLayout, config);
@@ -50,7 +55,7 @@ public class ModifyCompanyFragment extends BaseFormFragment<UpdateCompanyRequest
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_modify_company;
+        return R.string.header_company_modify;
     }
 
     @Override

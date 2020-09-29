@@ -43,12 +43,12 @@ public class ServiceModelListFragment extends SearchListFragmentWithBtn<ServiceM
     }
 
     @Override
-    protected int getFlButtonTextId() {
-        return R.string.service_model_list_fl_btn_text;
+    protected int getButtonTextId() {
+        return R.string.btn_text_service_model_list;
     }
 
     @Override
-    protected void onFlButtonClick(View view) {
+    protected void onButtonClick(View view) {
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_SERVICE_MODEL_CREATE);
     }
 

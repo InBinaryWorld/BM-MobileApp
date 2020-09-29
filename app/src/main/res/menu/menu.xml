@@ -4,7 +4,7 @@
     <item
         android:id="@+id/menu_dashboard"
         android:icon="@drawable/ic_dashboard"
-        android:title="@string/menu_dashboard" />
+        android:title="@string/dashboard" />
     <item
         android:id="@+id/menu_contacts"
         android:icon="@drawable/ic_contact"
@@ -20,5 +20,5 @@
     <item
         android:id="@+id/menu_settings"
         android:icon="@drawable/ic_settings"
-        android:title="@string/menu_settings" />
+        android:title="@string/settings" />
 </menu>

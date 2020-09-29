@@ -27,7 +27,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_base_app_icon"
-                android:contentDescription="@string/app_icon" />
+                android:contentDescription="@string/content_description_login_app" />
 
             <TextView
                 android:id="@+id/tv_app_name"
@@ -59,7 +59,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_login_google"
                 style="@style/MaterialButton.Rounded.White.LoginButton"
-                android:text="@string/login_with_google"
+                android:text="@string/login_login_with_google"
                 app:layout_constraintBottom_toTopOf="@+id/btn_login_facebook"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +68,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_login_facebook"
                 style="@style/MaterialButton.Rounded.White.LoginButton"
-                android:text="@string/login_with_facebook"
+                android:text="@string/login_login_with_facebook"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -104,7 +104,7 @@
 
             <TextView
                 android:id="@+id/tv_silent_label"
-                android:text="@string/silent_login"
+                android:text="@string/login_silent_login"
                 style="@style/BaseTextView.AutoLogin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -139,7 +139,7 @@
 
             <TextView
                 android:id="@+id/tv_login_label"
-                android:text="@string/login_in_progress"
+                android:text="@string/login_login_in_progress"
                 style="@style/BaseTextView.AutoLogin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

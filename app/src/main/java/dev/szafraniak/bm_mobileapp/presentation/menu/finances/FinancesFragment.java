@@ -55,12 +55,12 @@ public class FinancesFragment extends BaseListFragmentWithBtn<FinancialRow> impl
     }
 
     @Override
-    protected int getFlButtonTextId() {
-        return R.string.finances_list_fl_btn_text;
+    protected int getButtonTextId() {
+        return R.string.btn_text_finances_list;
     }
 
     @Override
-    protected void onFlButtonClick(View view) {
+    protected void onButtonClick(View view) {
 
     }
 }

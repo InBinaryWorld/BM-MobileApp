@@ -52,6 +52,11 @@ public class ProductModelModifyFragment extends BaseFormFragment<UpdateProductMo
     }
 
     @Override
+    protected int getButtonTextId() {
+        return R.string.header_product_model_modify;
+    }
+
+    @Override
     protected FormInterface<UpdateProductModelRequest> createForm(
             LayoutInflater inflater, LinearLayout linearLayout, ModifyProductModelFormConfig config) {
         return new ModifyProductModelForm(inflater, linearLayout, config);

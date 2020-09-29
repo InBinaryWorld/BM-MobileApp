@@ -45,12 +45,12 @@ public class IndividualContactListFragment extends SearchListFragmentWithBtn<Ind
     }
 
     @Override
-    protected int getFlButtonTextId() {
-        return R.string.contact_list_fl_btn_create;
+    protected int getButtonTextId() {
+        return R.string.btn_text_contact_list;
     }
 
     @Override
-    protected void onFlButtonClick(View view) {
+    protected void onButtonClick(View view) {
         Navigator.backOneAndNavigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_CREATE);
     }
 

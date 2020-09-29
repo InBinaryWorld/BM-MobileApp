@@ -32,7 +32,7 @@
                     android:id="@+id/til_invoice_number"
                     style="@style/MaterialTextInputLayout"
                     app:endIconMode="clear_text"
-                    android:hint="@string/fragment_create_invoice_base_invoice_name_hint"
+                    android:hint="@string/hint_invoice_create_base_invoice_name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">

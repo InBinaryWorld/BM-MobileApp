@@ -52,6 +52,11 @@ public class WarehouseModifyFragment extends BaseFormFragment<UpdateWarehouseReq
     }
 
     @Override
+    protected int getButtonTextId() {
+        return R.string.header_warehouse_modify;
+    }
+
+    @Override
     protected FormInterface<UpdateWarehouseRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, UpdateWarehouseFormConfig config) {
         return new CreateWarehouseForm(inflater, linearLayout, config);
     }
@@ -63,7 +68,7 @@ public class WarehouseModifyFragment extends BaseFormFragment<UpdateWarehouseReq
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_modify_warehouse;
+        return R.string.header_warehouse_modify;
     }
 
     @Override

@@ -44,12 +44,12 @@ public class ProductsListFragment extends SearchListFragmentWithBtn<ProductModel
     }
 
     @Override
-    protected int getFlButtonTextId() {
-        return R.string.product_model_list_fl_btn_create;
+    protected int getButtonTextId() {
+        return R.string.btn_text_product_model_list;
     }
 
     @Override
-    protected void onFlButtonClick(View view) {
+    protected void onButtonClick(View view) {
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_PRODUCT_MODEL_CREATE);
     }
 

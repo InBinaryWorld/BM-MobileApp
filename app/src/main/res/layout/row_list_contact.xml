@@ -23,7 +23,7 @@
 
     <TextView
         android:id="@+id/tv_address_label"
-        android:text="@string/address"
+        android:text="Address"
         android:layout_marginStart="20dp"
         style="@style/BaseTextView.Label"
         app:layout_constraintBottom_toTopOf="@+id/guideline1"

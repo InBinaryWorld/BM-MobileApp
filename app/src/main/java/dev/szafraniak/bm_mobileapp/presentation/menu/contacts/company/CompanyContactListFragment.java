@@ -61,12 +61,12 @@ public class CompanyContactListFragment extends SearchListFragmentWithBtn<Compan
     }
 
     @Override
-    protected int getFlButtonTextId() {
-        return R.string.contact_list_fl_btn_create;
+    protected int getButtonTextId() {
+        return R.string.btn_text_contact_list;
     }
 
     @Override
-    protected void onFlButtonClick(View view) {
+    protected void onButtonClick(View view) {
         Navigator.backOneAndNavigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_CREATE);
     }
 }

@@ -25,6 +25,7 @@ public abstract class BaseForm<T, H extends BaseViewHolder,
         }
         if (lastValidationResult == null || lastValidationResult != isValid) {
             lastValidationResult = isValid;
+            System.out.println("!!!!!!!!!! Change state: " + isValid);
             if (parentChangeStateCallback != null) {
                 parentChangeStateCallback.notifyChanged(isValid);
             }

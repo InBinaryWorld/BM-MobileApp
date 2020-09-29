@@ -100,6 +100,7 @@ public class AddressForm extends BaseForm<Address, BaseViewHolder, AddressFormCo
 
     @Override
     protected void setupView(AddressFormConfig config) {
+        countryDetails.setValue("Poland");
         cityFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
         streetFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
         postalFormRow.setOnValidationStateChanged(this::onFieldStateChanged);

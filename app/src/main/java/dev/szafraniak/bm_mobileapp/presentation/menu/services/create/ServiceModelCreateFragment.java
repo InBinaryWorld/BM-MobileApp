@@ -30,6 +30,11 @@ public class ServiceModelCreateFragment extends BaseFormFragment<CreateServiceMo
     }
 
     @Override
+    protected int getButtonTextId() {
+        return R.string.header_service_model_create;
+    }
+
+    @Override
     protected FormInterface<CreateServiceModelRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateServiceFormConfig config) {
         return new CreateServiceForm(inflater, linearLayout, config);
     }
@@ -41,7 +46,7 @@ public class ServiceModelCreateFragment extends BaseFormFragment<CreateServiceMo
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_create_service_model;
+        return R.string.header_service_model_create;
     }
 
     @Override

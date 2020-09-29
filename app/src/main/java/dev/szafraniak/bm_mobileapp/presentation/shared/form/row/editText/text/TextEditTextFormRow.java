@@ -13,15 +13,15 @@ public class TextEditTextFormRow extends EditTextFormRow<String, TextEditTextFor
 
     @Override
     protected String parseInput(String inputValue) {
+        TextEditTextFormRowConfig config = getConfig();
+        if (config.isReadEmptyAsNull() && inputValue.isEmpty()) {
+            return null;
+        }
         return inputValue;
     }
 
     @Override
     protected String parseToDisplay(String value) {
-        TextEditTextFormRowConfig config = getConfig();
-        if (config.isReadEmptyAsNull() && value.isEmpty()) {
-            return null;
-        }
         return value;
     }
 

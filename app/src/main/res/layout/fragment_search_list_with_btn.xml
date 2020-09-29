@@ -25,7 +25,7 @@
 
         <SearchView
             android:id="@+id/sv_search"
-            android:queryHint="@string/search_list_search_view_query_hint"
+            android:queryHint="@string/hint_base_search_list_search_view"
             android:layout_width="match_parent"
             android:queryBackground="@android:color/transparent"
             android:layout_height="wrap_content"
@@ -46,14 +46,15 @@
         <LinearLayout
             android:id="@+id/ll_data_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <ListView
                 android:id="@+id/list"
                 style="@style/ListView.NoDivider.CompanyList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true" />
 
             <include
                 android:id="@+id/empty_list"

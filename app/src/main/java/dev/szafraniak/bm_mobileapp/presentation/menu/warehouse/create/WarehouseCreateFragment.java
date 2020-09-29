@@ -30,6 +30,11 @@ public class WarehouseCreateFragment extends BaseFormFragment<CreateWarehouseReq
     }
 
     @Override
+    protected int getButtonTextId() {
+        return R.string.header_warehouse_create;
+    }
+
+    @Override
     protected FormInterface<CreateWarehouseRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateWarehouseFormConfig config) {
         return new CreateWarehouseForm(inflater, linearLayout, config);
     }

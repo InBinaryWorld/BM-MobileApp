@@ -25,14 +25,15 @@
         <LinearLayout
             android:id="@+id/ll_data_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <ListView
                 android:id="@+id/list"
                 style="@style/ListView.NoDivider.CompanyList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true" />
 
             <include
                 android:id="@+id/empty_list"
@@ -43,6 +44,7 @@
                 layout="@layout/component_list_empty" />
 
         </LinearLayout>
+
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

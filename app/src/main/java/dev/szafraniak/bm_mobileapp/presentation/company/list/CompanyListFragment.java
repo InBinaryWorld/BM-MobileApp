@@ -35,7 +35,7 @@ public class CompanyListFragment extends BaseListFragmentWithBtn<CompanyListMode
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_choose_company;
+        return R.string.header_company_list;
     }
 
     @Override
@@ -55,12 +55,12 @@ public class CompanyListFragment extends BaseListFragmentWithBtn<CompanyListMode
     }
 
     @Override
-    protected int getFlButtonTextId() {
-        return R.string.company_list_fl_btn_text;
+    protected int getButtonTextId() {
+        return R.string.btn_text_company_list;
     }
 
     @Override
-    protected void onFlButtonClick(View view) {
+    protected void onButtonClick(View view) {
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CREATE);
     }
 }

@@ -30,6 +30,11 @@ public class IndividualContactCreateFragment extends BaseFormFragment<CreateIndi
     }
 
     @Override
+    protected int getButtonTextId() {
+        return R.string.header_contact_create;
+    }
+
+    @Override
     protected FormInterface<CreateIndividualContactRequest> createForm(
             LayoutInflater inflater, LinearLayout linearLayout, IndividualContactCreateFormConfig config) {
         return new IndividualContactCreateForm(inflater, linearLayout, config);
@@ -49,6 +54,6 @@ public class IndividualContactCreateFragment extends BaseFormFragment<CreateIndi
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_create_contact;
+        return R.string.header_contact_create;
     }
 }

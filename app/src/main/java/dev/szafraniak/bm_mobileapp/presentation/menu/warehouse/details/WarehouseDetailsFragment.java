@@ -82,8 +82,8 @@ public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehou
     }
 
     @Override
-    protected int getFlBtnTextResourceId() {
-        return R.string.fragment_warehouse_details_fl_btn_text;
+    protected int getButtonTextId() {
+        return R.string.btn_text_warehouse_details;
     }
 
 }
