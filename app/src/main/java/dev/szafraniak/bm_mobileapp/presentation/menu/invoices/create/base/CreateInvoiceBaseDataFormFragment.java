@@ -1,34 +1,24 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base;
 
-import android.widget.EditText;
-
-import com.google.android.material.textfield.TextInputLayout;
+import android.view.LayoutInflater;
+import android.widget.LinearLayout;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
-import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.CreateInvoiceRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.load.BaseSRLLoadFragment;
-import dev.szafraniak.bm_mobileapp.presentation.shared.utils.ViewUtils;
-import timber.log.Timber;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
 
-@EFragment(R.layout.fragment_create_invoice_base)
-public class CreateInvoiceBaseDataFormFragment extends BaseSRLLoadFragment {
-
-    @ViewById(R.id.til_invoice_number)
-    TextInputLayout invoiceNameLayout;
-
-    @ViewById(R.id.et_invoice_number)
-    EditText invoiceNameEditText;
+@EFragment(R.layout.fragment_base_form)
+public class CreateInvoiceBaseDataFormFragment extends BaseFormFragment<CreateInvoiceBaseDataModel, CreateInvoiceBaseDataFormConfig> implements CreateInvoiceBaseDataView {
 
     @Inject
-    CreateInvoiceBaseDataFormPresenter presenter;
+    CreateInvoiceBaseDataPresenter presenter;
 
     @AfterViews
     public void initialize() {
@@ -36,15 +26,26 @@ public class CreateInvoiceBaseDataFormFragment extends BaseSRLLoadFragment {
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
-        configureView();
     }
 
-    private void configureView() {
-        ViewUtils.addOnTextChangeListener(invoiceNameEditText, this::onInvoiceNameChange);
+    @Override
+    protected int getButtonTextId() {
+        return R.string.btn_text_invoice_create_base_data;
     }
 
-    private void onInvoiceNameChange(String s) {
+    @Override
+    protected FormInterface<CreateInvoiceBaseDataModel> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateInvoiceBaseDataFormConfig config) {
+        return new CreateInvoiceBaseDataForm(inflater, linearLayout, config);
+    }
 
+    @Override
+    protected void onSubmit(CreateInvoiceBaseDataModel object) {
+        presenter.goToItemsSection();
+    }
+
+    @Override
+    protected int getHeaderTextResourceId() {
+        return R.string.header_invoice_create_base_data;
     }
 
     @Override
@@ -52,24 +53,9 @@ public class CreateInvoiceBaseDataFormFragment extends BaseSRLLoadFragment {
         presenter.loadData();
     }
 
-    public void setData(CreateInvoiceRequest model, Company company) {
-        setInvoiceName(model, company);
-        showData();
-    }
-
-    private void setInvoiceName(CreateInvoiceRequest model, Company company) {
-
-    }
-
-
-    public void setError(Throwable e) {
-        Timber.e(e, "Failed To Load Create Invoice Data");
-        showError();
-    }
-
     @Override
-    protected int getHeaderTextResourceId() {
-        return R.string.header_invoice_base_data_create;
+    public void setData(CreateInvoiceBaseDataModel initModel, Company company) {
+        CreateInvoiceBaseDataFormConfig config = presenter.createConfig(company.getInvoicePrefix());
+        startForm(config, initModel);
     }
-
 }

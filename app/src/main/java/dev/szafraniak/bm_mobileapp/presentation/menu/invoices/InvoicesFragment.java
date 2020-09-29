@@ -37,7 +37,7 @@ public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice> implement
 
     @Override
     protected void onButtonClick(View view) {
-//        Navigator.navigateTo(this, FragmentFactory.);
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INVOICES_CREATE_BASE_DATA);
     }
 
     @Override

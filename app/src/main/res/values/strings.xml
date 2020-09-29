@@ -44,6 +44,7 @@
     <string name="hint_base_search_list_search_view">Search</string>
 
     <string name="btn_text_base_list">CREATE NEW</string>
+    <string name="btn_text_company_create">Create Company</string>
     <string name="btn_text_company_list">CREATE NEW COMPANY</string>
     <string name="btn_text_contact_details">MODIFY CONTACT</string>
     <string name="btn_text_contact_list">Create Contact</string>
@@ -85,4 +86,6 @@
     <string name="header_warehouse_details">Warehouse Details</string>
     <string name="header_warehouse_list">Warehouses</string>
     <string name="header_warehouse_modify">Modify Warehouse</string>
+    <string name="btn_text_invoice_create_base_data">Add Items</string>
+    <string name="header_invoice_create_base_data">Create Invoice</string>
 </resources>

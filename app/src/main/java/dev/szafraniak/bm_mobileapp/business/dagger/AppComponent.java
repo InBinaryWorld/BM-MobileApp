@@ -67,7 +67,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataFormFragment;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataFormPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductsListFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductsListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.create.ProductModelCreateFragment;
@@ -273,5 +273,6 @@ public interface AppComponent {
 
     void inject(CreateInvoiceBaseDataFormFragment createInvoiceBaseDataFormFragment);
 
-    void inject(CreateInvoiceBaseDataFormPresenter createInvoiceBaseDataFormPresenter);
+    void inject(CreateInvoiceBaseDataPresenter createInvoiceBaseDataPresenter);
+
 }

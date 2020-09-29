@@ -13,7 +13,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.utils.ViewUtils;
 
 public abstract class EditTextFormRow<T, C extends EditTextFormRowConfig<T>> extends BaseFormRow<T, EditTextViewHolder, C> {
 
-    private final static String REQUIRED_HINT_SUFFIX = " *";
+    private final static String REQUIRED_HINT_SUFFIX = "*";
 
     @LayoutRes
     private final static int layoutId = R.layout.row_edit_text;

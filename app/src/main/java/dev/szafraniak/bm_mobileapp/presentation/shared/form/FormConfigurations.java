@@ -78,6 +78,14 @@ public final class FormConfigurations {
         return config;
     }
 
+    public static TextEditTextFormRowConfig getInvoiceNumberConfig() {
+        TextEditTextFormRowConfig config = getBaseEditConfig();
+        config.setLabelText("Invoice Number");
+        config.setInvalidMessage("3-20 Signs");
+        config.setValidator(Validator::validateInvoiceNumber);
+        return config;
+    }
+
     public static TextEditTextFormRowConfig getCompanyNameConfig() {
         TextEditTextFormRowConfig config = getBaseEditConfig();
         config.setLabelText("Company name");
@@ -213,7 +221,6 @@ public final class FormConfigurations {
         config.setVisibleOnSetValueNull(true);
         config.setReadEmptyAsNull(true);
         config.setRequired(true);
-        ;
         return config;
     }
 

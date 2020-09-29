@@ -20,7 +20,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataFormPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductsListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.create.ProductModelCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.details.ProductModelDetailsPresenter;
@@ -209,8 +209,8 @@ public class MenuModule {
 
     @Provides
     @Singleton
-    public CreateInvoiceBaseDataFormPresenter provideCreateInvoiceBaseDataFormPresenter(Application app) {
-        return new CreateInvoiceBaseDataFormPresenter(app);
+    public CreateInvoiceBaseDataPresenter provideCreateInvoiceBaseDataPresenter(Application app) {
+        return new CreateInvoiceBaseDataPresenter(app);
     }
 
 }
