@@ -6,15 +6,16 @@ import android.view.ViewGroup;
 
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsInterface;
+import lombok.AccessLevel;
 import lombok.Getter;
 
 public abstract class BaseDetails<T, H extends BaseViewHolder,
         C extends BaseDetailsConfig<T>> implements DetailsInterface<T> {
 
-    @Getter
+    @Getter(AccessLevel.PROTECTED)
     private final C config;
 
-    @Getter
+    @Getter(AccessLevel.PROTECTED)
     private final H viewHolder;
 
     public BaseDetails(LayoutInflater inflater, ViewGroup viewGroup, C config) {
@@ -48,4 +49,5 @@ public abstract class BaseDetails<T, H extends BaseViewHolder,
         T value = shouldShowDefaultValue(input) ? config.getDefaultValue() : input;
         showValueOnView(value);
     }
+
 }

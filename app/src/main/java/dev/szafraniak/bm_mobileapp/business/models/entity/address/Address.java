@@ -29,11 +29,11 @@ public class Address extends FilterValue {
     }
 
     public String getShortAddress() {
-        return String.format("%s, %s", city, country);
+        return String.format("%s %s, %s", postalCode, city, country);
     }
 
-    public String getFullAddress() {
-        return String.format("%s %s, %s %s, %s", street, getFullNumber(), postalCode, city, country);
+    public String getAddressWithNewLine() {
+        return String.format("%s %s\n%s %s, %s", street, getFullNumber(), postalCode, city, country);
     }
 
     @Override

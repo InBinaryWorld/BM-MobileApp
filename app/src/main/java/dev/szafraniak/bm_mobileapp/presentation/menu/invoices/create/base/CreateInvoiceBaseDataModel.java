@@ -2,19 +2,20 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base;
 
 import java.time.LocalDate;
 
-import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.InvoiceContact;
+import dev.szafraniak.bm_mobileapp.business.models.entity.contact.Contact;
+import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethod;
 import lombok.Data;
 
 @Data
 public class CreateInvoiceBaseDataModel {
 
-    private InvoiceContact buyer;
+    private Contact buyer;
 
-    private InvoiceContact receiver;
+    private Contact receiver;
 
     private String invoiceNumber;
 
-    private String bankAccount;
+    private PaymentMethod paymentMethod;
 
     private LocalDate dueDate;
 

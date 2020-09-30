@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.shared.form.models.address;
+package dev.szafraniak.bm_mobileapp.presentation.shared.form.components.address;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

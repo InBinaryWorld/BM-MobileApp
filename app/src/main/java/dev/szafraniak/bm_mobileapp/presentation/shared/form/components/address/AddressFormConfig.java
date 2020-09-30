@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.shared.form.models.address;
+package dev.szafraniak.bm_mobileapp.presentation.shared.form.components.address;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;

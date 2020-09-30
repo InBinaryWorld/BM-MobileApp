@@ -74,6 +74,10 @@
         <item name="android:paddingVertical">8dp</item>
     </style>
 
+    <style name="Row.Form.ClickableFormRow">
+        <item name="android:paddingVertical">12dp</item>
+    </style>
+
     <style name="Row.Form.Button">
         <item name="android:paddingVertical">10dp</item>
     </style>
@@ -87,7 +91,6 @@
         <item name="paddingEnd">10dp</item>
     </style>
 
-    <style name="Row.SettingsRow.Array"></style>
 
     <style name="BottomNavigationView">
         <item name="android:layout_height">wrap_content</item>
@@ -152,6 +155,7 @@
     <style name="BaseTextView" parent="@style/Widget.AppCompat.TextView">
         <item name="fontFamily">@font/roboto</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">-0.02</item>
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
@@ -163,36 +167,9 @@
         <item name="android:textColor">@color/colorBlueDark</item>
     </style>
 
-    <style name="BaseTextView.Label">
-        <item name="android:textColor">@color/colorBlack60a</item>
-        <item name="android:fontFamily">@font/roboto_light</item>
-        <item name="android:letterSpacing">-0.02</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="BaseTextView.Value">
-
-    </style>
-
-    <style name="BaseTextView.Value.Accent">
-        <item name="android:textColor">@color/colorCoral</item>
-    </style>
-
-    <style name="BaseTextView.ContactList">
-        <item name="android:textColor">@color/colorError</item>
-    </style>
-
     <style name="BaseTextView.Title.ContactListRow">
         <item name="android:textSize">18sp</item>
         <item name="android:letterSpacing">-0.03</item>
-    </style>
-
-    <style name="BaseTextView.ContactList.Label">
-        <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="BaseTextView.ContactList.Value">
-        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="BaseTextView.Error">
@@ -201,7 +178,6 @@
 
     <style name="BaseTextView.Error.S">
         <item name="fontFamily">@font/roboto_bold</item>
-        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="BaseTextView.Error.M">
@@ -211,6 +187,24 @@
     <style name="BaseTextView.Empty">
         <item name="android:textColor">@color/colorBlack60a</item>
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="BaseTextView.Label">
+        <item name="android:textColor">@color/colorBlack60a</item>
+    </style>
+
+    <style name="BaseTextView.Label.S">
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="BaseTextView.Label.M">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="BaseTextView.Value" />
+
+    <style name="BaseTextView.Value.Accent">
+        <item name="android:textColor">@color/colorCoral</item>
     </style>
 
     <style name="BaseTextView.ActionResult">
@@ -227,28 +221,9 @@
         <item name="android:textColor">@color/colorError</item>
     </style>
 
-    <style name="BaseTextView.Form">
-
-    </style>
-
-    <style name="BaseTextView.Form.Header">
-        <item name="android:textColor">@color/colorBlack60a</item>
-        <item name="android:fontFamily">@font/roboto_light</item>
-        <item name="android:letterSpacing">-0.02</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="BaseTextView.Form.Error">
-        <item name="android:textColor">@color/colorError</item>
-        <item name="android:fontFamily">@font/roboto_light</item>
-        <item name="android:letterSpacing">-0.02</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
     <style name="BaseTextView.RowSettings">
         <item name="android:textSize">16sp</item>
         <item name="android:layout_width">0dp</item>
-        <item name="android:letterSpacing">-0.02</item>
     </style>
 
     <style name="BaseTextView.HeaderName">

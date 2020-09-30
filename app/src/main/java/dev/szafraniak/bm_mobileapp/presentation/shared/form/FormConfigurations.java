@@ -1,15 +1,22 @@
 package dev.szafraniak.bm_mobileapp.presentation.shared.form;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
+import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethod;
+import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethodCash;
+import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethodTransfer;
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.utils.Validator;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.models.address.AddressFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.models.price.PriceFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.address.AddressFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.price.PriceFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.number.NumberEditTextFormRowConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextEditTextFormRowConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.special.contact.ClickableContactFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.special.payment.ClickablePaymentFormConfig;
 
 public final class FormConfigurations {
 
@@ -225,4 +232,28 @@ public final class FormConfigurations {
     }
 
 
+    public static ClickableContactFormConfig getClickableContactConfig() {
+        ClickableContactFormConfig config = new ClickableContactFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setRequired(true);
+        config.setLabel("Contact");
+        config.setEmptyText("Contact have not been provided");
+        return config;
+    }
+
+    public static ClickablePaymentFormConfig getClickablePaymentConfig() {
+        Map<Class<? extends PaymentMethod>, String> displayNames = new HashMap<>();
+        displayNames.put(PaymentMethodCash.class, "Cash");
+        displayNames.put(PaymentMethodTransfer.class, "Transfer");
+
+        ClickablePaymentFormConfig config = new ClickablePaymentFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setRequired(true);
+        config.setLabel("Payment");
+        config.setDueDateLabel("Due date:");
+        config.setPaymentTypeLabel("Payment method:");
+        config.setEmptyText("Payment details have not been provided");
+        config.setPaymentMethodDisplayNames(displayNames);
+        return config;
+    }
 }

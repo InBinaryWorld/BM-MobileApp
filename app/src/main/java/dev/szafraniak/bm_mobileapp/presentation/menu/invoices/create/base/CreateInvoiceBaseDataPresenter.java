@@ -12,6 +12,8 @@ import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.CreateInvoiceRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextEditTextFormRowConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.special.contact.ClickableContactFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.special.payment.ClickablePaymentFormConfig;
 import lombok.Setter;
 
 public class CreateInvoiceBaseDataPresenter {
@@ -28,7 +30,6 @@ public class CreateInvoiceBaseDataPresenter {
     @Setter
     protected CreateInvoiceBaseDataView view;
 
-
     public CreateInvoiceBaseDataPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
     }
@@ -40,12 +41,9 @@ public class CreateInvoiceBaseDataPresenter {
         CreateInvoiceBaseDataFormConfig config = new CreateInvoiceBaseDataFormConfig();
         config.setVisibleOnSetValueNull(true);
         config.setInvoiceNumberConfig(getInvoiceNumberConfig(invoicePrefix));
-        return config;
-    }
-
-    private TextEditTextFormRowConfig getInvoiceNumberConfig(String invoicePrefix) {
-        TextEditTextFormRowConfig config = FormConfigurations.getInvoiceNumberConfig();
-        config.setDefaultValue(invoicePrefix);
+        config.setBuyerConfig(getBuyerConfig());
+        config.setReceiverConfig(getReceiverConfig());
+        config.setPaymentConfig(getPaymentConfig());
         return config;
     }
 
@@ -66,7 +64,31 @@ public class CreateInvoiceBaseDataPresenter {
         initModel.setReceiver(model.getReceiver());
         initModel.setBuyer(model.getBuyer());
         initModel.setDueDate(model.getDueDate());
-        initModel.setBankAccount(model.getBankAccount());
+        initModel.setPaymentMethod(model.getPaymentMethod());
         return initModel;
     }
+
+    private TextEditTextFormRowConfig getInvoiceNumberConfig(String invoicePrefix) {
+        TextEditTextFormRowConfig config = FormConfigurations.getInvoiceNumberConfig();
+        config.setDefaultValue(invoicePrefix);
+        return config;
+    }
+
+    private ClickableContactFormConfig getReceiverConfig() {
+        ClickableContactFormConfig config = FormConfigurations.getClickableContactConfig();
+        config.setLabel("Receiver");
+        config.setRequired(false);
+        return config;
+    }
+
+    private ClickableContactFormConfig getBuyerConfig() {
+        ClickableContactFormConfig config = FormConfigurations.getClickableContactConfig();
+        config.setLabel("Buyer");
+        return config;
+    }
+
+    private ClickablePaymentFormConfig getPaymentConfig() {
+        return FormConfigurations.getClickablePaymentConfig();
+    }
+
 }

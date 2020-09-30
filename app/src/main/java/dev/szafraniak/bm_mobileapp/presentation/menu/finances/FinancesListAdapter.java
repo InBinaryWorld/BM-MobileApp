@@ -24,7 +24,7 @@ public class FinancesListAdapter extends BaseAdapter<FinancialRow> {
         if (convertView == null) {
             convertView = inflater.inflate(resourceId, parent, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.name = convertView.findViewById(R.id.tv_name);
+            viewHolder.name = convertView.findViewById(R.id.tv_payment_type);
             convertView.setTag(viewHolder);
         }
         FinancialRow item = getItem(position);

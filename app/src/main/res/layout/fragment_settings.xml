@@ -86,7 +86,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_modify_company_data"
-                style="@style/Row.SettingsRow.Array">
+                style="@style/Row.SettingsRow">
 
                 <TextView
                     android:id="@+id/textView"
@@ -104,7 +104,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/content_description_settings_next" />
+                    android:contentDescription="@string/content_description_next_arrow" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -117,7 +117,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_change_company"
-                style="@style/Row.SettingsRow.Array">
+                style="@style/Row.SettingsRow">
 
                 <TextView
                     style="@style/BaseTextView.RowSettings"
@@ -134,7 +134,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/content_description_settings_next" />
+                    android:contentDescription="@string/content_description_next_arrow" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -146,7 +146,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_logout"
-                style="@style/Row.SettingsRow.Array">
+                style="@style/Row.SettingsRow">
 
                 <TextView
                     style="@style/BaseTextView.RowSettings"
@@ -163,7 +163,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/content_description_settings_next" />
+                    android:contentDescription="@string/content_description_next_arrow" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,9 +1,16 @@
 package dev.szafraniak.bm_mobileapp.business.utils;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
+import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.CompanyContact;
+import dev.szafraniak.bm_mobileapp.business.models.entity.contact.Contact;
+import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
+import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethod;
+import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethodCash;
+import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethodTransfer;
 
 public final class Validator {
 
@@ -125,8 +132,64 @@ public final class Validator {
         return number.signum() >= 0 && number.scale() == 0;
     }
 
+    public static boolean validateBankAccount(String bankAccount) {
+        return Pattern.matches(BANK_ACCOUNT, bankAccount);
+    }
+
     private static boolean length(String value, int min, int max) {
         int len = value.length();
         return len >= min && len <= max;
+    }
+
+    public static boolean validateContact(Contact value) {
+        if (value instanceof IndividualContact) {
+            return validateContact((IndividualContact) value);
+        } else if (value instanceof CompanyContact) {
+            return validateContact((CompanyContact) value);
+        }
+        return false;
+    }
+
+    public static boolean validateContact(CompanyContact value) {
+        String name = value.getName();
+        String taxId = value.getTaxIdentityNumber();
+        String phone = value.getPhone();
+        Address address = value.getAddress();
+        return name != null && validateCompanyName(name)
+                && taxId != null && validateTaxIdentityNumber(taxId)
+                && address != null && validateAddress(address)
+                && (phone == null || validatePhoneNumber(phone));
+    }
+
+    public static boolean validateContact(IndividualContact value) {
+        String firstName = value.getFirstName();
+        String lastName = value.getLastName();
+        String phone = value.getPhone();
+        Address address = value.getAddress();
+        return firstName != null && validateFirstName(firstName)
+                && lastName != null && validateLastName(lastName)
+                && address != null && validateAddress(address)
+                && (phone == null || validatePhoneNumber(phone));
+    }
+
+    public static boolean validatePaymentMethod(PaymentMethod paymentMethod) {
+        if (paymentMethod instanceof PaymentMethodCash) {
+            return validatePaymentMethod((PaymentMethodCash) paymentMethod);
+        } else if (paymentMethod instanceof PaymentMethodTransfer) {
+            return validatePaymentMethod((PaymentMethodTransfer) paymentMethod);
+        }
+        return false;
+    }
+
+    public static boolean validatePaymentMethod(PaymentMethodCash paymentMethod) {
+        return true;
+    }
+
+    public static boolean validatePaymentMethod(PaymentMethodTransfer paymentMethod) {
+        return validateBankAccount(paymentMethod.getBankAccount());
+    }
+
+    public static boolean validateDueDate(LocalDate dueDate) {
+        return dueDate.compareTo(LocalDate.now()) >= 0;
     }
 }

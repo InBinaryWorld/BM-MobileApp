@@ -4,11 +4,10 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
 
 public abstract class BaseFormRow<T, H extends BaseViewHolder,
-        C extends BaseFormRowConfig<T>> extends BaseForm<T, H, C> implements FormInterface<T> {
+        C extends BaseFormRowConfig<T>> extends BaseForm<T, H, C> {
 
     private final FormRowValidator<T> validator;
 

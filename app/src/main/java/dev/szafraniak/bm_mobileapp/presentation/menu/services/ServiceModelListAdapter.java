@@ -24,7 +24,7 @@ public class ServiceModelListAdapter extends BaseFilterAdapter<ServiceModel> {
         if (convertView == null) {
             convertView = inflater.inflate(resourceId, parent, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.name = convertView.findViewById(R.id.tv_name);
+            viewHolder.name = convertView.findViewById(R.id.tv_payment_type);
             convertView.setTag(viewHolder);
         }
         ServiceModel item = getItem(position);

@@ -11,7 +11,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.CreateCompanyRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.models.address.AddressForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.address.AddressForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextEditTextFormRow;
 
 public class CreateCompanyForm extends BaseForm<CreateCompanyRequest, BaseViewHolder, CreateCompanyFormConfig> {

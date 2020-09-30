@@ -24,7 +24,7 @@ public class ProductModelListAdapter extends BaseFilterAdapter<ProductModel> {
         if (convertView == null) {
             convertView = inflater.inflate(resourceId, parent, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.name = convertView.findViewById(R.id.tv_name);
+            viewHolder.name = convertView.findViewById(R.id.tv_payment_type);
             convertView.setTag(viewHolder);
         }
         ProductModel item = getItem(position);

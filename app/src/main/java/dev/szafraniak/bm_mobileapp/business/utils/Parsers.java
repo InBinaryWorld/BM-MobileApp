@@ -3,6 +3,7 @@ package dev.szafraniak.bm_mobileapp.business.utils;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.time.LocalDate;
 
 public final class Parsers {
 
@@ -76,4 +77,10 @@ public final class Parsers {
         }
     }
 
+    public static String safeFormat(LocalDate dueDate) {
+        if (dueDate != null) {
+            return dueDate.toString();
+        }
+        return null;
+    }
 }

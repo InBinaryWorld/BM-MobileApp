@@ -4,15 +4,12 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsInterface;
 
 public interface FormInterface<T> extends DetailsInterface<T> {
 
-    void setOnValidationStateChanged(Callback onValidationStateChangeCallback);
+    void setOnValidationStateChanged(ChangeCallback onValidationStateChangeCallback);
 
-    void setOnValueChange(Callback onValueChangeCallback);
+    void setOnValueChange(ChangeCallback onValueChangeCallback);
 
     T getValue();
 
     boolean isValid();
 
-    interface Callback {
-        void notifyChanged(boolean isValid);
-    }
 }

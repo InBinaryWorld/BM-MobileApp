@@ -11,7 +11,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.CreateServiceModelRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.models.price.PriceForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.price.PriceForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextEditTextFormRow;
 
 public class CreateServiceForm extends BaseForm<CreateServiceModelRequest, BaseViewHolder, CreateServiceFormConfig> {

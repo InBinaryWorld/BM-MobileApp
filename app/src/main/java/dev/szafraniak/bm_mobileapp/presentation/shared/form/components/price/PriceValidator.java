@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.shared.form.models.price;
+package dev.szafraniak.bm_mobileapp.presentation.shared.form.components.price;
 
 import java.math.BigDecimal;
 

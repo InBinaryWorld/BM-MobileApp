@@ -38,7 +38,7 @@
     <string name="content_description_action_status_succeed">Succeed Icon</string>
     <string name="content_description_list_component_error">Failed</string>
     <string name="content_description_login_app">App Icon</string>
-    <string name="content_description_settings_next">Next</string>
+    <string name="content_description_next_arrow">Next</string>
 
     <string name="hint_invoice_create_base_invoice_name">Invoice Number</string>
     <string name="hint_base_search_list_search_view">Search</string>
