@@ -134,8 +134,6 @@ public final class DetailsConfigurations {
     private static <T> SimpleDetailsConfig<T> getSimpleConfig() {
         SimpleDetailsConfig<T> config = new SimpleDetailsConfig<>();
         config.setVisibleOnSetValueNull(false);
-        config.setLabel(null);
-        config.setDefaultValue(null);
         return config;
     }
 

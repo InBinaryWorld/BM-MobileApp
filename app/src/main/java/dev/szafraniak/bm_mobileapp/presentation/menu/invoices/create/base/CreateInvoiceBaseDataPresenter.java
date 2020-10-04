@@ -10,10 +10,13 @@ import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
 import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsManager;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.CreateInvoiceRequest;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceBaseDataModel;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentModel;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.contact.ClickableContactFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.form.CreateInvoiceBaseDataFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.payment.ClickablePaymentFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextEditTextFormRowConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.special.contact.ClickableContactFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.special.payment.ClickablePaymentFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormConfig;
 import lombok.Setter;
 
 public class CreateInvoiceBaseDataPresenter {
@@ -60,16 +63,20 @@ public class CreateInvoiceBaseDataPresenter {
 
     private CreateInvoiceBaseDataModel createInitModel(CreateInvoiceRequest model) {
         CreateInvoiceBaseDataModel initModel = new CreateInvoiceBaseDataModel();
+        if (model.getPaymentMethod() != null || model.getDueDate() != null) {
+            PaymentModel paymentModel = new PaymentModel();
+            paymentModel.setPaymentMethod(model.getPaymentMethod());
+            paymentModel.setDueDate(model.getDueDate());
+            initModel.setPayment(paymentModel);
+        }
         initModel.setInvoiceNumber(model.getInvoiceNumber());
         initModel.setReceiver(model.getReceiver());
         initModel.setBuyer(model.getBuyer());
-        initModel.setDueDate(model.getDueDate());
-        initModel.setPaymentMethod(model.getPaymentMethod());
         return initModel;
     }
 
-    private TextEditTextFormRowConfig getInvoiceNumberConfig(String invoicePrefix) {
-        TextEditTextFormRowConfig config = FormConfigurations.getInvoiceNumberConfig();
+    private TextFormConfig<String> getInvoiceNumberConfig(String invoicePrefix) {
+        TextFormConfig<String> config = FormConfigurations.getInvoiceNumberConfig();
         config.setDefaultValue(invoicePrefix);
         return config;
     }

@@ -29,6 +29,10 @@ public class IndividualContactModifyForm extends BaseForm<UpdateIndividualContac
     }
 
     @Override
+    protected void updateView(boolean isValid) {
+    }
+
+    @Override
     protected void showValueOnView(UpdateIndividualContactRequest value) {
         if (value == null) {
             firstNameFormRow.setValue(null);
@@ -81,16 +85,13 @@ public class IndividualContactModifyForm extends BaseForm<UpdateIndividualContac
     }
 
     @Override
-    protected void setupView(IndividualContactModifyFormConfig config) {
-        firstNameFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        lastNameFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        phoneFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        addressForm.setOnValidationStateChanged(this::onFieldStateChanged);
+    protected void setupView(LayoutInflater inflater, IndividualContactModifyFormConfig config) {
+        firstNameFormRow.setOnValidationStateChanged(this::onValueChange);
+        lastNameFormRow.setOnValidationStateChanged(this::onValueChange);
+        phoneFormRow.setOnValidationStateChanged(this::onValueChange);
+        addressForm.setOnValidationStateChanged(this::onValueChange);
     }
 
-    private void onFieldStateChanged(boolean b) {
-        onValueChange();
-    }
 
     @Override
     public boolean isValid() {

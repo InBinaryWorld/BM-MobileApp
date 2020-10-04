@@ -4,22 +4,25 @@ import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.math.BigDecimal;
 
 import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
-import dev.szafraniak.bm_mobileapp.presentation.shared.EditTextViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.EditTextFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormViewHolder;
 
-public class DecimalEditTextFormRow extends EditTextFormRow<BigDecimal, NumberEditTextFormRowConfig> {
+public class DecimalEditTextFormRow extends EditTextFormRow<BigDecimal, TextFormConfig<BigDecimal>> {
 
-    public DecimalEditTextFormRow(LayoutInflater inflater, ViewGroup viewGroup, NumberEditTextFormRowConfig config) {
+    public DecimalEditTextFormRow(LayoutInflater inflater, ViewGroup viewGroup, TextFormConfig<BigDecimal> config) {
         super(inflater, viewGroup, config);
     }
 
     @Override
     protected BigDecimal parseInput(String inputValue) {
-        NumberEditTextFormRowConfig config = getConfig();
-        return Parsers.safeToBigDecimal(inputValue, config.isZeroOnEmpty());
+        TextFormConfig<BigDecimal> config = getConfig();
+        return Parsers.safeToBigDecimal(inputValue, !config.isReadEmptyAsNull());
     }
 
     @Override
@@ -28,9 +31,9 @@ public class DecimalEditTextFormRow extends EditTextFormRow<BigDecimal, NumberEd
     }
 
     @Override
-    protected void setupView(NumberEditTextFormRowConfig config) {
-        EditTextViewHolder holder = getViewHolder();
+    protected void setupView(LayoutInflater inflater, TextFormConfig<BigDecimal> config) {
+        TextFormViewHolder<TextInputEditText> holder = getViewHolder();
         holder.editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        super.setupView(config);
+        super.setupView(inflater, config);
     }
 }

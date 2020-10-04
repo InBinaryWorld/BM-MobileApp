@@ -10,11 +10,10 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.editText.text.TextEditTextDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextEditTextFormRow;
 
-public class AddressForm extends BaseForm<Address, BaseViewHolder, AddressFormConfig> implements FormInterface<Address> {
+public class AddressForm extends BaseForm<Address, BaseViewHolder, AddressFormConfig> {
 
     @LayoutRes
     private static final int layoutId = R.layout.form_base_group;
@@ -28,6 +27,10 @@ public class AddressForm extends BaseForm<Address, BaseViewHolder, AddressFormCo
 
     public AddressForm(LayoutInflater inflater, ViewGroup viewGroup, AddressFormConfig config) {
         super(inflater, viewGroup, config);
+    }
+
+    @Override
+    protected void updateView(boolean isValid) {
     }
 
     @Override
@@ -99,17 +102,13 @@ public class AddressForm extends BaseForm<Address, BaseViewHolder, AddressFormCo
     }
 
     @Override
-    protected void setupView(AddressFormConfig config) {
+    protected void setupView(LayoutInflater inflater, AddressFormConfig config) {
         countryDetails.setValue("Poland");
-        cityFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        streetFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        postalFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        houseFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        apartmentFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-    }
-
-    void onFieldStateChanged(boolean isValid) {
-        onValueChange();
+        cityFormRow.setOnValidationStateChanged(this::onValueChange);
+        houseFormRow.setOnValidationStateChanged(this::onValueChange);
+        streetFormRow.setOnValidationStateChanged(this::onValueChange);
+        postalFormRow.setOnValidationStateChanged(this::onValueChange);
+        apartmentFormRow.setOnValidationStateChanged(this::onValueChange);
     }
 
 }

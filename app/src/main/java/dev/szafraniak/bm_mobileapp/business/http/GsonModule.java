@@ -12,8 +12,8 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.Company
 import dev.szafraniak.bm_mobileapp.business.models.entity.contact.Contact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethod;
-import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethodCash;
-import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethodTransfer;
+import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentCash;
+import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentTransfer;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
@@ -28,8 +28,8 @@ public class GsonModule {
                 .registerSubtype(CompanyContact.class, "company");
         RuntimeTypeAdapterFactory<PaymentMethod> paymentFactory = RuntimeTypeAdapterFactory
                 .of(PaymentMethod.class, "type") // typeFieldName
-                .registerSubtype(PaymentMethodCash.class, "cash")
-                .registerSubtype(PaymentMethodTransfer.class, "transfer");
+                .registerSubtype(PaymentCash.class, "cash")
+                .registerSubtype(PaymentTransfer.class, "transfer");
         return new GsonBuilder()
                 .registerTypeAdapterFactory(contactFactory)
                 .registerTypeAdapterFactory(paymentFactory)

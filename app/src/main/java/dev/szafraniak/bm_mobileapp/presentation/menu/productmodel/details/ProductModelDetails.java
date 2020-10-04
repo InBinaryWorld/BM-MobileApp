@@ -70,7 +70,7 @@ public class ProductModelDetails extends BaseDetails<ProductModel, BaseViewHolde
     }
 
     @Override
-    protected void setupView(ProductModelDetailsConfig config) {
+    protected void setupView(LayoutInflater inflater, ProductModelDetailsConfig config) {
         // Dodatkowa konfiguracja
     }
 

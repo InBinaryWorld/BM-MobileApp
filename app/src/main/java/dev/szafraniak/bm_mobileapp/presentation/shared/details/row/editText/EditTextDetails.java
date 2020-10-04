@@ -38,7 +38,7 @@ public abstract class EditTextDetails<T, C extends SimpleDetailsConfig<T>> exten
     }
 
     @Override
-    protected void setupView(C config) {
+    protected void setupView(LayoutInflater inflater, C config) {
         EditTextViewHolder holder = getViewHolder();
         holder.layout.setHint(config.getLabel());
         holder.layout.setEndIconVisible(false);

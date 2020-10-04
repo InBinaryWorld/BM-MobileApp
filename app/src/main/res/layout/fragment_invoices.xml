@@ -33,7 +33,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_show_finances"
-                    style="@style/MaterialButton.FullRounded.BlueDark.Form"
+                    style="@style/MaterialButton.FullRounded"
                     android:text="Show Finances"
                     android:layout_margin="24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +45,7 @@
 
             <ListView
                 android:id="@+id/list"
-                style="@style/ListView.NoDivider.CompanyList"
+                style="@style/ListView.VerticalPadding"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

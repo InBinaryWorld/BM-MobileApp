@@ -11,7 +11,7 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragment;
 
 @EFragment
-public abstract class SearchListFragment<T> extends BaseListFragment<T> {
+public abstract class SearchListFragment<T extends FilterValue> extends BaseListFragment<T, BaseFilterListAdapter<T>> {
 
     SearchView searchView;
 
@@ -36,7 +36,7 @@ public abstract class SearchListFragment<T> extends BaseListFragment<T> {
 
         @Override
         public boolean onQueryTextChange(String s) {
-            adapter.getFilter().filter(s);
+            adapter.filter(s);
             return false;
         }
     }

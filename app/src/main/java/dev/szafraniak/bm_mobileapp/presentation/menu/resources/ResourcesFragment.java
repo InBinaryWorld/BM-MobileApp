@@ -1,6 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.resources;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.google.gson.Gson;
@@ -8,6 +9,8 @@ import com.google.gson.Gson;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -17,14 +20,13 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.details.WarehouseDetailsFragment;
-import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWithBtn;
 
 import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_PRODUCT_MODEL_LIST;
 import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_SERVICE_MODEL_LIST;
 
 @EFragment(R.layout.fragment_resources)
-public class ResourcesFragment extends BaseListFragmentWithBtn<Warehouse> implements ResourcesView {
+public class ResourcesFragment extends BaseListFragmentWithBtn<Warehouse, ResourcesListAdapter> implements ResourcesView {
 
     @Inject
     ResourcesPresenter presenter;
@@ -61,8 +63,8 @@ public class ResourcesFragment extends BaseListFragmentWithBtn<Warehouse> implem
     }
 
     @Override
-    protected BaseAdapter<Warehouse> createAdapter() {
-        return new ResourcesListAdapter(getContext());
+    protected ResourcesListAdapter createAdapter() {
+        return new ResourcesListAdapter(LayoutInflater.from(getContext()), new ArrayList<>());
     }
 
     @Click(R.id.btn_products)

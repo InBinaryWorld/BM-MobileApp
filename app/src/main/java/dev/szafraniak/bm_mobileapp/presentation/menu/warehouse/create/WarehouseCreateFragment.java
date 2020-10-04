@@ -35,6 +35,10 @@ public class WarehouseCreateFragment extends BaseFormFragment<CreateWarehouseReq
     }
 
     @Override
+    protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
+    }
+
+    @Override
     protected FormInterface<CreateWarehouseRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateWarehouseFormConfig config) {
         return new CreateWarehouseForm(inflater, linearLayout, config);
     }

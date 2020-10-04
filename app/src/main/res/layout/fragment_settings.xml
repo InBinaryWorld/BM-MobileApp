@@ -27,13 +27,12 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_switch_google"
-                style="@style/Row.SettingsRow.Switch">
+                style="@style/Row.h18.SettingsRow.Switch">
 
                 <TextView
                     style="@style/BaseTextView.RowSettings"
                     android:text="@string/settings_login_with_google"
                     android:layout_marginEnd="8dp"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/sw_google"
@@ -56,7 +55,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_switch_facebook"
-                style="@style/Row.SettingsRow.Switch">
+                style="@style/Row.h18.SettingsRow.Switch">
 
                 <TextView
                     style="@style/BaseTextView.RowSettings"
@@ -86,7 +85,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_modify_company_data"
-                style="@style/Row.SettingsRow">
+                style="@style/Row.h18.SettingsRow">
 
                 <TextView
                     android:id="@+id/textView"
@@ -117,7 +116,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_change_company"
-                style="@style/Row.SettingsRow">
+                style="@style/Row.h18.SettingsRow">
 
                 <TextView
                     style="@style/BaseTextView.RowSettings"
@@ -146,7 +145,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_logout"
-                style="@style/Row.SettingsRow">
+                style="@style/Row.h18.SettingsRow">
 
                 <TextView
                     style="@style/BaseTextView.RowSettings"

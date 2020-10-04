@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cl_row"
+    style="@style/Row.h18.v8"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/tv_account_name_label"
+        style="@style/BaseTextView.Label.Bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Account Name" />
+
+    <TextView
+        android:id="@+id/tv_account_name"
+        style="@style/BaseTextView.Value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_account_name_label" />
+
+    <TextView
+        android:id="@+id/tv_account_number_label"
+        style="@style/BaseTextView.Label.Bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_account_name"
+        android:text="Account Name" />
+
+    <TextView
+        android:id="@+id/tv_account_number"
+        style="@style/BaseTextView.Value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_account_number_label" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

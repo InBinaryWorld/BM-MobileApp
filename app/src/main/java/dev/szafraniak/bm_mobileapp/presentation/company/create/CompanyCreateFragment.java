@@ -34,6 +34,10 @@ public class CompanyCreateFragment extends BaseFormFragment<CreateCompanyRequest
     }
 
     @Override
+    protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
+    }
+
+    @Override
     protected FormInterface<CreateCompanyRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateCompanyFormConfig config) {
         return new CreateCompanyForm(inflater, linearLayout, config);
     }

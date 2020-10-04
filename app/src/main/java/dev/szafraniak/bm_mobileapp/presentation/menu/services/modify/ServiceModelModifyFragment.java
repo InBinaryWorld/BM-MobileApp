@@ -58,6 +58,10 @@ public class ServiceModelModifyFragment extends BaseFormFragment<UpdateServiceMo
     }
 
     @Override
+    protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
+    }
+
+    @Override
     protected FormInterface<UpdateServiceModelRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, ModifyServiceModelFormConfig config) {
         return new ModifyServiceModelForm(inflater, linearLayout, config);
     }

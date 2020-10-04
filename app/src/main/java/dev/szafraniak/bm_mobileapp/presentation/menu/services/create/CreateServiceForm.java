@@ -29,6 +29,10 @@ public class CreateServiceForm extends BaseForm<CreateServiceModelRequest, BaseV
     }
 
     @Override
+    protected void updateView(boolean isValid) {
+    }
+
+    @Override
     protected void showValueOnView(CreateServiceModelRequest value) {
         if (value == null) {
             nameFormRow.setValue(null);
@@ -74,14 +78,10 @@ public class CreateServiceForm extends BaseForm<CreateServiceModelRequest, BaseV
     }
 
     @Override
-    protected void setupView(CreateServiceFormConfig config) {
-        nameFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        quantityUnitFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        priceForm.setOnValidationStateChanged(this::onFieldStateChanged);
-    }
-
-    private void onFieldStateChanged(boolean b) {
-        onValueChange();
+    protected void setupView(LayoutInflater inflater, CreateServiceFormConfig config) {
+        quantityUnitFormRow.setOnValidationStateChanged(this::onValueChange);
+        nameFormRow.setOnValidationStateChanged(this::onValueChange);
+        priceForm.setOnValidationStateChanged(this::onValueChange);
     }
 
     @Override

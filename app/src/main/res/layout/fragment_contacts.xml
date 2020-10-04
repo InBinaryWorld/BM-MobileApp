@@ -16,7 +16,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_individual"
-        style="@style/MaterialButton.FullRounded.BlueDark.Form"
+        style="@style/MaterialButton.FullRounded"
         android:text="Individual"
         android:layout_marginHorizontal="20dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_company"
@@ -25,7 +25,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_company"
-        style="@style/MaterialButton.FullRounded.BlueDark.Form"
+        style="@style/MaterialButton.FullRounded"
         android:layout_marginBottom="32dp"
         android:layout_marginHorizontal="20dp"
         app:layout_constraintBottom_toBottomOf="parent"

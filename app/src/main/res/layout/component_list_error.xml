@@ -13,7 +13,7 @@
 
     <TextView
         android:id="@+id/tv_error_first_line"
-        style="@style/BaseTextView.Error.S"
+        style="@style/BaseTextView.Wrap.Error.S"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/error_component_error_occurred"
@@ -23,7 +23,7 @@
 
     <TextView
         android:id="@+id/textView2"
-        style="@style/BaseTextView.Error.M"
+        style="@style/BaseTextView.Wrap.Error.M"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"

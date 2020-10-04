@@ -34,6 +34,10 @@ public class ProductModelCreateFragment extends BaseFormFragment<CreateProductMo
     }
 
     @Override
+    protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
+    }
+
+    @Override
     protected FormInterface<CreateProductModelRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateProductModelFormConfig config) {
         return new CreateProductModelForm(inflater, linearLayout, config);
     }

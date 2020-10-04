@@ -30,7 +30,7 @@
 
             <ListView
                 android:id="@+id/list"
-                style="@style/ListView.NoDivider.CompanyList"
+                style="@style/ListView.VerticalPadding"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:nestedScrollingEnabled="true" />

@@ -32,7 +32,7 @@
             android:contentDescription="@string/content_description_action_status_succeed" />
 
         <TextView
-            style="@style/BaseTextView.ActionResult.Success"
+            style="@style/BaseTextView.Wrap.ActionResult.Success"
             android:layout_marginTop="32sp"
             android:text="@string/action_status_succeeded"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
             android:contentDescription="@string/content_description_action_status_fail" />
 
         <TextView
-            style="@style/BaseTextView.ActionResult.Failed"
+            style="@style/BaseTextView.Wrap.ActionResult.Failed"
             android:layout_marginTop="32sp"
             android:text="@string/action_status_failed"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,8 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_action_status"
-        style="@style/MaterialButton.Rounded.ActionResult"
+        style="@style/MaterialButton.FullRounded"
+        android:layout_width="270dp"
         android:layout_marginBottom="140dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

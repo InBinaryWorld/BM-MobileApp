@@ -37,7 +37,7 @@ public abstract class TextViewDetails<T, C extends SimpleDetailsConfig<T>> exten
     }
 
     @Override
-    protected void setupView(C config) {
+    protected void setupView(LayoutInflater inflater, C config) {
         TextViewHolder holder = getViewHolder();
         holder.label.setText(config.getLabel());
     }

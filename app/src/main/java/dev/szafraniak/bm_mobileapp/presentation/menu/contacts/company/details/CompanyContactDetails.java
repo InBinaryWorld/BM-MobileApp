@@ -56,7 +56,7 @@ public class CompanyContactDetails extends BaseDetails<CompanyContact, BaseViewH
     }
 
     @Override
-    protected void setupView(CompanyContactDetailsConfig config) {
+    protected void setupView(LayoutInflater inflater, CompanyContactDetailsConfig config) {
         // Dodatkowa konfiguracja
     }
 

@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout style="@style/Row.Form.EditText">
+            <androidx.constraintlayout.widget.ConstraintLayout style="@style/Row.h18.v8">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_invoice_number"

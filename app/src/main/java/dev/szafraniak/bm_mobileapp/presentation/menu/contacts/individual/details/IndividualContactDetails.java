@@ -56,7 +56,7 @@ public class IndividualContactDetails extends BaseDetails<IndividualContact, Bas
     }
 
     @Override
-    protected void setupView(IndividualContactDetailsConfig config) {
+    protected void setupView(LayoutInflater inflater, IndividualContactDetailsConfig config) {
         // Dodatkowa konfiguracja
     }
 

@@ -3,11 +3,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Row.Base">
+    style="@style/Row.TMP_DEV_HEIGHT_80">
 
     <TextView
         android:id="@+id/tv_payment_type"
-        style="@style/BaseTextView.Title"
+        style="@style/BaseTextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

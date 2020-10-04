@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>x
-    <dimen name="progress_bar_size">60dp</dimen>
+<resources>
     <dimen name="wide_button_min_width">240dp</dimen>
 </resources>

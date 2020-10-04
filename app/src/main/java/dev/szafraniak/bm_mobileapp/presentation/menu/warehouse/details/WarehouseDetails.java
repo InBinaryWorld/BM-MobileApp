@@ -53,7 +53,7 @@ public class WarehouseDetails extends BaseDetails<Warehouse, BaseViewHolder, War
     }
 
     @Override
-    protected void setupView(WarehouseDetailsConfig config) {
+    protected void setupView(LayoutInflater inflater, WarehouseDetailsConfig config) {
         // Dodatkowa konfiguracja
     }
 

@@ -1,12 +1,15 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.google.gson.Gson;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -17,12 +20,11 @@ import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactListAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details.IndividualContactDetailsFragment;
-import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.SearchListFragmentWithBtn;
 
 @EFragment(R.layout.fragment_search_list_with_btn)
-public class IndividualContactListFragment extends SearchListFragmentWithBtn<IndividualContact>
-        implements IndividualContactListView {
+public class IndividualContactListFragment extends SearchListFragmentWithBtn<IndividualContact,
+        ContactListAdapter<IndividualContact>> implements IndividualContactListView {
 
     @Inject
     IndividualContactListPresenter presenter;
@@ -60,8 +62,8 @@ public class IndividualContactListFragment extends SearchListFragmentWithBtn<Ind
     }
 
     @Override
-    protected BaseAdapter<IndividualContact> createAdapter() {
-        return new ContactListAdapter<>(getContext());
+    protected ContactListAdapter<IndividualContact> createAdapter() {
+        return new ContactListAdapter<>(LayoutInflater.from(getContext()), new ArrayList<>());
     }
 
     @Override

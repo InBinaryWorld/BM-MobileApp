@@ -35,6 +35,11 @@ public class IndividualContactCreateFragment extends BaseFormFragment<CreateIndi
     }
 
     @Override
+    protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
+
+    }
+
+    @Override
     protected FormInterface<CreateIndividualContactRequest> createForm(
             LayoutInflater inflater, LinearLayout linearLayout, IndividualContactCreateFormConfig config) {
         return new IndividualContactCreateForm(inflater, linearLayout, config);

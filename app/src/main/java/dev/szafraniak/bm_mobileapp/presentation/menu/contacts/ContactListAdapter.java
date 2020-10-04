@@ -1,19 +1,23 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.contacts;
 
-import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.contact.Contact;
-import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterAdapter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterListAdapter;
 
-public class ContactListAdapter<T extends Contact> extends BaseFilterAdapter<T> {
+public class ContactListAdapter<T extends Contact> extends BaseFilterListAdapter<T> {
 
-    public ContactListAdapter(Context context) {
-        super(context, R.layout.row_list_contact);
+    private static final int layoutId = R.layout.row_list_contact;
+
+    public ContactListAdapter(LayoutInflater inflater, List<T> initialList) {
+        super(inflater, initialList);
     }
 
     static class ViewHolder {
@@ -22,9 +26,9 @@ public class ContactListAdapter<T extends Contact> extends BaseFilterAdapter<T> 
     }
 
     @Override
-    protected View createView(int position, View convertView, ViewGroup parent) {
+    protected View createView(LayoutInflater inflater, int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = inflater.inflate(resourceId, parent, false);
+            convertView = inflater.inflate(layoutId, parent, false);
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.contactName = convertView.findViewById(R.id.tv_contact_name);
             viewHolder.address = convertView.findViewById(R.id.tv_address);
@@ -36,6 +40,11 @@ public class ContactListAdapter<T extends Contact> extends BaseFilterAdapter<T> 
         holder.contactName.setText(item.getName());
         holder.address.setText(address.getShortAddress());
         return convertView;
+    }
+
+    @Override
+    protected String getItemFilterValue(T item) {
+        return item.getFilterValue();
     }
 
 }

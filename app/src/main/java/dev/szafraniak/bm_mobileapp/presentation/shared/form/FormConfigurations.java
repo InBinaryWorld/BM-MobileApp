@@ -1,120 +1,149 @@
 package dev.szafraniak.bm_mobileapp.presentation.shared.form;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.BankAccount;
+import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentCash;
 import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethod;
-import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethodCash;
-import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethodTransfer;
+import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentTransfer;
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.utils.Validator;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.contact.ClickableContactFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.payment.ClickablePaymentFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.address.AddressFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.PaymentMethodFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.transfer.PaymentTransferFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.type.PaymentMethodType;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.type.PaymentMethodTypeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.price.PriceFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.number.NumberEditTextFormRowConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextEditTextFormRowConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.special.contact.ClickableContactFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.special.payment.ClickablePaymentFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.autoComplete.AutoCompleteTextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormConfig;
+
+import static android.text.InputType.TYPE_CLASS_NUMBER;
+import static android.text.InputType.TYPE_CLASS_PHONE;
+import static android.text.InputType.TYPE_CLASS_TEXT;
+import static android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
+import static android.text.InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS;
+import static android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES;
+import static android.text.InputType.TYPE_TEXT_FLAG_CAP_WORDS;
+import static android.text.InputType.TYPE_TEXT_VARIATION_PERSON_NAME;
+import static android.text.InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS;
 
 public final class FormConfigurations {
 
-    public static TextEditTextFormRowConfig getServiceModelNameConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
-        config.setLabelText("Service Name");
+    public static TextFormConfig<String> getServiceModelNameConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("Service Name");
         config.setInvalidMessage("2-60 Signs");
         config.setValidator(Validator::validateProductModelName);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getWarehouseName() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
-        config.setLabelText("Warehouse Name");
+    public static TextFormConfig<String> getWarehouseName() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("Warehouse Name");
         config.setInvalidMessage("2-40 Signs");
         config.setValidator(Validator::validateProductModelName);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getProductModelNameConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
-        config.setLabelText("Product Name");
+    public static TextFormConfig<String> getProductModelNameConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("Product Name");
         config.setInvalidMessage("2-60 Signs");
         config.setValidator(Validator::validateProductModelName);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getFirstNameConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
-        config.setLabelText("First Name");
+    public static TextFormConfig<String> getFirstNameConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("First Name");
         config.setInvalidMessage("1-20 Signs");
         config.setValidator(Validator::validateFirstName);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PERSON_NAME);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getLastNameConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
-        config.setLabelText("Last Name");
+    public static TextFormConfig<String> getLastNameConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("Last Name");
         config.setInvalidMessage("1-20 Signs");
         config.setValidator(Validator::validateLastName);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PERSON_NAME);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getQuantityUnitConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
-        config.setLabelText("Quantity Unit");
+    public static TextFormConfig<String> getQuantityUnitConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("Quantity Unit");
         config.setInvalidMessage("2-6 Signs");
         config.setValidator(Validator::validateQuantityUnit);
+        config.setInputType(TYPE_CLASS_TEXT);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getBareCodeConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
+    public static TextFormConfig<String> getBareCodeConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
         config.setRequired(false);
-        config.setLabelText("Bare Code");
+        config.setLabel("Bare Code");
         config.setInvalidMessage("5-20 Signs");
         config.setValidator(Validator::validateBareCode);
+        config.setInputType(TYPE_CLASS_NUMBER);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getInvoicePrefixConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
-        config.setLabelText("Invoice Prefix");
+    public static TextFormConfig<String> getInvoicePrefixConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("Invoice Prefix");
         config.setInvalidMessage("2-14 Signs, Last No Digit");
         config.setValidator(Validator::validateInvoicePrefix);
+        config.setInputType(TYPE_CLASS_TEXT);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getInvoiceNumberConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
-        config.setLabelText("Invoice Number");
+    public static TextFormConfig<String> getInvoiceNumberConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("Invoice Number");
         config.setInvalidMessage("3-20 Signs");
         config.setValidator(Validator::validateInvoiceNumber);
+        config.setInputType(TYPE_CLASS_TEXT);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getCompanyNameConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
-        config.setLabelText("Company name");
+    public static TextFormConfig<String> getCompanyNameConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("Company name");
         config.setInvalidMessage("2-40 Signs");
         config.setValidator(Validator::validateCompanyName);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_WORDS);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getTaxIdentityNumberConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
-        config.setLabelText("Tax Identity Number");
+    public static TextFormConfig<String> getTaxIdentityNumberConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("Tax Identity Number");
         config.setInvalidMessage("10 Digits");
         config.setValidator(Validator::validateTaxIdentityNumber);
+        config.setInputType(TYPE_CLASS_NUMBER);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getPhoneConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
+    public static TextFormConfig<String> getPhoneConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
         config.setRequired(false);
-        config.setLabelText("Phone Number");
+        config.setLabel("Phone Number");
         config.setInvalidMessage("4-12 Digits, With Optional Plus Sign");
         config.setValidator(Validator::validatePhoneNumber);
+        config.setInputType(TYPE_CLASS_PHONE);
         return config;
     }
 
@@ -124,43 +153,34 @@ public final class FormConfigurations {
         defaultPrice.setTaxRate(BigDecimal.ZERO);
         defaultPrice.setGross(BigDecimal.ZERO);
 
+        SimpleDetailsConfig<BigDecimal> grossConfig = DetailsConfigurations.getGrossPriceConfig();
+        grossConfig.setVisibleOnSetValueNull(true);
+
         PriceFormConfig config = new PriceFormConfig();
         config.setVisibleOnSetValueNull(true);
         config.setDefaultValue(defaultPrice);
-        config.setInitValue(defaultPrice);
         config.setNetConfig(getNetPriceConfig());
         config.setTaxConfig(getTaxRatePriceConfig());
-        config.setGrossConfig(getGrossPriceConfig());
+        config.setGrossConfig(grossConfig);
         return config;
     }
 
 
-    private static NumberEditTextFormRowConfig getTaxRatePriceConfig() {
-        NumberEditTextFormRowConfig config = getBaseNumberEditTextConfig();
-        config.setLabelText("Tax Rate");
+    private static TextFormConfig<BigDecimal> getTaxRatePriceConfig() {
+        TextFormConfig<BigDecimal> config = getBaseTextFormConfig();
+        config.setLabel("Tax Rate");
+        config.setDefaultValue(BigDecimal.ZERO);
         config.setInvalidMessage("Required positive decimal number");
+        config.setInputType(TYPE_CLASS_NUMBER);
         return config;
     }
 
-    private static NumberEditTextFormRowConfig getNetPriceConfig() {
-        NumberEditTextFormRowConfig config = getBaseNumberEditTextConfig();
-        config.setInvalidMessage("Net Price");
-        config.setLabelText("Required positive integer number");
-        return config;
-    }
-
-    private static SimpleDetailsConfig<BigDecimal> getGrossPriceConfig() {
-        SimpleDetailsConfig<BigDecimal> config = new SimpleDetailsConfig<>();
-        config.setVisibleOnSetValueNull(true);
-        config.setLabel("Gross Price");
-        return config;
-    }
-
-    private static NumberEditTextFormRowConfig getBaseNumberEditTextConfig() {
-        NumberEditTextFormRowConfig config = new NumberEditTextFormRowConfig();
-        config.setRequired(true);
-        config.setZeroOnEmpty(false);
-        config.setVisibleOnSetValueNull(true);
+    private static TextFormConfig<BigDecimal> getNetPriceConfig() {
+        TextFormConfig<BigDecimal> config = getBaseTextFormConfig();
+        config.setLabel("Net Price");
+        config.setDefaultValue(BigDecimal.ZERO);
+        config.setInvalidMessage("Required positive integer number");
+        config.setInputType(TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_DECIMAL);
         return config;
     }
 
@@ -181,56 +201,69 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextEditTextFormRowConfig getCityConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
-        config.setLabelText("City");
+    public static TextFormConfig<String> getCityConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("City");
         config.setInvalidMessage("2-30 Signs");
         config.setValidator(Validator::validateCity);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getPostalCodeConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
-        config.setLabelText("Postal Code");
+    public static TextFormConfig<String> getPostalCodeConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("Postal Code");
         config.setInvalidMessage("Pattern XX-XXX");
         config.setValidator(Validator::validatePostalCode);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getStreetConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
-        config.setLabelText("Street");
+    public static TextFormConfig<String> getStreetConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("Street");
         config.setInvalidMessage("2-30 Signs");
         config.setValidator(Validator::validateStreet);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getHouseNumberConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
-        config.setLabelText("House Number");
+    public static TextFormConfig<String> getHouseNumberConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("House Number");
         config.setInvalidMessage("1-3 Digits And Optional Letter");
         config.setValidator(Validator::validateHouseNumber);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS);
         return config;
     }
 
-    public static TextEditTextFormRowConfig getApartmentNumberConfig() {
-        TextEditTextFormRowConfig config = getBaseEditConfig();
+    public static TextFormConfig<String> getApartmentNumberConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
         config.setRequired(false);
-        config.setLabelText("Apartment Number");
+        config.setLabel("Apartment Number");
         config.setInvalidMessage("1-3 Digits And Optional Letter");
         config.setValidator(Validator::validateApartmentNumber);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS);
         return config;
     }
 
-    private static TextEditTextFormRowConfig getBaseEditConfig() {
-        TextEditTextFormRowConfig config = new TextEditTextFormRowConfig();
+    private static TextFormConfig<String> getBankAccountNumberConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("Account number");
+        config.setInvalidMessage("1-3 Digits And Optional Letter");
+        config.setValidator(Validator::validateBankAccountNumber);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_CHARACTERS);
+        return config;
+    }
+
+    private static <T> TextFormConfig<T> getBaseTextFormConfig() {
+        TextFormConfig<T> config = new TextFormConfig<T>();
         config.setInvalidMessage("Invalid Value");
         config.setVisibleOnSetValueNull(true);
         config.setReadEmptyAsNull(true);
         config.setRequired(true);
         return config;
     }
-
 
     public static ClickableContactFormConfig getClickableContactConfig() {
         ClickableContactFormConfig config = new ClickableContactFormConfig();
@@ -243,8 +276,8 @@ public final class FormConfigurations {
 
     public static ClickablePaymentFormConfig getClickablePaymentConfig() {
         Map<Class<? extends PaymentMethod>, String> displayNames = new HashMap<>();
-        displayNames.put(PaymentMethodCash.class, "Cash");
-        displayNames.put(PaymentMethodTransfer.class, "Transfer");
+        displayNames.put(PaymentCash.class, "Cash");
+        displayNames.put(PaymentTransfer.class, "Transfer");
 
         ClickablePaymentFormConfig config = new ClickablePaymentFormConfig();
         config.setVisibleOnSetValueNull(true);
@@ -256,4 +289,58 @@ public final class FormConfigurations {
         config.setPaymentMethodDisplayNames(displayNames);
         return config;
     }
+
+    private static PaymentMethodTypeFormConfig getPaymentTypeFormConfig() {
+        HashMap<PaymentMethodType, String> displayValues = new HashMap<>();
+        displayValues.put(PaymentMethodType.CASH, "Cash");
+        displayValues.put(PaymentMethodType.TRANSFER, "Transfer");
+
+        PaymentMethodTypeFormConfig config = new PaymentMethodTypeFormConfig();
+        config.setSpinnerItems(Arrays.asList(PaymentMethodType.values()));
+        config.setDisplayValues(displayValues);
+        config.setVisibleOnSetValueNull(true);
+        config.setLabel("Payment Type");
+        config.setRequired(true);
+        config.setValidator(Validator::notNull);
+        return config;
+    }
+
+    private static PaymentTransferFormConfig getPaymentTransferFormConfig(List<BankAccount> bankAccounts) {
+        PaymentTransferFormConfig config = new PaymentTransferFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setNameConfig(getAccountNameAutoCompleteConfig(bankAccounts));
+        config.setNumberConfig(getBankAccountNumberConfig());
+        return config;
+    }
+
+    public static PaymentMethodFormConfig getPaymentMethodConfig(List<BankAccount> bankAccounts) {
+        PaymentMethodFormConfig config = new PaymentMethodFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setDefaultValue(new PaymentCash());
+        config.setPaymentTypeFormConfig(getPaymentTypeFormConfig());
+        config.setPaymentTransferFormConfig(getPaymentTransferFormConfig(bankAccounts));
+        return config;
+    }
+
+    private static AutoCompleteTextFormConfig<String, BankAccount> getAccountNameAutoCompleteConfig(
+            List<BankAccount> bankAccounts
+    ) {
+        AutoCompleteTextFormConfig<String, BankAccount> config = getAutoCompleteTextFormConfig();
+        config.setValidator(Validator::validateBankAccountName);
+        config.setInputType(TYPE_CLASS_TEXT);
+        config.setLabel("Account name");
+        config.setInvalidMessage("2-30 Signs");
+        config.setListItems(bankAccounts);
+        return config;
+    }
+
+    private static <T, S> AutoCompleteTextFormConfig<T, S> getAutoCompleteTextFormConfig() {
+        AutoCompleteTextFormConfig<T, S> config = new AutoCompleteTextFormConfig<>();
+        config.setInvalidMessage("Invalid Value");
+        config.setVisibleOnSetValueNull(true);
+        config.setReadEmptyAsNull(true);
+        config.setRequired(true);
+        return config;
+    }
+
 }

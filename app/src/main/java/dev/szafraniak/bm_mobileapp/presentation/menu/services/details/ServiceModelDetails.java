@@ -58,7 +58,7 @@ public class ServiceModelDetails extends BaseDetails<ServiceModel, BaseViewHolde
     }
 
     @Override
-    protected void setupView(ServiceModelDetailsConfig config) {
+    protected void setupView(LayoutInflater inflater, ServiceModelDetailsConfig config) {
         // Dodatkowa konfiguracja
     }
 

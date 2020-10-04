@@ -11,6 +11,9 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceBaseDataModel;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.form.CreateInvoiceBaseDataForm;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.form.CreateInvoiceBaseDataFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
 
@@ -31,6 +34,11 @@ public class CreateInvoiceBaseDataFormFragment extends BaseFormFragment<CreateIn
     @Override
     protected int getButtonTextId() {
         return R.string.btn_text_invoice_create_base_data;
+    }
+
+    @Override
+    protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
+        navigationCallback.navigate(this);
     }
 
     @Override

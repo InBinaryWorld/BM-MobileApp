@@ -58,7 +58,7 @@ public class PriceDetails extends BaseDetails<Price, BaseViewHolder, PriceDetail
     }
 
     @Override
-    protected void setupView(PriceDetailsConfig config) {
+    protected void setupView(LayoutInflater inflater, PriceDetailsConfig config) {
         // Dodatkowa konfiguracja
     }
 

@@ -30,6 +30,10 @@ public class CompanyContactCreateForm extends BaseForm<CreateCompanyContactReque
     }
 
     @Override
+    protected void updateView(boolean isValid) {
+    }
+
+    @Override
     protected void showValueOnView(CreateCompanyContactRequest value) {
         if (value == null) {
             nameFormRow.setValue(null);
@@ -82,15 +86,11 @@ public class CompanyContactCreateForm extends BaseForm<CreateCompanyContactReque
     }
 
     @Override
-    protected void setupView(CompanyContactCreateFormConfig config) {
-        nameFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        taxIdFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        phoneFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        addressForm.setOnValidationStateChanged(this::onFieldStateChanged);
-    }
-
-    private void onFieldStateChanged(boolean b) {
-        onValueChange();
+    protected void setupView(LayoutInflater inflater, CompanyContactCreateFormConfig config) {
+        nameFormRow.setOnValidationStateChanged(this::onValueChange);
+        taxIdFormRow.setOnValidationStateChanged(this::onValueChange);
+        phoneFormRow.setOnValidationStateChanged(this::onValueChange);
+        addressForm.setOnValidationStateChanged(this::onValueChange);
     }
 
     @Override

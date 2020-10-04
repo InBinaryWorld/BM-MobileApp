@@ -19,14 +19,19 @@ public class ModifyProductModelForm extends BaseForm<UpdateProductModelRequest, 
     @LayoutRes
     private static final int layoutId = R.layout.form_base_group;
 
+    PriceForm priceForm;
     TextEditTextFormRow nameFormRow;
     TextEditTextFormRow bareCodeFormRow;
     TextEditTextFormRow quantityUnitFormRow;
-    PriceForm priceForm;
 
 
     public ModifyProductModelForm(LayoutInflater inflater, ViewGroup viewGroup, ModifyProductModelFormConfig config) {
         super(inflater, viewGroup, config);
+    }
+
+    @Override
+    protected void updateView(boolean isValid) {
+
     }
 
     @Override
@@ -81,15 +86,11 @@ public class ModifyProductModelForm extends BaseForm<UpdateProductModelRequest, 
     }
 
     @Override
-    protected void setupView(ModifyProductModelFormConfig config) {
-        nameFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        bareCodeFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        quantityUnitFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        priceForm.setOnValidationStateChanged(this::onFieldStateChanged);
-    }
-
-    private void onFieldStateChanged(boolean b) {
-        onValueChange();
+    protected void setupView(LayoutInflater inflater, ModifyProductModelFormConfig config) {
+        nameFormRow.setOnValidationStateChanged(this::onValueChange);
+        bareCodeFormRow.setOnValidationStateChanged(this::onValueChange);
+        quantityUnitFormRow.setOnValidationStateChanged(this::onValueChange);
+        priceForm.setOnValidationStateChanged(this::onValueChange);
     }
 
     @Override

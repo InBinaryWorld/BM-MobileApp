@@ -8,9 +8,9 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.CompanyContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.contact.Contact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
+import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentCash;
 import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethod;
-import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethodCash;
-import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethodTransfer;
+import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentTransfer;
 
 public final class Validator {
 
@@ -31,38 +31,38 @@ public final class Validator {
     public static final String BANK_ACCOUNT = "^(?:(?:IT|SM)\\d{2}[A-Z]\\d{22}|CY\\d{2}[A-Z]\\d{23}|NL\\d{2}[A-Z]{4}\\d{10}|LV\\d{2}[A-Z]{4}\\d{13}|(?:BG|BH|GB|IE)\\d{2}[A-Z]{4}\\d{14}|GI\\d{2}[A-Z]{4}\\d{15}|RO\\d{2}[A-Z]{4}\\d{16}|KW\\d{2}[A-Z]{4}\\d{22}|MT\\d{2}[A-Z]{4}\\d{23}|NO\\d{13}|(?:DK|FI|GL|FO)\\d{16}|MK\\d{17}|(?:AT|EE|KZ|LU|XK)\\d{18}|(?:BA|HR|LI|CH|CR)\\d{19}|(?:GE|DE|LT|ME|RS)\\d{20}|IL\\d{21}|(?:AD|CZ|ES|MD|SA)\\d{22}|PT\\d{23}|(?:BE|IS)\\d{24}|(?:FR|MR|MC)\\d{25}|(?:AL|DO|LB|PL)\\d{26}|(?:AZ|HU)\\d{27}|(?:GR|MU)\\d{28})$";
     public static final String PHONE_4_12 = "\\+?\\d{4,12}";
     public static final String BARCODE_5_20 = "\\S{5,20}";
-    public final static String INVOICE_PREFIX_2_14 = ALLOWED_SIGNS + "{1,13}[^\\d\\t\\n\\r\\f\\x0B]";
+    public final static String INVOICE_PREFIX_2_14 = ALLOWED_SIGNS + "{1,13}[^ \\d\\t\\n\\r\\f\\x0B]";
     public final static String HOUSE_NUMBER = "\\d{1,3}[A-Za-z]?";
     public final static String POSTAL_CODE = "\\d{2}-\\d{3}";
     public final static String CURRENCY = UPPERCASE_LETTER + "{2,4}";
     public final static String TAX_IDENTITY_NUMBER = "\\d{10}";
 
     public static boolean validateLastName(String value) {
-        return Pattern.matches(BASE_1_20, value);
+        return Pattern.matches(BASE_1_20, value) && !value.isEmpty();
     }
 
     public static boolean validateFirstName(String value) {
-        return Pattern.matches(BASE_1_20, value);
+        return Pattern.matches(BASE_1_20, value) && !value.isEmpty();
     }
 
     public static boolean validateProductModelName(String value) {
-        return Pattern.matches(BASE_2_60, value);
+        return Pattern.matches(BASE_2_60, value) && !value.isEmpty();
     }
 
     public static boolean validateWarehouseName(String value) {
-        return Pattern.matches(BASE_2_40, value);
+        return Pattern.matches(BASE_2_40, value) && !value.isEmpty();
     }
 
     public static boolean validateServiceModelName(String value) {
-        return Pattern.matches(BASE_2_60, value);
+        return Pattern.matches(BASE_2_60, value) && !value.isEmpty();
     }
 
     public static boolean validateCompanyName(String value) {
-        return Pattern.matches(BASE_2_40, value);
+        return Pattern.matches(BASE_2_40, value) && !value.isEmpty();
     }
 
     public static boolean validateQuantityUnit(String value) {
-        return Pattern.matches(BASE_2_6, value);
+        return Pattern.matches(BASE_2_6, value) && !value.isEmpty();
     }
 
     public static boolean validateBareCode(String value) {
@@ -74,7 +74,7 @@ public final class Validator {
     }
 
     public static boolean validateInvoiceNumber(String value) {
-        return Pattern.matches(BASE_3_20, value);
+        return Pattern.matches(BASE_3_20, value) && !value.isEmpty();
     }
 
     public static boolean validateTaxIdentityNumber(String value) {
@@ -132,7 +132,11 @@ public final class Validator {
         return number.signum() >= 0 && number.scale() == 0;
     }
 
-    public static boolean validateBankAccount(String bankAccount) {
+    public static boolean validateBankAccountName(String value) {
+        return Pattern.matches(BASE_2_40, value) && !value.isEmpty();
+    }
+
+    public static boolean validateBankAccountNumber(String bankAccount) {
         return Pattern.matches(BANK_ACCOUNT, bankAccount);
     }
 
@@ -173,23 +177,27 @@ public final class Validator {
     }
 
     public static boolean validatePaymentMethod(PaymentMethod paymentMethod) {
-        if (paymentMethod instanceof PaymentMethodCash) {
-            return validatePaymentMethod((PaymentMethodCash) paymentMethod);
-        } else if (paymentMethod instanceof PaymentMethodTransfer) {
-            return validatePaymentMethod((PaymentMethodTransfer) paymentMethod);
+        if (paymentMethod instanceof PaymentCash) {
+            return validatePaymentMethod((PaymentCash) paymentMethod);
+        } else if (paymentMethod instanceof PaymentTransfer) {
+            return validatePaymentMethod((PaymentTransfer) paymentMethod);
         }
         return false;
     }
 
-    public static boolean validatePaymentMethod(PaymentMethodCash paymentMethod) {
+    public static boolean validatePaymentMethod(PaymentCash paymentMethod) {
         return true;
     }
 
-    public static boolean validatePaymentMethod(PaymentMethodTransfer paymentMethod) {
-        return validateBankAccount(paymentMethod.getBankAccount());
+    public static boolean validatePaymentMethod(PaymentTransfer paymentMethod) {
+        return validateBankAccountNumber(paymentMethod.getAccountNumber());
     }
 
     public static boolean validateDueDate(LocalDate dueDate) {
         return dueDate.compareTo(LocalDate.now()) >= 0;
+    }
+
+    public static <T> boolean notNull(T value) {
+        return value != null;
     }
 }

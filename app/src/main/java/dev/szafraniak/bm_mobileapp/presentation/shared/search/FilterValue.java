@@ -3,7 +3,7 @@ package dev.szafraniak.bm_mobileapp.presentation.shared.search;
 public abstract class FilterValue {
     private String _filterValue;
 
-    public String getDescriptionForFilter() {
+    public String getFilterValue() {
         if (_filterValue == null) {
             _filterValue = createDescriptionForFilter();
         }

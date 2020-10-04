@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cl_row"
-    style="@style/Row.Form.EditText">
+    style="@style/Row.h18.v8">
 
     <TextView
         android:id="@+id/tv_label"

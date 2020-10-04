@@ -1,9 +1,12 @@
 package dev.szafraniak.bm_mobileapp.presentation.company.list;
 
+import android.view.LayoutInflater;
 import android.view.View;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -13,11 +16,10 @@ import dev.szafraniak.bm_mobileapp.business.memory.session.SessionPreferences;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuActivity_;
-import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWithBtn;
 
 @EFragment(R.layout.fragment_base_list_with_btn)
-public class CompanyListFragment extends BaseListFragmentWithBtn<CompanyListModel> implements CompanyListView {
+public class CompanyListFragment extends BaseListFragmentWithBtn<CompanyListModel, CompanyListAdapter> implements CompanyListView {
 
     @Inject
     CompanyListPresenter presenter;
@@ -44,8 +46,8 @@ public class CompanyListFragment extends BaseListFragmentWithBtn<CompanyListMode
     }
 
     @Override
-    protected BaseAdapter<CompanyListModel> createAdapter() {
-        return new CompanyListAdapter(getContext());
+    protected CompanyListAdapter createAdapter() {
+        return new CompanyListAdapter(LayoutInflater.from(getContext()), new ArrayList<>());
     }
 
     @Override

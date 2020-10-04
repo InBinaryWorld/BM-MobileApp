@@ -1,12 +1,15 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.productmodel;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.google.gson.Gson;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -16,11 +19,10 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductMo
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.details.ProductModelDetailsFragment;
-import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.SearchListFragmentWithBtn;
 
 @EFragment(R.layout.fragment_search_list_with_btn)
-public class ProductsListFragment extends SearchListFragmentWithBtn<ProductModel>
+public class ProductsListFragment extends SearchListFragmentWithBtn<ProductModel, ProductModelListAdapter>
         implements ProductsListView {
 
     @Inject
@@ -59,8 +61,8 @@ public class ProductsListFragment extends SearchListFragmentWithBtn<ProductModel
     }
 
     @Override
-    protected BaseAdapter<ProductModel> createAdapter() {
-        return new ProductModelListAdapter(getContext());
+    protected ProductModelListAdapter createAdapter() {
+        return new ProductModelListAdapter(LayoutInflater.from(getContext()), new ArrayList<>());
     }
 
     @Override

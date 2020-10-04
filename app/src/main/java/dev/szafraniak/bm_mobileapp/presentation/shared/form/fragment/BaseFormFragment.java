@@ -81,8 +81,11 @@ public abstract class BaseFormFragment<T, C> extends BaseSRLLoadFragment impleme
         LayoutInflater inflater = LayoutInflater.from(getContext());
         FormInterface<T> form = createForm(inflater, formLayout, config);
         form.setOnValidationStateChanged(this::onFormStateChange);
+        form.setSafeNavigationExecutor(this::executeSafeNavigation);
         return form;
     }
+
+    protected abstract void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback);
 
     public void setError(Throwable e) {
         Timber.e(e);

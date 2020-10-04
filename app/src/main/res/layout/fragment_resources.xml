@@ -33,7 +33,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_products"
-                    style="@style/MaterialButton.FullRounded.BlueDark.Form"
+                    style="@style/MaterialButton.FullRounded"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="16dp"
                     android:text="Products"
@@ -43,7 +43,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_services"
-                    style="@style/MaterialButton.FullRounded.BlueDark.Form"
+                    style="@style/MaterialButton.FullRounded"
                     android:layout_marginHorizontal="20dp"
                     android:text="Services"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -54,7 +54,7 @@
 
             <ListView
                 android:id="@+id/list"
-                style="@style/ListView.NoDivider.CompanyList"
+                style="@style/ListView.VerticalPadding"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

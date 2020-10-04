@@ -4,16 +4,17 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.EditTextFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormConfig;
 
-public class TextEditTextFormRow extends EditTextFormRow<String, TextEditTextFormRowConfig> {
+public class TextEditTextFormRow extends EditTextFormRow<String, TextFormConfig<String>> {
 
-    public TextEditTextFormRow(LayoutInflater inflater, ViewGroup viewGroup, TextEditTextFormRowConfig config) {
+    public TextEditTextFormRow(LayoutInflater inflater, ViewGroup viewGroup, TextFormConfig<String> config) {
         super(inflater, viewGroup, config);
     }
 
     @Override
     protected String parseInput(String inputValue) {
-        TextEditTextFormRowConfig config = getConfig();
+        TextFormConfig<String> config = getConfig();
         if (config.isReadEmptyAsNull() && inputValue.isEmpty()) {
             return null;
         }

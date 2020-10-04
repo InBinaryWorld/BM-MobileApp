@@ -31,7 +31,7 @@
 
             <TextView
                 android:id="@+id/tv_app_name"
-                style="@style/BaseTextView.SplashTextView"
+                style="@style/BaseTextView.Wrap.Login.SplashTextView"
                 android:layout_marginTop="32dp"
                 android:text="@string/app_name"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_login_google"
-                style="@style/MaterialButton.Rounded.White.LoginButton"
+                style="@style/MaterialButton.Rounded.LoginButton"
                 android:text="@string/login_login_with_google"
                 app:layout_constraintBottom_toTopOf="@+id/btn_login_facebook"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +67,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_login_facebook"
-                style="@style/MaterialButton.Rounded.White.LoginButton"
+                style="@style/MaterialButton.Rounded.LoginButton"
                 android:text="@string/login_login_with_facebook"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +105,7 @@
             <TextView
                 android:id="@+id/tv_silent_label"
                 android:text="@string/login_silent_login"
-                style="@style/BaseTextView.AutoLogin"
+                style="@style/BaseTextView.Wrap.Login.AutoLogin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -140,7 +140,7 @@
             <TextView
                 android:id="@+id/tv_login_label"
                 android:text="@string/login_login_in_progress"
-                style="@style/BaseTextView.AutoLogin"
+                style="@style/BaseTextView.Wrap.Login.AutoLogin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

@@ -13,7 +13,7 @@ import org.androidannotations.annotations.EFragment;
 import dev.szafraniak.bm_mobileapp.R;
 
 @EFragment
-public abstract class BaseListFragmentWithBtn<T> extends BaseListFragment<T> {
+public abstract class BaseListFragmentWithBtn<T, A extends BaseListAdapter<T>> extends BaseListFragment<T, A> {
 
 
     protected ExtendedFloatingActionButton flButton;

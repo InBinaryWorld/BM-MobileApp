@@ -28,6 +28,10 @@ public class CreateWarehouseForm extends BaseForm<CreateWarehouseRequest, BaseVi
     }
 
     @Override
+    protected void updateView(boolean isValid) {
+    }
+
+    @Override
     protected void showValueOnView(CreateWarehouseRequest value) {
         if (value == null) {
             nameFormRow.setValue(null);
@@ -67,13 +71,9 @@ public class CreateWarehouseForm extends BaseForm<CreateWarehouseRequest, BaseVi
     }
 
     @Override
-    protected void setupView(CreateWarehouseFormConfig config) {
-        nameFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        addressForm.setOnValidationStateChanged(this::onFieldStateChanged);
-    }
-
-    private void onFieldStateChanged(boolean b) {
-        onValueChange();
+    protected void setupView(LayoutInflater inflater, CreateWarehouseFormConfig config) {
+        nameFormRow.setOnValidationStateChanged(this::onValueChange);
+        addressForm.setOnValidationStateChanged(this::onValueChange);
     }
 
     @Override

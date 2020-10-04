@@ -7,6 +7,6 @@ public class CreateBankAccountRequest {
 
     private String name;
 
-    private String value;
+    private String number;
 
 }

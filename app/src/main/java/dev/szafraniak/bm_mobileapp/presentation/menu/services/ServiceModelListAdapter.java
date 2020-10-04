@@ -1,18 +1,22 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.services;
 
-import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
-import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterAdapter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterListAdapter;
 
-public class ServiceModelListAdapter extends BaseFilterAdapter<ServiceModel> {
+public class ServiceModelListAdapter extends BaseFilterListAdapter<ServiceModel> {
 
-    public ServiceModelListAdapter(Context context) {
-        super(context, R.layout.row_list_service_model);
+    private static final int layoutId = R.layout.row_list_service_model;
+
+    public ServiceModelListAdapter(LayoutInflater inflater, List<ServiceModel> initialList) {
+        super(inflater, initialList);
     }
 
     static class ViewHolder {
@@ -20,9 +24,9 @@ public class ServiceModelListAdapter extends BaseFilterAdapter<ServiceModel> {
     }
 
     @Override
-    protected View createView(int position, View convertView, ViewGroup parent) {
+    protected View createView(LayoutInflater inflater, int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = inflater.inflate(resourceId, parent, false);
+            convertView = inflater.inflate(layoutId, parent, false);
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.name = convertView.findViewById(R.id.tv_payment_type);
             convertView.setTag(viewHolder);
@@ -31,6 +35,11 @@ public class ServiceModelListAdapter extends BaseFilterAdapter<ServiceModel> {
         ViewHolder holder = (ViewHolder) convertView.getTag();
         holder.name.setText(item.getName());
         return convertView;
+    }
+
+    @Override
+    protected String getItemFilterValue(ServiceModel item) {
+        return item.getFilterValue();
     }
 
 }

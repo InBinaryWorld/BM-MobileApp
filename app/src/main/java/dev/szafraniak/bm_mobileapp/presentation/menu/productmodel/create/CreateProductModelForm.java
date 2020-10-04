@@ -30,6 +30,11 @@ public class CreateProductModelForm extends BaseForm<CreateProductModelRequest, 
     }
 
     @Override
+    protected void updateView(boolean isValid) {
+
+    }
+
+    @Override
     protected void showValueOnView(CreateProductModelRequest value) {
         if (value == null) {
             nameFormRow.setValue(null);
@@ -81,16 +86,13 @@ public class CreateProductModelForm extends BaseForm<CreateProductModelRequest, 
     }
 
     @Override
-    protected void setupView(CreateProductModelFormConfig config) {
-        nameFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        bareCodeFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        quantityUnitFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        priceForm.setOnValidationStateChanged(this::onFieldStateChanged);
+    protected void setupView(LayoutInflater inflater, CreateProductModelFormConfig config) {
+        nameFormRow.setOnValidationStateChanged(this::onValueChange);
+        bareCodeFormRow.setOnValidationStateChanged(this::onValueChange);
+        quantityUnitFormRow.setOnValidationStateChanged(this::onValueChange);
+        priceForm.setOnValidationStateChanged(this::onValueChange);
     }
 
-    private void onFieldStateChanged(boolean b) {
-        onValueChange();
-    }
 
     @Override
     public boolean isValid() {

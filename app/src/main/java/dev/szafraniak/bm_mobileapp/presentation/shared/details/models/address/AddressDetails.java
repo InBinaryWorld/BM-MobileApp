@@ -63,7 +63,7 @@ public class AddressDetails extends BaseDetails<Address, BaseViewHolder, Address
     }
 
     @Override
-    protected void setupView(AddressDetailsConfig config) {
+    protected void setupView(LayoutInflater inflater, AddressDetailsConfig config) {
         // Dodatkowa konfiguracja
     }
 

@@ -1,5 +1,6 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.finances;
 
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.google.gson.Gson;
@@ -7,16 +8,17 @@ import com.google.gson.Gson;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.FinancialRow;
-import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWithBtn;
 
 @EFragment(R.layout.fragment_base_list_with_btn)
-public class FinancesFragment extends BaseListFragmentWithBtn<FinancialRow> implements FinancesView {
+public class FinancesFragment extends BaseListFragmentWithBtn<FinancialRow, FinancesListAdapter> implements FinancesView {
 
     @Inject
     FinancesPresenter presenter;
@@ -43,8 +45,8 @@ public class FinancesFragment extends BaseListFragmentWithBtn<FinancialRow> impl
     }
 
     @Override
-    protected BaseAdapter<FinancialRow> createAdapter() {
-        return new FinancesListAdapter(getContext());
+    protected FinancesListAdapter createAdapter() {
+        return new FinancesListAdapter(LayoutInflater.from(getContext()), new ArrayList<>());
     }
 
     @Override

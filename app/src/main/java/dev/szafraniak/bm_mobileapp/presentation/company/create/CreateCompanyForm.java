@@ -29,6 +29,10 @@ public class CreateCompanyForm extends BaseForm<CreateCompanyRequest, BaseViewHo
     }
 
     @Override
+    protected void updateView(boolean isValid) {
+    }
+
+    @Override
     protected void showValueOnView(CreateCompanyRequest value) {
         if (value == null) {
             nameFormRow.setValue(null);
@@ -81,15 +85,11 @@ public class CreateCompanyForm extends BaseForm<CreateCompanyRequest, BaseViewHo
     }
 
     @Override
-    protected void setupView(CreateCompanyFormConfig config) {
-        nameFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        invoicePrefixFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        taxIdentityFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        addressForm.setOnValidationStateChanged(this::onFieldStateChanged);
-    }
-
-    private void onFieldStateChanged(boolean b) {
-        onValueChange();
+    protected void setupView(LayoutInflater inflater, CreateCompanyFormConfig config) {
+        nameFormRow.setOnValidationStateChanged(this::onValueChange);
+        invoicePrefixFormRow.setOnValidationStateChanged(this::onValueChange);
+        taxIdentityFormRow.setOnValidationStateChanged(this::onValueChange);
+        addressForm.setOnValidationStateChanged(this::onValueChange);
     }
 
     @Override

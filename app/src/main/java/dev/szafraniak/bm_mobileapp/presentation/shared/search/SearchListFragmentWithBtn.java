@@ -11,9 +11,11 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWithBtn;
 
 @EFragment
-public abstract class SearchListFragmentWithBtn<T> extends BaseListFragmentWithBtn<T> {
+public abstract class SearchListFragmentWithBtn<T extends FilterValue, A extends BaseFilterListAdapter<T>> extends BaseListFragmentWithBtn<T, A> {
 
     SearchView searchView;
+
+    protected BaseFilterListAdapter<T> adapter;
 
     @IdRes
     protected int getSearchViewId() {
@@ -36,7 +38,7 @@ public abstract class SearchListFragmentWithBtn<T> extends BaseListFragmentWithB
 
         @Override
         public boolean onQueryTextChange(String s) {
-            adapter.getFilter().filter(s);
+            adapter.filter(s);
             return false;
         }
     }

@@ -7,6 +7,6 @@ public class UpdateBankAccountRequest {
 
     private String name;
 
-    private String value;
+    private String number;
 
 }

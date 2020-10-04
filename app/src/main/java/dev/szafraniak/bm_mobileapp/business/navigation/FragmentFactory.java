@@ -25,6 +25,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataFormFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.InvoicePaymentFormFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductsListFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.create.ProductModelCreateFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.details.ProductModelDetailsFragment_;
@@ -58,6 +59,7 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_RESOURCES = 300;
     public static final int FRAGMENT_INVOICES = 400;
     public static final int FRAGMENT_INVOICES_CREATE_BASE_DATA = 401;
+    public static final int FRAGMENT_INVOICES_CREATE_PAYMENT = 402;
     public static final int FRAGMENT_SETTINGS = 500;
     public static final int FRAGMENT_SETTINGS_COMPANY = 501;
     public static final int FRAGMENT_ACTION_STATUS = 600;
@@ -132,6 +134,9 @@ public abstract class FragmentFactory {
                 break;
             case FRAGMENT_INVOICES_CREATE_BASE_DATA:
                 fragment = new CreateInvoiceBaseDataFormFragment_();
+                break;
+            case FRAGMENT_INVOICES_CREATE_PAYMENT:
+                fragment = new InvoicePaymentFormFragment_();
                 break;
             case FRAGMENT_FINANCES:
                 fragment = new FinancesFragment_();

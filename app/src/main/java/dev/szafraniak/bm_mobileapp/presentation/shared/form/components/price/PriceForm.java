@@ -13,12 +13,11 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.utils.FinancesUtils;
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.editText.number.DecimalEditTextDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.number.DecimalEditTextFormRow;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.number.IntegerEditTextFormRow;
 
-public class PriceForm extends BaseForm<Price, BaseViewHolder, PriceFormConfig> implements FormInterface<Price> {
+public class PriceForm extends BaseForm<Price, BaseViewHolder, PriceFormConfig> {
 
     @LayoutRes
     private static final int layoutId = R.layout.form_base_group;
@@ -30,6 +29,10 @@ public class PriceForm extends BaseForm<Price, BaseViewHolder, PriceFormConfig> 
 
     public PriceForm(LayoutInflater inflater, ViewGroup viewGroup, PriceFormConfig config) {
         super(inflater, viewGroup, config);
+    }
+
+    @Override
+    protected void updateView(boolean isValid) {
     }
 
     @Override
@@ -83,16 +86,12 @@ public class PriceForm extends BaseForm<Price, BaseViewHolder, PriceFormConfig> 
     }
 
     @Override
-    protected void setupView(PriceFormConfig config) {
-        netFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        taxRateFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
+    protected void setupView(LayoutInflater inflater, PriceFormConfig config) {
+        netFormRow.setOnValidationStateChanged(this::onValueChange);
+        taxRateFormRow.setOnValidationStateChanged(this::onValueChange);
         netFormRow.setOnValueChange(this::updateGrossView);
         taxRateFormRow.setOnValueChange(this::updateGrossView);
-        setValue(config.getInitValue());
-    }
-
-    void onFieldStateChanged(boolean isValid) {
-        onValueChange();
+        setValue(config.getDefaultValue());
     }
 
     private void updateGrossView(boolean isValid) {

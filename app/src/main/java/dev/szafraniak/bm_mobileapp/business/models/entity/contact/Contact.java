@@ -24,6 +24,6 @@ public abstract class Contact extends FilterValue {
 
     @Override
     protected String createDescriptionForFilter() {
-        return String.format("%s %s %s", getName(), address.getDescriptionForFilter(), phone);
+        return String.format("%s %s %s", getName(), address.getFilterValue(), phone);
     }
 }

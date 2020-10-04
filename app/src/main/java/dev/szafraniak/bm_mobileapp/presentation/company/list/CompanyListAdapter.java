@@ -1,20 +1,28 @@
 package dev.szafraniak.bm_mobileapp.presentation.company.list;
 
-import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.LayoutRes;
+
+import java.util.List;
+
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
-import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseAdapter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListAdapter;
 
-public class CompanyListAdapter extends BaseAdapter<CompanyListModel> {
+public class CompanyListAdapter extends BaseListAdapter<CompanyListModel> {
 
-    public CompanyListAdapter(Context context) {
-        super(context, R.layout.row_card_company);
+    @LayoutRes
+    private static final int layoutId = R.layout.row_card_company;
+
+    public CompanyListAdapter(LayoutInflater inflater, List<CompanyListModel> initValue) {
+        super(inflater, initValue);
     }
+
 
     static class ViewHolder {
         TextView companyName;
@@ -23,9 +31,9 @@ public class CompanyListAdapter extends BaseAdapter<CompanyListModel> {
     }
 
     @Override
-    protected View createView(int position, View convertView, ViewGroup parent) {
+    protected View createView(LayoutInflater inflater, int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = inflater.inflate(resourceId, parent, false);
+            convertView = inflater.inflate(layoutId, parent, false);
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.companyName = convertView.findViewById(R.id.tv_company_name);
             viewHolder.address = convertView.findViewById(R.id.tv_address);

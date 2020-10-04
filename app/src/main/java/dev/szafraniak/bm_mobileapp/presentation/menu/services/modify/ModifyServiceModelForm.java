@@ -29,6 +29,10 @@ public class ModifyServiceModelForm extends BaseForm<UpdateServiceModelRequest, 
     }
 
     @Override
+    protected void updateView(boolean isValid) {
+    }
+
+    @Override
     protected void showValueOnView(UpdateServiceModelRequest value) {
         if (value == null) {
             nameFormRow.setValue(null);
@@ -74,15 +78,12 @@ public class ModifyServiceModelForm extends BaseForm<UpdateServiceModelRequest, 
     }
 
     @Override
-    protected void setupView(ModifyServiceModelFormConfig config) {
-        nameFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        quantityUnitFormRow.setOnValidationStateChanged(this::onFieldStateChanged);
-        priceForm.setOnValidationStateChanged(this::onFieldStateChanged);
+    protected void setupView(LayoutInflater inflater, ModifyServiceModelFormConfig config) {
+        nameFormRow.setOnValidationStateChanged(this::onValueChange);
+        quantityUnitFormRow.setOnValidationStateChanged(this::onValueChange);
+        priceForm.setOnValidationStateChanged(this::onValueChange);
     }
 
-    private void onFieldStateChanged(boolean b) {
-        onValueChange();
-    }
 
     @Override
     public boolean isValid() {

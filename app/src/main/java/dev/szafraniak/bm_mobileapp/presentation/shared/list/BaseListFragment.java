@@ -14,16 +14,17 @@ import java.util.List;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
 import dev.szafraniak.bm_mobileapp.presentation.shared.load.BaseSRLLoadFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.search.ExtendedBaseAdapter;
 import timber.log.Timber;
 
 @EFragment
-public abstract class BaseListFragment<T> extends BaseSRLLoadFragment implements BaseListView<T>, AdapterView.OnItemClickListener {
+public abstract class BaseListFragment<T, A extends ExtendedBaseAdapter<T>> extends BaseSRLLoadFragment implements BaseListView<T>, AdapterView.OnItemClickListener {
 
     protected View emptyListView;
 
     protected ListView listView;
 
-    protected BaseAdapter<T> adapter;
+    protected A adapter;
 
     @IdRes
     protected int getListViewId() {
@@ -49,7 +50,7 @@ public abstract class BaseListFragment<T> extends BaseSRLLoadFragment implements
 
     public abstract void onItemClick(T item);
 
-    protected abstract BaseAdapter<T> createAdapter();
+    protected abstract A createAdapter();
 
     @Override
     public synchronized void setData(BMCollection<T> collection) {
@@ -58,7 +59,7 @@ public abstract class BaseListFragment<T> extends BaseSRLLoadFragment implements
 
     @Override
     public synchronized void setData(List<T> items) {
-        adapter.setAllItems(items);
+        adapter.setItems(items);
         if (items.size() == 0) {
             showEmptyList();
             return;
@@ -95,7 +96,6 @@ public abstract class BaseListFragment<T> extends BaseSRLLoadFragment implements
         listView.setVisibility(View.GONE);
         emptyListView.setVisibility(View.GONE);
     }
-
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
