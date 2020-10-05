@@ -14,7 +14,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListAdapter;
 
-public class CompanyListAdapter extends BaseListAdapter<CompanyListModel> {
+public class CompanyListAdapter extends BaseListAdapter<CompanyListModel, CompanyListModel> {
 
     @LayoutRes
     private static final int layoutId = R.layout.row_card_company;
@@ -48,6 +48,11 @@ public class CompanyListAdapter extends BaseListAdapter<CompanyListModel> {
         holder.address.setText(address.getShortAddress());
         holder.productValue.setText(item.getProductsValue());
         return convertView;
+    }
+
+    @Override
+    protected CompanyListModel extractGetItemValue(CompanyListModel item) {
+        return item;
     }
 
 }

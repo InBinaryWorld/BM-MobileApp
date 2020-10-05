@@ -57,9 +57,6 @@ public class ServiceModelModifyFragment extends BaseFormFragment<UpdateServiceMo
         return R.string.header_service_model_modify;
     }
 
-    @Override
-    protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
-    }
 
     @Override
     protected FormInterface<UpdateServiceModelRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, ModifyServiceModelFormConfig config) {

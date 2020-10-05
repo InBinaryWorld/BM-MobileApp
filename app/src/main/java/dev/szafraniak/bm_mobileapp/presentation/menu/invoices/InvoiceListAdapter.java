@@ -13,7 +13,7 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListAdapter;
 
-public class InvoiceListAdapter extends BaseListAdapter<Invoice> {
+public class InvoiceListAdapter extends BaseListAdapter<Invoice, Invoice> {
 
     @LayoutRes
     private static final int layoutId = R.layout.row_list_invoice;
@@ -35,6 +35,11 @@ public class InvoiceListAdapter extends BaseListAdapter<Invoice> {
         String invoiceName = item.getInvoiceName();
         holder.name.setText(invoiceName);
         return convertView;
+    }
+
+    @Override
+    protected Invoice extractGetItemValue(Invoice item) {
+        return item;
     }
 
     static class ViewHolder {

@@ -43,10 +43,6 @@ public class ModifyCompanyFragment extends BaseFormFragment<UpdateCompanyRequest
     }
 
     @Override
-    protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
-    }
-
-    @Override
     protected FormInterface<UpdateCompanyRequest> createForm(
             LayoutInflater inflater, LinearLayout linearLayout, ModifyCompanyFormConfig config) {
         return new ModifyCompanyForm(inflater, linearLayout, config);

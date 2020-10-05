@@ -10,7 +10,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 
 public abstract class BaseDetails<T, H extends BaseViewHolder,
-        C extends BaseDetailsConfig<T>> implements DetailsInterface<T> {
+    C extends BaseDetailsConfig<T>> implements DetailsInterface<T> {
 
     @Getter(AccessLevel.PROTECTED)
     private final C config;

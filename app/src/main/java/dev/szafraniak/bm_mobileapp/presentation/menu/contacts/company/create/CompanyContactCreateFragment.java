@@ -33,10 +33,6 @@ public class CompanyContactCreateFragment extends BaseFormFragment<CreateCompany
         return R.string.btn_text_warehouse_list;
     }
 
-    @Override
-    protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
-
-    }
 
     @Override
     protected FormInterface<CreateCompanyContactRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CompanyContactCreateFormConfig config) {

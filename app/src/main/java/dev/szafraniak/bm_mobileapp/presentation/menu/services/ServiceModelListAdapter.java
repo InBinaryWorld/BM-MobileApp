@@ -11,7 +11,7 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterListAdapter;
 
-public class ServiceModelListAdapter extends BaseFilterListAdapter<ServiceModel> {
+public class ServiceModelListAdapter extends BaseFilterListAdapter<ServiceModel, ServiceModel> {
 
     private static final int layoutId = R.layout.row_list_service_model;
 
@@ -38,7 +38,12 @@ public class ServiceModelListAdapter extends BaseFilterListAdapter<ServiceModel>
     }
 
     @Override
-    protected String getItemFilterValue(ServiceModel item) {
+    protected ServiceModel extractGetItemValue(ServiceModel item) {
+        return item;
+    }
+
+    @Override
+    public String getItemFilterValue(ServiceModel item) {
         return item.getFilterValue();
     }
 

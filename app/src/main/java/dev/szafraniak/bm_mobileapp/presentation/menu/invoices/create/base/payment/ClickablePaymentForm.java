@@ -9,13 +9,15 @@ import androidx.annotation.LayoutRes;
 import org.jetbrains.annotations.NotNull;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
+import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethod;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentModel;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.clickable.ClickableHolderForm;
 
-public class ClickablePaymentForm extends ClickableHolderForm<PaymentModel, ClickablePaymentFormViewHolder, ClickablePaymentFormConfig> {
+import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_INVOICES_CREATE_PAYMENT;
+
+public class ClickablePaymentForm extends ClickableHolderForm<PaymentFormModel, ClickablePaymentFormViewHolder, ClickablePaymentFormConfig> {
 
     @LayoutRes
     private final static int layoutId = R.layout.row_form_clickable_payment;
@@ -32,12 +34,12 @@ public class ClickablePaymentForm extends ClickableHolderForm<PaymentModel, Clic
     }
 
     @Override
-    protected void viewOnNotNullValue(@NotNull PaymentModel value) {
+    protected void viewOnNotNullValue(@NotNull PaymentFormModel value) {
         ClickablePaymentFormViewHolder holder = getViewHolder();
         holder.dataView.setVisibility(View.VISIBLE);
         holder.emptyView.setVisibility(View.GONE);
         holder.dueDate.setText(Parsers.safeFormat(value.getDueDate()));
-        holder.paymentMethod.setText(getPaymentDisplayName(value.getClass()));
+        holder.paymentMethod.setText(getPaymentDisplayName(value.getPaymentMethod()));
     }
 
     @Override
@@ -71,13 +73,11 @@ public class ClickablePaymentForm extends ClickableHolderForm<PaymentModel, Clic
     }
 
     private void navigateToPayment(View clickedView) {
-        executeSafeNavigation(view -> {
-            Navigator.navigateTo(view, FragmentFactory.FRAGMENT_INVOICES_CREATE_PAYMENT);
-        });
+        executeSafeNavigation(view -> Navigator.navigateTo(view, FRAGMENT_INVOICES_CREATE_PAYMENT));
     }
 
-    private String getPaymentDisplayName(Class<? extends PaymentModel> aClass) {
-        return getConfig().getPaymentMethodDisplayNames().get(aClass);
+    private String getPaymentDisplayName(PaymentMethod paymentMethod) {
+        return getConfig().getPaymentMethodDisplayNames().get(paymentMethod.getClass());
     }
 
 }

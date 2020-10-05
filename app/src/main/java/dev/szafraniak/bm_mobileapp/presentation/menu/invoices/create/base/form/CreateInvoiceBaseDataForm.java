@@ -1,6 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.form;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -8,22 +9,23 @@ import androidx.annotation.LayoutRes;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.contact.Contact;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceBaseDataModel;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentModel;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.contact.ClickableContactForm;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceBaseFormModel;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentFormModel;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.contact.ClickableBuyerForm;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.contact.ClickableReceiverForm;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.payment.ClickablePaymentForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextEditTextFormRow;
 
-public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseDataModel, BaseViewHolder, CreateInvoiceBaseDataFormConfig> {
+public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormModel, BaseViewHolder, CreateInvoiceBaseDataFormConfig> {
 
     @LayoutRes
     private static final int layoutId = R.layout.form_base_group;
 
     TextEditTextFormRow invoiceNumberFormRow;
-    ClickableContactForm buyerFormRow;
-    ClickableContactForm receiverFormRow;
+    ClickableBuyerForm buyerFormRow;
+    ClickableReceiverForm receiverFormRow;
     ClickablePaymentForm paymentForm;
 
     public CreateInvoiceBaseDataForm(LayoutInflater inflater, ViewGroup viewGroup, CreateInvoiceBaseDataFormConfig config) {
@@ -35,7 +37,8 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseDataMod
     }
 
     @Override
-    protected void showValueOnView(CreateInvoiceBaseDataModel value) {
+    protected void showValueOnView(CreateInvoiceBaseFormModel value) {
+        System.out.println("base show input; " + value);
         if (value == null) {
             invoiceNumberFormRow.setValue(null);
             buyerFormRow.setValue(null);
@@ -43,7 +46,6 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseDataMod
             paymentForm.setValue(null);
             return;
         }
-
         invoiceNumberFormRow.setValue(value.getInvoiceNumber());
         buyerFormRow.setValue(value.getBuyer());
         receiverFormRow.setValue(value.getReceiver());
@@ -51,17 +53,30 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseDataMod
     }
 
     @Override
-    public CreateInvoiceBaseDataModel getValue() {
+    public void setValue(CreateInvoiceBaseFormModel input) {
+        System.out.println("base setValue input; " + input);
+        if (!getConfig().isVisibleOnSetValueNull() && input == null) {
+            getView().setVisibility(View.GONE);
+            return;
+        }
+        getView().setVisibility(View.VISIBLE);
+        CreateInvoiceBaseFormModel value = shouldShowDefaultValue(input) ? getConfig().getDefaultValue() : input;
+        System.out.println("base setValue output; " + input);
+        showValueOnView(value);
+    }
+
+    @Override
+    public CreateInvoiceBaseFormModel getValue() {
         String invoiceNumber = invoiceNumberFormRow.getValue();
         Contact buyer = buyerFormRow.getValue();
         Contact receiver = receiverFormRow.getValue();
-        PaymentModel payment = paymentForm.getValue();
+        PaymentFormModel payment = paymentForm.getValue();
         // If whole form is not required that allow to return null value if all of child fields have null values
         if (invoiceNumber == null && buyer == null && receiver == null && payment == null) {
             return null;
         }
 
-        CreateInvoiceBaseDataModel model = new CreateInvoiceBaseDataModel();
+        CreateInvoiceBaseFormModel model = new CreateInvoiceBaseFormModel();
         model.setInvoiceNumber(invoiceNumber);
         model.setBuyer(buyer);
         model.setReceiver(receiver);
@@ -75,8 +90,8 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseDataMod
 
         LinearLayout groupList = (LinearLayout) inflater.inflate(layoutId, viewGroup, false);
         invoiceNumberFormRow = new TextEditTextFormRow(inflater, groupList, config.getInvoiceNumberConfig());
-        buyerFormRow = new ClickableContactForm(inflater, groupList, config.getBuyerConfig());
-        receiverFormRow = new ClickableContactForm(inflater, groupList, config.getReceiverConfig());
+        buyerFormRow = new ClickableBuyerForm(inflater, groupList, config.getBuyerConfig());
+        receiverFormRow = new ClickableReceiverForm(inflater, groupList, config.getReceiverConfig());
         paymentForm = new ClickablePaymentForm(inflater, groupList, config.getPaymentConfig());
 
         groupList.addView(invoiceNumberFormRow.getView());
@@ -101,7 +116,7 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseDataMod
     @Override
     public boolean isValid() {
         return invoiceNumberFormRow.isValid() && buyerFormRow.isValid()
-                && receiverFormRow.isValid() && paymentForm.isValid();
+            && receiverFormRow.isValid() && paymentForm.isValid();
     }
 }
 

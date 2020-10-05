@@ -4,7 +4,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.contact.Contact;
 import lombok.Data;
 
 @Data
-public class CreateInvoiceBaseDataModel {
+public class CreateInvoiceItemsFormModel {
 
     private Contact buyer;
 
@@ -12,7 +12,7 @@ public class CreateInvoiceBaseDataModel {
 
     private String invoiceNumber;
 
-    private PaymentModel payment;
+    private PaymentFormModel payment;
 
 }
 

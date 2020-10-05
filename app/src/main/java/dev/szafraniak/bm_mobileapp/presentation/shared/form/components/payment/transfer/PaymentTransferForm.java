@@ -59,22 +59,25 @@ public class PaymentTransferForm extends BaseForm<PaymentTransfer, BaseViewHolde
     protected void setupView(LayoutInflater inflater, PaymentTransferFormConfig config) {
         nameForm.setOnValidationStateChanged(this::onValueChange);
         numberForm.setOnValidationStateChanged(this::onValueChange);
-        nameForm.addOnItemSelected(item -> numberForm.setValue(item.getNumber()), false);
+        nameForm.addOnItemSelected(item -> numberForm.setValue(item.getNumber()));
     }
 
     @Override
     public PaymentTransfer getValue() {
-        if (nameForm == null && numberForm == null)
+        String name = nameForm.getValue();
+        String number = numberForm.getValue();
+        if (name == null && number == null) {
             return null;
+        }
         PaymentTransfer paymentTransfer = new PaymentTransfer();
-        paymentTransfer.setAccountName(nameForm.getValue());
-        paymentTransfer.setAccountNumber(numberForm.getValue());
+        paymentTransfer.setAccountName(name);
+        paymentTransfer.setAccountNumber(number);
         return paymentTransfer;
     }
 
     @Override
     public boolean isValid() {
-        return false;
+        return nameForm.isValid() && numberForm.isValid();
     }
 
 }

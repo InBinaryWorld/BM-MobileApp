@@ -6,9 +6,9 @@
     android:clickable="true">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_edit_text"
+        android:id="@+id/til_text_layout"
         style="@style/MaterialTextInputLayout"
-        android:hint="testowy hint"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -17,9 +17,10 @@
             android:id="@+id/mactv_auto_complete_text_view"
             style="@style/MaterialTextInputEditText"
             android:completionThreshold="1"
-            android:padding="8dp"
-            android:layout_width="match_parent"
+            android:paddingHorizontal="11dp"
+            android:paddingVertical="16dp"
             android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:textAppearance="@style/TextAppearance" />
 
     </com.google.android.material.textfield.TextInputLayout>

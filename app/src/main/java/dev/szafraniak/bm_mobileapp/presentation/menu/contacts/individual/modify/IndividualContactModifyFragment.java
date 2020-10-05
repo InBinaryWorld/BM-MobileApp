@@ -63,11 +63,6 @@ public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndi
     }
 
     @Override
-    protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
-        navigationCallback.navigate(this);
-    }
-
-    @Override
     protected FormInterface<UpdateIndividualContactRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, IndividualContactModifyFormConfig config) {
         return new IndividualContactModifyForm(inflater, linearLayout, config);
     }

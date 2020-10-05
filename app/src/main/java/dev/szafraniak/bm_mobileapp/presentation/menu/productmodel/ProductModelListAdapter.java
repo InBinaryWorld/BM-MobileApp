@@ -11,7 +11,7 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterListAdapter;
 
-public class ProductModelListAdapter extends BaseFilterListAdapter<ProductModel> {
+public class ProductModelListAdapter extends BaseFilterListAdapter<ProductModel, ProductModel> {
 
     private static final int layoutId = R.layout.row_list_product_model;
 
@@ -38,7 +38,12 @@ public class ProductModelListAdapter extends BaseFilterListAdapter<ProductModel>
     }
 
     @Override
-    protected String getItemFilterValue(ProductModel item) {
+    protected ProductModel extractGetItemValue(ProductModel item) {
+        return item;
+    }
+
+    @Override
+    public String getItemFilterValue(ProductModel item) {
         return item.getFilterValue();
     }
 

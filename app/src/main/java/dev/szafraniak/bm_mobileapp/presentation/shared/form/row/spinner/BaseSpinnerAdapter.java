@@ -8,7 +8,7 @@ import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListAdapter;
 
-public abstract class BaseSpinnerAdapter<T> extends BaseListAdapter<T> {
+public abstract class BaseSpinnerAdapter<T, R> extends BaseListAdapter<T, R> {
 
     public BaseSpinnerAdapter(LayoutInflater inflater, List<T> list) {
         super(inflater, list);

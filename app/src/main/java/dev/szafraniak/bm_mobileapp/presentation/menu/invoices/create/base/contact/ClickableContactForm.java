@@ -12,7 +12,7 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.contact.Contact;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.clickable.ClickableHolderForm;
 
-public class ClickableContactForm extends ClickableHolderForm<Contact, ClickableContactFormViewHolder, ClickableContactFormConfig> {
+public abstract class ClickableContactForm extends ClickableHolderForm<Contact, ClickableContactFormViewHolder, ClickableContactFormConfig> {
 
     @LayoutRes
     private final static int layoutId = R.layout.row_form_clickable_contact;
@@ -37,6 +37,7 @@ public class ClickableContactForm extends ClickableHolderForm<Contact, Clickable
         holder.address.setText(value.getAddress().getShortAddress());
     }
 
+
     @Override
     protected void setLabel(String label) {
         ClickableContactFormViewHolder holder = getViewHolder();
@@ -49,7 +50,7 @@ public class ClickableContactForm extends ClickableHolderForm<Contact, Clickable
         holder.view = inflater.inflate(layoutId, viewGroup, false);
         holder.label = holder.view.findViewById(R.id.tv_label);
         holder.empty = holder.view.findViewById(R.id.tv_empty);
-        holder.address = holder.view.findViewById(R.id.tv_address);
+        holder.name = holder.view.findViewById(R.id.tv_contact_name);
         holder.address = holder.view.findViewById(R.id.tv_address);
         holder.dataView = holder.view.findViewById(R.id.cl_data_view);
         holder.emptyView = holder.view.findViewById(R.id.cl_empty_view);
@@ -63,10 +64,6 @@ public class ClickableContactForm extends ClickableHolderForm<Contact, Clickable
         holder.view.setOnClickListener(this::navigateToContactForm);
     }
 
-    private void navigateToContactForm(View clickedView) {
-        executeSafeNavigation(view -> {
-
-        });
-    }
+    protected abstract void navigateToContactForm(View clickedView);
 
 }

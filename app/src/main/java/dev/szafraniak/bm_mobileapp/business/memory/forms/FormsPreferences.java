@@ -8,14 +8,14 @@ import com.google.gson.Gson;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.CreateInvoiceRequest;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceFormModel;
 
 import static android.content.Context.MODE_PRIVATE;
 import static dev.szafraniak.bm_mobileapp.business.Constance.PREFERENCES_FORMS_PREFIX;
 
 public class FormsPreferences {
 
-    private final static String CREATE_INVOICE_MODEL_KEY = "forms.create.invoice.model";
+    private final static String CREATE_INVOICE_FORM_MODEL_KEY = "forms.create.invoice.model";
 
     private final SharedPreferences preferences;
 
@@ -27,14 +27,14 @@ public class FormsPreferences {
         preferences = app.getSharedPreferences(PREFERENCES_FORMS_PREFIX, MODE_PRIVATE);
     }
 
-    public void setCreateInvoiceModel(CreateInvoiceRequest invoice) {
+    public void setCreateInvoiceModel(CreateInvoiceFormModel invoice) {
         String invoiceJSON = gson.toJson(invoice);
-        preferences.edit().putString(CREATE_INVOICE_MODEL_KEY, invoiceJSON).apply();
+        preferences.edit().putString(CREATE_INVOICE_FORM_MODEL_KEY, invoiceJSON).apply();
     }
 
-    public CreateInvoiceRequest getCreateInvoiceModel() {
-        String invoiceJSON = preferences.getString(CREATE_INVOICE_MODEL_KEY, null);
-        return gson.fromJson(invoiceJSON, CreateInvoiceRequest.class);
+    public CreateInvoiceFormModel getCreateInvoiceModel() {
+        String invoiceJSON = preferences.getString(CREATE_INVOICE_FORM_MODEL_KEY, null);
+        return gson.fromJson(invoiceJSON, CreateInvoiceFormModel.class);
     }
 
 }

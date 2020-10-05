@@ -10,12 +10,12 @@ import java.time.LocalDate;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethod;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentModel;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.PaymentMethodForm;
 
-public class CreateInvoicePaymentForm extends BaseForm<PaymentModel, BaseViewHolder, CreateInvoicePaymentFormConfig> {
+public class CreateInvoicePaymentForm extends BaseForm<PaymentFormModel, BaseViewHolder, CreateInvoicePaymentFormConfig> {
 
     @LayoutRes
     private static final int layoutId = R.layout.form_base_group;
@@ -32,23 +32,21 @@ public class CreateInvoicePaymentForm extends BaseForm<PaymentModel, BaseViewHol
     }
 
     @Override
-    protected void showValueOnView(PaymentModel value) {
+    protected void showValueOnView(PaymentFormModel value) {
         if (value == null) {
             paymentMethodForm.setValue(null);
             return;
         }
-        PaymentModel model = new PaymentModel();
-        model.setDueDate(value.getDueDate());
-        model.setPaymentMethod(value.getPaymentMethod());
+        paymentMethodForm.setValue(value.getPaymentMethod());
     }
 
     @Override
-    public PaymentModel getValue() {
+    public PaymentFormModel getValue() {
         PaymentMethod paymentMethod = paymentMethodForm.getValue();
         if (paymentMethod == null) {
             return null;
         }
-        PaymentModel model = new PaymentModel();
+        PaymentFormModel model = new PaymentFormModel();
         model.setPaymentMethod(paymentMethod);
         // TODO: add loacal data form
         model.setDueDate(LocalDate.now());

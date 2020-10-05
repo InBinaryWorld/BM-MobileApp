@@ -25,7 +25,7 @@ public abstract class EditTextFormRow<T, C extends TextFormConfig<T>> extends Te
     protected TextFormViewHolder<TextInputEditText> createViewHolder(LayoutInflater inflater, ViewGroup viewGroup, C config) {
         TextFormViewHolder<TextInputEditText> holder = new TextFormViewHolder<>();
         holder.view = inflater.inflate(layoutId, viewGroup, false);
-        holder.layout = holder.view.findViewById(R.id.til_edit_text);
+        holder.layout = holder.view.findViewById(R.id.til_text_layout);
         holder.editText = holder.view.findViewById(R.id.et_edit_text);
         return holder;
     }

@@ -25,6 +25,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataFormFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.InvoiceContactFormFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.InvoicePaymentFormFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductsListFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.create.ProductModelCreateFragment_;
@@ -76,6 +77,7 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_WAREHOUSE_MODIFY = 902;
     public static final int FRAGMENT_WAREHOUSE_DETAILS = 903;
     public static final int FRAGMENT_FINANCES = 1000;
+    public static final int FRAGMENT_FORM_CONTACT_AUTO_COMPETE = 10000;
 
     public static final Map<Integer, Integer> menuMap = new HashMap<Integer, Integer>() {{
         put(R.id.menu_dashboard, FRAGMENT_DASHBOARD);
@@ -186,6 +188,8 @@ public abstract class FragmentFactory {
             case FRAGMENT_WAREHOUSE_DETAILS:
                 fragment = new WarehouseDetailsFragment_();
                 break;
+            case FRAGMENT_FORM_CONTACT_AUTO_COMPETE:
+                return new InvoiceContactFormFragment_();
             default:
                 throw new Resources.NotFoundException("Not found fragment with id: " + fragmentId);
         }

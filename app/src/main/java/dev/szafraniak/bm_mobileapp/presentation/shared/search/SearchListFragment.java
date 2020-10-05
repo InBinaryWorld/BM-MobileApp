@@ -9,9 +9,10 @@ import org.androidannotations.annotations.EFragment;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.utils.ViewUtils;
 
 @EFragment
-public abstract class SearchListFragment<T extends FilterValue> extends BaseListFragment<T, BaseFilterListAdapter<T>> {
+public abstract class SearchListFragment<T extends FilterValue> extends BaseListFragment<T, BaseFilterListAdapter<T, T>> {
 
     SearchView searchView;
 
@@ -23,21 +24,7 @@ public abstract class SearchListFragment<T extends FilterValue> extends BaseList
     @AfterViews
     public void initializeSearchList() {
         searchView = (SearchView) findViewById(getSearchViewId());
-        searchView.setOnQueryTextListener(new QueryListener());
+        ViewUtils.addOnQueryListener(searchView, s -> adapter.getFilter().filter(s));
     }
 
-
-    class QueryListener implements SearchView.OnQueryTextListener {
-
-        @Override
-        public boolean onQueryTextSubmit(String s) {
-            return false;
-        }
-
-        @Override
-        public boolean onQueryTextChange(String s) {
-            adapter.filter(s);
-            return false;
-        }
-    }
 }

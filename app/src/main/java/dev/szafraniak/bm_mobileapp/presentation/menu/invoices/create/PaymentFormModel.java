@@ -6,7 +6,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethod;
 import lombok.Data;
 
 @Data
-public class PaymentModel {
+public class PaymentFormModel {
 
     private PaymentMethod paymentMethod;
     private LocalDate dueDate;

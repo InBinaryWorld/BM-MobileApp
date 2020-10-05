@@ -13,7 +13,7 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListAdapter;
 
-public class WarehouseListAdapter extends BaseListAdapter<Warehouse> {
+public class WarehouseListAdapter extends BaseListAdapter<Warehouse, Warehouse> {
 
     @LayoutRes
     private static final int layoutId = R.layout.row_list_product_model;
@@ -34,6 +34,11 @@ public class WarehouseListAdapter extends BaseListAdapter<Warehouse> {
         ViewHolder holder = (ViewHolder) convertView.getTag();
         holder.name.setText(item.getName());
         return convertView;
+    }
+
+    @Override
+    protected Warehouse extractGetItemValue(Warehouse item) {
+        return item;
     }
 
     static class ViewHolder {

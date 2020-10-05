@@ -85,7 +85,9 @@ public abstract class BaseFormFragment<T, C> extends BaseSRLLoadFragment impleme
         return form;
     }
 
-    protected abstract void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback);
+    // Override if navigation is used in form
+    protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
+    }
 
     public void setError(Throwable e) {
         Timber.e(e);

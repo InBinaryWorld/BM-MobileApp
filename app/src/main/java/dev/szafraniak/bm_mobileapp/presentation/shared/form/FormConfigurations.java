@@ -1,12 +1,14 @@
 package dev.szafraniak.bm_mobileapp.presentation.shared.form;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.BankAccount;
+import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.CompanyContact;
+import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentCash;
 import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethod;
 import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentTransfer;
@@ -17,6 +19,11 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.paymen
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.address.AddressFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.company.CompanyAutoCompleteFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.individual.IndividualAutoCompleteFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactType;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactTypeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.PaymentMethodFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.transfer.PaymentTransferFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.type.PaymentMethodType;
@@ -250,14 +257,14 @@ public final class FormConfigurations {
     private static TextFormConfig<String> getBankAccountNumberConfig() {
         TextFormConfig<String> config = getBaseTextFormConfig();
         config.setLabel("Account number");
-        config.setInvalidMessage("1-3 Digits And Optional Letter");
+        config.setInvalidMessage("Invalid Format");
         config.setValidator(Validator::validateBankAccountNumber);
         config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_CHARACTERS);
         return config;
     }
 
     private static <T> TextFormConfig<T> getBaseTextFormConfig() {
-        TextFormConfig<T> config = new TextFormConfig<T>();
+        TextFormConfig<T> config = new TextFormConfig<>();
         config.setInvalidMessage("Invalid Value");
         config.setVisibleOnSetValueNull(true);
         config.setReadEmptyAsNull(true);
@@ -296,7 +303,7 @@ public final class FormConfigurations {
         displayValues.put(PaymentMethodType.TRANSFER, "Transfer");
 
         PaymentMethodTypeFormConfig config = new PaymentMethodTypeFormConfig();
-        config.setSpinnerItems(Arrays.asList(PaymentMethodType.values()));
+        config.setSpinnerItems(new ArrayList<>(displayValues.keySet()));
         config.setDisplayValues(displayValues);
         config.setVisibleOnSetValueNull(true);
         config.setLabel("Payment Type");
@@ -323,7 +330,7 @@ public final class FormConfigurations {
     }
 
     private static AutoCompleteTextFormConfig<String, BankAccount> getAccountNameAutoCompleteConfig(
-            List<BankAccount> bankAccounts
+        List<BankAccount> bankAccounts
     ) {
         AutoCompleteTextFormConfig<String, BankAccount> config = getAutoCompleteTextFormConfig();
         config.setValidator(Validator::validateBankAccountName);
@@ -340,6 +347,68 @@ public final class FormConfigurations {
         config.setVisibleOnSetValueNull(true);
         config.setReadEmptyAsNull(true);
         config.setRequired(true);
+        return config;
+    }
+
+    public static ContactFormConfig getContactFormConfig(List<IndividualContact> individuals, List<CompanyContact> companies) {
+        ContactFormConfig config = new ContactFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setContactTypeForm(getContactTypeConfig());
+        config.setCompanyConfig(getCompanyAutoCompleteFormConfig(companies));
+        config.setIndividualConfig(getIndividualAutocompleteFormConfig(individuals));
+        return config;
+    }
+
+    private static IndividualAutoCompleteFormConfig getIndividualAutocompleteFormConfig(List<IndividualContact> individuals) {
+        IndividualAutoCompleteFormConfig config = new IndividualAutoCompleteFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setFirstNameConfig(getFirstNameAutoCompleteConfig(individuals));
+        config.setLastNameConfig(getLastNameConfig());
+        config.setAddressConfig(getAddressConfig());
+        return config;
+    }
+
+    private static AutoCompleteTextFormConfig<String, IndividualContact> getFirstNameAutoCompleteConfig(List<IndividualContact> individuals) {
+        AutoCompleteTextFormConfig<String, IndividualContact> config = getAutoCompleteTextFormConfig();
+        config.setLabel("First Name");
+        config.setInvalidMessage("1-20 Signs");
+        config.setValidator(Validator::validateFirstName);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PERSON_NAME);
+        config.setListItems(individuals);
+        return config;
+    }
+
+    private static CompanyAutoCompleteFormConfig getCompanyAutoCompleteFormConfig(List<CompanyContact> companies) {
+        CompanyAutoCompleteFormConfig config = new CompanyAutoCompleteFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setTaxIdConfig(getTaxIdentityNumberConfig());
+        config.setAddressConfig(getAddressConfig());
+        config.setCompanyNameConfig(getCompanyNameAutoCompleteConfig(companies));
+        return config;
+    }
+
+    private static AutoCompleteTextFormConfig<String, CompanyContact> getCompanyNameAutoCompleteConfig(List<CompanyContact> companies) {
+        AutoCompleteTextFormConfig<String, CompanyContact> config = getAutoCompleteTextFormConfig();
+        config.setLabel("Company name");
+        config.setInvalidMessage("2-40 Signs");
+        config.setValidator(Validator::validateCompanyName);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_WORDS);
+        config.setListItems(companies);
+        return config;
+    }
+
+    private static ContactTypeFormConfig getContactTypeConfig() {
+        HashMap<ContactType, String> map = new HashMap<>();
+        map.put(ContactType.INDIVIDUAL, "Individual Contact");
+        map.put(ContactType.COMPANY, "Company Contact");
+
+        ContactTypeFormConfig config = new ContactTypeFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setRequired(true);
+        config.setLabel("Select contact type");
+        config.setDefaultValue(ContactType.COMPANY);
+        config.setSpinnerItems(new ArrayList<>(map.keySet()));
+        config.setDisplayValues(map);
         return config;
     }
 

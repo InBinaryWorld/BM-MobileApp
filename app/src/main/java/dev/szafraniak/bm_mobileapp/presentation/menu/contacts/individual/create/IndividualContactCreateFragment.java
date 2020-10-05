@@ -34,10 +34,6 @@ public class IndividualContactCreateFragment extends BaseFormFragment<CreateIndi
         return R.string.header_contact_create;
     }
 
-    @Override
-    protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
-
-    }
 
     @Override
     protected FormInterface<CreateIndividualContactRequest> createForm(

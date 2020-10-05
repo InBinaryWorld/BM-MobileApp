@@ -6,7 +6,8 @@ import android.content.Context;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.CreateInvoiceRequest;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceBaseFormModel;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceFormModel;
 
 public class FormsManager {
 
@@ -21,19 +22,25 @@ public class FormsManager {
     }
 
     public void clearForms() {
-        memory.setCreateInvoiceModel(null);
+        resetCreateInvoiceForm();
     }
 
-    public CreateInvoiceRequest getCreateInvoiceModel() {
-        CreateInvoiceRequest data = memory.getCreateInvoiceModel();
+    public void resetCreateInvoiceForm() {
+        CreateInvoiceFormModel data = new CreateInvoiceFormModel();
+        data.setBaseModel(new CreateInvoiceBaseFormModel());
+        memory.setCreateInvoiceModel(data);
+    }
+
+    public CreateInvoiceFormModel getCreateInvoiceFormModel() {
+        CreateInvoiceFormModel data = memory.getCreateInvoiceModel();
         if (data == null) {
-            data = new CreateInvoiceRequest();
-            memory.setCreateInvoiceModel(data);
+            resetCreateInvoiceForm();
+            return memory.getCreateInvoiceModel();
         }
         return data;
     }
 
-    public void setCreateInvoiceModel(CreateInvoiceRequest data) {
+    public void setCreateInvoiceFormModel(CreateInvoiceFormModel data) {
         memory.setCreateInvoiceModel(data);
     }
 

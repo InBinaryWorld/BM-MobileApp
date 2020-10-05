@@ -37,7 +37,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_label">
 
             <TextView
-                android:id="@+id/tv_payment_type"
+                android:id="@+id/tv_contact_name"
                 style="@style/BaseTextView.Value"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,7 @@
                 android:layout_marginTop="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_payment_type"
+                app:layout_constraintTop_toBottomOf="@id/tv_contact_name"
                 tools:text="Contact Address Value" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

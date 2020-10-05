@@ -41,7 +41,7 @@ public class PaymentMethodForm extends BaseForm<PaymentMethod, PaymentViewHolder
         PaymentMethodType type = paymentMethodTypeForm.getValue();
         if (PaymentMethodType.CASH.equals(type)) {
             return new PaymentCash();
-        } else if (TRANSFER.equals(type) && paymentTransferForm.isValid()) {
+        } else if (TRANSFER.equals(type)) {
             return paymentTransferForm.getValue();
         }
         return null;
@@ -56,8 +56,6 @@ public class PaymentMethodForm extends BaseForm<PaymentMethod, PaymentViewHolder
     @Override
     protected void showValueOnView(PaymentMethod value) {
         boolean isTransfer = value instanceof PaymentTransfer;
-        PaymentViewHolder holder = getViewHolder();
-        holder.transferView.setVisibility(isTransfer ? View.VISIBLE : View.GONE);
         paymentMethodTypeForm.setValue(isTransfer ? TRANSFER : CASH);
         if (isTransfer) {
             paymentTransferForm.setValue((PaymentTransfer) value);

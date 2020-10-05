@@ -18,7 +18,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.search.ExtendedBaseAdapte
 import timber.log.Timber;
 
 @EFragment
-public abstract class BaseListFragment<T, A extends ExtendedBaseAdapter<T>> extends BaseSRLLoadFragment implements BaseListView<T>, AdapterView.OnItemClickListener {
+public abstract class BaseListFragment<T, A extends ExtendedBaseAdapter<T, T>> extends BaseSRLLoadFragment implements BaseListView<T>, AdapterView.OnItemClickListener {
 
     protected View emptyListView;
 

@@ -12,7 +12,7 @@ import java.util.HashMap;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.BaseSpinnerAdapter;
 
-public class PaymentMethodTypeAdapter extends BaseSpinnerAdapter<PaymentMethodType> {
+public class PaymentMethodTypeAdapter extends BaseSpinnerAdapter<PaymentMethodType, PaymentMethodType> {
 
     @LayoutRes
     private static final int layoutId = R.layout.row_dropdown_payment_method_type;
@@ -21,6 +21,11 @@ public class PaymentMethodTypeAdapter extends BaseSpinnerAdapter<PaymentMethodTy
     public PaymentMethodTypeAdapter(LayoutInflater inflater, PaymentMethodTypeFormConfig config) {
         super(inflater, config.getSpinnerItems());
         this.config = config;
+    }
+
+    @Override
+    protected PaymentMethodType extractGetItemValue(PaymentMethodType item) {
+        return item;
     }
 
     @Override
@@ -35,7 +40,7 @@ public class PaymentMethodTypeAdapter extends BaseSpinnerAdapter<PaymentMethodTy
 
     @Override
     public int getItemPosition(PaymentMethodType value) {
-        return value != null ? items.indexOf(value) : 0;
+        return items.indexOf(value);
     }
 
     private View createPaymentView(LayoutInflater inflater, int position, View convertView, ViewGroup viewGroup) {

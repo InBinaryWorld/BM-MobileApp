@@ -165,6 +165,14 @@
 
     <style name="BaseTextView.Value" />
 
+    <style name="BaseTextView.Value.Bold">
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="BaseTextView.Value.Light">
+        <item name="fontFamily">@font/roboto_light</item>
+    </style>
+
     <style name="BaseTextView.Value.Accent">
         <item name="android:textColor">@color/colorCoral</item>
     </style>
@@ -341,6 +349,12 @@
         <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">20dp</item>
         <item name="tint">@color/colorBlack40</item>
+    </style>
+
+    <style name="Spinner">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:overlapAnchor">false</item>
     </style>
 
 </resources>

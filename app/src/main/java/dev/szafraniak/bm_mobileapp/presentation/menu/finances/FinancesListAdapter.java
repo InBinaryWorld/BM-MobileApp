@@ -11,7 +11,7 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.FinancialRow;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListAdapter;
 
-public class FinancesListAdapter extends BaseListAdapter<FinancialRow> {
+public class FinancesListAdapter extends BaseListAdapter<FinancialRow, FinancialRow> {
     private static final int layoutId = R.layout.row_list_finances;
 
     public FinancesListAdapter(LayoutInflater inflater, List<FinancialRow> initialList) {
@@ -35,6 +35,11 @@ public class FinancesListAdapter extends BaseListAdapter<FinancialRow> {
         ViewHolder holder = (ViewHolder) convertView.getTag();
         holder.name.setText(item.getTitle());
         return convertView;
+    }
+
+    @Override
+    protected FinancialRow extractGetItemValue(FinancialRow item) {
+        return item;
     }
 
 }

@@ -32,7 +32,7 @@ public abstract class EditTextDetails<T, C extends SimpleDetailsConfig<T>> exten
     protected EditTextViewHolder createViewHolder(LayoutInflater inflater, ViewGroup viewGroup, C config) {
         EditTextViewHolder holder = new EditTextViewHolder();
         holder.view = inflater.inflate(layoutId, viewGroup, false);
-        holder.layout = holder.view.findViewById(R.id.til_edit_text);
+        holder.layout = holder.view.findViewById(R.id.til_text_layout);
         holder.editText = holder.view.findViewById(R.id.et_edit_text);
         return holder;
     }

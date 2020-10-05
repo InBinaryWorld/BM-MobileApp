@@ -12,7 +12,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.business.models.entity.contact.Contact;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterListAdapter;
 
-public class ContactListAdapter<T extends Contact> extends BaseFilterListAdapter<T> {
+public class ContactListAdapter<T extends Contact> extends BaseFilterListAdapter<T, T> {
 
     private static final int layoutId = R.layout.row_list_contact;
 
@@ -43,7 +43,12 @@ public class ContactListAdapter<T extends Contact> extends BaseFilterListAdapter
     }
 
     @Override
-    protected String getItemFilterValue(T item) {
+    protected T extractGetItemValue(T item) {
+        return item;
+    }
+
+    @Override
+    public String getItemFilterValue(T item) {
         return item.getFilterValue();
     }
 

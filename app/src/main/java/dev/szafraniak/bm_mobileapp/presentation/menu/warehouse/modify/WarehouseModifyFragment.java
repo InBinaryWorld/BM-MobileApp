@@ -56,10 +56,6 @@ public class WarehouseModifyFragment extends BaseFormFragment<UpdateWarehouseReq
         return R.string.header_warehouse_modify;
     }
 
-    @Override
-    protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
-
-    }
 
     @Override
     protected FormInterface<UpdateWarehouseRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, UpdateWarehouseFormConfig config) {

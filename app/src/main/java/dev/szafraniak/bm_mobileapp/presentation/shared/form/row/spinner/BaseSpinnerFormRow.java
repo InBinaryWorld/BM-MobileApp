@@ -12,7 +12,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.utils.ViewUtils;
 
 public abstract class BaseSpinnerFormRow<T, C extends SpinnerFormRowConfig<T>> extends LabelFormRow<T, SpinnerViewHolder, C> {
 
-    private BaseSpinnerAdapter<T> spinnerAdapter;
+    private BaseSpinnerAdapter<T, T> spinnerAdapter;
 
     @LayoutRes
     private final static int layoutId = R.layout.row_form_spinner;
@@ -21,7 +21,7 @@ public abstract class BaseSpinnerFormRow<T, C extends SpinnerFormRowConfig<T>> e
         super(inflater, viewGroup, config);
     }
 
-    protected abstract BaseSpinnerAdapter<T> createAdapter(LayoutInflater inflater, C config);
+    protected abstract BaseSpinnerAdapter<T, T> createAdapter(LayoutInflater inflater, C config);
 
     @Override
     public T getValue() {

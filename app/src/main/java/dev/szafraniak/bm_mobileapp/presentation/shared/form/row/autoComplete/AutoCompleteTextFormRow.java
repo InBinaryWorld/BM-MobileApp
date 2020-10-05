@@ -9,7 +9,6 @@ import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterListAdapter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.utils.ViewUtils;
 
 public abstract class AutoCompleteTextFormRow<T, P, C extends AutoCompleteTextFormConfig<T, P>>
@@ -22,23 +21,22 @@ public abstract class AutoCompleteTextFormRow<T, P, C extends AutoCompleteTextFo
         super(inflater, viewGroup, config);
     }
 
-    protected abstract BaseFilterListAdapter<P> createAdapter(LayoutInflater inflater, C config);
+    protected abstract BaseAutoCompleteListAdapter<P> createAdapter(LayoutInflater inflater, C config);
 
     @Override
     protected void setupView(LayoutInflater inflater, C config) {
         super.setupView(inflater, config);
         AutoCompleteTextViewViewHolder holder = getViewHolder();
         holder.editText.setAdapter(createAdapter(inflater, config));
-        addOnItemSelected(this::viewOnItemSelected, true);
+        addOnItemSelected(this::viewOnItemSelected);
     }
 
-    public void addOnItemSelected(ViewUtils.OnNewValue<P> onNewValue, boolean emitNull) {
+    public void addOnItemSelected(ViewUtils.OnNewValue<P> onNewValue) {
         AutoCompleteTextViewViewHolder holder = getViewHolder();
-        ViewUtils.addOnItemSelectedListener(holder.editText, onNewValue, emitNull);
+        ViewUtils.addOnItemSelectedListener(holder.editText, onNewValue);
     }
 
     private void viewOnItemSelected(P item) {
-        System.out.println("clicked: " + item.toString());
         //TODO: analize do we need ui changes
     }
 
@@ -47,7 +45,7 @@ public abstract class AutoCompleteTextFormRow<T, P, C extends AutoCompleteTextFo
         AutoCompleteTextViewViewHolder holder = new AutoCompleteTextViewViewHolder();
         holder.view = inflater.inflate(layoutId, viewGroup, false);
         holder.editText = holder.view.findViewById(R.id.mactv_auto_complete_text_view);
-        holder.layout = holder.view.findViewById(R.id.til_edit_text);
+        holder.layout = holder.view.findViewById(R.id.til_text_layout);
         return holder;
     }
 

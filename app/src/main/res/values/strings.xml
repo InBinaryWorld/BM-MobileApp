@@ -88,4 +88,6 @@
     <string name="header_warehouse_modify">Modify Warehouse</string>
     <string name="btn_text_invoice_create_base_data">Add Items</string>
     <string name="header_invoice_create_base_data">Create Invoice</string>
+    <string name="header_invoice_create_payment">Payment</string>
+    <string name="btn_text_invoice_create_payment">Save</string>
 </resources>

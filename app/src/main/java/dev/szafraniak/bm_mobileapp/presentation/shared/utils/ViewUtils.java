@@ -3,10 +3,14 @@ package dev.szafraniak.bm_mobileapp.presentation.shared.utils;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.SearchView;
 import android.widget.Spinner;
+
+import dev.szafraniak.bm_mobileapp.presentation.shared.search.ExtendedBaseAdapter;
 
 public class ViewUtils {
 
@@ -18,12 +22,12 @@ public class ViewUtils {
         spinner.setOnItemSelectedListener(getOnItemSelectedListener((item) -> onChange.onChange(), true));
     }
 
-    public static <T> void addOnItemSelectedListener(AutoCompleteTextView autoCompleteTextView, OnNewValue<T> onNewValue, boolean emitNull) {
-        autoCompleteTextView.setOnItemClickListener(getOnItemClickListener(onNewValue, emitNull));
+    public static <T> void addOnItemSelectedListener(AutoCompleteTextView autoCompleteTextView, OnNewValue<T> onNewValue) {
+        autoCompleteTextView.setOnItemClickListener(getOnItemClickListener(onNewValue));
     }
 
-    public static <T> void addOnItemSelectedListener(AutoCompleteTextView autoCompleteTextView, OnChange onChange, boolean emitNull) {
-        autoCompleteTextView.setOnItemClickListener(getOnItemClickListener((item) -> onChange.onChange(), emitNull));
+    public static <T> void addOnItemSelectedListener(AutoCompleteTextView autoCompleteTextView, OnChange onChange) {
+        autoCompleteTextView.setOnItemClickListener(getOnItemClickListener((item) -> onChange.onChange()));
     }
 
     public static void addOnTextChangeListener(EditText editText, OnNewValue<String> onNewValue) {
@@ -32,6 +36,23 @@ public class ViewUtils {
 
     public static void addOnTextChangeListener(EditText editText, OnChange onTextChange) {
         ViewUtils.addOnTextChangeListener(editText, (text) -> onTextChange.onChange());
+    }
+
+    public static void addOnQueryListener(SearchView editText, OnQuery onQuery) {
+        editText.setOnQueryTextListener(getOnQueryListener(onQuery));
+    }
+
+    private static SearchView.OnQueryTextListener getOnQueryListener(OnQuery onQuery) {
+        return new SearchView.OnQueryTextListener() {
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            public boolean onQueryTextChange(String newText) {
+                onQuery.execute(newText);
+                return false;
+            }
+        };
     }
 
     private static TextWatcher getTextWatcher(OnNewValue<String> onNewValue) {
@@ -63,8 +84,19 @@ public class ViewUtils {
     }
 
 
-    private static <T> AdapterView.OnItemClickListener getOnItemClickListener(OnNewValue<T> onNewValue, boolean emitNull) {
-        return (adapterView, view, i, l) -> onNewValue.onNewValue((T) adapterView.getAdapter().getItem(i));
+    private static <T, R> AdapterView.OnItemClickListener getOnItemClickListener(OnNewValue<T> onNewValue) {
+        return (adapterView, view, i, l) -> {
+            Adapter adapter = adapterView.getAdapter();
+            if (adapter instanceof ExtendedBaseAdapter) {
+                onNewValue.onNewValue((T) ((ExtendedBaseAdapter<T, R>) adapterView.getAdapter()).getWholeItem(i));
+            } else {
+                onNewValue.onNewValue((T) adapterView.getAdapter().getItem(i));
+            }
+        };
+    }
+
+    public interface OnQuery {
+        void execute(String query);
     }
 
     public interface OnNewValue<T> {

@@ -9,9 +9,8 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
 import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsManager;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
-import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.CreateInvoiceRequest;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceBaseDataModel;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentModel;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceBaseFormModel;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.contact.ClickableContactFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.form.CreateInvoiceBaseDataFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.payment.ClickablePaymentFormConfig;
@@ -54,25 +53,12 @@ public class CreateInvoiceBaseDataPresenter {
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData() {
         Long companyId = sessionManager.getCompanyId();
-        CreateInvoiceRequest createInvoiceModel = formsManager.getCreateInvoiceModel();
-        CreateInvoiceBaseDataModel invoiceBaseModel = createInitModel(createInvoiceModel);
+        CreateInvoiceFormModel createInvoiceModel = formsManager.getCreateInvoiceFormModel();
+        System.out.println("from preferences; " + createInvoiceModel);
+        CreateInvoiceBaseFormModel invoiceBaseModel = createInvoiceModel.getBaseModel();
         companyService.getCompany(companyId)
-                .compose(view.bindToLifecycle())
-                .subscribe(company -> view.setData(invoiceBaseModel, company), view::setError);
-    }
-
-    private CreateInvoiceBaseDataModel createInitModel(CreateInvoiceRequest model) {
-        CreateInvoiceBaseDataModel initModel = new CreateInvoiceBaseDataModel();
-        if (model.getPaymentMethod() != null || model.getDueDate() != null) {
-            PaymentModel paymentModel = new PaymentModel();
-            paymentModel.setPaymentMethod(model.getPaymentMethod());
-            paymentModel.setDueDate(model.getDueDate());
-            initModel.setPayment(paymentModel);
-        }
-        initModel.setInvoiceNumber(model.getInvoiceNumber());
-        initModel.setReceiver(model.getReceiver());
-        initModel.setBuyer(model.getBuyer());
-        return initModel;
+            .compose(view.bindToLifecycle())
+            .subscribe(company -> view.setData(invoiceBaseModel, company), view::setError);
     }
 
     private TextFormConfig<String> getInvoiceNumberConfig(String invoicePrefix) {

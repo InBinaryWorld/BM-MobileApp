@@ -35,10 +35,6 @@ public class ServiceModelCreateFragment extends BaseFormFragment<CreateServiceMo
     }
 
     @Override
-    protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
-    }
-
-    @Override
     protected FormInterface<CreateServiceModelRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateServiceFormConfig config) {
         return new CreateServiceForm(inflater, linearLayout, config);
     }
