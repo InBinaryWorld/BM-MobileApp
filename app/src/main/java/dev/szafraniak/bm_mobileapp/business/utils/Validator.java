@@ -1,5 +1,7 @@
 package dev.szafraniak.bm_mobileapp.business.utils;
 
+import com.google.android.material.datepicker.DateValidatorPointForward;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
@@ -89,11 +91,11 @@ public final class Validator {
         String house = address.getHouseNumber();
         String apartment = address.getApartmentNumber();
         return country != null && validateCountry(country)
-                && city != null && validateCity(city)
-                && street != null && validateStreet(street)
-                && postal != null && validatePostalCode(postal)
-                && house != null && validateHouseNumber(house)
-                && (apartment == null || validateApartmentNumber(apartment));
+            && city != null && validateCity(city)
+            && street != null && validateStreet(street)
+            && postal != null && validatePostalCode(postal)
+            && house != null && validateHouseNumber(house)
+            && (apartment == null || validateApartmentNumber(apartment));
     }
 
     public static boolean validateCountry(String value) {
@@ -160,9 +162,9 @@ public final class Validator {
         String phone = value.getPhone();
         Address address = value.getAddress();
         return name != null && validateCompanyName(name)
-                && taxId != null && validateTaxIdentityNumber(taxId)
-                && address != null && validateAddress(address)
-                && (phone == null || validatePhoneNumber(phone));
+            && taxId != null && validateTaxIdentityNumber(taxId)
+            && address != null && validateAddress(address)
+            && (phone == null || validatePhoneNumber(phone));
     }
 
     public static boolean validateContact(IndividualContact value) {
@@ -171,9 +173,9 @@ public final class Validator {
         String phone = value.getPhone();
         Address address = value.getAddress();
         return firstName != null && validateFirstName(firstName)
-                && lastName != null && validateLastName(lastName)
-                && address != null && validateAddress(address)
-                && (phone == null || validatePhoneNumber(phone));
+            && lastName != null && validateLastName(lastName)
+            && address != null && validateAddress(address)
+            && (phone == null || validatePhoneNumber(phone));
     }
 
     public static boolean validatePaymentMethod(PaymentMethod paymentMethod) {
@@ -199,5 +201,10 @@ public final class Validator {
 
     public static <T> boolean notNull(T value) {
         return value != null;
+    }
+
+    public static DateValidatorPointForward getFromValidatorInclusive(LocalDate localDate) {
+        Long mills = Parsers.parseToMills(localDate);
+        return DateValidatorPointForward.from(mills);
     }
 }

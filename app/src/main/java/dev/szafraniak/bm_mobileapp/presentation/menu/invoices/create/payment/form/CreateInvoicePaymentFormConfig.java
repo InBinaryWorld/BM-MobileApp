@@ -3,6 +3,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.fo
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.PaymentMethodFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.datePicker.DatePickerFormConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,6 +12,6 @@ import lombok.EqualsAndHashCode;
 public class CreateInvoicePaymentFormConfig extends BaseFormConfig<PaymentFormModel> {
 
     public PaymentMethodFormConfig paymentConfig;
-
+    public DatePickerFormConfig dueDateFormConfig;
 }
 

@@ -20,6 +20,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentForm
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.form.CreateInvoicePaymentFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.PaymentMethodFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.datePicker.DatePickerFormConfig;
 import lombok.Setter;
 
 public class InvoicePaymentPresenter {
@@ -44,7 +45,12 @@ public class InvoicePaymentPresenter {
         CreateInvoicePaymentFormConfig config = new CreateInvoicePaymentFormConfig();
         config.setVisibleOnSetValueNull(true);
         config.setPaymentConfig(createPaymentConfig(bankAccounts));
+        config.setDueDateFormConfig(createDueDateConfig());
         return config;
+    }
+
+    private DatePickerFormConfig createDueDateConfig() {
+        return FormConfigurations.getDueDateConfig();
     }
 
     @SuppressLint("CheckResult")

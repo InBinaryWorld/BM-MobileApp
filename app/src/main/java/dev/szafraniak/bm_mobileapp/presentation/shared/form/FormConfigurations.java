@@ -1,6 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.shared.form;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +31,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.t
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.type.PaymentMethodTypeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.price.PriceFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.autoComplete.AutoCompleteTextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.datePicker.DatePickerFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormConfig;
 
 import static android.text.InputType.TYPE_CLASS_NUMBER;
@@ -412,4 +414,16 @@ public final class FormConfigurations {
         return config;
     }
 
+    public static DatePickerFormConfig getDueDateConfig() {
+        DatePickerFormConfig config = new DatePickerFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setValidator(Validator::validateDueDate);
+        config.setPickerValidator(Validator.getFromValidatorInclusive(LocalDate.now()));
+        config.setRequired(true);
+        config.setLabel("Due date");
+        config.setEmptyText("The date has not been specified");
+        config.setInvalidText("Invalid value");
+        return config;
+
+    }
 }

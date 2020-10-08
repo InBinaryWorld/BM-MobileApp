@@ -3,6 +3,8 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.invoices;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import androidx.fragment.app.FragmentManager;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
@@ -34,6 +36,7 @@ public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice, InvoiceLi
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
+        FragmentManager manager = getFragmentManager();
     }
 
     @Override

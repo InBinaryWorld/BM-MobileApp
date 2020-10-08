@@ -14,6 +14,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentForm
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.PaymentMethodForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.datePicker.DatePickerForm;
 
 public class CreateInvoicePaymentForm extends BaseForm<PaymentFormModel, BaseViewHolder, CreateInvoicePaymentFormConfig> {
 
@@ -21,6 +22,7 @@ public class CreateInvoicePaymentForm extends BaseForm<PaymentFormModel, BaseVie
     private static final int layoutId = R.layout.form_base_group;
 
     PaymentMethodForm paymentMethodForm;
+    DatePickerForm dueDateForm;
 
 
     public CreateInvoicePaymentForm(LayoutInflater inflater, ViewGroup viewGroup, CreateInvoicePaymentFormConfig config) {
@@ -34,33 +36,34 @@ public class CreateInvoicePaymentForm extends BaseForm<PaymentFormModel, BaseVie
     @Override
     protected void showValueOnView(PaymentFormModel value) {
         if (value == null) {
-            paymentMethodForm.setValue(null);
             return;
         }
         paymentMethodForm.setValue(value.getPaymentMethod());
+        dueDateForm.setValue(value.getDueDate());
     }
 
     @Override
     public PaymentFormModel getValue() {
         PaymentMethod paymentMethod = paymentMethodForm.getValue();
-        if (paymentMethod == null) {
+        LocalDate date = dueDateForm.getValue();
+        if (paymentMethod == null && date == null) {
             return null;
         }
         PaymentFormModel model = new PaymentFormModel();
         model.setPaymentMethod(paymentMethod);
-        // TODO: add loacal data form
-        model.setDueDate(LocalDate.now());
+        model.setDueDate(date);
         return model;
     }
 
 
     @Override
     protected BaseViewHolder createViewHolder(LayoutInflater inflater, ViewGroup viewGroup, CreateInvoicePaymentFormConfig config) {
-
         LinearLayout groupList = (LinearLayout) inflater.inflate(layoutId, viewGroup, false);
         paymentMethodForm = new PaymentMethodForm(inflater, groupList, config.getPaymentConfig());
+        dueDateForm = new DatePickerForm(inflater, groupList, config.getDueDateFormConfig());
 
         groupList.addView(paymentMethodForm.getView());
+        groupList.addView(dueDateForm.getView());
 
         BaseViewHolder holder = new BaseViewHolder();
         holder.view = groupList;
@@ -70,12 +73,13 @@ public class CreateInvoicePaymentForm extends BaseForm<PaymentFormModel, BaseVie
     @Override
     protected void setupView(LayoutInflater inflater, CreateInvoicePaymentFormConfig config) {
         paymentMethodForm.setOnValidationStateChanged(this::onValueChange);
+        dueDateForm.setOnValidationStateChanged(this::onValueChange);
         paymentMethodForm.setSafeNavigationExecutor(this::executeSafeNavigation);
     }
 
     @Override
     public boolean isValid() {
-        return paymentMethodForm.isValid();
+        return paymentMethodForm.isValid() && dueDateForm.isValid();
     }
 }
 

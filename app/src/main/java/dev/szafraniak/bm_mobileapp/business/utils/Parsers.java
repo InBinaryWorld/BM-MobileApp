@@ -3,7 +3,9 @@ package dev.szafraniak.bm_mobileapp.business.utils;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public final class Parsers {
 
@@ -82,5 +84,47 @@ public final class Parsers {
             return dueDate.toString();
         }
         return null;
+    }
+
+    public static Long parseToMills(LocalDate localDate) {
+        return parseToMills(localDate, false);
+    }
+
+    public static Long parseToMills(LocalDate localDate, boolean useZone) {
+        LocalDateTime localDateTime = localDate.atStartOfDay();
+        return parseToMills(localDateTime, useZone);
+    }
+
+    public static Long parseToMills(LocalDateTime localDateTime) {
+        return parseToMills(localDateTime, false);
+    }
+
+    public static Long parseToMills(LocalDateTime localDateTime, boolean useZone) {
+        if (useZone) {
+            return localDateTime.atZone(TimeUtils.getZoneId()).toInstant().toEpochMilli();
+        }
+        return localDateTime.atZone(TimeUtils.getUtcZoneId()).toInstant().toEpochMilli();
+    }
+
+
+    public static LocalDate parseMillsToLocalDate(long mills) {
+        return parseMillsToLocalDate(mills, false);
+    }
+
+    public static LocalDate parseMillsToLocalDate(long mills, boolean useZone) {
+        return parseMillsToLocalDateTime(mills, useZone).toLocalDate();
+    }
+
+
+    public static LocalDateTime parseMillsToLocalDateTime(long mills) {
+        return parseMillsToLocalDateTime(mills, false);
+    }
+
+    public static LocalDateTime parseMillsToLocalDateTime(long mills, boolean useZone) {
+        Instant instant = Instant.ofEpochMilli(mills);
+        if (useZone) {
+            return instant.atZone(TimeUtils.getZoneId()).toLocalDateTime();
+        }
+        return instant.atZone(TimeUtils.getUtcZoneId()).toLocalDateTime();
     }
 }

@@ -41,13 +41,11 @@ public class ContactForm extends BaseForm<Contact, ContactViewHolder, ContactFor
     @Override
     public Contact getValue() {
         ContactType type = contactTypeForm.getValue();
-        System.out.println("type !!! " + type);
         if (INDIVIDUAL.equals(type)) {
             return individualForm.getValue();
         } else if (COMPANY.equals(type)) {
             return companyForm.getValue();
         }
-        System.out.println("null !!! " + type);
         return null;
     }
 
@@ -60,6 +58,9 @@ public class ContactForm extends BaseForm<Contact, ContactViewHolder, ContactFor
 
     @Override
     protected void showValueOnView(Contact value) {
+        if (value == null) {
+            return;
+        }
         boolean isIndividual = value instanceof IndividualContact;
         contactTypeForm.setValue(isIndividual ? INDIVIDUAL : COMPANY);
         if (isIndividual) {
