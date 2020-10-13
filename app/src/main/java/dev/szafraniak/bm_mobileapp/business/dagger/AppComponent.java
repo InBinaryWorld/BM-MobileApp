@@ -70,6 +70,10 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.Create
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.InvoiceContactFormFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.InvoiceContactPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.CreateInvoiceItemFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.InvoiceCreateItemFormPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.CreateInvoiceItemsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.CreateInvoicesItemsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.InvoicePaymentFormFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.InvoicePaymentPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductsListFragment;
@@ -104,10 +108,10 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragme
 
 @Singleton
 @Component(modules = {
-        AppModule.class, MemoryManagementModule.class, OkHttpClientModule.class,
-        ServerApiModule.class, RetrofitModule.class, ServicesModule.class, GsonModule.class,
-        LoginActivityPresenterModule.class, MenuModule.class, AuthModule.class,
-        CompanyActivityModule.class
+    AppModule.class, MemoryManagementModule.class, OkHttpClientModule.class,
+    ServerApiModule.class, RetrofitModule.class, ServicesModule.class, GsonModule.class,
+    LoginActivityPresenterModule.class, MenuModule.class, AuthModule.class,
+    CompanyActivityModule.class
 })
 public interface AppComponent {
 
@@ -286,4 +290,12 @@ public interface AppComponent {
     void inject(InvoiceContactFormFragment invoiceContactFormFragment);
 
     void inject(InvoiceContactPresenter invoiceContactPresenter);
+
+    void inject(CreateInvoicesItemsFragment createInvoicesItemsFragment);
+
+    void inject(CreateInvoiceItemsPresenter createInvoiceItemsPresenter);
+
+    void inject(InvoiceCreateItemFormPresenter invoiceCreateItemFormPresenter);
+
+    void inject(CreateInvoiceItemFormFragment createInvoiceItemFormFragment);
 }

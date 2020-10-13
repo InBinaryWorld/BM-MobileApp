@@ -130,6 +130,10 @@ public final class Validator {
         return number.signum() >= 0 && number.scale() <= 2;
     }
 
+    public static boolean validateQuantity(BigDecimal number) {
+        return number.signum() >= 0 && number.scale() <= 5;
+    }
+
     public static boolean validateTaxRate(BigDecimal number) {
         return number.signum() >= 0 && number.scale() == 0;
     }

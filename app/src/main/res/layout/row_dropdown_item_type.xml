@@ -6,12 +6,12 @@
     style="@style/Row.h18.v8">
 
     <TextView
-        android:id="@+id/tv_contact_type"
+        android:id="@+id/tv_item_type"
         style="@style/BaseTextView.Value"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="item Type" />
+        tools:text="Payment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

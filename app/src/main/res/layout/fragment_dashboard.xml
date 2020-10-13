@@ -13,10 +13,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <AutoCompleteTextView
-        android:id="@+id/auto_cmpl"
+    <Button
+        android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="scanner"
         app:layout_constraintTop_toBottomOf="@+id/header" />
+
+
+    <SurfaceView
+        android:id="@+id/sv_cameraSurface"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="H,1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintVertical_bias="0.26999998" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

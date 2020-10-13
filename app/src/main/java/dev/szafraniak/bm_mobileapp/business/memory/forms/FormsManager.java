@@ -3,6 +3,8 @@ package dev.szafraniak.bm_mobileapp.business.memory.forms;
 import android.app.Application;
 import android.content.Context;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
@@ -28,6 +30,7 @@ public class FormsManager {
     public void resetCreateInvoiceForm() {
         CreateInvoiceFormModel data = new CreateInvoiceFormModel();
         data.setBaseModel(new CreateInvoiceBaseFormModel());
+        data.setItems(new ArrayList<>());
         memory.setCreateInvoiceModel(data);
     }
 

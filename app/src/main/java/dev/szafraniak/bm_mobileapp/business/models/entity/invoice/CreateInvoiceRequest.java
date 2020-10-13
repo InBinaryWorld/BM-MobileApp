@@ -23,5 +23,5 @@ public class CreateInvoiceRequest {
 
     private OffsetDateTime creationDate;
 
-    private List<InvoiceOrderItem> items;
+    private List<InvoiceItem> items;
 }

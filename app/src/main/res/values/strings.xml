@@ -90,4 +90,8 @@
     <string name="header_invoice_create_base_data">Create Invoice</string>
     <string name="header_invoice_create_payment">Payment</string>
     <string name="btn_text_invoice_create_payment">Save</string>
+    <string name="btn_invoice_create_items">Generate Invoice</string>
+    <string name="btn_text_invoice_create_item">Add Item</string>
+    <string name="header_invoice_create_item">Invoice item</string>
+    <string name="header_invoice_create_Items">Invoice Items</string>
 </resources>

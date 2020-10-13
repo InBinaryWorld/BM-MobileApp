@@ -46,7 +46,7 @@ public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice, InvoiceLi
 
     @Override
     protected void onButtonClick(View view) {
-        formsManager.resetCreateInvoiceForm();
+//        formsManager.resetCreateInvoiceForm();
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INVOICES_CREATE_BASE_DATA);
     }
 

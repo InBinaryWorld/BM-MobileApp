@@ -1,12 +1,14 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.activity;
 
 import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -62,4 +64,19 @@ public class MenuActivity extends BaseActivity implements MenuView, BottomNaviga
             navigationView.getMenu().findItem(R.id.menu_dashboard).setChecked(true);
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        for (int grantResult : grantResults) {
+            if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+        }
+        Fragment fragment = Navigator.getCurrentFragment(this);
+        if (fragment instanceof PermissionResultsHandler) {
+            ((PermissionResultsHandler) fragment).onPermissionsGranted(requestCode);
+        }
+    }
+
 }

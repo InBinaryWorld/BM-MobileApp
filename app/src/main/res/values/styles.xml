@@ -300,6 +300,13 @@
         <item name="cornerRadius">12dp</item>
     </style>
 
+    <style name="MaterialButton.Rounded.AddItem">
+        <item name="cornerRadius">12dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">10sp</item>
+
+    </style>
+
     <style name="MaterialButton.Rounded.LoginButton">
         <item name="android:textColor">@color/colorBlueDark</item>
         <item name="backgroundTint">@color/white_black20</item>
@@ -349,6 +356,13 @@
         <item name="android:layout_width">20dp</item>
         <item name="android:layout_height">20dp</item>
         <item name="tint">@color/colorBlack40</item>
+    </style>
+
+    <style name="RemoveItemImageView">
+        <item name="android:src">@drawable/ic_close</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="tint">@color/colorBlueLight</item>
     </style>
 
     <style name="Spinner">

@@ -38,7 +38,9 @@ public abstract class SearchListFragmentWithBtn<T extends FilterValue, A extends
 
         @Override
         public boolean onQueryTextChange(String s) {
-            adapter.getFilter().filter(s);
+            if (adapter != null) {
+                adapter.getFilter().filter(s);
+            }
             return false;
         }
     }

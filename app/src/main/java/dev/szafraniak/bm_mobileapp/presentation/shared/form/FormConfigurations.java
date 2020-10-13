@@ -3,6 +3,7 @@ package dev.szafraniak.bm_mobileapp.presentation.shared.form;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +15,16 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentCash;
 import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethod;
 import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentTransfer;
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
+import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
+import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
 import dev.szafraniak.bm_mobileapp.business.utils.Validator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.contact.ClickableContactFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.payment.ClickablePaymentFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.InvoiceItemFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.product.ProductAutoCompleteFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.service.ServiceAutoCompleteFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.type.ItemType;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.type.ItemTypeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.address.AddressFormConfig;
@@ -88,6 +96,15 @@ public final class FormConfigurations {
         config.setInvalidMessage("1-20 Signs");
         config.setValidator(Validator::validateLastName);
         config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_PERSON_NAME);
+        return config;
+    }
+
+    private static TextFormConfig<BigDecimal> getQuantityConfig() {
+        TextFormConfig<BigDecimal> config = getBaseTextFormConfig();
+        config.setLabel("Quantity");
+        config.setInvalidMessage("Max scale: 5");
+        config.setValidator(Validator::validateQuantity);
+        config.setInputType(TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_DECIMAL);
         return config;
     }
 
@@ -425,5 +442,70 @@ public final class FormConfigurations {
         config.setInvalidText("Invalid value");
         return config;
 
+    }
+
+    public static InvoiceItemFormConfig getInvoiceItemConfig(List<ProductModel> products, List<ServiceModel> services) {
+        InvoiceItemFormConfig config = new InvoiceItemFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setItemTypeForm(getItemTypeConfig());
+        config.setProductConfig(getProductAutoCompleteConfig(products));
+        config.setServiceConfig(getServiceAutoCmplConfig(services));
+        return config;
+    }
+
+    private static ServiceAutoCompleteFormConfig getServiceAutoCmplConfig(List<ServiceModel> services) {
+        ServiceAutoCompleteFormConfig config = new ServiceAutoCompleteFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setQuantityUnitConfig(getQuantityUnitConfig());
+        config.setQuantityConfig(getQuantityConfig());
+        config.setPriceFormConfig(getPriceConfig());
+        config.setServiceNameConfig(getServiceNameAutoCmplConfig(services));
+        return config;
+    }
+
+    private static AutoCompleteTextFormConfig<String, ServiceModel> getServiceNameAutoCmplConfig(List<ServiceModel> services) {
+        AutoCompleteTextFormConfig<String, ServiceModel> config = getAutoCompleteTextFormConfig();
+        config.setLabel("Service name");
+        config.setInvalidMessage("2-60 Signs");
+        config.setValidator(Validator::validateServiceModelName);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES);
+        config.setListItems(services);
+        return config;
+    }
+
+    private static ProductAutoCompleteFormConfig getProductAutoCompleteConfig(List<ProductModel> products) {
+        ProductAutoCompleteFormConfig config = new ProductAutoCompleteFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setQuantityUnitConfig(getQuantityUnitConfig());
+        config.setQuantityConfig(getQuantityConfig());
+        config.setPriceFormConfig(getPriceConfig());
+        config.setProductNameConfig(getProductNameAutoCmplConfig(products));
+        return config;
+    }
+
+    private static AutoCompleteTextFormConfig<String, ProductModel> getProductNameAutoCmplConfig(List<ProductModel> products) {
+        AutoCompleteTextFormConfig<String, ProductModel> config = getAutoCompleteTextFormConfig();
+        config.setLabel("Product name");
+        config.setInvalidMessage("2-60 Signs");
+        config.setValidator(Validator::validateProductModelName);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES);
+        config.setListItems(products);
+        return config;
+    }
+
+
+    private static ItemTypeFormConfig getItemTypeConfig() {
+        HashMap<ItemType, String> map = new HashMap<>();
+        map.put(ItemType.PRODUCT, "Product");
+        map.put(ItemType.SERVICE, "Service");
+
+        ItemTypeFormConfig config = new ItemTypeFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setRequired(true);
+        config.setDefaultValue(ItemType.PRODUCT);
+        config.setSpinnerItems(Arrays.asList(ItemType.values()));
+        config.setLabel("Type");
+        config.setDisplayValues(map);
+        return config;
     }
 }

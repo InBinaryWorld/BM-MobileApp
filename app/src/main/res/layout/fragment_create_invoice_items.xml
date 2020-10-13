@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MathParentContainer"
+    tools:context=".presentation.company.activity.CompanyActivity">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/component_header_base"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_swipe_refresh_layout"
+        style="@style/MatchConstrainContainer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header">
+
+        <LinearLayout
+            android:id="@+id/ll_data_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                style="@style/Row.h18.v12"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_total_items_label"
+                    style="@style/BaseTextView.Label.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Invoice Positions:"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/BaseTextView.Value.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="7"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_total_items_label"
+                    app:layout_constraintStart_toEndOf="@id/tv_total_items_label"
+                    app:layout_constraintTop_toTopOf="@+id/tv_total_items_label" />
+
+                <TextView
+                    android:id="@+id/tv_total_net_label"
+                    style="@style/BaseTextView.Label.Bold"
+                    android:layout_marginTop="8dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Total net:"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_total_items_label" />
+
+                <TextView
+                    style="@style/BaseTextView.Value.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="65.74"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_total_net_label"
+                    app:layout_constraintStart_toEndOf="@+id/tv_total_net_label"
+                    app:layout_constraintTop_toTopOf="@+id/tv_total_net_label" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_add_items"
+                    style="@style/MaterialButton.Rounded.AddItem"
+                    android:text="New Item"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ListView
+                android:id="@+id/list"
+                style="@style/ListView.VerticalPadding"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <include
+                android:id="@+id/empty_list"
+                android:visibility="gone"
+                android:layout_marginTop="56dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/component_list_empty" />
+
+        </LinearLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/flb_list_button"
+        style="@style/ExtendedFloatingButton.Wide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <include
+        android:id="@+id/progress_bar"
+        android:visibility="gone"
+        android:layout_marginTop="96dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/component_progress_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header" />
+
+    <include
+        android:id="@+id/error"
+        android:visibility="gone"
+        android:layout_marginTop="96dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/component_list_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,6 +26,8 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataFormFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.InvoiceContactFormFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.CreateInvoiceItemFormFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.CreateInvoicesItemsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.InvoicePaymentFormFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductsListFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.create.ProductModelCreateFragment_;
@@ -61,6 +63,8 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_INVOICES = 400;
     public static final int FRAGMENT_INVOICES_CREATE_BASE_DATA = 401;
     public static final int FRAGMENT_INVOICES_CREATE_PAYMENT = 402;
+    public static final int FRAGMENT_INVOICES_CREATE_ITEMS = 403;
+    public static final int FRAGMENT_INVOICES_CREATE_ITEM = 404;
     public static final int FRAGMENT_SETTINGS = 500;
     public static final int FRAGMENT_SETTINGS_COMPANY = 501;
     public static final int FRAGMENT_ACTION_STATUS = 600;
@@ -78,6 +82,7 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_WAREHOUSE_DETAILS = 903;
     public static final int FRAGMENT_FINANCES = 1000;
     public static final int FRAGMENT_FORM_CONTACT_AUTO_COMPETE = 10000;
+    public static final int FRAGMENT_BARE_CODE_SCANNER = 20000;
 
     public static final Map<Integer, Integer> menuMap = new HashMap<Integer, Integer>() {{
         put(R.id.menu_dashboard, FRAGMENT_DASHBOARD);
@@ -140,6 +145,12 @@ public abstract class FragmentFactory {
             case FRAGMENT_INVOICES_CREATE_PAYMENT:
                 fragment = new InvoicePaymentFormFragment_();
                 break;
+            case FRAGMENT_INVOICES_CREATE_ITEMS:
+                fragment = new CreateInvoicesItemsFragment_();
+                break;
+            case FRAGMENT_INVOICES_CREATE_ITEM:
+                fragment = new CreateInvoiceItemFormFragment_();
+                break;
             case FRAGMENT_FINANCES:
                 fragment = new FinancesFragment_();
                 break;
@@ -189,7 +200,8 @@ public abstract class FragmentFactory {
                 fragment = new WarehouseDetailsFragment_();
                 break;
             case FRAGMENT_FORM_CONTACT_AUTO_COMPETE:
-                return new InvoiceContactFormFragment_();
+                fragment = new InvoiceContactFormFragment_();
+                break;
             default:
                 throw new Resources.NotFoundException("Not found fragment with id: " + fragmentId);
         }
