@@ -2,7 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.modify;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 
@@ -21,7 +21,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFra
 
 @EFragment(R.layout.fragment_base_form)
 public class CompanyContactModifyFragment extends BaseFormFragment<UpdateCompanyContactRequest,
-        CompanyContactModifyFormConfig> implements CompanyContactModifyView {
+    CompanyContactModifyFormConfig> implements CompanyContactModifyView {
 
     public final static String KEY_COMPANY_CONTACT = "COMPANY_CONTACT_KEY";
 
@@ -60,7 +60,7 @@ public class CompanyContactModifyFragment extends BaseFormFragment<UpdateCompany
 
     @Override
     protected FormInterface<UpdateCompanyContactRequest> createForm(
-            LayoutInflater inflater, LinearLayout linearLayout, CompanyContactModifyFormConfig config) {
+        LayoutInflater inflater, ViewGroup linearLayout, CompanyContactModifyFormConfig config) {
         return new CompanyContactModifyForm(inflater, linearLayout, config);
     }
 

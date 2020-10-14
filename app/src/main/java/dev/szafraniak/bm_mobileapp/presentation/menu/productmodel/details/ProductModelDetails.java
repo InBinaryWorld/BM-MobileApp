@@ -18,7 +18,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.text
 public class ProductModelDetails extends BaseDetails<ProductModel, BaseViewHolder, ProductModelDetailsConfig> {
 
     @LayoutRes
-    private final int layoutId = R.layout.form_base_group;
+    private final int layoutId = R.layout.form_base_group_with_padding;
 
     TextTextViewDetails nameRow;
     TextTextViewDetails bareCodeRow;

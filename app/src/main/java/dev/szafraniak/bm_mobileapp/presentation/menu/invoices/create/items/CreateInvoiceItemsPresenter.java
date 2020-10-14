@@ -3,32 +3,42 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items;
 import android.app.Application;
 import android.os.Bundle;
 
-import com.google.gson.Gson;
-
+import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
+import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
+import dev.szafraniak.bm_mobileapp.business.http.service.InvoiceService;
 import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsManager;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
+import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.CreateInvoiceRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
+import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.InvoiceItem;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.CreateInvoiceItemFormFragment;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.ItemCommand;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.InvoiceItemsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragment;
 import lombok.Setter;
 
 public class CreateInvoiceItemsPresenter {
-
-    @Inject
-    Gson gson;
 
     @Setter
     CreateInvoiceItemsView view;
 
     @Inject
     FormsManager formsManager;
+
+    @Inject
+    SessionManager sessionManager;
+
+    @Inject
+    InvoiceService invoiceService;
 
     public CreateInvoiceItemsPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
@@ -40,23 +50,45 @@ public class CreateInvoiceItemsPresenter {
         view.setData(items);
     }
 
-    public void modifyItem(InvoiceItemFormModel item) {
-        ItemCommand command = new ItemCommand();
-        command.setType(ItemCommand.MODIFY);
-        command.setItemId(item.getId());
-        navigateToItemFragment(command);
+
+    public void generateInvoice() {
+        Long companyId = sessionManager.getCompanyId();
+        CreateInvoiceRequest request = getRequest();
+        invoiceService.createInvoice(companyId, request)
+            .compose(view.bindToLifecycle())
+            .subscribe(this::navigateToStatus, view::setError);
     }
 
-    public void addItem() {
-        ItemCommand command = new ItemCommand();
-        command.setType(ItemCommand.CREATE);
-        navigateToItemFragment(command);
+    private CreateInvoiceRequest getRequest() {
+        CreateInvoiceFormModel model = formsManager.getCreateInvoiceFormModel();
+        CreateInvoiceRequest request = new CreateInvoiceRequest();
+        request.setBuyer(model.getBaseModel().getBuyer());
+        request.setReceiver(model.getBaseModel().getReceiver());
+        request.setCreationDate(OffsetDateTime.now());
+        request.setDueDate(model.getBaseModel().getPayment().getDueDate());
+        request.setInvoiceNumber(model.getBaseModel().getInvoiceNumber());
+        request.setPaymentMethod(model.getBaseModel().getPayment().getPaymentMethod());
+        request.setItems(model.getItems().stream().map(item -> {
+            InvoiceItem invoiceItem = new InvoiceItem();
+            invoiceItem.setName(item.getName());
+            invoiceItem.setNetPrice(item.getPrice().getNet());
+            invoiceItem.setTaxRate(item.getPrice().getTaxRate());
+            invoiceItem.setQuantity(item.getQuantity());
+            invoiceItem.setQuantityUnit(item.getQuantityUnit());
+            return invoiceItem;
+        }).collect(Collectors.toList()));
+        return request;
     }
 
-    public void navigateToItemFragment(ItemCommand command) {
+    protected void navigateToStatus(Invoice invoice) {
         Bundle bundle = new Bundle();
-        String commandJSON = gson.toJson(command);
-        bundle.putString(CreateInvoiceItemFormFragment.ITEM_COMMAND_KEY, commandJSON);
-        Navigator.navigateTo(view, FragmentFactory.FRAGMENT_INVOICES_CREATE_ITEM, bundle);
+        String buttonText = view.getContext().getString(R.string.action_status_back_to_home);
+        bundle.putString(ActionStatusFragment.BUTTON_TEXT_KEY, buttonText);
+        bundle.putString(ActionStatusFragment.STATE_KEY, ActionStatusFragment.STATE_SUCCEEDED);
+        Navigator.backOneAndNavigateTo(view, FragmentFactory.FRAGMENT_ACTION_STATUS, bundle);
+    }
+
+    public InvoiceItemsConfig createConfig() {
+        return FormConfigurations.getInvoiceItemsConfig();
     }
 }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Row"
+    android:clickable="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/Row.h18.v12"
+        app:layout_constraintBottom_toTopOf="@id/v_divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_Summary"
+            style="@style/BaseTextView.Title.18"
+            android:text="Summary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_total_items_label"
+            android:layout_marginTop="4dp"
+            style="@style/BaseTextView.Label.Bold"
+            android:text="@string/invoice_create_items_summary_total_items"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_Summary" />
+
+        <TextView
+            android:id="@+id/tv_total_items"
+            style="@style/BaseTextView.Value.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_total_items_label"
+            app:layout_constraintStart_toEndOf="@id/tv_total_items_label"
+            app:layout_constraintTop_toTopOf="@+id/tv_total_items_label" />
+
+        <TextView
+            android:id="@+id/tv_total_gross_label"
+            style="@style/BaseTextView.Label.Bold"
+            android:text="@string/invoice_create_items_summary_total_gross"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_items_label" />
+
+        <TextView
+            android:id="@+id/tv_total_gross"
+            style="@style/BaseTextView.Value.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_total_gross_label"
+            app:layout_constraintStart_toEndOf="@+id/tv_total_gross_label"
+            app:layout_constraintTop_toTopOf="@+id/tv_total_gross_label" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_add_item"
+            style="@style/MaterialButton.Rounded.AddItem"
+            android:text="@string/invoice_create_items_summary_btn"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/v_divider"
+        style="@style/Divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -19,7 +19,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.datePicker.DateP
 public class CreateInvoicePaymentForm extends BaseForm<PaymentFormModel, BaseViewHolder, CreateInvoicePaymentFormConfig> {
 
     @LayoutRes
-    private static final int layoutId = R.layout.form_base_group;
+    private static final int layoutId = R.layout.form_base_group_with_padding;
 
     PaymentMethodForm paymentMethodForm;
     DatePickerForm dueDateForm;

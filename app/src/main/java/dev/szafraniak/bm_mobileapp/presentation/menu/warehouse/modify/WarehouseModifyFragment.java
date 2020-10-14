@@ -2,7 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.modify;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 
@@ -58,8 +58,8 @@ public class WarehouseModifyFragment extends BaseFormFragment<UpdateWarehouseReq
 
 
     @Override
-    protected FormInterface<UpdateWarehouseRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, UpdateWarehouseFormConfig config) {
-        return new CreateWarehouseForm(inflater, linearLayout, config);
+    protected FormInterface<UpdateWarehouseRequest> createForm(LayoutInflater inflater, ViewGroup linearLayout, UpdateWarehouseFormConfig config) {
+        return new ModifyWarehouseForm(inflater, linearLayout, config);
     }
 
     @Override

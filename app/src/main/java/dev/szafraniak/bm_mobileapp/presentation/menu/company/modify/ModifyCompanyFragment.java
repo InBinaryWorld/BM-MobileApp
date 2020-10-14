@@ -2,7 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.company.modify;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
@@ -44,7 +44,7 @@ public class ModifyCompanyFragment extends BaseFormFragment<UpdateCompanyRequest
 
     @Override
     protected FormInterface<UpdateCompanyRequest> createForm(
-            LayoutInflater inflater, LinearLayout linearLayout, ModifyCompanyFormConfig config) {
+        LayoutInflater inflater, ViewGroup linearLayout, ModifyCompanyFormConfig config) {
         return new ModifyCompanyForm(inflater, linearLayout, config);
     }
 

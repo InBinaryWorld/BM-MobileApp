@@ -23,7 +23,7 @@ import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.co
 public class ContactForm extends BaseForm<Contact, ContactViewHolder, ContactFormConfig> {
 
     @LayoutRes
-    private static final int layoutId = R.layout.form_base_group;
+    private static final int layoutId = R.layout.form_base_group_with_padding;
 
     ContactTypeForm contactTypeForm;
     IndividualAutoCompleteForm individualForm;

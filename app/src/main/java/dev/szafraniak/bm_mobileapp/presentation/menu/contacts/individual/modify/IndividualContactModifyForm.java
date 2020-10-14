@@ -17,7 +17,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.Te
 public class IndividualContactModifyForm extends BaseForm<UpdateIndividualContactRequest, BaseViewHolder, IndividualContactModifyFormConfig> {
 
     @LayoutRes
-    private static final int layoutId = R.layout.form_base_group;
+    private static final int layoutId = R.layout.form_base_group_with_padding;
 
     TextEditTextFormRow firstNameFormRow;
     TextEditTextFormRow lastNameFormRow;

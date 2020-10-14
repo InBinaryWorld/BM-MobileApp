@@ -94,4 +94,7 @@
     <string name="btn_text_invoice_create_item">Add Item</string>
     <string name="header_invoice_create_item">Invoice item</string>
     <string name="header_invoice_create_Items">Invoice Items</string>
+    <string name="invoice_create_items_summary_total_items">Total items:</string>
+    <string name="invoice_create_items_summary_total_gross">Total gross:</string>
+    <string name="invoice_create_items_summary_btn">New Item</string>
 </resources>

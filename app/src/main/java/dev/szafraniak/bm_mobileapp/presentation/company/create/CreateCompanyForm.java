@@ -17,7 +17,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.Te
 public class CreateCompanyForm extends BaseForm<CreateCompanyRequest, BaseViewHolder, CreateCompanyFormConfig> {
 
     @LayoutRes
-    private static final int layoutId = R.layout.form_base_group;
+    private static final int layoutId = R.layout.form_base_group_with_padding;
 
     TextEditTextFormRow nameFormRow;
     TextEditTextFormRow invoicePrefixFormRow;

@@ -2,8 +2,8 @@ package dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.IdRes;
@@ -22,7 +22,7 @@ public abstract class BaseFormFragment<T, C> extends BaseSRLLoadFragment impleme
 
     protected Button button;
     protected View buttonProgress;
-    protected LinearLayout formLayout;
+    protected ViewGroup formLayout;
     protected FormInterface<T> formComponent;
 
     @Override
@@ -51,7 +51,7 @@ public abstract class BaseFormFragment<T, C> extends BaseSRLLoadFragment impleme
     @AfterViews
     public void initializeBaseFormFragment() {
         buttonProgress = findViewById(getButtonProgressBarId());
-        formLayout = (LinearLayout) findViewById(getFormLayoutId());
+        formLayout = (ViewGroup) findViewById(getFormLayoutId());
         button = (Button) findViewById(getButtonId());
         button.setOnClickListener(this::onButtonClick);
         button.setText(getButtonTextId());
@@ -94,7 +94,7 @@ public abstract class BaseFormFragment<T, C> extends BaseSRLLoadFragment impleme
         showError();
     }
 
-    protected abstract FormInterface<T> createForm(LayoutInflater inflater, LinearLayout linearLayout, C config);
+    protected abstract FormInterface<T> createForm(LayoutInflater inflater, ViewGroup linearLayout, C config);
 
     protected void onFormStateChange(boolean isValid) {
         button.setEnabled(isValid);

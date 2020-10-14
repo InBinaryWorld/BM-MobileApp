@@ -1,7 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.company.create;
 
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -34,7 +34,7 @@ public class CompanyCreateFragment extends BaseFormFragment<CreateCompanyRequest
     }
 
     @Override
-    protected FormInterface<CreateCompanyRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateCompanyFormConfig config) {
+    protected FormInterface<CreateCompanyRequest> createForm(LayoutInflater inflater, ViewGroup linearLayout, CreateCompanyFormConfig config) {
         return new CreateCompanyForm(inflater, linearLayout, config);
     }
 

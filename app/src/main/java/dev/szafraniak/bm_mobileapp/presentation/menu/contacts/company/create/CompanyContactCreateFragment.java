@@ -1,7 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create;
 
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -35,7 +35,7 @@ public class CompanyContactCreateFragment extends BaseFormFragment<CreateCompany
 
 
     @Override
-    protected FormInterface<CreateCompanyContactRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CompanyContactCreateFormConfig config) {
+    protected FormInterface<CreateCompanyContactRequest> createForm(LayoutInflater inflater, ViewGroup linearLayout, CompanyContactCreateFormConfig config) {
         return new CompanyContactCreateForm(inflater, linearLayout, config);
     }
 

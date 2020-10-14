@@ -18,7 +18,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
 public class InvoiceItemForm extends BaseForm<InvoiceItemFormModel, InvoiceItemViewHolder, InvoiceItemFormConfig> {
 
     @LayoutRes
-    private static final int layoutId = R.layout.form_base_group;
+    private static final int layoutId = R.layout.form_base_group_with_padding;
 
     ItemTypeForm itemTypeForm;
     ProductAutoCompleteForm productForm;

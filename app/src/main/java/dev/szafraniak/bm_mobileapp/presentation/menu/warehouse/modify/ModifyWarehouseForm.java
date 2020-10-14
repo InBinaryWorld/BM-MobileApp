@@ -14,16 +14,16 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.address.AddressForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextEditTextFormRow;
 
-public class CreateWarehouseForm extends BaseForm<UpdateWarehouseRequest, BaseViewHolder, UpdateWarehouseFormConfig> {
+public class ModifyWarehouseForm extends BaseForm<UpdateWarehouseRequest, BaseViewHolder, UpdateWarehouseFormConfig> {
 
     @LayoutRes
-    private static final int layoutId = R.layout.form_base_group;
+    private static final int layoutId = R.layout.form_base_group_with_padding;
 
     TextEditTextFormRow nameFormRow;
     AddressForm addressForm;
 
 
-    public CreateWarehouseForm(LayoutInflater inflater, ViewGroup viewGroup, UpdateWarehouseFormConfig config) {
+    public ModifyWarehouseForm(LayoutInflater inflater, ViewGroup viewGroup, UpdateWarehouseFormConfig config) {
         super(inflater, viewGroup, config);
     }
 

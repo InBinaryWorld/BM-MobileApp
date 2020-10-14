@@ -1,7 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create;
 
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -16,7 +16,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFra
 
 @EFragment(R.layout.fragment_base_form)
 public class IndividualContactCreateFragment extends BaseFormFragment<CreateIndividualContactRequest,
-        IndividualContactCreateFormConfig> implements IndividualContactCreateView {
+    IndividualContactCreateFormConfig> implements IndividualContactCreateView {
 
     @Inject
     IndividualContactCreatePresenter presenter;
@@ -37,7 +37,7 @@ public class IndividualContactCreateFragment extends BaseFormFragment<CreateIndi
 
     @Override
     protected FormInterface<CreateIndividualContactRequest> createForm(
-            LayoutInflater inflater, LinearLayout linearLayout, IndividualContactCreateFormConfig config) {
+        LayoutInflater inflater, ViewGroup linearLayout, IndividualContactCreateFormConfig config) {
         return new IndividualContactCreateForm(inflater, linearLayout, config);
     }
 

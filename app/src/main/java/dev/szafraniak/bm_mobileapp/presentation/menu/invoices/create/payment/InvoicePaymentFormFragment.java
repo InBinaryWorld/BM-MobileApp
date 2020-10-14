@@ -1,7 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment;
 
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -39,7 +39,7 @@ public class InvoicePaymentFormFragment extends BaseFormFragment<PaymentFormMode
     }
 
     @Override
-    protected FormInterface<PaymentFormModel> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateInvoicePaymentFormConfig config) {
+    protected FormInterface<PaymentFormModel> createForm(LayoutInflater inflater, ViewGroup linearLayout, CreateInvoicePaymentFormConfig config) {
         return new CreateInvoicePaymentForm(inflater, linearLayout, config);
     }
 

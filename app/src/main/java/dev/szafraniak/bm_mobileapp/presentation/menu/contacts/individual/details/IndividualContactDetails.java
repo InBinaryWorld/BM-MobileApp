@@ -17,7 +17,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.text
 public class IndividualContactDetails extends BaseDetails<IndividualContact, BaseViewHolder, IndividualContactDetailsConfig> {
 
     @LayoutRes
-    private final int layoutId = R.layout.form_base_group;
+    private final int layoutId = R.layout.form_base_group_with_padding;
 
     TextTextViewDetails firstNameRow;
     TextTextViewDetails lastNameRow;

@@ -2,7 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.services.modify;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 
@@ -59,7 +59,7 @@ public class ServiceModelModifyFragment extends BaseFormFragment<UpdateServiceMo
 
 
     @Override
-    protected FormInterface<UpdateServiceModelRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, ModifyServiceModelFormConfig config) {
+    protected FormInterface<UpdateServiceModelRequest> createForm(LayoutInflater inflater, ViewGroup linearLayout, ModifyServiceModelFormConfig config) {
         return new ModifyServiceModelForm(inflater, linearLayout, config);
     }
 

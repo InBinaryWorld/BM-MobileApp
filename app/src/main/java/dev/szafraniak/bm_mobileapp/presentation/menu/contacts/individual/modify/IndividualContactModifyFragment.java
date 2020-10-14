@@ -2,7 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 
@@ -63,7 +63,7 @@ public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndi
     }
 
     @Override
-    protected FormInterface<UpdateIndividualContactRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, IndividualContactModifyFormConfig config) {
+    protected FormInterface<UpdateIndividualContactRequest> createForm(LayoutInflater inflater, ViewGroup linearLayout, IndividualContactModifyFormConfig config) {
         return new IndividualContactModifyForm(inflater, linearLayout, config);
     }
 

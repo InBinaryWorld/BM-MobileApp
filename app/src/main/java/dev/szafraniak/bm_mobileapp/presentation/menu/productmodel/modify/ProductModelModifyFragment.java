@@ -2,7 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.modify;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 
@@ -58,7 +58,7 @@ public class ProductModelModifyFragment extends BaseFormFragment<UpdateProductMo
 
     @Override
     protected FormInterface<UpdateProductModelRequest> createForm(
-            LayoutInflater inflater, LinearLayout linearLayout, ModifyProductModelFormConfig config) {
+        LayoutInflater inflater, ViewGroup linearLayout, ModifyProductModelFormConfig config) {
         return new ModifyProductModelForm(inflater, linearLayout, config);
     }
 

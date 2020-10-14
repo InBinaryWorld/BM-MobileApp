@@ -18,13 +18,14 @@
         style="@style/BaseTextView.Value"
         android:layout_marginHorizontal="4dp"
         app:layout_constraintBottom_toBottomOf="@+id/tv_item_name_label"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/iv_remove"
         app:layout_constraintStart_toEndOf="@+id/tv_item_name_label"
         app:layout_constraintTop_toTopOf="@+id/tv_item_name_label"
         tools:text="bla bla" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iv_remove"
+        android:clickable="true"
         style="@style/RemoveItemImageView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -2,7 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -59,7 +59,7 @@ public class InvoiceContactFormFragment extends BaseFormFragment<Contact, Contac
     }
 
     @Override
-    protected FormInterface<Contact> createForm(LayoutInflater inflater, LinearLayout linearLayout, ContactFormConfig config) {
+    protected FormInterface<Contact> createForm(LayoutInflater inflater, ViewGroup linearLayout, ContactFormConfig config) {
         return new ContactForm(inflater, linearLayout, config);
     }
 

@@ -1,7 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base;
 
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -50,7 +50,7 @@ public class CreateInvoiceBaseDataFormFragment extends BaseFormFragment<CreateIn
     }
 
     @Override
-    protected FormInterface<CreateInvoiceBaseFormModel> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateInvoiceBaseDataFormConfig config) {
+    protected FormInterface<CreateInvoiceBaseFormModel> createForm(LayoutInflater inflater, ViewGroup linearLayout, CreateInvoiceBaseDataFormConfig config) {
         return new CreateInvoiceBaseDataForm(inflater, linearLayout, config);
     }
 

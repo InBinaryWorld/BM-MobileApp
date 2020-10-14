@@ -17,7 +17,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.text
 public class ServiceModelDetails extends BaseDetails<ServiceModel, BaseViewHolder, ServiceModelDetailsConfig> {
 
     @LayoutRes
-    private final int layoutId = R.layout.form_base_group;
+    private final int layoutId = R.layout.form_base_group_with_padding;
 
     TextTextViewDetails nameRow;
     TextTextViewDetails quantityUnitRow;

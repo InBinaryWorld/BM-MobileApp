@@ -1,7 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create;
 
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -16,7 +16,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFra
 
 @EFragment(R.layout.fragment_base_form)
 public class WarehouseCreateFragment extends BaseFormFragment<CreateWarehouseRequest, CreateWarehouseFormConfig>
-        implements WarehouseCreateView {
+    implements WarehouseCreateView {
 
     @Inject
     WarehouseCreatePresenter presenter;
@@ -35,7 +35,7 @@ public class WarehouseCreateFragment extends BaseFormFragment<CreateWarehouseReq
     }
 
     @Override
-    protected FormInterface<CreateWarehouseRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateWarehouseFormConfig config) {
+    protected FormInterface<CreateWarehouseRequest> createForm(LayoutInflater inflater, ViewGroup linearLayout, CreateWarehouseFormConfig config) {
         return new CreateWarehouseForm(inflater, linearLayout, config);
     }
 

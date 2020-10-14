@@ -41,7 +41,7 @@ public class AddressForm extends BaseForm<Address, BaseViewHolder, AddressFormCo
         String house = houseFormRow.getValue();
         String apartment = apartmentFormRow.getValue();
         if (city == null && street == null && postal == null
-                && house == null && apartment == null) {
+            && house == null && apartment == null) {
             return null;
         }
         Address address = new Address();
@@ -57,7 +57,7 @@ public class AddressForm extends BaseForm<Address, BaseViewHolder, AddressFormCo
     @Override
     public boolean isValid() {
         return cityFormRow.isValid() && streetFormRow.isValid() && postalFormRow.isValid()
-                && houseFormRow.isValid() && apartmentFormRow.isValid();
+            && houseFormRow.isValid() && apartmentFormRow.isValid();
     }
 
     @Override

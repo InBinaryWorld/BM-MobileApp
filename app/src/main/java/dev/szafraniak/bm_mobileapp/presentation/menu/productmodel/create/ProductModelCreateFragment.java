@@ -1,7 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.create;
 
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -34,7 +34,7 @@ public class ProductModelCreateFragment extends BaseFormFragment<CreateProductMo
     }
 
     @Override
-    protected FormInterface<CreateProductModelRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateProductModelFormConfig config) {
+    protected FormInterface<CreateProductModelRequest> createForm(LayoutInflater inflater, ViewGroup linearLayout, CreateProductModelFormConfig config) {
         return new CreateProductModelForm(inflater, linearLayout, config);
     }
 

@@ -18,6 +18,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
 import dev.szafraniak.bm_mobileapp.business.utils.Validator;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.contact.ClickableContactFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.payment.ClickablePaymentFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.InvoiceItemFormConfig;
@@ -25,6 +26,8 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.p
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.service.ServiceAutoCompleteFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.type.ItemType;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.type.ItemTypeFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.InvoiceItemsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.summary.InvoiceItemsSummaryConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.address.AddressFormConfig;
@@ -40,6 +43,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.t
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.price.PriceFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.autoComplete.AutoCompleteTextFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.datePicker.DatePickerFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.list.ListFormRowConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormConfig;
 
 import static android.text.InputType.TYPE_CLASS_NUMBER;
@@ -506,6 +510,30 @@ public final class FormConfigurations {
         config.setSpinnerItems(Arrays.asList(ItemType.values()));
         config.setLabel("Type");
         config.setDisplayValues(map);
+        return config;
+    }
+
+    public static InvoiceItemsConfig getInvoiceItemsConfig() {
+        InvoiceItemsConfig config = new InvoiceItemsConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setSummaryConfig(getItemsSummaryConfig());
+        config.setItemsConfig(getItemsFormConfig());
+        return config;
+    }
+
+    private static ListFormRowConfig<InvoiceItemFormModel> getItemsFormConfig() {
+        ListFormRowConfig<InvoiceItemFormModel> config = new ListFormRowConfig<>();
+        config.setVisibleOnSetValueNull(true);
+        config.setDefaultValue(new ArrayList<>());
+        config.setRequired(true);
+        config.setValidator(list -> list.size() > 0);
+        return config;
+    }
+
+    private static InvoiceItemsSummaryConfig getItemsSummaryConfig() {
+        InvoiceItemsSummaryConfig config = new InvoiceItemsSummaryConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setDefaultValue(new ArrayList<>());
         return config;
     }
 }

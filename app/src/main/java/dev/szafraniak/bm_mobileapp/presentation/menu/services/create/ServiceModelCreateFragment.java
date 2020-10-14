@@ -1,7 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.services.create;
 
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -16,7 +16,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFra
 
 @EFragment(R.layout.fragment_base_form)
 public class ServiceModelCreateFragment extends BaseFormFragment<CreateServiceModelRequest, CreateServiceFormConfig>
-        implements ServiceModelCreateView {
+    implements ServiceModelCreateView {
 
     @Inject
     ServiceModelCreatePresenter presenter;
@@ -35,7 +35,7 @@ public class ServiceModelCreateFragment extends BaseFormFragment<CreateServiceMo
     }
 
     @Override
-    protected FormInterface<CreateServiceModelRequest> createForm(LayoutInflater inflater, LinearLayout linearLayout, CreateServiceFormConfig config) {
+    protected FormInterface<CreateServiceModelRequest> createForm(LayoutInflater inflater, ViewGroup linearLayout, CreateServiceFormConfig config) {
         return new CreateServiceForm(inflater, linearLayout, config);
     }
 

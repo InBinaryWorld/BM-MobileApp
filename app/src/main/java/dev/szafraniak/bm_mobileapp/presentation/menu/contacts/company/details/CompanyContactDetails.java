@@ -17,7 +17,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.text
 public class CompanyContactDetails extends BaseDetails<CompanyContact, BaseViewHolder, CompanyContactDetailsConfig> {
 
     @LayoutRes
-    private final int layoutId = R.layout.form_base_group;
+    private final int layoutId = R.layout.form_base_group_with_padding;
 
     TextTextViewDetails nameRow;
     TextTextViewDetails taxIdRow;
