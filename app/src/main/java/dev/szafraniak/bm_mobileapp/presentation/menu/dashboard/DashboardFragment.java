@@ -40,7 +40,6 @@ public class DashboardFragment extends BaseHeaderFragment implements DashboardVi
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         scanner = new Scanner(getActivity(), surfaceView);
-        scanner.addBarcodeListener(barcode -> System.out.println("!!!!!!!!! " + barcode.displayValue));
     }
 
 

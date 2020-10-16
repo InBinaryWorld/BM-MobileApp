@@ -2,8 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.detail
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 
@@ -23,7 +22,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDeta
 
 @EFragment(R.layout.fragment_base_details)
 public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn<IndividualContact, IndividualContactDetailsConfig>
-        implements IndividualContactDetailsView {
+    implements IndividualContactDetailsView {
 
     public final static String KEY_INDIVIDUAL_CONTACT = "INDIVIDUAL_CONTACT_KEY";
 
@@ -62,7 +61,7 @@ public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn
 
 
     @Override
-    protected DetailsInterface<IndividualContact> createForm(LayoutInflater inflater, LinearLayout linearLayout, IndividualContactDetailsConfig config) {
+    protected DetailsInterface<IndividualContact> createForm(LayoutInflater inflater, ViewGroup viewGroup, IndividualContactDetailsConfig config) {
         return new IndividualContactDetails(inflater, detailsLayout, config);
     }
 
@@ -83,7 +82,7 @@ public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn
     }
 
     @Override
-    protected void onFblClick(View view) {
+    protected void onFblClick() {
         Bundle args = new Bundle();
         args.putString(IndividualContactModifyFragment.KEY_INDIVIDUAL_CONTACT, gson.toJson(contact));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_MODIFY, args);

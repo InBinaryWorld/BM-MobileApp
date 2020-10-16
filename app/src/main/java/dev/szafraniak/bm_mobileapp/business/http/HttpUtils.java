@@ -10,14 +10,11 @@ import timber.log.Timber;
 
 public class HttpUtils {
     private static final String AUTHORIZATION_KEY = "Authorization";
-    private static final String ACCEPT_KEY = "Accept";
-    private static final String ACCEPT_VALUE = "application/json";
 
     public static Request addAuthToRequest(Request request, String authValue) {
         return request.newBuilder()
-                .header(ACCEPT_KEY, ACCEPT_VALUE)
-                .header(AUTHORIZATION_KEY, authValue)
-                .build();
+            .header(AUTHORIZATION_KEY, authValue)
+            .build();
     }
 
     public static <T> T executeCall(Call<T> request) {

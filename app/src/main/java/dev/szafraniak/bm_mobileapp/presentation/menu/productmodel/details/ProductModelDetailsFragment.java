@@ -2,8 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.details;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 
@@ -23,7 +22,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDeta
 
 @EFragment(R.layout.fragment_base_details)
 public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<ProductModel, ProductModelDetailsConfig>
-        implements ProductModelDetailsView {
+    implements ProductModelDetailsView {
 
     public final static String KEY_PRODUCT_MODEL = "KEY_PRODUCT_MODEL";
 
@@ -55,12 +54,12 @@ public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<Prod
     }
 
     @Override
-    protected DetailsInterface<ProductModel> createForm(LayoutInflater inflater, LinearLayout linearLayout, ProductModelDetailsConfig config) {
+    protected DetailsInterface<ProductModel> createForm(LayoutInflater inflater, ViewGroup viewGroup, ProductModelDetailsConfig config) {
         return new ProductModelDetails(inflater, detailsLayout, config);
     }
 
     @Override
-    protected void onFblClick(View view) {
+    protected void onFblClick() {
         Bundle args = new Bundle();
         args.putString(ProductModelModifyFragment.KEY_PRODUCT_MODEL, gson.toJson(productModel));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_PRODUCT_MODEL_MODIFY, args);

@@ -72,7 +72,6 @@ public class CreateInvoiceBaseDataFormFragment extends BaseFormFragment<CreateIn
     @Override
     public void setData(CreateInvoiceBaseFormModel initModel, Company company) {
         CreateInvoiceBaseDataFormConfig config = presenter.createConfig(company.getInvoicePrefix());
-        System.out.println("set Data in fragment; " + initModel);
         startForm(config, initModel);
     }
 }

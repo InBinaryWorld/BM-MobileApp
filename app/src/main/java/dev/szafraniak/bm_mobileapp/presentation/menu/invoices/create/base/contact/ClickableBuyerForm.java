@@ -30,7 +30,6 @@ public class ClickableBuyerForm extends ClickableContactForm {
 
     @Override
     public void setValue(Contact input) {
-        System.out.println("input; " + input);
         if (!getConfig().isVisibleOnSetValueNull() && input == null) {
             getView().setVisibility(View.GONE);
             return;

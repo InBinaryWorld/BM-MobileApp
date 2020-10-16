@@ -57,7 +57,6 @@ public class CreateInvoiceBaseDataPresenter {
     public void loadData() {
         Long companyId = sessionManager.getCompanyId();
         CreateInvoiceFormModel createInvoiceModel = formsManager.getCreateInvoiceFormModel();
-        System.out.println("from preferences; " + createInvoiceModel);
         CreateInvoiceBaseFormModel invoiceBaseModel = createInvoiceModel.getBaseModel();
         companyService.getCompany(companyId)
             .compose(view.bindToLifecycle())

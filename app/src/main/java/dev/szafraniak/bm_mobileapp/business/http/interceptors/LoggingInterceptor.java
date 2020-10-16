@@ -48,12 +48,12 @@ public class LoggingInterceptor implements Interceptor {
 
     private void logResponse(Response response, String responseContent, double responseTime) {
         Timber.d("[RECEIVED][%s][%d][%.2fs]\nBody: %s",
-                response.request().url(), response.code(), responseTime, responseContent);
+            response.request().url(), response.code(), responseTime, responseContent);
     }
 
     private boolean hasRepresentation(MediaType contentType) {
         return contentType != null &&
-                ("json".equalsIgnoreCase(contentType.subtype()) || "text".equalsIgnoreCase(contentType.type()));
+            ("json".equalsIgnoreCase(contentType.subtype()) || "text".equalsIgnoreCase(contentType.type()));
     }
 
     static String parseBody(Request request) {

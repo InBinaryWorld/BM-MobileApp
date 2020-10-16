@@ -61,7 +61,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_add_item"
-            style="@style/MaterialButton.Rounded.AddItem"
+            style="@style/MaterialButton.Rounded.Small"
             android:text="@string/invoice_create_items_summary_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -6,11 +6,17 @@ import java.text.DecimalFormatSymbols;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+
+import dev.szafraniak.bm_mobileapp.business.Constance;
 
 public final class Parsers {
 
     private final static DecimalFormat dfNoFraction = getDecimalFormatNoFraction();
     private final static DecimalFormat dfWithFraction = getDecimalFormatWithFraction();
+    private final static DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(Constance.DATE_PATTERN);
+    private final static DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern(Constance.DATE_TIME_PATTERN);
 
 
     public static String safeFormatNoFraction(BigDecimal value, boolean zeroOnNull) {
@@ -77,6 +83,13 @@ public final class Parsers {
         } catch (NumberFormatException e) {
             return zeroOnException ? BigDecimal.ZERO : null;
         }
+    }
+
+    public static String safeFormatDate(OffsetDateTime offsetDateTime) {
+        if (offsetDateTime == null) {
+            return null;
+        }
+        return offsetDateTime.format(dateFormat);
     }
 
     public static String safeFormat(LocalDate dueDate) {

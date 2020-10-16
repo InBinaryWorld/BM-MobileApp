@@ -2,8 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.details;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 
@@ -23,7 +22,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDeta
 
 @EFragment(R.layout.fragment_base_details)
 public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehouse, WarehouseDetailsConfig>
-        implements WarehouseDetailsView {
+    implements WarehouseDetailsView {
 
     public final static String KEY_WAREHOUSE = "KEY_WAREHOUSE";
 
@@ -65,12 +64,12 @@ public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehou
     }
 
     @Override
-    protected DetailsInterface<Warehouse> createForm(LayoutInflater inflater, LinearLayout linearLayout, WarehouseDetailsConfig config) {
+    protected DetailsInterface<Warehouse> createForm(LayoutInflater inflater, ViewGroup viewGroup, WarehouseDetailsConfig config) {
         return new WarehouseDetails(inflater, detailsLayout, config);
     }
 
     @Override
-    protected void onFblClick(View view) {
+    protected void onFblClick() {
         Bundle args = new Bundle();
         args.putString(WarehouseModifyFragment.KEY_WAREHOUSE, gson.toJson(warehouse));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_WAREHOUSE_MODIFY, args);

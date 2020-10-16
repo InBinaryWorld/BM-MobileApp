@@ -6,8 +6,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature android:name="android.hardware.camera.any" />
-    <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
+
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!--        TODO: remove clearTextTraffic when servers will not be on localhost and will be served on https -->
     <application
@@ -18,6 +20,16 @@
 
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

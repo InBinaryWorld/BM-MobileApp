@@ -28,4 +28,5 @@ public abstract class BaseFragment extends RxFragment implements BaseView {
     protected View findViewById(@IdRes int id) {
         return getView().findViewById(id);
     }
+
 }

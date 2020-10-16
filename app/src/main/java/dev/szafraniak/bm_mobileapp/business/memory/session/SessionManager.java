@@ -31,7 +31,7 @@ public class SessionManager {
     }
 
     public void clearSession() {
-        session.setCompanyId(null);
+        session.setCompanyId(-1L);
         session.setTokenType(null);
         session.setAccessToken(null);
         session.setRefreshToken(null);

@@ -25,6 +25,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.Inv
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.InvoiceCreateItemFormPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.CreateInvoiceItemsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.InvoicePaymentPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.InvoiceDetailsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductsListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.create.ProductModelCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.details.ProductModelDetailsPresenter;
@@ -239,6 +240,12 @@ public class MenuModule {
     @Singleton
     public InvoiceCreateItemFormPresenter provideInvoiceCreateItemFormPresenter(Application app) {
         return new InvoiceCreateItemFormPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public InvoiceDetailsPresenter provideInvoiceDetailsPresenter(Application app) {
+        return new InvoiceDetailsPresenter(app);
     }
 
 }

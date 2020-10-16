@@ -2,8 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.services.details;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 
@@ -23,7 +22,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDeta
 
 @EFragment(R.layout.fragment_base_details)
 public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<ServiceModel, ServiceModelDetailsConfig>
-        implements ServiceModelDetailsView {
+    implements ServiceModelDetailsView {
 
     public final static String KEY_SERVICE_MODEL = "SERVICE_MODEL_KEY";
 
@@ -66,12 +65,12 @@ public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<Serv
     }
 
     @Override
-    protected DetailsInterface<ServiceModel> createForm(LayoutInflater inflater, LinearLayout linearLayout, ServiceModelDetailsConfig config) {
+    protected DetailsInterface<ServiceModel> createForm(LayoutInflater inflater, ViewGroup viewGroup, ServiceModelDetailsConfig config) {
         return new ServiceModelDetails(inflater, detailsLayout, config);
     }
 
     @Override
-    protected void onFblClick(View view) {
+    protected void onFblClick() {
         Bundle args = new Bundle();
         args.putString(ServiceModelModifyFragment.KEY_SERVICE_MODEL, gson.toJson(serviceModel));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_SERVICE_MODEL_MODIFY, args);

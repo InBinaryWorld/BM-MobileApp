@@ -26,8 +26,10 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.CreateWareho
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.UpdateWarehouseRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -155,6 +157,11 @@ public interface BmResourcesApi {
     @GET("/api/companies/{companyId}/invoices/{invoiceId}")
     Observable<Invoice> getInvoice(@Path("companyId") Long companyId,
                                    @Path("invoiceId") Long invoiceId);
+
+    @Headers("Accept: application/pdf")
+    @GET("/api/companies/{companyId}/invoices/{invoiceId}/document")
+    Observable<ResponseBody> getInvoiceDocument(@Path("companyId") Long companyId,
+                                                @Path("invoiceId") Long invoiceId);
 
     @POST("/api/companies/{companyId}/invoices")
     Observable<Invoice> createInvoice(@Path("companyId") Long companyId,

@@ -1,7 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment;
 
 import android.view.LayoutInflater;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import androidx.annotation.IdRes;
 
@@ -17,7 +17,7 @@ import timber.log.Timber;
 @EFragment
 public abstract class BaseDetailsFragment<T, C extends BaseDetailsConfig<T>> extends BaseSRLLoadFragment implements BaseDetailsView<T> {
 
-    protected LinearLayout detailsLayout;
+    protected ViewGroup detailsLayout;
     protected DetailsInterface<T> detailsComponent;
 
     @Override
@@ -32,8 +32,7 @@ public abstract class BaseDetailsFragment<T, C extends BaseDetailsConfig<T>> ext
 
     @AfterViews
     public void initializeBaseDetailsFragment() {
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        this.detailsLayout = (LinearLayout) findViewById(getDetailsLayoutId());
+        this.detailsLayout = (ViewGroup) findViewById(getDetailsLayoutId());
     }
 
     protected void startForm(C config, T item) {
@@ -61,6 +60,6 @@ public abstract class BaseDetailsFragment<T, C extends BaseDetailsConfig<T>> ext
         showError();
     }
 
-    protected abstract DetailsInterface<T> createForm(LayoutInflater inflater, LinearLayout linearLayout, C config);
+    protected abstract DetailsInterface<T> createForm(LayoutInflater inflater, ViewGroup viewGroup, C config);
 
 }

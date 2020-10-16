@@ -20,7 +20,6 @@ class SurfaceCallback implements SurfaceHolder.Callback {
     @Override
     @SuppressLint("MissingPermission")
     public void surfaceCreated(@NonNull SurfaceHolder holder) {
-        System.out.println("On Surface Create !!");
         cameraSource = scanner.createCameraSource();
         try {
             cameraSource.start(holder);

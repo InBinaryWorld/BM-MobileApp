@@ -131,6 +131,36 @@ public final class DetailsConfigurations {
         return config;
     }
 
+    public static <T> SimpleDetailsConfig<T> getBuyerNameConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
+        config.setLabel("Buyer");
+        return config;
+    }
+
+    public static <T> SimpleDetailsConfig<T> getCreationDateConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
+        config.setLabel("Creation Date");
+        return config;
+    }
+
+    public static <T> SimpleDetailsConfig<T> getGrossValueConfiguration() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
+        config.setLabel("Gross Value");
+        return config;
+    }
+
+    public static <T> SimpleDetailsConfig<T> getDueDateConfiguration() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
+        config.setLabel("Due Date");
+        return config;
+    }
+
+    public static <T> SimpleDetailsConfig<T> getInvoiceNumberConfig() {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
+        config.setLabel("Invoice number");
+        return config;
+    }
+
     private static <T> SimpleDetailsConfig<T> getSimpleConfig() {
         SimpleDetailsConfig<T> config = new SimpleDetailsConfig<>();
         config.setVisibleOnSetValueNull(false);

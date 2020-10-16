@@ -1,5 +1,6 @@
 package dev.szafraniak.bm_mobileapp.presentation;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ public interface BaseView {
     void startActivity(Intent intent, Bundle options);
 
     FragmentManager getFManager();
+
+    Activity getActivity();
 
     String getClassName();
 }

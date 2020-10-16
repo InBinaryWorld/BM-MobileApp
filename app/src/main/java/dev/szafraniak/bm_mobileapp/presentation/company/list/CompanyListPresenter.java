@@ -43,9 +43,9 @@ public class CompanyListPresenter {
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData() {
         companyService.getCompanies()
-                .flatMap(this::getCompanyListModelList)
-                .compose(view.bindToLifecycle())
-                .subscribe(view::setData, view::setError);
+            .flatMap(this::getCompanyListModelList)
+            .compose(view.bindToLifecycle())
+            .subscribe(view::setData, view::setError);
     }
 
     private ObservableSource<List<CompanyListModel>> getCompanyListModelList(BMCollection<Company> companiesCollection) {
@@ -54,23 +54,26 @@ public class CompanyListPresenter {
         for (Company company : companies) {
             models.add(getCompanyListModel(company));
         }
+        if (models.size() == 0) {
+            return Observable.just(new ArrayList<>());
+        }
         return Observable.zip(models, new RxUtils.ObservableZipCollector<>());
     }
 
 
     private Observable<CompanyListModel> getCompanyListModel(Company company) {
         return productService.getProducts(company.getId())
-                .map(this::countSumOfProductValues)
-                .map(new FullFillCompanyListModel(company));
+            .map(this::countSumOfProductValues)
+            .map(new FullFillCompanyListModel(company));
     }
 
     private BigDecimal countSumOfProductValues(BMCollection<Product> productBMCollection) {
         return productBMCollection.getItems()
-                .stream().map(product -> {
-                    BigDecimal gross = product.getProductModel().getPriceSuggestion().getGross();
-                    BigDecimal quantity = product.getQuantity();
-                    return quantity.multiply(gross).setScale(2, RoundingMode.HALF_UP);
-                }).reduce(new BigDecimal(0), BigDecimal::add);
+            .stream().map(product -> {
+                BigDecimal gross = product.getProductModel().getPriceSuggestion().getGross();
+                BigDecimal quantity = product.getQuantity();
+                return quantity.multiply(gross).setScale(2, RoundingMode.HALF_UP);
+            }).reduce(new BigDecimal(0), BigDecimal::add);
     }
 
 

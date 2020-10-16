@@ -22,13 +22,10 @@
         app:layout_constraintTop_toBottomOf="@+id/header">
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/ll_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/ll_details"
-                style="@style/LinearLayout.Details"
-                android:orientation="vertical" />
 
         </androidx.core.widget.NestedScrollView>
 
@@ -65,5 +62,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <include
+        android:id="@+id/v_button_progress"
+        layout="@layout/component_progress_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

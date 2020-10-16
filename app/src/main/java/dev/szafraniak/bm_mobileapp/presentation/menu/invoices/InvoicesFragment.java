@@ -1,9 +1,12 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.invoices;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
 import androidx.fragment.app.FragmentManager;
+
+import com.google.gson.Gson;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -19,6 +22,7 @@ import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.InvoiceDetailsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWithBtn;
 
 @EFragment(R.layout.fragment_invoices)
@@ -29,6 +33,9 @@ public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice, InvoiceLi
 
     @Inject
     FormsManager formsManager;
+
+    @Inject
+    Gson gson;
 
     @AfterViews
     public void initialize() {
@@ -46,7 +53,7 @@ public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice, InvoiceLi
 
     @Override
     protected void onButtonClick(View view) {
-//        formsManager.resetCreateInvoiceForm();
+        formsManager.resetCreateInvoiceForm();
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INVOICES_CREATE_BASE_DATA);
     }
 
@@ -57,7 +64,9 @@ public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice, InvoiceLi
 
     @Override
     public void onItemClick(Invoice item) {
-//        Navigator.navigateTo(this, FragmentFactory.);
+        Bundle bundle = new Bundle();
+        bundle.putString(InvoiceDetailsFragment.KEY_INVOICE, gson.toJson(item));
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INVOICES_DETAILS, bundle);
     }
 
     @Click(R.id.btn_show_finances)

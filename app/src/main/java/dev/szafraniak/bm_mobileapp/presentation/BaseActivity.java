@@ -1,5 +1,6 @@
 package dev.szafraniak.bm_mobileapp.presentation;
 
+import android.app.Activity;
 import android.content.Context;
 
 import androidx.fragment.app.FragmentManager;
@@ -23,6 +24,11 @@ public abstract class BaseActivity extends RxAppCompatActivity implements BaseVi
     @Override
     public String getClassName() {
         return getClass().getName();
+    }
+
+    @Override
+    public Activity getActivity() {
+        return this;
     }
 
     @Override

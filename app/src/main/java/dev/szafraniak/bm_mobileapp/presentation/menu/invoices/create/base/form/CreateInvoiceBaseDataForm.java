@@ -38,7 +38,6 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
 
     @Override
     protected void showValueOnView(CreateInvoiceBaseFormModel value) {
-        System.out.println("base show input; " + value);
         if (value == null) {
             invoiceNumberFormRow.setValue(null);
             buyerFormRow.setValue(null);
@@ -54,14 +53,12 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
 
     @Override
     public void setValue(CreateInvoiceBaseFormModel input) {
-        System.out.println("base setValue input; " + input);
         if (!getConfig().isVisibleOnSetValueNull() && input == null) {
             getView().setVisibility(View.GONE);
             return;
         }
         getView().setVisibility(View.VISIBLE);
         CreateInvoiceBaseFormModel value = shouldShowDefaultValue(input) ? getConfig().getDefaultValue() : input;
-        System.out.println("base setValue output; " + input);
         showValueOnView(value);
     }
 

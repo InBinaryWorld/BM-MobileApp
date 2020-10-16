@@ -2,8 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.details;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 
@@ -23,7 +22,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDeta
 
 @EFragment(R.layout.fragment_base_details)
 public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<CompanyContact, CompanyContactDetailsConfig>
-        implements CompanyContactDetailsView {
+    implements CompanyContactDetailsView {
 
     public final static String KEY_COMPANY_CONTACT = "COMPANY_CONTACT_KEY";
 
@@ -65,12 +64,12 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
     }
 
     @Override
-    protected DetailsInterface<CompanyContact> createForm(LayoutInflater inflater, LinearLayout detailsLayout, CompanyContactDetailsConfig config) {
+    protected DetailsInterface<CompanyContact> createForm(LayoutInflater inflater, ViewGroup detailsLayout, CompanyContactDetailsConfig config) {
         return new CompanyContactDetails(inflater, detailsLayout, config);
     }
 
     @Override
-    protected void onFblClick(View view) {
+    protected void onFblClick() {
         Bundle args = new Bundle();
         args.putString(CompanyContactModifyFragment.KEY_COMPANY_CONTACT, gson.toJson(contact));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CONTACT_MODIFY, args);

@@ -97,4 +97,7 @@
     <string name="invoice_create_items_summary_total_items">Total items:</string>
     <string name="invoice_create_items_summary_total_gross">Total gross:</string>
     <string name="invoice_create_items_summary_btn">New Item</string>
+    <string name="header_invoice_details">Invoice Details</string>
+    <string name="row_invoice_details_download">Download</string>
+    <string name="btn_invoice_details_download">Download PDF</string>
 </resources>
