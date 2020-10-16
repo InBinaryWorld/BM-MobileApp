@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.state.InvoiceStatusFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetailsConfig;
 import lombok.Data;
@@ -19,5 +20,7 @@ public class InvoiceDetailsConfig extends BaseDetailsConfig<Invoice> {
     private SimpleDetailsConfig<LocalDate> dueDateConfig;
     private SimpleDetailsConfig<OffsetDateTime> creationDateConfig;
     private SimpleDetailsConfig<BigDecimal> grossConfig;
+    private InvoiceStatusFormConfig statusConfig;
+
 }
 

@@ -61,6 +61,11 @@ public class SettingsFragment extends BaseHeaderFragment implements SettingsView
         Navigator.startActivityOnEmptyStack(getContext(), CompanyActivity_.class);
     }
 
+    @Click(R.id.cl_menage_bank_accounts)
+    public void manageBankAccounts() {
+        presenter.manageBankAccounts();
+    }
+
     @Click(R.id.cl_logout)
     public void logout() {
         presenter.logoutAction();

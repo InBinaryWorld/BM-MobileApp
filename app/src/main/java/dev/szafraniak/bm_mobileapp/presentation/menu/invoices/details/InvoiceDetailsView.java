@@ -9,4 +9,5 @@ public interface InvoiceDetailsView extends BaseDetailsView<Invoice> {
 
     void hideBtnProgress();
 
+    void reload();
 }

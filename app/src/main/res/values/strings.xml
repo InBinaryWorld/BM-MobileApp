@@ -100,4 +100,5 @@
     <string name="header_invoice_details">Invoice Details</string>
     <string name="row_invoice_details_download">Download</string>
     <string name="btn_invoice_details_download">Download PDF</string>
+    <string name="settings_menage_bank_accounts">Manage bank accounts</string>
 </resources>

@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class UpdateInvoiceRequest {
 
-    private String state;
+    private Boolean isPaid;
 
 }

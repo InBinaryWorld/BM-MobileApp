@@ -9,5 +9,4 @@ public abstract class BaseDetailsPresenter<T, F extends BaseDetailsView<T>, C ex
     protected F view;
 
     public abstract C createConfig();
-
 }

@@ -17,7 +17,7 @@ public class Invoice {
 
     private String fileReference;
 
-    private String state;
+    private Boolean isPaid;
 
     private String invoiceName;
 

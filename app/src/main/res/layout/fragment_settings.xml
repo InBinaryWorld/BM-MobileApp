@@ -115,6 +115,36 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_menage_bank_accounts"
+                style="@style/Row.h18.SettingsRow">
+
+                <TextView
+                    style="@style/BaseTextView.RowSettings"
+                    android:text="@string/settings_menage_bank_accounts"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_bank_accounts"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_bank_accounts"
+                    style="@style/NextImageView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/content_description_next_arrow" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                style="@style/Divider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_change_company"
                 style="@style/Row.h18.SettingsRow">
 

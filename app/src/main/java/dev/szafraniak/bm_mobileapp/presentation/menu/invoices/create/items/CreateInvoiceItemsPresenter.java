@@ -56,7 +56,7 @@ public class CreateInvoiceItemsPresenter {
         CreateInvoiceRequest request = getRequest();
         invoiceService.createInvoice(companyId, request)
             .compose(view.bindToLifecycle())
-            .subscribe(this::navigateToStatus, view::setError);
+            .subscribe(this::navigateToStatus, view::setActionFailed);
     }
 
     private CreateInvoiceRequest getRequest() {

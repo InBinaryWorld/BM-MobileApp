@@ -15,8 +15,6 @@ public abstract class SearchListFragmentWithBtn<T extends FilterValue, A extends
 
     SearchView searchView;
 
-    protected BaseFilterListAdapter<T, T> adapter;
-
     @IdRes
     protected int getSearchViewId() {
         return R.id.sv_search;

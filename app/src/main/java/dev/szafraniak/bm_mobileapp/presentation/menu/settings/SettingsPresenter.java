@@ -57,4 +57,8 @@ public class SettingsPresenter {
     public void modifyCompanyDataAction() {
         Navigator.navigateTo(view, FRAGMENT_SETTINGS_COMPANY);
     }
+
+    public void manageBankAccounts() {
+//        Navigator.navigateTo(view,);
+    }
 }

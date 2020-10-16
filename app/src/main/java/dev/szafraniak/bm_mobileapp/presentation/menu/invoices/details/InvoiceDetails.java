@@ -8,6 +8,8 @@ import androidx.annotation.LayoutRes;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
+import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.UpdateInvoiceRequest;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.state.InvoiceStatusForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.EditTextViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetails;
@@ -26,6 +28,9 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
     DecimalTextViewDetails grossValue;
     LocalDateTextViewDetails dueDate;
     OffsetDateTextViewDetails creationDate;
+    InvoiceStatusForm statusForm;
+
+    private OnInvoiceStateChange onInvoiceStateChange;
 
     public InvoiceDetails(LayoutInflater inflater, ViewGroup viewGroup, InvoiceDetailsConfig config) {
         super(inflater, viewGroup, config);
@@ -39,6 +44,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
             grossValue.setValue(null);
             creationDate.setValue(null);
             invoiceNumber.setValue(null);
+            statusForm.setValue(null);
             return;
         }
         buyerName.setValue(value.getBuyerName());
@@ -46,6 +52,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
         grossValue.setValue(value.getTotalAmount().getGross());
         creationDate.setValue(value.getCreationDate());
         invoiceNumber.setValue(value.getInvoiceName());
+        statusForm.setValue(value.getIsPaid());
     }
 
     @Override
@@ -57,9 +64,11 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
         dueDate = new LocalDateTextViewDetails(inflater, groupList, config.getDueDateConfig());
         creationDate = new OffsetDateTextViewDetails(inflater, groupList, config.getCreationDateConfig());
         grossValue = new DecimalTextViewDetails(inflater, groupList, config.getGrossConfig());
+        statusForm = new InvoiceStatusForm(inflater, groupList, config.getStatusConfig());
 
         groupList.addView(invoiceNumber.getView());
         groupList.addView(buyerName.getView());
+        groupList.addView(statusForm.getView());
         groupList.addView(creationDate.getView());
         groupList.addView(dueDate.getView());
         groupList.addView(grossValue.getView());
@@ -71,9 +80,22 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
 
     @Override
     protected void setupView(LayoutInflater inflater, InvoiceDetailsConfig config) {
+        statusForm.setOnModifyInvoiceRequest(request -> {
+            if (onInvoiceStateChange != null) {
+                onInvoiceStateChange.onStateUpdate(request);
+            }
+        });
+
         // Dodatkowa konfiguracja
     }
 
+    public void setOnInvoiceChange(OnInvoiceStateChange onInvoiceStateChange) {
+        this.onInvoiceStateChange = onInvoiceStateChange;
+    }
+
+    public interface OnInvoiceStateChange {
+        void onStateUpdate(UpdateInvoiceRequest updateInvoiceRequest);
+    }
 
 }
 

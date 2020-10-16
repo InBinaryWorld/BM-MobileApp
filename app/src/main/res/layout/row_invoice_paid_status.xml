@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_row"
+    style="@style/Row.h18.v12"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/tv_label"
+        style="@style/BaseTextView.Label"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_mark_as_paid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Payment State" />
+
+    <TextView
+        android:id="@+id/tv_state_value"
+        style="@style/BaseTextView.Value"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_mark_as_paid"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_label" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_mark_as_paid"
+        style="@style/MaterialButton.Rounded.Small"
+        android:text="Mark as Paid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
