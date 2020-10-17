@@ -10,6 +10,7 @@ import dev.szafraniak.bm_mobileapp.business.memory.settings.SettingsPreferences;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import lombok.Setter;
 
+import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_BANK_ACCOUNT_LIST;
 import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_SETTINGS_COMPANY;
 
 public class SettingsPresenter {
@@ -59,6 +60,6 @@ public class SettingsPresenter {
     }
 
     public void manageBankAccounts() {
-//        Navigator.navigateTo(view,);
+        Navigator.navigateTo(view, FRAGMENT_BANK_ACCOUNT_LIST);
     }
 }

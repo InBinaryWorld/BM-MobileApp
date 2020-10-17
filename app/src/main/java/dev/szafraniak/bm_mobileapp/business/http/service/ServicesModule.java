@@ -58,4 +58,10 @@ public class ServicesModule {
         return new InvoiceService(app);
     }
 
+    @Provides
+    @Singleton
+    public BankAccountService provideBankAccountService(Application app) {
+        return new BankAccountService(app);
+    }
+
 }

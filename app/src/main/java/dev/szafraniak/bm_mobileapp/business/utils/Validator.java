@@ -143,6 +143,9 @@ public final class Validator {
     }
 
     public static boolean validateBankAccountNumber(String bankAccount) {
+        System.out.println("!!!!!!!!!!!!!!11");
+        System.out.println(bankAccount);
+        System.out.println(Pattern.matches(BANK_ACCOUNT, bankAccount));
         return Pattern.matches(BANK_ACCOUNT, bankAccount);
     }
 

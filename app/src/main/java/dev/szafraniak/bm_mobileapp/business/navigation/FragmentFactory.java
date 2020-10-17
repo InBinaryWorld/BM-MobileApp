@@ -11,6 +11,9 @@ import java.util.Map;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.company.create.CompanyCreateFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.company.list.CompanyListFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.bank.BankAccountListFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.bank.create.BankAccountCreateFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.bank.modify.BankAccountModifyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.company.modify.ModifyCompanyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.CompanyContactListFragment_;
@@ -83,6 +86,9 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_WAREHOUSE_MODIFY = 902;
     public static final int FRAGMENT_WAREHOUSE_DETAILS = 903;
     public static final int FRAGMENT_FINANCES = 1000;
+    public static final int FRAGMENT_BANK_ACCOUNT_LIST = 1100;
+    public static final int FRAGMENT_BANK_ACCOUNT_CREATE = 1101;
+    public static final int FRAGMENT_BANK_ACCOUNT_MODIFY = 1102;
     public static final int FRAGMENT_FORM_CONTACT_AUTO_COMPETE = 10000;
     public static final int FRAGMENT_BARE_CODE_SCANNER = 20000;
 
@@ -206,6 +212,15 @@ public abstract class FragmentFactory {
                 break;
             case FRAGMENT_FORM_CONTACT_AUTO_COMPETE:
                 fragment = new InvoiceContactFormFragment_();
+                break;
+            case FRAGMENT_BANK_ACCOUNT_LIST:
+                fragment = new BankAccountListFragment_();
+                break;
+            case FRAGMENT_BANK_ACCOUNT_CREATE:
+                fragment = new BankAccountCreateFragment_();
+                break;
+            case FRAGMENT_BANK_ACCOUNT_MODIFY:
+                fragment = new BankAccountModifyFragment_();
                 break;
             default:
                 throw new Resources.NotFoundException("Not found fragment with id: " + fragmentId);

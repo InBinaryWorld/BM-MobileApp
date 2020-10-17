@@ -2,6 +2,9 @@ package dev.szafraniak.bm_mobileapp.business.http.api;
 
 
 import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
+import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.BankAccount;
+import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.CreateBankAccountRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.UpdateBankAccountRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.CreateCompanyRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.UpdateCompanyRequest;
@@ -172,5 +175,22 @@ public interface BmResourcesApi {
                                       @Path("invoiceId") Long invoiceId,
                                       @Body UpdateInvoiceRequest requestBody);
 
+    //    ###########  BANK ACCOUNT  ##########
+
+    @GET("/api/companies/{companyId}/bank/accounts")
+    Observable<BMCollection<BankAccount>> getBankAccounts(@Path("companyId") Long companyId);
+
+    @GET("/api/companies/{companyId}/bank/accounts/{accountId}")
+    Observable<BankAccount> getBankAccount(@Path("companyId") Long companyId,
+                                           @Path("accountId") Long accountId);
+
+    @PUT("/api/companies/{companyId}/bank/accounts/{accountId}")
+    Observable<BankAccount> modifyBankAccount(@Path("companyId") Long companyId,
+                                              @Path("accountId") Long accountId,
+                                              @Body UpdateBankAccountRequest request);
+
+    @POST("/api/companies/{companyId}/bank/accounts")
+    Observable<BankAccount> createBankAccount(@Path("companyId") Long companyId,
+                                              @Body CreateBankAccountRequest request);
 
 }

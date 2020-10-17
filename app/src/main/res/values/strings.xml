@@ -101,4 +101,9 @@
     <string name="row_invoice_details_download">Download</string>
     <string name="btn_invoice_details_download">Download PDF</string>
     <string name="settings_menage_bank_accounts">Manage bank accounts</string>
+    <string name="header_bank_accounts_list">Bank Accounts</string>
+    <string name="btn_bank_account_list_create_text">Create Bank Account</string>
+    <string name="btn_company_modify">Modify</string>
+    <string name="btn_bank_account_modify">Modify Acocunt</string>
+    <string name="header_bank_account_modify">Modify Bank Account</string>
 </resources>

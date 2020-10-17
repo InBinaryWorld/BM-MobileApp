@@ -21,8 +21,8 @@ public class Navigator {
 
     private static Bundle getBundleAnimation(Context ctx) {
         return ActivityOptions
-                .makeCustomAnimation(ctx, R.anim.slide_in_from_right, R.anim.slide_out_to_left)
-                .toBundle();
+            .makeCustomAnimation(ctx, R.anim.slide_in_from_right, R.anim.slide_out_to_left)
+            .toBundle();
     }
 
     private static void startActivity(Context ctx, Intent intent) {
@@ -160,7 +160,6 @@ public class Navigator {
         transaction.addToBackStack(tag);
         transaction.commit();
     }
-
 
     public static boolean isAlreadyLoaded(FragmentManager fm, Fragment fragment) {
         return fragment.getClass().equals(getCurrentFragment(fm).getClass());

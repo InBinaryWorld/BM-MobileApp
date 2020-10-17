@@ -3,13 +3,12 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment;
 import android.annotation.SuppressLint;
 import android.app.Application;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
+import dev.szafraniak.bm_mobileapp.business.http.service.BankAccountService;
 import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsManager;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.BankAccount;
@@ -26,7 +25,7 @@ import lombok.Setter;
 public class InvoicePaymentPresenter {
 
     @Inject
-    CompanyService companyService;
+    BankAccountService bankAccountService;
 
     @Inject
     SessionManager sessionManager;
@@ -56,25 +55,17 @@ public class InvoicePaymentPresenter {
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData() {
-        Long companyId = sessionManager.getCompanyId();
-//        companyService.getCompany(companyId)
-//                .compose(view.bindToLifecycle())
-//                .subscribe(company -> view.setData(invoiceBaseModel, company), view::setError);
-        // TODO: implement valid fething data
-        BankAccount b1 = new BankAccount();
-        b1.setName("Danuta Nowak");
-        b1.setNumber("PL73103016546214735551514076");
-        BankAccount b2 = new BankAccount();
-        b2.setName("Jeremiasz Nawacki");
-        b2.setNumber("PL73103016546214735566666666");
-        List<BankAccount> bankAccounts = new ArrayList<>();
-        bankAccounts.add(b1);
-        bankAccounts.add(b2);
-
         CreateInvoiceFormModel createInvoiceModel = formsManager.getCreateInvoiceFormModel();
         CreateInvoiceBaseFormModel baseModel = createInvoiceModel.getBaseModel();
         PaymentFormModel paymentFormModel = baseModel.getPayment();
-        view.setData(paymentFormModel, bankAccounts);
+
+        Long companyId = sessionManager.getCompanyId();
+        bankAccountService.getBankAccounts(companyId)
+            .compose(view.bindToLifecycle())
+            .subscribe(
+                collection -> view.setData(paymentFormModel, collection.getItems()),
+                view::setError
+            );
     }
 
     private PaymentMethodFormConfig createPaymentConfig(List<BankAccount> bankAccounts) {

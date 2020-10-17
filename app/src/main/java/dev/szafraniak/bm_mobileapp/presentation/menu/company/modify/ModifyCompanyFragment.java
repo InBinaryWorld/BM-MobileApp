@@ -1,10 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.company.modify;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
-import androidx.annotation.Nullable;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -32,14 +29,10 @@ public class ModifyCompanyFragment extends BaseFormFragment<UpdateCompanyRequest
         presenter.setView(this);
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     protected int getButtonTextId() {
-        return R.string.header_company_modify;
+        return R.string.btn_company_modify;
     }
 
     @Override

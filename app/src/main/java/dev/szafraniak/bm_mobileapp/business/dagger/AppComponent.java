@@ -9,6 +9,7 @@ import dev.szafraniak.bm_mobileapp.business.http.RetrofitModule;
 import dev.szafraniak.bm_mobileapp.business.http.api.ServerApiModule;
 import dev.szafraniak.bm_mobileapp.business.http.interceptors.AuthInterceptor;
 import dev.szafraniak.bm_mobileapp.business.http.interceptors.TokenAuthenticator;
+import dev.szafraniak.bm_mobileapp.business.http.service.BankAccountService;
 import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
 import dev.szafraniak.bm_mobileapp.business.http.service.InvoiceService;
@@ -40,6 +41,12 @@ import dev.szafraniak.bm_mobileapp.presentation.login.LoginPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.MenuModule;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuActivity;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.bank.BankAccountListFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.bank.BankAccountListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.bank.create.BankAccountCreateFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.bank.create.BankAccountCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.bank.modify.BankAccountModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.bank.modify.BankAccountModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.company.modify.ModifyCompanyFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.company.modify.ModifyCompanyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsFragment;
@@ -304,4 +311,18 @@ public interface AppComponent {
     void inject(InvoiceDetailsFragment invoiceDetailsFragment);
 
     void inject(InvoiceDetailsPresenter invoiceDetailsPresenter);
+
+    void inject(BankAccountListFragment bankAccountsListFragment);
+
+    void inject(BankAccountService bankAccountService);
+
+    void inject(BankAccountListPresenter bankAccountListPresenter);
+
+    void inject(BankAccountCreateFragment bankAccountCreateFragment);
+
+    void inject(BankAccountCreatePresenter bankAccountCreatePresenter);
+
+    void inject(BankAccountModifyFragment bankAccountModifyFragment);
+
+    void inject(BankAccountModifyPresenter bankAccountModifyPresenter);
 }

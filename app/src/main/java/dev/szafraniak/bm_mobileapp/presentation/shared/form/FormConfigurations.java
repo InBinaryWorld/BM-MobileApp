@@ -277,10 +277,10 @@ public final class FormConfigurations {
         return config;
     }
 
-    private static TextFormConfig<String> getBankAccountNumberConfig() {
+    public static TextFormConfig<String> getBankAccountNumberConfig() {
         TextFormConfig<String> config = getBaseTextFormConfig();
-        config.setLabel("Account number");
-        config.setInvalidMessage("Invalid Format");
+        config.setLabel("Account number (IBAN)");
+        config.setInvalidMessage("Invalid Format (for Poland: 'PL' and 26 digits)");
         config.setValidator(Validator::validateBankAccountNumber);
         config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_CHARACTERS);
         return config;
@@ -357,10 +357,19 @@ public final class FormConfigurations {
     ) {
         AutoCompleteTextFormConfig<String, BankAccount> config = getAutoCompleteTextFormConfig();
         config.setValidator(Validator::validateBankAccountName);
-        config.setInputType(TYPE_CLASS_TEXT);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_WORDS);
         config.setLabel("Account name");
         config.setInvalidMessage("2-30 Signs");
         config.setListItems(bankAccounts);
+        return config;
+    }
+
+    public static TextFormConfig<String> getBankAccountNameConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setValidator(Validator::validateBankAccountName);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_WORDS);
+        config.setLabel("Name");
+        config.setInvalidMessage("2-30 Signs");
         return config;
     }
 

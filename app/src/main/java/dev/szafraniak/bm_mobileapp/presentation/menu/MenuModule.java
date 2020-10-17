@@ -7,6 +7,9 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.bank.BankAccountListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.bank.create.BankAccountCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.bank.modify.BankAccountModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.company.modify.ModifyCompanyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.CompanyContactListPresenter;
@@ -246,6 +249,24 @@ public class MenuModule {
     @Singleton
     public InvoiceDetailsPresenter provideInvoiceDetailsPresenter(Application app) {
         return new InvoiceDetailsPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public BankAccountListPresenter provideBankAccountListPresenter(Application app) {
+        return new BankAccountListPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public BankAccountCreatePresenter provideBankAccountCreatePresenter(Application app) {
+        return new BankAccountCreatePresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public BankAccountModifyPresenter provideBankAccountModifyPresenter(Application app) {
+        return new BankAccountModifyPresenter(app);
     }
 
 }
