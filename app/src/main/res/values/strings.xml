@@ -104,6 +104,12 @@
     <string name="header_bank_accounts_list">Bank Accounts</string>
     <string name="btn_bank_account_list_create_text">Create Bank Account</string>
     <string name="btn_company_modify">Modify</string>
-    <string name="btn_bank_account_modify">Modify Acocunt</string>
+    <string name="btn_bank_account_modify">Modify Account</string>
     <string name="header_bank_account_modify">Modify Bank Account</string>
+    <string name="header_financial_event_list">Financial Events</string>
+    <string name="btn_financial_event_list">Add Event</string>
+    <string name="btn_financial_event_create">Financial Event</string>
+    <string name="header_financial_event_create">Create Event</string>
+    <string name="btn_financial_event_modify">Save</string>
+    <string name="header_financial_event_modify">Modify Financial Event</string>
 </resources>

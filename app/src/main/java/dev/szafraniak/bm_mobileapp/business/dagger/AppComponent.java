@@ -12,6 +12,7 @@ import dev.szafraniak.bm_mobileapp.business.http.interceptors.TokenAuthenticator
 import dev.szafraniak.bm_mobileapp.business.http.service.BankAccountService;
 import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
+import dev.szafraniak.bm_mobileapp.business.http.service.FinancesService;
 import dev.szafraniak.bm_mobileapp.business.http.service.InvoiceService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ProductService;
@@ -69,8 +70,12 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesFragment;
-import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancialEventListFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancialEventListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.finances.create.FinancesEventCreateFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.finances.create.FinancesEventCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.finances.modify.FinancesEventModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.finances.modify.FinancesEventModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataFormFragment;
@@ -161,10 +166,6 @@ public interface AppComponent {
     void inject(ResourcesPresenter resourcesPresenter);
 
     void inject(ResourcesFragment resourcesFragment);
-
-    void inject(FinancesPresenter financesPresenter);
-
-    void inject(FinancesFragment financesFragment);
 
     void inject(ModifyCompanyFragment modifyCompanyFragment);
 
@@ -325,4 +326,18 @@ public interface AppComponent {
     void inject(BankAccountModifyFragment bankAccountModifyFragment);
 
     void inject(BankAccountModifyPresenter bankAccountModifyPresenter);
+
+    void inject(FinancialEventListFragment financialEventListFragment);
+
+    void inject(FinancesService financesService);
+
+    void inject(FinancialEventListPresenter financialEventListPresenter);
+
+    void inject(FinancesEventCreateFragment financesEventCreateFragment);
+
+    void inject(FinancesEventCreatePresenter financesEventCreatePresenter);
+
+    void inject(FinancesEventModifyFragment financialEventModifyFragment);
+
+    void inject(FinancesEventModifyPresenter financialEventModifyPresenter);
 }

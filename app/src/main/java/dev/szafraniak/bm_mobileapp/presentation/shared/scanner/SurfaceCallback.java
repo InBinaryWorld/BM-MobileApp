@@ -10,21 +10,19 @@ import com.google.android.gms.vision.CameraSource;
 import java.io.IOException;
 
 class SurfaceCallback implements SurfaceHolder.Callback {
-    private final Scanner scanner;
-    private CameraSource cameraSource;
 
-    public SurfaceCallback(Scanner scanner) {
-        this.scanner = scanner;
+    private final CameraSource cameraSource;
+
+    public SurfaceCallback(CameraSource cameraSource) {
+        this.cameraSource = cameraSource;
     }
 
     @Override
     @SuppressLint("MissingPermission")
     public void surfaceCreated(@NonNull SurfaceHolder holder) {
-        cameraSource = scanner.createCameraSource();
         try {
             cameraSource.start(holder);
         } catch (IOException e) {
-            closeScanner();
             e.printStackTrace();
         }
     }
@@ -35,12 +33,8 @@ class SurfaceCallback implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder holder) {
-        closeScanner();
+        cameraSource.stop();
     }
 
-    private void closeScanner() {
-        scanner.hideCamera();
-        cameraSource.release();
-    }
 
 }

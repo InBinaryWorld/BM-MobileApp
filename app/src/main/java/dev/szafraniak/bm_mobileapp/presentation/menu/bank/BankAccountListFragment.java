@@ -12,7 +12,6 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.memory.session.SessionPreferences;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.BankAccount;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
@@ -23,9 +22,6 @@ public class BankAccountListFragment extends BaseListFragmentWithBtn<BankAccount
 
     @Inject
     BankAccountListPresenter presenter;
-
-    @Inject
-    SessionPreferences sessionPreferences;
 
     @AfterViews
     public void initialize() {

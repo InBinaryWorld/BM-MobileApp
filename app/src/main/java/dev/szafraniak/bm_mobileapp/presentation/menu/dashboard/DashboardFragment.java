@@ -1,53 +1,30 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.dashboard;
 
-import android.view.SurfaceView;
-import android.widget.Button;
-import android.widget.TextView;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
 
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.presentation.BaseHeaderFragment;
-import dev.szafraniak.bm_mobileapp.presentation.menu.activity.PermissionResultsHandler;
-import dev.szafraniak.bm_mobileapp.presentation.shared.scanner.Scanner;
+import dev.szafraniak.bm_mobileapp.presentation.shared.scanner.ScannerDialog;
 
 @EFragment(R.layout.fragment_dashboard)
-public class DashboardFragment extends BaseHeaderFragment implements DashboardView, PermissionResultsHandler {
-
-    @ViewById(R.id.tv_header_text)
-    TextView headerTextView;
-
-    @ViewById(R.id.button)
-    Button button;
-
-    @ViewById(R.id.sv_cameraSurface)
-    SurfaceView surfaceView;
+public class DashboardFragment extends BaseHeaderFragment implements DashboardView {
 
     @Inject
     DashboardPresenter presenter;
-
-    private Scanner scanner;
+    private ScannerDialog scannerDialog;
 
     @AfterViews
     public void initialize() {
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        scanner = new Scanner(getActivity(), surfaceView);
-    }
-
-
-    @Override
-    public void onPermissionsGranted(int code) {
-        if (scanner != null) {
-            scanner.onPermissionGranted(code);
-        }
+        scannerDialog = new ScannerDialog(getActivity());
+        presenter.setView(this);
     }
 
     @Override
@@ -62,7 +39,7 @@ public class DashboardFragment extends BaseHeaderFragment implements DashboardVi
 
     @Click(R.id.button)
     public void setButtonClick() {
-        scanner.startScanning();
+        scannerDialog.openScanner();
     }
 
 

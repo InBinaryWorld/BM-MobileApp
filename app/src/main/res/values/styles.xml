@@ -177,6 +177,11 @@
         <item name="android:textColor">@color/colorCoral</item>
     </style>
 
+    <style name="BaseTextView.Error">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorError</item>
+    </style>
+
     <style name="BaseTextView.RowSettings">
         <item name="android:textSize">16sp</item>
     </style>

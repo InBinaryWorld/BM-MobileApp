@@ -37,6 +37,8 @@ public abstract class TextForm<T, H extends TextFormViewHolder<E>, C extends Tex
     protected void setupView(LayoutInflater inflater, C config) {
         H holder = getViewHolder();
         holder.editText.setInputType(config.getInputType());
+        holder.editText.setLines(config.getLines());
+        holder.editText.setMaxLines(config.getLines());
         ViewUtils.addOnTextChangeListener(holder.editText, this::onValueChange);
     }
 

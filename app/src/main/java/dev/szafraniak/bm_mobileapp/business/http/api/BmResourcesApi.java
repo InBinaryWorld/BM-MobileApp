@@ -11,6 +11,9 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.company.UpdateCompanyR
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.CompanyContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.CreateCompanyContactRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.UpdateCompanyContactRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.CreateFinancialRowRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.FinancialRow;
+import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.UpdateFinancialRowRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.CreateIndividualContactRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.UpdateIndividualContactRequest;
@@ -192,5 +195,23 @@ public interface BmResourcesApi {
     @POST("/api/companies/{companyId}/bank/accounts")
     Observable<BankAccount> createBankAccount(@Path("companyId") Long companyId,
                                               @Body CreateBankAccountRequest request);
+
+    //    ###########  FINANCES  ##########
+
+    @GET("/api/companies/{companyId}/finances")
+    Observable<BMCollection<FinancialRow>> getFinancialEvents(@Path("companyId") Long companyId);
+
+    @GET("/api/companies/{companyId}/finances/{eventId}")
+    Observable<FinancialRow> getFinancialEvent(@Path("companyId") Long companyId,
+                                               @Path("eventId") Long eventId);
+
+    @PUT("/api/companies/{companyId}/finances/{eventId}")
+    Observable<FinancialRow> modifyFinancialEvent(@Path("companyId") Long companyId,
+                                                  @Path("eventId") Long eventId,
+                                                  @Body UpdateFinancialRowRequest request);
+
+    @POST("/api/companies/{companyId}/finances")
+    Observable<FinancialRow> createFinancialEvent(@Path("companyId") Long companyId,
+                                                  @Body CreateFinancialRowRequest request);
 
 }

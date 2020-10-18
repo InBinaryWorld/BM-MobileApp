@@ -3,8 +3,6 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.finances;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.google.gson.Gson;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 
@@ -15,16 +13,15 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.FinancialRow;
+import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
+import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWithBtn;
 
 @EFragment(R.layout.fragment_base_list_with_btn)
-public class FinancesFragment extends BaseListFragmentWithBtn<FinancialRow, FinancesListAdapter> implements FinancesView {
+public class FinancialEventListFragment extends BaseListFragmentWithBtn<FinancialRow, FinancialEventListAdapter> implements FinancialEventListView {
 
     @Inject
-    FinancesPresenter presenter;
-
-    @Inject
-    Gson gson;
+    FinancialEventListPresenter presenter;
 
     @AfterViews
     public void initialize() {
@@ -36,7 +33,7 @@ public class FinancesFragment extends BaseListFragmentWithBtn<FinancialRow, Fina
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_finances;
+        return R.string.header_financial_event_list;
     }
 
     @Override
@@ -45,24 +42,22 @@ public class FinancesFragment extends BaseListFragmentWithBtn<FinancialRow, Fina
     }
 
     @Override
-    protected FinancesListAdapter createAdapter() {
-        return new FinancesListAdapter(LayoutInflater.from(getContext()), new ArrayList<>());
+    protected FinancialEventListAdapter createAdapter() {
+        return new FinancialEventListAdapter(LayoutInflater.from(getContext()), new ArrayList<>());
     }
 
     @Override
     public void onItemClick(FinancialRow item) {
-//        Bundle args = new Bundle();
-//        args.putString(IndividualContactDetailsFragment.KEY_INDIVIDUAL_CONTACT, gson.toJson(item));
-//        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_DETAILS, args);
+        presenter.modifyModel(item);
     }
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_finances_list;
+        return R.string.btn_financial_event_list;
     }
 
     @Override
     protected void onButtonClick(View view) {
-
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_FINANCES_CREATE);
     }
 }

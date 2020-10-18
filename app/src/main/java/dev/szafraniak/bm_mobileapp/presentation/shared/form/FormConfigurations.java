@@ -2,6 +2,8 @@ package dev.szafraniak.bm_mobileapp.presentation.shared.form;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,6 +20,8 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
 import dev.szafraniak.bm_mobileapp.business.utils.Validator;
+import dev.szafraniak.bm_mobileapp.presentation.menu.finances.create.FinancesEventCreateFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.finances.modify.FinancesEventModifyFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.contact.ClickableContactFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.payment.ClickablePaymentFormConfig;
@@ -36,6 +40,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.c
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.individual.IndividualAutoCompleteFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactType;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactTypeFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.dateTimePicker.DateTimePickerFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.PaymentMethodFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.transfer.PaymentTransferFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.type.PaymentMethodType;
@@ -45,14 +50,17 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.autoComplete.Aut
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.datePicker.DatePickerFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.list.ListFormRowConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.timePicker.TimePickerFormConfig;
 
 import static android.text.InputType.TYPE_CLASS_NUMBER;
 import static android.text.InputType.TYPE_CLASS_PHONE;
 import static android.text.InputType.TYPE_CLASS_TEXT;
 import static android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
+import static android.text.InputType.TYPE_NUMBER_FLAG_SIGNED;
 import static android.text.InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS;
 import static android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES;
 import static android.text.InputType.TYPE_TEXT_FLAG_CAP_WORDS;
+import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
 import static android.text.InputType.TYPE_TEXT_VARIATION_PERSON_NAME;
 import static android.text.InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS;
 
@@ -286,12 +294,24 @@ public final class FormConfigurations {
         return config;
     }
 
+    private static TextFormConfig<String> getFinancialEventDescriptionConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLines(4);
+        config.setRequired(false);
+        config.setLabel("Description");
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES | TYPE_TEXT_FLAG_MULTI_LINE);
+        config.setInvalidMessage("2-240 signs");
+        config.setValidator(Validator::validateFinancialEventDescription);
+        return config;
+    }
+
     private static <T> TextFormConfig<T> getBaseTextFormConfig() {
         TextFormConfig<T> config = new TextFormConfig<>();
         config.setInvalidMessage("Invalid Value");
         config.setVisibleOnSetValueNull(true);
         config.setReadEmptyAsNull(true);
         config.setRequired(true);
+        config.setLines(1);
         return config;
     }
 
@@ -379,6 +399,7 @@ public final class FormConfigurations {
         config.setVisibleOnSetValueNull(true);
         config.setReadEmptyAsNull(true);
         config.setRequired(true);
+        config.setLines(1);
         return config;
     }
 
@@ -543,6 +564,80 @@ public final class FormConfigurations {
         InvoiceItemsSummaryConfig config = new InvoiceItemsSummaryConfig();
         config.setVisibleOnSetValueNull(true);
         config.setDefaultValue(new ArrayList<>());
+        return config;
+    }
+
+    public static FinancesEventModifyFormConfig getFinancesEventModifyConfig() {
+        FinancesEventModifyFormConfig config = new FinancesEventModifyFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setTitleConfig(getFinancesEventTitleConfig());
+        config.setAmountConfig(getFinancialEventAmountConfig());
+        config.setDateTimePickerConfig(getDateTimePickerConfig());
+        config.setDescriptionConfig(getFinancialEventDescriptionConfig());
+        return config;
+    }
+
+    public static FinancesEventCreateFormConfig getFinancesEventCreateConfig() {
+        FinancesEventCreateFormConfig config = new FinancesEventCreateFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setTitleConfig(getFinancesEventTitleConfig());
+        config.setAmountConfig(getFinancialEventAmountConfig());
+        config.setDateTimePickerConfig(getDateTimePickerConfig());
+        config.setDescriptionConfig(getFinancialEventDescriptionConfig());
+        return config;
+    }
+
+
+    private static DateTimePickerFormConfig getDateTimePickerConfig() {
+        DateTimePickerFormConfig config = new DateTimePickerFormConfig();
+        config.setRequired(true);
+        config.setInvalidMessage("Cannot set future date");
+        config.setValidator(Validator::validateFinancesEventDateTime);
+        config.setVisibleOnSetValueNull(true);
+        config.setDefaultValue(LocalDateTime.now());
+        config.setDateConfig(getFinancesDateConfig());
+        config.setTimeConfig(getFinancesTimeConfig());
+        return config;
+    }
+
+    private static TimePickerFormConfig getFinancesTimeConfig() {
+        TimePickerFormConfig config = new TimePickerFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setRequired(true);
+        config.setDefaultValue(LocalTime.now());
+        config.setLabel("Time");
+        config.setEmptyText("The date has not been specified");
+        config.setInvalidText("Invalid Value");
+        return config;
+    }
+
+    private static DatePickerFormConfig getFinancesDateConfig() {
+        DatePickerFormConfig config = new DatePickerFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setValidator(Validator::validateFinancesDate);
+        config.setPickerValidator(Validator.getBeforeValidatorInclusive(LocalDate.now()));
+        config.setRequired(true);
+        config.setLabel("Date");
+        config.setEmptyText("The date has not been specified");
+        config.setInvalidText("Invalid value");
+        return config;
+    }
+
+    private static TextFormConfig<BigDecimal> getFinancialEventAmountConfig() {
+        TextFormConfig<BigDecimal> config = getBaseTextFormConfig();
+        config.setValidator(Validator::validateFinancialEventAmount);
+        config.setInvalidMessage("Max scale: 2");
+        config.setInputType(TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_DECIMAL | TYPE_NUMBER_FLAG_SIGNED);
+        config.setLabel("Amount of change");
+        return config;
+    }
+
+    private static TextFormConfig<String> getFinancesEventTitleConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setValidator(Validator::validateFinancialEventTitle);
+        config.setInvalidMessage("2-40 Signs");
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES);
+        config.setLabel("Title");
         return config;
     }
 }

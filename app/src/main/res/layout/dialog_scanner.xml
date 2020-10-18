@@ -6,18 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".presentation.login.LoginActivity">
 
-    <include
-        android:id="@+id/header"
-        layout="@layout/component_header_base"
+    <SurfaceView
+        android:id="@+id/sv_cameraSurface"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="H,1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="scannerDialog"
-        app:layout_constraintTop_toBottomOf="@+id/header" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

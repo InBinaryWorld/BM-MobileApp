@@ -21,7 +21,9 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details.IndividualContactDetailsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancesPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancialEventListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.finances.create.FinancesEventCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.finances.modify.FinancesEventModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.InvoiceContactPresenter;
@@ -73,8 +75,8 @@ public class MenuModule {
 
     @Provides
     @Singleton
-    public FinancesPresenter provideFinancesPresenter(Application app) {
-        return new FinancesPresenter(app);
+    public FinancialEventListPresenter provideFinancialEventListPresenter(Application app) {
+        return new FinancialEventListPresenter(app);
     }
 
     @Provides
@@ -267,6 +269,18 @@ public class MenuModule {
     @Singleton
     public BankAccountModifyPresenter provideBankAccountModifyPresenter(Application app) {
         return new BankAccountModifyPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public FinancesEventCreatePresenter provideFinancesEventCreatePresenter(Application app) {
+        return new FinancesEventCreatePresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public FinancesEventModifyPresenter provideFinancialEventModifyPresenter(Application app) {
+        return new FinancesEventModifyPresenter(app);
     }
 
 }

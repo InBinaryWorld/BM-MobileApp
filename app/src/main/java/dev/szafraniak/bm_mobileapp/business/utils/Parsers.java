@@ -6,7 +6,9 @@ import java.text.DecimalFormatSymbols;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 import dev.szafraniak.bm_mobileapp.business.Constance;
@@ -85,16 +87,25 @@ public final class Parsers {
         }
     }
 
-    public static String safeFormatDate(OffsetDateTime offsetDateTime) {
+    public static String safeFormat(OffsetDateTime offsetDateTime) {
         if (offsetDateTime == null) {
             return null;
         }
-        return offsetDateTime.format(dateFormat);
+        ZoneOffset offset = OffsetDateTime.now().getOffset();
+        OffsetDateTime dateTimeAtSystemZone = offsetDateTime.withOffsetSameInstant(offset);
+        return dateTimeAtSystemZone.format(dateTimeFormat);
     }
 
     public static String safeFormat(LocalDate dueDate) {
         if (dueDate != null) {
-            return dueDate.toString();
+            return dueDate.format(dateFormat);
+        }
+        return null;
+    }
+
+    public static String safeFormat(LocalDateTime dueDate) {
+        if (dueDate != null) {
+            return dueDate.format(dateTimeFormat);
         }
         return null;
     }
@@ -139,5 +150,26 @@ public final class Parsers {
             return instant.atZone(TimeUtils.getZoneId()).toLocalDateTime();
         }
         return instant.atZone(TimeUtils.getUtcZoneId()).toLocalDateTime();
+    }
+
+    public static String safeFormat(LocalTime value) {
+        if (value != null) {
+            return value.toString();
+        }
+        return null;
+    }
+
+    public static LocalDateTime parseToLocalDateTime(OffsetDateTime value) {
+        ZoneOffset offset = OffsetDateTime.now().getOffset();
+        OffsetDateTime dateTimeAtSystemZone = value.withOffsetSameInstant(offset);
+        return dateTimeAtSystemZone.toLocalDateTime();
+    }
+
+    public static OffsetDateTime parseToOffsetDateTime(LocalDateTime value) {
+        if (value == null) {
+            return null;
+        }
+        ZoneOffset offset = OffsetDateTime.now().getOffset();
+        return value.atOffset(offset);
     }
 }

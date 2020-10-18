@@ -1,9 +1,11 @@
 package dev.szafraniak.bm_mobileapp.business.utils;
 
+import com.google.android.material.datepicker.DateValidatorPointBackward;
 import com.google.android.material.datepicker.DateValidatorPointForward;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.regex.Pattern;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
@@ -138,15 +140,24 @@ public final class Validator {
         return number.signum() >= 0 && number.scale() == 0;
     }
 
+    public static boolean validateFinancialEventAmount(BigDecimal bigDecimal) {
+        return bigDecimal.scale() <= 2;
+    }
+
     public static boolean validateBankAccountName(String value) {
         return Pattern.matches(BASE_2_40, value) && !value.isEmpty();
     }
 
+    public static boolean validateFinancialEventTitle(String value) {
+        return Pattern.matches(BASE_2_40, value) && !value.isEmpty();
+    }
+
     public static boolean validateBankAccountNumber(String bankAccount) {
-        System.out.println("!!!!!!!!!!!!!!11");
-        System.out.println(bankAccount);
-        System.out.println(Pattern.matches(BANK_ACCOUNT, bankAccount));
-        return Pattern.matches(BANK_ACCOUNT, bankAccount);
+        return Pattern.matches(BANK_ACCOUNT, bankAccount) && !bankAccount.isEmpty();
+    }
+
+    public static boolean validateFinancialEventDescription(String value) {
+        return Pattern.matches(BASE_2_240, value);
     }
 
     private static boolean length(String value, int min, int max) {
@@ -206,6 +217,10 @@ public final class Validator {
         return dueDate.compareTo(LocalDate.now()) >= 0;
     }
 
+    public static boolean validateFinancesDate(LocalDate dueDate) {
+        return dueDate.compareTo(LocalDate.now()) <= 0;
+    }
+
     public static <T> boolean notNull(T value) {
         return value != null;
     }
@@ -213,5 +228,14 @@ public final class Validator {
     public static DateValidatorPointForward getFromValidatorInclusive(LocalDate localDate) {
         Long mills = Parsers.parseToMills(localDate);
         return DateValidatorPointForward.from(mills);
+    }
+
+    public static DateValidatorPointBackward getBeforeValidatorInclusive(LocalDate localDate) {
+        Long mills = Parsers.parseToMills(localDate);
+        return DateValidatorPointBackward.before(mills);
+    }
+
+    public static boolean validateFinancesEventDateTime(LocalDateTime value) {
+        return LocalDateTime.now().compareTo(value) >= 0;
     }
 }
