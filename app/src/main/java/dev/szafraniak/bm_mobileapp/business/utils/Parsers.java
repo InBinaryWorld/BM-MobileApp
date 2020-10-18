@@ -15,6 +15,9 @@ import dev.szafraniak.bm_mobileapp.business.Constance;
 
 public final class Parsers {
 
+    private final static char decimalSep = '.';
+    private final static char groupingSep = ',';
+
     private final static DecimalFormat dfNoFraction = getDecimalFormatNoFraction();
     private final static DecimalFormat dfWithFraction = getDecimalFormatWithFraction();
     private final static DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(Constance.DATE_PATTERN);
@@ -39,15 +42,23 @@ public final class Parsers {
         return safeFormatNoFraction(value, false);
     }
 
+    public static String safeFormatNoFractionNoSep(BigDecimal value) {
+        return safeFormatNoFraction(value, false).replaceAll(String.valueOf(groupingSep), "");
+    }
+
     public static String safeFormatWithFraction(BigDecimal value) {
         return safeFormatWithFraction(value, false);
+    }
+
+    public static String safeFormatWithFractionNoSep(BigDecimal value) {
+        return safeFormatWithFraction(value, false).replaceAll(String.valueOf(groupingSep), "");
     }
 
 
     private static DecimalFormatSymbols getDecimalFormatSymbols() {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-        symbols.setDecimalSeparator('.');
-        symbols.setGroupingSeparator(',');
+        symbols.setDecimalSeparator(decimalSep);
+        symbols.setGroupingSeparator(groupingSep);
         return symbols;
     }
 

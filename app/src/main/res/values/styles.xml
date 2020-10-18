@@ -380,6 +380,20 @@
         <item name="tint">@color/colorBlueLight</item>
     </style>
 
+    <style name="BarcodeScannerImageView">
+        <item name="android:src">@drawable/ic_barcode</item>
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">36dp</item>
+    </style>
+
+    <style name="BarcodeScannerImageView.Header">
+        <item name="tint">@color/colorWhite</item>
+    </style>
+
+    <style name="BarcodeScannerImageView.Form">
+        <item name="tint">@color/colorBlack</item>
+    </style>
+
     <style name="Spinner">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">0dp</item>

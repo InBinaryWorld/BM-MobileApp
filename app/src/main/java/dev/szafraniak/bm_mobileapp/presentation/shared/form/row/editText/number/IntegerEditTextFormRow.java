@@ -27,7 +27,7 @@ public class IntegerEditTextFormRow extends EditTextFormRow<BigDecimal, TextForm
 
     @Override
     protected String parseToDisplay(BigDecimal value) {
-        return Parsers.safeFormatNoFraction(value);
+        return Parsers.safeFormatNoFractionNoSep(value);
     }
 
     @Override

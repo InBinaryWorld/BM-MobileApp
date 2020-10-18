@@ -69,7 +69,7 @@ public final class Validator {
         return Pattern.matches(BASE_2_6, value) && !value.isEmpty();
     }
 
-    public static boolean validateBareCode(String value) {
+    public static boolean validateBarcode(String value) {
         return Pattern.matches(BARCODE_5_20, value);
     }
 

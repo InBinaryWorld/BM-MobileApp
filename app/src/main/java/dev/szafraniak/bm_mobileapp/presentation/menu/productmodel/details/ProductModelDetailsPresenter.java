@@ -29,8 +29,8 @@ public class ProductModelDetailsPresenter extends BaseDetailsPresenter<ProductMo
     public void loadData(Long productModelId) {
         Long companyId = sessionManager.getCompanyId();
         productModelService.getProductModel(companyId, productModelId)
-                .compose(view.bindToLifecycle())
-                .subscribe(view::setData, view::setError);
+            .compose(view.bindToLifecycle())
+            .subscribe(view::setData, view::setError);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class ProductModelDetailsPresenter extends BaseDetailsPresenter<ProductMo
         config.setVisibleOnSetValueNull(false);
         config.setDefaultValue(null);
         config.setProductModelNameConfig(DetailsConfigurations.getProductNameConfig());
-        config.setBareCodeConfig(DetailsConfigurations.getBareCodeConfig());
+        config.setBarcodeConfig(DetailsConfigurations.getBarcodeConfig());
         config.setQuantityUnitConfig(DetailsConfigurations.getQuantityUnitConfig());
         config.setProductGroupNameConfig(DetailsConfigurations.getProductGroupNameConfig());
         config.setPriceDetailsConfig(DetailsConfigurations.getPriceConfig());

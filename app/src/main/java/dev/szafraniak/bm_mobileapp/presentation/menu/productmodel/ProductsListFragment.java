@@ -7,6 +7,7 @@ import android.view.View;
 import com.google.gson.Gson;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 
 import java.util.ArrayList;
@@ -19,11 +20,12 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductMo
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.details.ProductModelDetailsFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.scanner.Scanner;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.SearchListFragmentWithBtn;
 
-@EFragment(R.layout.fragment_search_list_with_btn)
+@EFragment(R.layout.fragment_search_product_list)
 public class ProductsListFragment extends SearchListFragmentWithBtn<ProductModel, ProductModelListAdapter>
-        implements ProductsListView {
+    implements ProductsListView {
 
     @Inject
     ProductsListPresenter presenter;
@@ -31,6 +33,7 @@ public class ProductsListFragment extends SearchListFragmentWithBtn<ProductModel
     @Inject
     Gson gson;
 
+    private Scanner scanner;
 
     @AfterViews
     public void initialize() {
@@ -38,6 +41,19 @@ public class ProductsListFragment extends SearchListFragmentWithBtn<ProductModel
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
         presenter.setView(this);
+        setupScanner();
+    }
+
+    private void setupScanner() {
+        scanner = new Scanner(getActivity());
+        scanner.addBarcodeListener(barcode -> {
+            searchView.setQuery(barcode.displayValue, true);
+        });
+    }
+
+    @Click(R.id.iv_scanner)
+    public void onScannerIconClick(View view) {
+        scanner.openScanner();
     }
 
     @Override

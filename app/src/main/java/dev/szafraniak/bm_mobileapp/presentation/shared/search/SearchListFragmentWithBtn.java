@@ -13,7 +13,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWith
 @EFragment
 public abstract class SearchListFragmentWithBtn<T extends FilterValue, A extends BaseFilterListAdapter<T, T>> extends BaseListFragmentWithBtn<T, A> {
 
-    SearchView searchView;
+    protected SearchView searchView;
 
     @IdRes
     protected int getSearchViewId() {

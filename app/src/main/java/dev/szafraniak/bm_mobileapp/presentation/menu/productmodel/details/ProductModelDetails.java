@@ -21,7 +21,7 @@ public class ProductModelDetails extends BaseDetails<ProductModel, BaseViewHolde
     private final int layoutId = R.layout.form_base_group_with_padding;
 
     TextTextViewDetails nameRow;
-    TextTextViewDetails bareCodeRow;
+    TextTextViewDetails barcodeRow;
     TextTextViewDetails quantityUnitRow;
     TextTextViewDetails productGroupNameRow;
     PriceDetails priceDetails;
@@ -34,7 +34,7 @@ public class ProductModelDetails extends BaseDetails<ProductModel, BaseViewHolde
     protected void showValueOnView(ProductModel value) {
         if (value == null) {
             nameRow.setValue(null);
-            bareCodeRow.setValue(null);
+            barcodeRow.setValue(null);
             quantityUnitRow.setValue(null);
             productGroupNameRow.setValue(null);
             priceDetails.setValue(null);
@@ -42,7 +42,7 @@ public class ProductModelDetails extends BaseDetails<ProductModel, BaseViewHolde
         }
         IdNameEntity group = value.getProductGroup();
         nameRow.setValue(value.getName());
-        bareCodeRow.setValue(value.getBareCode());
+        barcodeRow.setValue(value.getBarcode());
         quantityUnitRow.setValue(value.getQuantityUnit());
         productGroupNameRow.setValue(group != null ? group.getName() : null);
         priceDetails.setValue(value.getPriceSuggestion());
@@ -53,13 +53,13 @@ public class ProductModelDetails extends BaseDetails<ProductModel, BaseViewHolde
         LinearLayout groupList = (LinearLayout) inflater.inflate(layoutId, viewGroup, false);
 
         nameRow = new TextTextViewDetails(inflater, groupList, config.getProductModelNameConfig());
-        bareCodeRow = new TextTextViewDetails(inflater, groupList, config.getBareCodeConfig());
+        barcodeRow = new TextTextViewDetails(inflater, groupList, config.getBarcodeConfig());
         quantityUnitRow = new TextTextViewDetails(inflater, groupList, config.getQuantityUnitConfig());
         productGroupNameRow = new TextTextViewDetails(inflater, groupList, config.getProductGroupNameConfig());
         priceDetails = new PriceDetails(inflater, groupList, config.getPriceDetailsConfig());
 
         groupList.addView(nameRow.getView());
-        groupList.addView(bareCodeRow.getView());
+        groupList.addView(barcodeRow.getView());
         groupList.addView(quantityUnitRow.getView());
         groupList.addView(productGroupNameRow.getView());
         groupList.addView(priceDetails.getView());

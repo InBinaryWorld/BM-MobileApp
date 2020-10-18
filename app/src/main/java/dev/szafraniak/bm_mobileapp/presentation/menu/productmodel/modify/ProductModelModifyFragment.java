@@ -80,7 +80,7 @@ public class ProductModelModifyFragment extends BaseFormFragment<UpdateProductMo
     public void setModifyModel(ProductModel productModel) {
         UpdateProductModelRequest model = new UpdateProductModelRequest();
         model.setName(productModel.getName());
-        model.setBareCode(productModel.getBareCode());
+        model.setBarcode(productModel.getBarcode());
         model.setQuantityUnit(productModel.getQuantityUnit());
         model.setPriceSuggestion(productModel.getPriceSuggestion());
 

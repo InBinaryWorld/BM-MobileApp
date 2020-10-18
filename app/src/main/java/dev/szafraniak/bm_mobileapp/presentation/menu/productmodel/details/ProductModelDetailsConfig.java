@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 public class ProductModelDetailsConfig extends BaseDetailsConfig<ProductModel> {
 
     public SimpleDetailsConfig<String> productModelNameConfig;
-    public SimpleDetailsConfig<String> bareCodeConfig;
+    public SimpleDetailsConfig<String> barcodeConfig;
     public SimpleDetailsConfig<String> quantityUnitConfig;
     public SimpleDetailsConfig<String> productGroupNameConfig;
     public PriceDetailsConfig priceDetailsConfig;

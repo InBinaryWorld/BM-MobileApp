@@ -29,8 +29,8 @@ public class ProductModelCreatePresenter extends BaseFormPresenter<ProductModel,
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void createProductModel(CreateProductModelRequest object) {
         productModelService.createProductModel(sessionManager.getCompanyId(), object)
-                .compose(view.bindToLifecycle())
-                .subscribe(this::onSuccess, this::onError);
+            .compose(view.bindToLifecycle())
+            .subscribe(this::onSuccess, this::onError);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ProductModelCreatePresenter extends BaseFormPresenter<ProductModel,
         CreateProductModelFormConfig config = new CreateProductModelFormConfig();
         config.setVisibleOnSetValueNull(true);
         config.setNameConfig(FormConfigurations.getProductModelNameConfig());
-        config.setBareCodeConfig(FormConfigurations.getBareCodeConfig());
+        config.setBarcodeConfig(FormConfigurations.getBarcodeConfig(view.getActivity()));
         config.setQuantityUniteConfig(FormConfigurations.getQuantityUnitConfig());
         config.setPriceFormConfig(FormConfigurations.getPriceConfig());
         return config;

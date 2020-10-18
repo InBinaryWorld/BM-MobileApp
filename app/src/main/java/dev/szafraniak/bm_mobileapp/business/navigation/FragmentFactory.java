@@ -94,7 +94,6 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_BANK_ACCOUNT_CREATE = 1101;
     public static final int FRAGMENT_BANK_ACCOUNT_MODIFY = 1102;
     public static final int FRAGMENT_FORM_CONTACT_AUTO_COMPETE = 10000;
-    public static final int FRAGMENT_BARE_CODE_SCANNER = 20000;
 
     public static final Map<Integer, Integer> menuMap = new HashMap<Integer, Integer>() {{
         put(R.id.menu_dashboard, FRAGMENT_DASHBOARD);

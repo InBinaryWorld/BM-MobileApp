@@ -30,8 +30,8 @@ public class ProductModelModifyPresenter extends BaseFormPresenter<ProductModel,
     public void modifyProductModel(UpdateProductModelRequest object, Long productModelId) {
         Long companyId = sessionManager.getCompanyId();
         productModelService.modifyProductModel(companyId, productModelId, object)
-                .compose(view.bindToLifecycle())
-                .subscribe(this::onSuccess, this::onError);
+            .compose(view.bindToLifecycle())
+            .subscribe(this::onSuccess, this::onError);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class ProductModelModifyPresenter extends BaseFormPresenter<ProductModel,
         ModifyProductModelFormConfig config = new ModifyProductModelFormConfig();
         config.setVisibleOnSetValueNull(true);
         config.setNameConfig(FormConfigurations.getProductModelNameConfig());
-        config.setBareCodeConfig(FormConfigurations.getBareCodeConfig());
+        config.setBarcodeConfig(FormConfigurations.getBarcodeConfig(view.getActivity()));
         config.setQuantityUniteConfig(FormConfigurations.getQuantityUnitConfig());
         config.setPriceFormConfig(FormConfigurations.getPriceConfig());
         return config;
@@ -48,7 +48,7 @@ public class ProductModelModifyPresenter extends BaseFormPresenter<ProductModel,
     public void loadData(long productModelId) {
         Long companyId = sessionManager.getCompanyId();
         productModelService.getProductModel(companyId, productModelId)
-                .compose(view.bindToLifecycle())
-                .subscribe(view::setModifyModel, view::setError);
+            .compose(view.bindToLifecycle())
+            .subscribe(view::setModifyModel, view::setError);
     }
 }

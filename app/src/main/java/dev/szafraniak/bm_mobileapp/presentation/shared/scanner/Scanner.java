@@ -12,6 +12,7 @@ import androidx.annotation.LayoutRes;
 import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.vision.CameraSource;
+import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import dev.szafraniak.bm_mobileapp.R;
 
 import static dev.szafraniak.bm_mobileapp.business.Constance.ACTIVITY_RESULT_CAMERA;
 
-public class ScannerDialog {
+public class Scanner {
 
     @LayoutRes
     private final static int layoutId = R.layout.dialog_scanner;
@@ -33,7 +34,7 @@ public class ScannerDialog {
     private final List<BarcodeCallback> listeners;
 
 
-    public ScannerDialog(Activity activity) {
+    public Scanner(Activity activity) {
         this.activity = activity;
         this.listeners = new ArrayList<>();
     }
@@ -92,7 +93,9 @@ public class ScannerDialog {
     }
 
     private BarcodeDetector createBarcodeDetector(BarcodeCallback resultCallback) {
-        BarcodeDetector detector = new BarcodeDetector.Builder(activity).build();
+        BarcodeDetector.Builder builder = new BarcodeDetector.Builder(activity);
+        builder.setBarcodeFormats(Barcode.EAN_8 | Barcode.EAN_13 | Barcode.UPC_A | Barcode.UPC_E | Barcode.ITF);
+        BarcodeDetector detector = builder.build();
         detector.setProcessor(new ScannerProcessor(resultCallback));
         return detector;
     }

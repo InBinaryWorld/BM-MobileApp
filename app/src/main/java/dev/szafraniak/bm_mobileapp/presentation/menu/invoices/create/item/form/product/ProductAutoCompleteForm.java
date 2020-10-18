@@ -3,13 +3,18 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
 
+import com.google.android.gms.vision.barcode.Barcode;
+
 import java.math.BigDecimal;
+import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
+import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.type.ItemType;
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
@@ -18,8 +23,10 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.price.Pri
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.autoComplete.product.ProductNameAutoCompleteForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.number.DecimalEditTextFormRow;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextEditTextFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.scanner.BarcodeCallback;
+import dev.szafraniak.bm_mobileapp.presentation.shared.scanner.Scanner;
 
-public class ProductAutoCompleteForm extends BaseForm<InvoiceItemFormModel, BaseViewHolder, ProductAutoCompleteFormConfig> {
+public class ProductAutoCompleteForm extends BaseForm<InvoiceItemFormModel, BaseViewHolder, ProductAutoCompleteFormConfig> implements BarcodeCallback {
 
     @LayoutRes
     private static final int layoutId = R.layout.form_base_group;
@@ -73,6 +80,9 @@ public class ProductAutoCompleteForm extends BaseForm<InvoiceItemFormModel, Base
 
     @Override
     protected void setupView(LayoutInflater inflater, ProductAutoCompleteFormConfig config) {
+        Scanner scanner = new Scanner(config.getActivity());
+        scanner.addBarcodeListener(this);
+        productNameForm.setOnScannerIconClick(scanner::openScanner);
         productNameForm.setOnValidationStateChanged(this::onValueChange);
         quantityUnitForm.setOnValidationStateChanged(this::onValueChange);
         quantityForm.setOnValidationStateChanged(this::onValueChange);
@@ -82,6 +92,27 @@ public class ProductAutoCompleteForm extends BaseForm<InvoiceItemFormModel, Base
             priceForm.setValue(item.getPriceSuggestion());
         });
     }
+
+    @Override
+    public void onBarcode(Barcode barcode) {
+        String code = barcode.displayValue;
+        ProductAutoCompleteFormConfig config = getConfig();
+        List<ProductModel> products = config.getAvailableProducts();
+        ProductModel product = products.stream()
+            .filter(item -> code.equals(item.getBarcode()))
+            .findFirst().orElse(null);
+
+        if (product == null) {
+            Toast.makeText(getConfig().getActivity(), "No match found", Toast.LENGTH_LONG).show();
+            return;
+        }
+        InvoiceItemFormModel model = new InvoiceItemFormModel();
+        model.setName(product.getName());
+        model.setPrice(product.getPriceSuggestion());
+        model.setQuantityUnit(product.getQuantityUnit());
+        setValue(model);
+    }
+
 
     @Override
     public InvoiceItemFormModel getValue() {
@@ -106,5 +137,6 @@ public class ProductAutoCompleteForm extends BaseForm<InvoiceItemFormModel, Base
         return productNameForm.isValid() && quantityForm.isValid()
             && quantityUnitForm.isValid() && priceForm.isValid();
     }
+
 
 }

@@ -9,21 +9,21 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.presentation.BaseHeaderFragment;
-import dev.szafraniak.bm_mobileapp.presentation.shared.scanner.ScannerDialog;
+import dev.szafraniak.bm_mobileapp.presentation.shared.scanner.Scanner;
 
 @EFragment(R.layout.fragment_dashboard)
 public class DashboardFragment extends BaseHeaderFragment implements DashboardView {
 
     @Inject
     DashboardPresenter presenter;
-    private ScannerDialog scannerDialog;
+    private Scanner scanner;
 
     @AfterViews
     public void initialize() {
         @SuppressWarnings("ConstantConditions")
         BMApplication app = (BMApplication) getActivity().getApplication();
         app.getAppComponent().inject(this);
-        scannerDialog = new ScannerDialog(getActivity());
+        scanner = new Scanner(getActivity());
         presenter.setView(this);
     }
 
@@ -39,7 +39,7 @@ public class DashboardFragment extends BaseHeaderFragment implements DashboardVi
 
     @Click(R.id.button)
     public void setButtonClick() {
-        scannerDialog.openScanner();
+        scanner.openScanner();
     }
 
 

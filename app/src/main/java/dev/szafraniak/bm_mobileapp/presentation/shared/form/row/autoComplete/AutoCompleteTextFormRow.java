@@ -12,10 +12,12 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.utils.ViewUtils;
 
 public abstract class AutoCompleteTextFormRow<T, P, C extends AutoCompleteTextFormConfig<T, P>>
-        extends TextForm<T, AutoCompleteTextViewViewHolder, C, MaterialAutoCompleteTextView> {
+    extends TextForm<T, AutoCompleteTextViewViewHolder, C, MaterialAutoCompleteTextView> {
 
     @LayoutRes
-    private final static int layoutId = R.layout.row_form_auto_complete_text_view;
+    protected int getLayoutId() {
+        return R.layout.row_form_auto_complete_text_view;
+    }
 
     public AutoCompleteTextFormRow(LayoutInflater inflater, ViewGroup viewGroup, C config) {
         super(inflater, viewGroup, config);
@@ -43,7 +45,7 @@ public abstract class AutoCompleteTextFormRow<T, P, C extends AutoCompleteTextFo
     @Override
     protected AutoCompleteTextViewViewHolder createViewHolder(LayoutInflater inflater, ViewGroup viewGroup, C config) {
         AutoCompleteTextViewViewHolder holder = new AutoCompleteTextViewViewHolder();
-        holder.view = inflater.inflate(layoutId, viewGroup, false);
+        holder.view = inflater.inflate(getLayoutId(), viewGroup, false);
         holder.editText = holder.view.findViewById(R.id.mactv_auto_complete_text_view);
         holder.layout = holder.view.findViewById(R.id.til_text_layout);
         return holder;

@@ -71,9 +71,9 @@ public final class DetailsConfigurations {
         return config;
     }
 
-    public static <T> SimpleDetailsConfig<T> getBareCodeConfig() {
+    public static <T> SimpleDetailsConfig<T> getBarcodeConfig() {
         SimpleDetailsConfig<T> config = getSimpleConfig();
-        config.setLabel("Bare Code");
+        config.setLabel("Barcode");
         return config;
     }
 

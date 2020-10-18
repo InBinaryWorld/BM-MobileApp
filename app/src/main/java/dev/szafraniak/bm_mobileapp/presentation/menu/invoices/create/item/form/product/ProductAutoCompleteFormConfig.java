@@ -1,6 +1,9 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.product;
 
+import android.app.Activity;
+
 import java.math.BigDecimal;
+import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
@@ -19,5 +22,7 @@ public class ProductAutoCompleteFormConfig extends BaseFormConfig<InvoiceItemFor
     private TextFormConfig<String> quantityUnitConfig;
     public TextFormConfig<BigDecimal> quantityConfig;
     public PriceFormConfig priceFormConfig;
+    private Activity activity;
+    private List<ProductModel> availableProducts;
 
 }

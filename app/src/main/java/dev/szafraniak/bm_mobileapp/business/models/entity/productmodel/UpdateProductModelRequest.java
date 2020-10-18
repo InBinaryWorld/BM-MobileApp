@@ -10,7 +10,7 @@ public class UpdateProductModelRequest {
 
     private String quantityUnit;
 
-    private String bareCode;
+    private String barcode;
 
     private Price priceSuggestion;
 

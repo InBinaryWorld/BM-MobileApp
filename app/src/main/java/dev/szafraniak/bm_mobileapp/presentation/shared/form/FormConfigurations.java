@@ -1,5 +1,7 @@
 package dev.szafraniak.bm_mobileapp.presentation.shared.form;
 
+import android.app.Activity;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -47,6 +49,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.t
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.type.PaymentMethodTypeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.price.PriceFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.autoComplete.AutoCompleteTextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.barcode.BarcodeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.datePicker.DatePickerFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.list.ListFormRowConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormConfig;
@@ -129,13 +132,17 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getBareCodeConfig() {
-        TextFormConfig<String> config = getBaseTextFormConfig();
-        config.setRequired(false);
-        config.setLabel("Bare Code");
+    public static BarcodeFormConfig getBarcodeConfig(Activity activity) {
+        BarcodeFormConfig config = new BarcodeFormConfig();
+        config.setValidator(Validator::validateBarcode);
         config.setInvalidMessage("5-20 Signs");
-        config.setValidator(Validator::validateBareCode);
         config.setInputType(TYPE_CLASS_NUMBER);
+        config.setVisibleOnSetValueNull(true);
+        config.setReadEmptyAsNull(true);
+        config.setActivity(activity);
+        config.setLabel("Barcode");
+        config.setRequired(false);
+        config.setLines(1);
         return config;
     }
 
@@ -478,11 +485,11 @@ public final class FormConfigurations {
 
     }
 
-    public static InvoiceItemFormConfig getInvoiceItemConfig(List<ProductModel> products, List<ServiceModel> services) {
+    public static InvoiceItemFormConfig getInvoiceItemConfig(List<ProductModel> products, List<ServiceModel> services, Activity activity) {
         InvoiceItemFormConfig config = new InvoiceItemFormConfig();
         config.setVisibleOnSetValueNull(true);
         config.setItemTypeForm(getItemTypeConfig());
-        config.setProductConfig(getProductAutoCompleteConfig(products));
+        config.setProductConfig(getProductAutoCompleteConfig(products, activity));
         config.setServiceConfig(getServiceAutoCmplConfig(services));
         return config;
     }
@@ -507,13 +514,15 @@ public final class FormConfigurations {
         return config;
     }
 
-    private static ProductAutoCompleteFormConfig getProductAutoCompleteConfig(List<ProductModel> products) {
+    private static ProductAutoCompleteFormConfig getProductAutoCompleteConfig(List<ProductModel> products, Activity activity) {
         ProductAutoCompleteFormConfig config = new ProductAutoCompleteFormConfig();
         config.setVisibleOnSetValueNull(true);
         config.setQuantityUnitConfig(getQuantityUnitConfig());
         config.setQuantityConfig(getQuantityConfig());
         config.setPriceFormConfig(getPriceConfig());
         config.setProductNameConfig(getProductNameAutoCmplConfig(products));
+        config.setAvailableProducts(products);
+        config.setActivity(activity);
         return config;
     }
 

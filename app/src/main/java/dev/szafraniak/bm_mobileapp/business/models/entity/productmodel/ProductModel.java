@@ -16,7 +16,7 @@ public class ProductModel extends FilterValue {
 
     private String quantityUnit;
 
-    private String bareCode;
+    private String barcode;
 
     private Price priceSuggestion;
 
@@ -24,6 +24,6 @@ public class ProductModel extends FilterValue {
 
     @Override
     protected String createDescriptionForFilter() {
-        return String.format("%s %s", name, bareCode);
+        return String.format("%s %s", name, barcode);
     }
 }
