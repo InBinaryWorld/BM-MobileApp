@@ -3,13 +3,14 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items;
 import android.app.Application;
 import android.os.Bundle;
 
+import com.google.gson.Gson;
+
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
-import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.InvoiceService;
 import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsManager;
@@ -22,8 +23,8 @@ import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.InvoiceItemsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.InvoiceDetailsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragment;
 import lombok.Setter;
 
 public class CreateInvoiceItemsPresenter {
@@ -39,6 +40,9 @@ public class CreateInvoiceItemsPresenter {
 
     @Inject
     InvoiceService invoiceService;
+
+    @Inject
+    Gson gson;
 
     public CreateInvoiceItemsPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
@@ -56,7 +60,7 @@ public class CreateInvoiceItemsPresenter {
         CreateInvoiceRequest request = getRequest();
         invoiceService.createInvoice(companyId, request)
             .compose(view.bindToLifecycle())
-            .subscribe(this::navigateToStatus, view::setActionFailed);
+            .subscribe(this::navigateToDetails, view::setActionFailed);
     }
 
     private CreateInvoiceRequest getRequest() {
@@ -80,12 +84,10 @@ public class CreateInvoiceItemsPresenter {
         return request;
     }
 
-    protected void navigateToStatus(Invoice invoice) {
+    protected void navigateToDetails(Invoice invoice) {
         Bundle bundle = new Bundle();
-        String buttonText = view.getContext().getString(R.string.action_status_back_to_home);
-        bundle.putString(ActionStatusFragment.BUTTON_TEXT_KEY, buttonText);
-        bundle.putString(ActionStatusFragment.STATE_KEY, ActionStatusFragment.STATE_SUCCEEDED);
-        Navigator.backOneAndNavigateTo(view, FragmentFactory.FRAGMENT_ACTION_STATUS, bundle);
+        bundle.putString(InvoiceDetailsFragment.KEY_INVOICE, gson.toJson(invoice));
+        Navigator.backOneAndNavigateTo(view, FragmentFactory.FRAGMENT_INVOICES_DETAILS, bundle);
     }
 
     public InvoiceItemsConfig createConfig() {

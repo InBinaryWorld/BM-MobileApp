@@ -40,7 +40,7 @@ public class InvoiceItemsSummaryForm extends BaseForm<List<InvoiceItemFormModel>
             return;
         }
         Amount amount = FinancesUtils.countAmount(value);
-        String totalGross = Parsers.safeFormatWithFraction(amount.getGross());
+        String totalGross = Parsers.safeFormatPrice(amount.getGross());
         holder.itemCount.setText(Integer.toString(value.size()));
         holder.grossTotalValue.setText(totalGross);
     }

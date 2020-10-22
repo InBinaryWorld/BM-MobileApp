@@ -42,6 +42,11 @@ public class CreateInvoiceItemsListAdapter extends BaseListAdapter<InvoiceItemFo
         return item;
     }
 
+    @Override
+    protected long getItemId(InvoiceItemFormModel item) {
+        return item.getId();
+    }
+
     static class ViewHolder {
         TextView name;
     }

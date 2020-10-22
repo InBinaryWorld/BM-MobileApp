@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ItemTypeFormConfig extends SpinnerFormRowConfig<ItemType> {
+public class ItemTypeFormConfig extends SpinnerFormRowConfig<ItemType, ItemType> {
 
     private HashMap<ItemType, String> displayValues;
 

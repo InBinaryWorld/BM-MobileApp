@@ -48,4 +48,9 @@ public class BankAccountListAdapter extends BaseListAdapter<BankAccount, BankAcc
         return item;
     }
 
+    @Override
+    protected long getItemId(BankAccount item) {
+        return item.getId();
+    }
+
 }

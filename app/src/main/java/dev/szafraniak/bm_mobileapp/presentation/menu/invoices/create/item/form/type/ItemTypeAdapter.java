@@ -29,6 +29,11 @@ public class ItemTypeAdapter extends BaseSpinnerAdapter<ItemType, ItemType> {
     }
 
     @Override
+    protected long getItemId(ItemType item) {
+        return 0;
+    }
+
+    @Override
     protected View createView(LayoutInflater inflater, int position, View convertView, ViewGroup viewGroup) {
         return createPaymentView(inflater, position, convertView, viewGroup);
     }
@@ -38,10 +43,6 @@ public class ItemTypeAdapter extends BaseSpinnerAdapter<ItemType, ItemType> {
         return createPaymentView(inflater, position, convertView, viewGroup);
     }
 
-    @Override
-    public int getItemPosition(ItemType value) {
-        return items.indexOf(value);
-    }
 
     private View createPaymentView(LayoutInflater inflater, int position, View convertView, ViewGroup viewGroup) {
         if (convertView == null) {

@@ -43,6 +43,11 @@ public class ServiceModelListAdapter extends BaseFilterListAdapter<ServiceModel,
     }
 
     @Override
+    protected long getItemId(ServiceModel item) {
+        return item.getId();
+    }
+
+    @Override
     public String getItemFilterValue(ServiceModel item) {
         return item.getFilterValue();
     }

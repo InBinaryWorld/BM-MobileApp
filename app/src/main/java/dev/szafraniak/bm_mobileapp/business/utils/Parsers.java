@@ -18,6 +18,7 @@ public final class Parsers {
     private final static char decimalSep = '.';
     private final static char groupingSep = ',';
 
+    private final static DecimalFormat dfPrice = getDecimalFormatPrice();
     private final static DecimalFormat dfNoFraction = getDecimalFormatNoFraction();
     private final static DecimalFormat dfWithFraction = getDecimalFormatWithFraction();
     private final static DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(Constance.DATE_PATTERN);
@@ -31,11 +32,15 @@ public final class Parsers {
         return dfNoFraction.format(value);
     }
 
-    public static String safeFormatWithFraction(BigDecimal value, boolean zeroOnNull) {
+    public static String safeFormatPrice(BigDecimal value, boolean zeroOnNull) {
         if (value == null) {
             return zeroOnNull ? "0" : null;
         }
-        return dfWithFraction.format(value);
+        return dfPrice.format(value);
+    }
+
+    public static String safeFormatPrice(BigDecimal value) {
+        return safeFormatPrice(value, false);
     }
 
     public static String safeFormatNoFraction(BigDecimal value) {
@@ -43,7 +48,18 @@ public final class Parsers {
     }
 
     public static String safeFormatNoFractionNoSep(BigDecimal value) {
-        return safeFormatNoFraction(value, false).replaceAll(String.valueOf(groupingSep), "");
+        String number = safeFormatNoFraction(value, false);
+        if (number != null) {
+            return number.replaceAll(String.valueOf(groupingSep), "");
+        }
+        return null;
+    }
+
+    public static String safeFormatWithFraction(BigDecimal value, boolean zeroOnNull) {
+        if (value == null) {
+            return zeroOnNull ? "0" : null;
+        }
+        return dfWithFraction.format(value);
     }
 
     public static String safeFormatWithFraction(BigDecimal value) {
@@ -51,7 +67,11 @@ public final class Parsers {
     }
 
     public static String safeFormatWithFractionNoSep(BigDecimal value) {
-        return safeFormatWithFraction(value, false).replaceAll(String.valueOf(groupingSep), "");
+        String number = safeFormatWithFraction(value, false);
+        if (number != null) {
+            return number.replaceAll(String.valueOf(groupingSep), "");
+        }
+        return null;
     }
 
 
@@ -62,12 +82,19 @@ public final class Parsers {
         return symbols;
     }
 
-    private static DecimalFormat getDecimalFormatWithFraction() {
+    private static DecimalFormat getDecimalFormatPrice() {
         DecimalFormat format = new DecimalFormat();
         format.setDecimalFormatSymbols(getDecimalFormatSymbols());
         format.setMinimumIntegerDigits(1);
         format.setMaximumFractionDigits(2);
         format.setMinimumFractionDigits(2);
+        return format;
+    }
+
+    private static DecimalFormat getDecimalFormatWithFraction() {
+        DecimalFormat format = new DecimalFormat();
+        format.setDecimalFormatSymbols(getDecimalFormatSymbols());
+        format.setMinimumIntegerDigits(1);
         return format;
     }
 

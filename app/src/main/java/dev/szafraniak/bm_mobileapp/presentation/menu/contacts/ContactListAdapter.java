@@ -48,6 +48,11 @@ public class ContactListAdapter<T extends Contact> extends BaseFilterListAdapter
     }
 
     @Override
+    protected long getItemId(T item) {
+        return item.getId();
+    }
+
+    @Override
     public String getItemFilterValue(T item) {
         return item.getFilterValue();
     }

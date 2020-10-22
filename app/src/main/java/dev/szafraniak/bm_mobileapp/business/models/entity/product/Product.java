@@ -9,6 +9,8 @@ import lombok.Data;
 @Data
 public class Product {
 
+    private Long id;
+
     private BigDecimal quantity;
 
     private ProductModel productModel;

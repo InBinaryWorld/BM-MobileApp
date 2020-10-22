@@ -18,6 +18,7 @@ import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ProductService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ServiceModelService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ServicesModule;
+import dev.szafraniak.bm_mobileapp.business.http.service.StatisticsService;
 import dev.szafraniak.bm_mobileapp.business.http.service.UserService;
 import dev.szafraniak.bm_mobileapp.business.http.service.WarehouseService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthModule;
@@ -90,8 +91,14 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.Inv
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.InvoicePaymentPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.InvoiceDetailsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.InvoiceDetailsPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductsListFragment;
-import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductsListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.product.ProductListFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.product.ProductListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.product.create.ProductCreateFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.product.create.ProductCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.product.modify.ProductModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.product.modify.ProductModifyPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductModelListFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductModelListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.create.ProductModelCreateFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.create.ProductModelCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.details.ProductModelDetailsFragment;
@@ -110,15 +117,12 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceMode
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.WarehouseListFragment;
-import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.WarehouseListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create.WarehouseCreateFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create.WarehouseCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.details.WarehouseDetailsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.details.WarehouseDetailsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.modify.WarehouseModifyFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.modify.WarehouseModifyPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragment;
 
 @Singleton
 @Component(modules = {
@@ -185,8 +189,6 @@ public interface AppComponent {
 
     void inject(ProductService productService);
 
-    void inject(ActionStatusFragment actionStatusFragment);
-
     void inject(ContactsService contactsService);
 
     void inject(IndividualContactListPresenter individualContactListPresenter);
@@ -221,9 +223,9 @@ public interface AppComponent {
 
     void inject(IndividualContactModifyPresenter individualContactModifyPresenter);
 
-    void inject(ProductsListFragment productsListFragment);
+    void inject(ProductModelListFragment productsListFragment);
 
-    void inject(ProductsListPresenter productsListPresenter);
+    void inject(ProductModelListPresenter productsListPresenter);
 
     void inject(ProductModelModifyFragment productModelModifyFragment);
 
@@ -256,10 +258,6 @@ public interface AppComponent {
     void inject(ServiceModelCreateFragment serviceModelCreateFragment);
 
     void inject(ServiceModelCreatePresenter serviceModelCreatePresenter);
-
-    void inject(WarehouseListFragment warehouseListFragment);
-
-    void inject(WarehouseListPresenter warehouseListPresenter);
 
     void inject(WarehouseService warehouseService);
 
@@ -340,4 +338,18 @@ public interface AppComponent {
     void inject(FinancesEventModifyFragment financialEventModifyFragment);
 
     void inject(FinancesEventModifyPresenter financialEventModifyPresenter);
+
+    void inject(ProductListFragment productListFragment);
+
+    void inject(ProductListPresenter productListPresenter);
+
+    void inject(ProductCreateFragment productCreateFragment);
+
+    void inject(ProductCreatePresenter productCreatePresenter);
+
+    void inject(ProductModifyFragment productModifyFragment);
+
+    void inject(ProductModifyPresenter productModifyPresenter);
+
+    void inject(StatisticsService statisticsService);
 }

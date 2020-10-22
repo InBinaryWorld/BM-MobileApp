@@ -65,4 +65,5 @@ public class CompanyListFragment extends BaseListFragmentWithBtn<CompanyListMode
     protected void onButtonClick(View view) {
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CREATE);
     }
+    
 }

@@ -31,7 +31,10 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.Invoic
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.CreateInvoiceItemsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.InvoicePaymentPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.InvoiceDetailsPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductsListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.product.ProductListPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.product.create.ProductCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.product.modify.ProductModifyPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductModelListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.create.ProductModelCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.details.ProductModelDetailsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.modify.ProductModelModifyPresenter;
@@ -41,7 +44,6 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.services.create.ServiceMode
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.details.ServiceModelDetailsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.WarehouseListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create.WarehouseCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.details.WarehouseDetailsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.modify.WarehouseModifyPresenter;
@@ -141,8 +143,8 @@ public class MenuModule {
 
     @Provides
     @Singleton
-    public ProductsListPresenter provideProductsListPresenter(Application app) {
-        return new ProductsListPresenter(app);
+    public ProductModelListPresenter provideProductsListPresenter(Application app) {
+        return new ProductModelListPresenter(app);
     }
 
     @Provides
@@ -185,12 +187,6 @@ public class MenuModule {
     @Singleton
     public ServiceModelCreatePresenter provideServiceModelCreatePresenter(Application app) {
         return new ServiceModelCreatePresenter(app);
-    }
-
-    @Provides
-    @Singleton
-    public WarehouseListPresenter provideWarehouseListPresenter(Application app) {
-        return new WarehouseListPresenter(app);
     }
 
     @Provides
@@ -281,6 +277,24 @@ public class MenuModule {
     @Singleton
     public FinancesEventModifyPresenter provideFinancialEventModifyPresenter(Application app) {
         return new FinancesEventModifyPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public ProductListPresenter provideProductListPresenter(Application app) {
+        return new ProductListPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public ProductCreatePresenter provideProductCreatePresenter(Application app) {
+        return new ProductCreatePresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public ProductModifyPresenter provideProductModifyPresenter(Application app) {
+        return new ProductModifyPresenter(app);
     }
 
 }

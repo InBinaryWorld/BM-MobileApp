@@ -19,6 +19,7 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
+import dev.szafraniak.bm_mobileapp.presentation.menu.product.ProductListFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.details.WarehouseDetailsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWithBtn;
 
@@ -26,7 +27,7 @@ import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FR
 import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_SERVICE_MODEL_LIST;
 
 @EFragment(R.layout.fragment_resources)
-public class ResourcesFragment extends BaseListFragmentWithBtn<Warehouse, ResourcesListAdapter> implements ResourcesView {
+public class ResourcesFragment extends BaseListFragmentWithBtn<Warehouse, ResourcesListAdapter> implements ResourcesView, ResourcesListAdapter.WarehouseDetailsListener {
 
     @Inject
     ResourcesPresenter presenter;
@@ -64,7 +65,9 @@ public class ResourcesFragment extends BaseListFragmentWithBtn<Warehouse, Resour
 
     @Override
     protected ResourcesListAdapter createAdapter() {
-        return new ResourcesListAdapter(LayoutInflater.from(getContext()), new ArrayList<>());
+        ResourcesListAdapter adapter = new ResourcesListAdapter(LayoutInflater.from(getContext()), new ArrayList<>());
+        adapter.setDetailsListener(this);
+        return adapter;
     }
 
     @Click(R.id.btn_products)
@@ -78,10 +81,17 @@ public class ResourcesFragment extends BaseListFragmentWithBtn<Warehouse, Resour
     }
 
     @Override
-    public void onItemClick(Warehouse item) {
+    public void onDetailsRequest(Warehouse warehouse) {
         Bundle args = new Bundle();
-        args.putString(WarehouseDetailsFragment.KEY_WAREHOUSE, gson.toJson(item));
+        args.putString(WarehouseDetailsFragment.KEY_WAREHOUSE, gson.toJson(warehouse));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_WAREHOUSE_DETAILS, args);
+    }
+
+    @Override
+    public void onItemClick(Warehouse warehouse) {
+        Bundle args = new Bundle();
+        args.putString(ProductListFragment.KEY_WAREHOUSE, gson.toJson(warehouse));
+        Navigator.navigateTo(this, FragmentFactory.FRAGMENT_PRODUCT_LIST, args);
     }
 
 }

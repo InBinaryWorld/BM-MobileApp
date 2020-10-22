@@ -53,4 +53,9 @@ public class CompanyNameAutoCompleteAdapter extends BaseAutoCompleteListAdapter<
         return item.getName();
     }
 
+    @Override
+    protected long getItemId(CompanyContact item) {
+        return item.getId();
+    }
+
 }

@@ -11,7 +11,7 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWithBtn;
 
 @EFragment
-public abstract class SearchListFragmentWithBtn<T extends FilterValue, A extends BaseFilterListAdapter<T, T>> extends BaseListFragmentWithBtn<T, A> {
+public abstract class SearchListFragmentWithBtn<T, A extends BaseFilterListAdapter<T, T>> extends BaseListFragmentWithBtn<T, A> {
 
     protected SearchView searchView;
 

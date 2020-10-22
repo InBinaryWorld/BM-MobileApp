@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ContactTypeFormConfig extends SpinnerFormRowConfig<ContactType> {
+public class ContactTypeFormConfig extends SpinnerFormRowConfig<ContactType, ContactType> {
 
     private HashMap<ContactType, String> displayValues;
 

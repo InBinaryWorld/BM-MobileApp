@@ -16,10 +16,24 @@ public abstract class BaseSpinnerAdapter<T, R> extends BaseListAdapter<T, R> {
 
     protected abstract View createDropdownView(LayoutInflater inflater, int position, View convertView, ViewGroup viewGroup);
 
-    public abstract int getItemPosition(T value);
+    public int getItemPosition(T value) {
+        return items.indexOf(value);
+    }
+
+    public int getPositionById(Long id) {
+        int position = -1;
+        for (T item : items) {
+            position = position + 1;
+            if (getItemId(item) == id) {
+                return position;
+            }
+        }
+        return -1;
+    }
 
     public View getDropDownView(int position, View convertView, ViewGroup viewGroup) {
         return createDropdownView(inflater, position, convertView, viewGroup);
     }
+
 
 }

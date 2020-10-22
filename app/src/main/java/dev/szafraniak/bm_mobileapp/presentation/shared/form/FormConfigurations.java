@@ -34,6 +34,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.t
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.type.ItemTypeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.InvoiceItemsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.summary.InvoiceItemsSummaryConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.product.create.model.ProductModelSpinnerFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.address.AddressFormConfig;
@@ -114,7 +115,7 @@ public final class FormConfigurations {
         return config;
     }
 
-    private static TextFormConfig<BigDecimal> getQuantityConfig() {
+    public static TextFormConfig<BigDecimal> getQuantityConfig() {
         TextFormConfig<BigDecimal> config = getBaseTextFormConfig();
         config.setLabel("Quantity");
         config.setInvalidMessage("Max scale: 5");
@@ -647,6 +648,16 @@ public final class FormConfigurations {
         config.setInvalidMessage("2-40 Signs");
         config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES);
         config.setLabel("Title");
+        return config;
+    }
+
+    public static ProductModelSpinnerFormConfig getProductModelConfig(List<ProductModel> models) {
+        ProductModelSpinnerFormConfig config = new ProductModelSpinnerFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setLabel("Product Model");
+        config.setRequired(true);
+        config.setSpinnerItems(models);
+        config.setValidator(Validator::notNull);
         return config;
     }
 }

@@ -53,4 +53,9 @@ public class BankAccountAutoCompleteAdapter extends BaseAutoCompleteListAdapter<
         return item.getName();
     }
 
+    @Override
+    protected long getItemId(BankAccount item) {
+        return item.getId();
+    }
+
 }

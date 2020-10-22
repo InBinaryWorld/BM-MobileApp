@@ -4,94 +4,115 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/WideContainer">
 
-    <androidx.cardview.widget.CardView style="@style/Card.CompanyList">
+    <androidx.cardview.widget.CardView
+        style="@style/Card.CompanyList"
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            style="@style/Row.h18.v8">
 
             <TextView
                 android:id="@+id/tv_company_name"
                 style="@style/BaseTextView.Title.24"
-                android:layout_marginStart="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/guideline"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="My Company Name" />
-
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.36" />
-
-            <View
-                android:id="@+id/divider"
-                style="@style/Divider"
-                android:layout_marginHorizontal="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.44" />
+                tools:text="My Company Name" />
+
+            <!--            <View-->
+            <!--                android:id="@+id/divider"-->
+            <!--                style="@style/Divider"-->
+            <!--                android:layout_marginHorizontal="16dp"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent"-->
+            <!--                app:layout_constraintVertical_bias="0.44" />-->
+
+
+            <TextView
+                android:id="@+id/tv_unpaid_invoices_label"
+                style="@style/BaseTextView.Label"
+                android:text="Unpaid invoices"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_product_value_label"
+                app:layout_constraintTop_toBottomOf="@id/tv_company_name" />
+
+            <TextView
+                android:id="@+id/tv_unpaid_invoices"
+                style="@style/BaseTextView.Value"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toStartOf="@+id/gl_v1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_unpaid_invoices_label"
+                tools:text="3" />
+
+
+            <TextView
+                android:id="@+id/tv_current_finances_label"
+                android:textAlignment="center"
+                style="@style/BaseTextView.Label"
+                android:text="Current finances"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/gl_v1"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_unpaid_invoices_label" />
+
+            <TextView
+                android:textAlignment="center"
+                android:id="@+id/tv_current_finances_value"
+                style="@style/BaseTextView.Value.Accent"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/gl_v1"
+                app:layout_constraintTop_toBottomOf="@id/tv_current_finances_label"
+                tools:text="5072.42 PLN" />
 
             <TextView
                 android:id="@+id/tv_address_label"
                 style="@style/BaseTextView.Label"
-                android:layout_width="0dp"
-                android:layout_marginStart="20dp"
                 android:text="@string/address"
-                app:layout_constraintBottom_toTopOf="@+id/guideline1"
-                app:layout_constraintEnd_toStartOf="@+id/tv_product_value_label"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginTop="40dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/gl_v1"
+                app:layout_constraintTop_toBottomOf="@id/tv_unpaid_invoices_label" />
 
             <TextView
                 android:id="@+id/tv_address"
                 style="@style/BaseTextView.Value"
-                android:layout_marginStart="20dp"
-                app:layout_constraintTop_toBottomOf="@+id/guideline5"
-                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/gl_v1"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_address_label"
                 tools:text="66-666 Poznań, Poland" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.7" />
 
             <TextView
                 android:id="@+id/tv_product_value_label"
                 android:textAlignment="center"
-                android:layout_width="0dp"
                 style="@style/BaseTextView.Label"
                 android:text="@string/row_company_list_products_value"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="@+id/gl_v1"
                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_address_label" />
 
             <TextView
                 android:textAlignment="center"
                 android:id="@+id/tv_product_value"
+                android:layout_marginTop="4dp"
                 style="@style/BaseTextView.Value.Accent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/guideline5"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
-                tools:layout_editor_absoluteY="129dp"
+                app:layout_constraintStart_toStartOf="@+id/gl_v1"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_value_label"
                 tools:text="5072.42 PLN" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline5"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintGuide_percent="0.74" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline4"
+                android:id="@+id/gl_v1"
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -16,7 +16,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.autoComplete.Bas
 public class ServiceNameAutoCompleteAdapter extends BaseAutoCompleteListAdapter<ServiceModel> {
 
     @LayoutRes
-    private static final int layoutId = R.layout.row_dropdown_service;
+    private static final int layoutId = R.layout.row_dropdown_service_model;
 
     public ServiceNameAutoCompleteAdapter(LayoutInflater inflater, List<ServiceModel> initialList) {
         super(inflater, initialList);
@@ -48,6 +48,11 @@ public class ServiceNameAutoCompleteAdapter extends BaseAutoCompleteListAdapter<
     @Override
     protected String extractGetItemValue(ServiceModel item) {
         return item.getName();
+    }
+
+    @Override
+    protected long getItemId(ServiceModel item) {
+        return item.getId();
     }
 
 }

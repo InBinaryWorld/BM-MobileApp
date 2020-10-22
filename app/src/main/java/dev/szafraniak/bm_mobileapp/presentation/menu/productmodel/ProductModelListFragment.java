@@ -24,11 +24,11 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.scanner.Scanner;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.SearchListFragmentWithBtn;
 
 @EFragment(R.layout.fragment_search_product_list)
-public class ProductsListFragment extends SearchListFragmentWithBtn<ProductModel, ProductModelListAdapter>
-    implements ProductsListView {
+public class ProductModelListFragment extends SearchListFragmentWithBtn<ProductModel, ProductModelListAdapter>
+    implements ProductModelListView {
 
     @Inject
-    ProductsListPresenter presenter;
+    ProductModelListPresenter presenter;
 
     @Inject
     Gson gson;

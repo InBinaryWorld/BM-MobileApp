@@ -29,6 +29,11 @@ public class ContactTypeAdapter extends BaseSpinnerAdapter<ContactType, ContactT
     }
 
     @Override
+    protected long getItemId(ContactType item) {
+        return 0;
+    }
+
+    @Override
     protected View createView(LayoutInflater inflater, int position, View convertView, ViewGroup viewGroup) {
         return createPaymentView(inflater, position, convertView, viewGroup);
     }
@@ -36,11 +41,6 @@ public class ContactTypeAdapter extends BaseSpinnerAdapter<ContactType, ContactT
     @Override
     protected View createDropdownView(LayoutInflater inflater, int position, View convertView, ViewGroup viewGroup) {
         return createPaymentView(inflater, position, convertView, viewGroup);
-    }
-
-    @Override
-    public int getItemPosition(ContactType value) {
-        return items.indexOf(value);
     }
 
     private View createPaymentView(LayoutInflater inflater, int position, View convertView, ViewGroup viewGroup) {

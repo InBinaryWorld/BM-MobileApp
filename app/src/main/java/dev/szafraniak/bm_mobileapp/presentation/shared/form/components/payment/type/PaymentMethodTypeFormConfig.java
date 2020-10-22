@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class PaymentMethodTypeFormConfig extends SpinnerFormRowConfig<PaymentMethodType> {
+public class PaymentMethodTypeFormConfig extends SpinnerFormRowConfig<PaymentMethodType, PaymentMethodType> {
 
     private HashMap<PaymentMethodType, String> displayValues;
 

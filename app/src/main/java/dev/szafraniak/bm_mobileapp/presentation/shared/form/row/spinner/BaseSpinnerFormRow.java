@@ -10,9 +10,9 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.labeled.LabelFormRow;
 import dev.szafraniak.bm_mobileapp.presentation.shared.utils.ViewUtils;
 
-public abstract class BaseSpinnerFormRow<T, C extends SpinnerFormRowConfig<T>> extends LabelFormRow<T, SpinnerViewHolder, C> {
+public abstract class BaseSpinnerFormRow<T, B, C extends SpinnerFormRowConfig<T, B>> extends LabelFormRow<B, SpinnerViewHolder, C> {
 
-    private BaseSpinnerAdapter<T, T> spinnerAdapter;
+    private BaseSpinnerAdapter<T, B> spinnerAdapter;
 
     @LayoutRes
     private final static int layoutId = R.layout.row_form_spinner;
@@ -21,10 +21,10 @@ public abstract class BaseSpinnerFormRow<T, C extends SpinnerFormRowConfig<T>> e
         super(inflater, viewGroup, config);
     }
 
-    protected abstract BaseSpinnerAdapter<T, T> createAdapter(LayoutInflater inflater, C config);
+    protected abstract BaseSpinnerAdapter<T, B> createAdapter(LayoutInflater inflater, C config);
 
     @Override
-    public T getValue() {
+    public B getValue() {
         SpinnerViewHolder holder = getViewHolder();
         Spinner spinner = holder.getSpinner();
         int position = spinner.getSelectedItemPosition();
@@ -32,12 +32,14 @@ public abstract class BaseSpinnerFormRow<T, C extends SpinnerFormRowConfig<T>> e
     }
 
     @Override
-    protected void showValueOnView(T value) {
+    protected void showValueOnView(B value) {
         SpinnerViewHolder holder = getViewHolder();
         Spinner spinner = holder.getSpinner();
-        int position = spinnerAdapter.getItemPosition(value);
+        int position = getPositionByValue(spinnerAdapter, value);
         spinner.setSelection(position);
     }
+
+    protected abstract int getPositionByValue(BaseSpinnerAdapter<T, B> spinnerAdapter, B value);
 
     @Override
     protected void setupView(LayoutInflater inflater, C config) {

@@ -45,7 +45,7 @@
 
     <string name="btn_text_base_list">CREATE NEW</string>
     <string name="btn_text_company_create">Create Company</string>
-    <string name="btn_text_company_list">CREATE NEW COMPANY</string>
+    <string name="btn_text_company_list">NEW COMPANY</string>
     <string name="btn_text_contact_details">MODIFY CONTACT</string>
     <string name="btn_text_contact_list">Create Contact</string>
     <string name="btn_text_finances_list">NEW RECORD</string>
@@ -112,4 +112,9 @@
     <string name="header_financial_event_create">Create Event</string>
     <string name="btn_financial_event_modify">Save</string>
     <string name="header_financial_event_modify">Modify Financial Event</string>
+    <string name="btn_product_list_add">Add product</string>
+    <string name="header_product_list">Warechouse Products</string>
+    <string name="btn_product_create">Create</string>
+    <string name="header_product_create">Create Product</string>
+    <string name="btn_product_modify">Save</string>
 </resources>

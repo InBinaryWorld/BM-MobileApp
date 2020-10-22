@@ -3,9 +3,6 @@ package dev.szafraniak.bm_mobileapp.presentation.company.list;
 import android.annotation.SuppressLint;
 import android.app.Application;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +10,10 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
-import dev.szafraniak.bm_mobileapp.business.http.service.ProductService;
+import dev.szafraniak.bm_mobileapp.business.http.service.StatisticsService;
 import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
-import dev.szafraniak.bm_mobileapp.business.models.entity.product.Product;
+import dev.szafraniak.bm_mobileapp.business.models.stats.CompanyStatsModel;
 import dev.szafraniak.bm_mobileapp.business.utils.RxUtils;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -32,7 +29,7 @@ public class CompanyListPresenter {
     CompanyService companyService;
 
     @Inject
-    ProductService productService;
+    StatisticsService statisticsService;
 
 
     public CompanyListPresenter(Application app) {
@@ -43,12 +40,12 @@ public class CompanyListPresenter {
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData() {
         companyService.getCompanies()
-            .flatMap(this::getCompanyListModelList)
+            .flatMap(this::appendStats)
             .compose(view.bindToLifecycle())
             .subscribe(view::setData, view::setError);
     }
 
-    private ObservableSource<List<CompanyListModel>> getCompanyListModelList(BMCollection<Company> companiesCollection) {
+    private ObservableSource<List<CompanyListModel>> appendStats(BMCollection<Company> companiesCollection) {
         List<Company> companies = companiesCollection.getItems();
         List<Observable<CompanyListModel>> models = new ArrayList<>();
         for (Company company : companies) {
@@ -62,22 +59,11 @@ public class CompanyListPresenter {
 
 
     private Observable<CompanyListModel> getCompanyListModel(Company company) {
-        return productService.getProducts(company.getId())
-            .map(this::countSumOfProductValues)
+        return statisticsService.getCompanyStats(company.getId())
             .map(new FullFillCompanyListModel(company));
     }
 
-    private BigDecimal countSumOfProductValues(BMCollection<Product> productBMCollection) {
-        return productBMCollection.getItems()
-            .stream().map(product -> {
-                BigDecimal gross = product.getProductModel().getPriceSuggestion().getGross();
-                BigDecimal quantity = product.getQuantity();
-                return quantity.multiply(gross).setScale(2, RoundingMode.HALF_UP);
-            }).reduce(new BigDecimal(0), BigDecimal::add);
-    }
-
-
-    private static class FullFillCompanyListModel implements Function<BigDecimal, CompanyListModel> {
+    private static class FullFillCompanyListModel implements Function<CompanyStatsModel, CompanyListModel> {
         private final Company company;
 
         public FullFillCompanyListModel(Company company) {
@@ -85,10 +71,10 @@ public class CompanyListPresenter {
         }
 
         @Override
-        public CompanyListModel apply(BigDecimal sumOfProductValues) {
+        public CompanyListModel apply(CompanyStatsModel companyStats) {
             CompanyListModel model = new CompanyListModel();
             model.setCompany(company);
-            model.setProductsValue(MessageFormat.format("{0} {1}", sumOfProductValues, company.getCurrency()));
+            model.setCompanyStats(companyStats);
             return model;
         }
     }

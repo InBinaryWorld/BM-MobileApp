@@ -56,13 +56,18 @@ public class FinancialEventListAdapter extends BaseListAdapter<FinancialRow, Fin
         holder.title.setText(item.getTitle());
         holder.eventDate.setText(Parsers.safeFormat(item.getEventDate()));
         holder.amount.setTextColor(isIncome ? colorIncome : colorOutcome);
-        holder.amount.setText(Parsers.safeFormatWithFraction(absAmount));
+        holder.amount.setText(Parsers.safeFormatPrice(absAmount));
         return convertView;
     }
 
     @Override
     protected FinancialRow extractGetItemValue(FinancialRow item) {
         return item;
+    }
+
+    @Override
+    protected long getItemId(FinancialRow item) {
+        return item.getId();
     }
 
 }

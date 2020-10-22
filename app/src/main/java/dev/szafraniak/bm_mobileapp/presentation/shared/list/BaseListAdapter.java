@@ -48,8 +48,10 @@ public abstract class BaseListAdapter<T, R> extends ExtendedBaseAdapter<T, R> {
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return getItemId(items.get(i));
     }
+
+    protected abstract long getItemId(T item);
 
     @Override
     public int getCount() {

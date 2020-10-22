@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.menu.warehouse;
+package dev.szafraniak.bm_mobileapp.presentation.menu.productmodel;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
@@ -6,31 +6,31 @@ import android.app.Application;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.WarehouseService;
+import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import lombok.Setter;
 
-public class WarehouseListPresenter {
+public class ProductModelListPresenter {
 
     @Setter
-    WarehouseListView view;
+    ProductModelListView view;
 
     @Inject
-    WarehouseService warehouseService;
+    ProductModelService productModelService;
 
     @Inject
     SessionManager sessionManager;
 
-    public WarehouseListPresenter(Application app) {
+    public ProductModelListPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
     }
 
     @SuppressLint("CheckResult")
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData() {
-        warehouseService.getWarehouses(sessionManager.getCompanyId())
-                .compose(view.bindToLifecycle())
-                .subscribe(view::setData, view::setError);
+        productModelService.getProductModels(sessionManager.getCompanyId())
+            .compose(view.bindToLifecycle())
+            .subscribe(view::setData, view::setError);
     }
 
 }

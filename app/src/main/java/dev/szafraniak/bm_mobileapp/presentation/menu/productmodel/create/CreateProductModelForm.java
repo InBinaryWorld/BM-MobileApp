@@ -32,7 +32,6 @@ public class CreateProductModelForm extends BaseForm<CreateProductModelRequest, 
 
     @Override
     protected void updateView(boolean isValid) {
-
     }
 
     @Override

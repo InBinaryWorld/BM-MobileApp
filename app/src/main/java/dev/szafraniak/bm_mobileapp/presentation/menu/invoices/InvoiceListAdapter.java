@@ -42,6 +42,11 @@ public class InvoiceListAdapter extends BaseListAdapter<Invoice, Invoice> {
         return item;
     }
 
+    @Override
+    protected long getItemId(Invoice item) {
+        return item.getId();
+    }
+
     static class ViewHolder {
         TextView name;
     }

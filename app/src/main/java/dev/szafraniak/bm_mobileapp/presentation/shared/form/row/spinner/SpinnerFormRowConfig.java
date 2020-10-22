@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SpinnerFormRowConfig<T> extends LabelFormRowConfig<T> {
+public class SpinnerFormRowConfig<T, B> extends LabelFormRowConfig<B> {
 
     private List<T> spinnerItems;
 

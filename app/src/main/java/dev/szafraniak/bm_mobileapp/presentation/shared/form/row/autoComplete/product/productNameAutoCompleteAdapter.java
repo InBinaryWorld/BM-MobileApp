@@ -16,7 +16,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.autoComplete.Bas
 public class productNameAutoCompleteAdapter extends BaseAutoCompleteListAdapter<ProductModel> {
 
     @LayoutRes
-    private static final int layoutId = R.layout.row_dropdown_product;
+    private static final int layoutId = R.layout.row_dropdown_product_model;
 
     public productNameAutoCompleteAdapter(LayoutInflater inflater, List<ProductModel> initialList) {
         super(inflater, initialList);
@@ -48,6 +48,11 @@ public class productNameAutoCompleteAdapter extends BaseAutoCompleteListAdapter<
     @Override
     protected String extractGetItemValue(ProductModel item) {
         return item.getName();
+    }
+
+    @Override
+    protected long getItemId(ProductModel item) {
+        return item.getId();
     }
 
 }

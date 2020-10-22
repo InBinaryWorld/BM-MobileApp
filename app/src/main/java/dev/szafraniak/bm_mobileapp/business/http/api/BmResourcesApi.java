@@ -20,7 +20,9 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.Upda
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.CreateInvoiceRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.UpdateInvoiceRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.product.CreateProductRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.Product;
+import dev.szafraniak.bm_mobileapp.business.models.entity.product.UpdateProductRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.CreateProductModelRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.UpdateProductModelRequest;
@@ -31,6 +33,9 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.user.User;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.CreateWarehouseRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.UpdateWarehouseRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
+import dev.szafraniak.bm_mobileapp.business.models.stats.CompanyStatsModel;
+import dev.szafraniak.bm_mobileapp.business.models.stats.FinancesStatsModel;
+import dev.szafraniak.bm_mobileapp.business.models.stats.InvoicesStatsModel;
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
@@ -39,6 +44,7 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface BmResourcesApi {
 
@@ -63,7 +69,21 @@ public interface BmResourcesApi {
     //    ###########  PRODUCT  ##########
 
     @GET("/api/companies/{companyId}/products")
-    Observable<BMCollection<Product>> getProducts(@Path("companyId") Long companyId);
+    Observable<BMCollection<Product>> getProducts(@Path("companyId") Long companyId,
+                                                  @Query("warehouseId") Long warehouseId,
+                                                  @Query("productModelId") Long productModelId);
+
+    @GET("/api/companies/{companyId}/products/{productId}")
+    Observable<Product> getProduct(@Path("companyId") Long companyId, @Path("productId") Long productId);
+
+    @POST("/api/companies/{companyId}/products")
+    Observable<Product> createProduct(@Path("companyId") Long companyId, @Body CreateProductRequest request);
+
+    @PUT("/api/companies/{companyId}/products/{productId}")
+    Observable<Product> modifyProduct(@Path("companyId") Long companyId,
+                                      @Path("productId") Long productId,
+                                      @Body UpdateProductRequest request);
+
 
     //    ###########  PRODUCT MODEL  ##########
 
@@ -214,4 +234,14 @@ public interface BmResourcesApi {
     Observable<FinancialRow> createFinancialEvent(@Path("companyId") Long companyId,
                                                   @Body CreateFinancialRowRequest request);
 
+    //    ###########  STATISTICS  ##########
+
+    @GET("/api/stats/company/{companyId}")
+    Observable<CompanyStatsModel> getCompanyStats(@Path("companyId") Long companyId);
+
+    @GET("/api/stats/company/{companyId}/finances")
+    Observable<FinancesStatsModel> getFinancesStats(@Path("companyId") Long companyId);
+
+    @GET("/api/stats/company/{companyId}/invoices")
+    Observable<InvoicesStatsModel> getInvoicesStats(@Path("companyId") Long companyId);
 }

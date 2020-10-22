@@ -53,4 +53,9 @@ public class IndividualNameAutoCompleteAdapter extends BaseAutoCompleteListAdapt
         return item.getFirstName();
     }
 
+    @Override
+    protected long getItemId(IndividualContact item) {
+        return item.getId();
+    }
+
 }

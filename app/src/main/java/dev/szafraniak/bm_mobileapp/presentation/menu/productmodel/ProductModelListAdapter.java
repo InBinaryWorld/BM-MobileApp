@@ -43,6 +43,11 @@ public class ProductModelListAdapter extends BaseFilterListAdapter<ProductModel,
     }
 
     @Override
+    protected long getItemId(ProductModel item) {
+        return item.getId();
+    }
+
+    @Override
     public String getItemFilterValue(ProductModel item) {
         return item.getFilterValue();
     }

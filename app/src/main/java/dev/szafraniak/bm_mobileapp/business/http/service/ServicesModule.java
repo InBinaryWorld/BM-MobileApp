@@ -70,4 +70,10 @@ public class ServicesModule {
         return new FinancesService(app);
     }
 
+    @Provides
+    @Singleton
+    public StatisticsService provideStatisticsService(Application app) {
+        return new StatisticsService(app);
+    }
+
 }

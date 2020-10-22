@@ -35,7 +35,10 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.Create
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.CreateInvoicesItemsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.InvoicePaymentFormFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.InvoiceDetailsFragment_;
-import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductsListFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.product.ProductListFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.product.create.ProductCreateFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.product.modify.ProductModifyFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.ProductModelListFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.create.ProductModelCreateFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.details.ProductModelDetailsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.modify.ProductModelModifyFragment_;
@@ -45,11 +48,9 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.services.create.ServiceMode
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.details.ServiceModelDetailsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.settings.SettingsFragment_;
-import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.WarehouseListFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.create.WarehouseCreateFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.details.WarehouseDetailsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.modify.WarehouseModifyFragment_;
-import dev.szafraniak.bm_mobileapp.presentation.shared.result.ActionStatusFragment_;
 
 
 public abstract class FragmentFactory {
@@ -74,7 +75,6 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_INVOICES_DETAILS = 420;
     public static final int FRAGMENT_SETTINGS = 500;
     public static final int FRAGMENT_SETTINGS_COMPANY = 501;
-    public static final int FRAGMENT_ACTION_STATUS = 600;
     public static final int FRAGMENT_PRODUCT_MODEL_LIST = 700;
     public static final int FRAGMENT_PRODUCT_MODEL_MODIFY = 701;
     public static final int FRAGMENT_PRODUCT_MODEL_CREATE = 702;
@@ -83,7 +83,6 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_SERVICE_MODEL_DETAILS = 801;
     public static final int FRAGMENT_SERVICE_MODEL_MODIFY = 802;
     public static final int FRAGMENT_SERVICE_MODEL_CREATE = 803;
-    public static final int FRAGMENT_WAREHOUSE_LIST = 900;
     public static final int FRAGMENT_WAREHOUSE_CREATE = 901;
     public static final int FRAGMENT_WAREHOUSE_MODIFY = 902;
     public static final int FRAGMENT_WAREHOUSE_DETAILS = 903;
@@ -93,6 +92,9 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_BANK_ACCOUNT_LIST = 1100;
     public static final int FRAGMENT_BANK_ACCOUNT_CREATE = 1101;
     public static final int FRAGMENT_BANK_ACCOUNT_MODIFY = 1102;
+    public static final int FRAGMENT_PRODUCT_LIST = 1200;
+    public static final int FRAGMENT_PRODUCT_CREATE = 1201;
+    public static final int FRAGMENT_PRODUCT_MODIFY = 1202;
     public static final int FRAGMENT_FORM_CONTACT_AUTO_COMPETE = 10000;
 
     public static final Map<Integer, Integer> menuMap = new HashMap<Integer, Integer>() {{
@@ -180,11 +182,8 @@ public abstract class FragmentFactory {
             case FRAGMENT_SETTINGS_COMPANY:
                 fragment = new ModifyCompanyFragment_();
                 break;
-            case FRAGMENT_ACTION_STATUS:
-                fragment = new ActionStatusFragment_();
-                break;
             case FRAGMENT_PRODUCT_MODEL_LIST:
-                fragment = new ProductsListFragment_();
+                fragment = new ProductModelListFragment_();
                 break;
             case FRAGMENT_PRODUCT_MODEL_MODIFY:
                 fragment = new ProductModelModifyFragment_();
@@ -207,9 +206,6 @@ public abstract class FragmentFactory {
             case FRAGMENT_SERVICE_MODEL_CREATE:
                 fragment = new ServiceModelCreateFragment_();
                 break;
-            case FRAGMENT_WAREHOUSE_LIST:
-                fragment = new WarehouseListFragment_();
-                break;
             case FRAGMENT_WAREHOUSE_CREATE:
                 fragment = new WarehouseCreateFragment_();
                 break;
@@ -230,6 +226,15 @@ public abstract class FragmentFactory {
                 break;
             case FRAGMENT_BANK_ACCOUNT_MODIFY:
                 fragment = new BankAccountModifyFragment_();
+                break;
+            case FRAGMENT_PRODUCT_LIST:
+                fragment = new ProductListFragment_();
+                break;
+            case FRAGMENT_PRODUCT_CREATE:
+                fragment = new ProductCreateFragment_();
+                break;
+            case FRAGMENT_PRODUCT_MODIFY:
+                fragment = new ProductModifyFragment_();
                 break;
             default:
                 throw new Resources.NotFoundException("Not found fragment with id: " + fragmentId);
