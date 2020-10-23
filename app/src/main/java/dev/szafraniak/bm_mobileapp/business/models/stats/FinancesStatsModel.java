@@ -9,4 +9,8 @@ public class FinancesStatsModel {
 
     private int EventsNumber;
     private BigDecimal currentState;
+    private BigDecimal totalIncome;
+    private BigDecimal totalOutcome;
+    private BigDecimal lastChange;
+
 }

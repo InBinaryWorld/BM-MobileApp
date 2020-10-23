@@ -43,6 +43,14 @@ public final class Parsers {
         return safeFormatPrice(value, false);
     }
 
+    public static String safeFormatPrice(BigDecimal value, String currency) {
+        String numberString = safeFormatPrice(value);
+        if (numberString == null) {
+            return null;
+        }
+        return String.format("%s %s", numberString, currency);
+    }
+
     public static String safeFormatNoFraction(BigDecimal value) {
         return safeFormatNoFraction(value, false);
     }

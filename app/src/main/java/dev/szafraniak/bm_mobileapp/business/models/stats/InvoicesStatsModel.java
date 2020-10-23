@@ -12,4 +12,5 @@ public class InvoicesStatsModel {
     private int paid;
     private BigDecimal unpaidValue;
     private BigDecimal paidValue;
+    private BigDecimal lastInvoiceValue;
 }

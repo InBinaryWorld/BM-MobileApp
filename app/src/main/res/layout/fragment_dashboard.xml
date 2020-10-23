@@ -21,37 +21,524 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header">
 
-
-        <LinearLayout
-            android:id="@+id/ll_data_container"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:id="@+id/ll_data_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
 
-        </LinearLayout>
+                <androidx.cardview.widget.CardView style="@style/Card">
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        style="@style/Row.h18.v20"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_invoices_title"
+                            style="@style/BaseTextView.Title.24"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:text="@string/dashboard_invoices" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_unpaid_paid"
+                            style="@style/WrapperContainer"
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_invoices_title"
+                            app:layout_constraintEnd_toStartOf="@+id/gl_v3"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <TextView
+                                android:id="@+id/tv_unpaid"
+                                style="@style/BaseTextView.Value.Number"
+                                android:textColor="@color/colorError"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:text="3" />
+
+                            <TextView
+                                style="@style/BaseTextView.Value.Number"
+                                android:layout_width="wrap_content"
+                                android:layout_marginHorizontal="2dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_unpaid"
+                                app:layout_constraintEnd_toStartOf="@id/tv_paid"
+                                android:text="@string/slash" />
+
+                            <TextView
+                                android:id="@+id/tv_paid"
+                                style="@style/BaseTextView.Value.Number"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                tools:text="17" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/tv_unpaid_paid_label"
+                            style="@style/BaseTextView.Label"
+                            android:gravity="center"
+                            android:text="@string/dashboard_unpaid_paid"
+                            app:layout_constraintEnd_toStartOf="@+id/gl_v3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cl_unpaid_paid" />
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_unpaid_value"
+                            style="@style/WrapperContainer"
+                            app:layout_constraintBottom_toBottomOf="@+id/cl_unpaid_paid"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/gl_v3">
+
+                            <TextView
+                                android:id="@+id/tv_unpaid_value"
+                                style="@style/BaseTextView.Value.Amount"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:text="45.00" />
+
+                            <TextView
+                                android:id="@+id/tv_unpaid_value_currency"
+                                style="@style/BaseTextView.Value.Currency"
+                                android:layout_width="wrap_content"
+                                android:layout_marginStart="2dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_unpaid_value"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/tv_unpaid_value"
+                                tools:text="PLN" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/tv_unpaid_value_label"
+                            style="@style/BaseTextView.Label"
+                            android:text="@string/dashboard_unpaid_amount"
+                            android:textAlignment="center"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/tv_unpaid_paid_label"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/gl_v3" />
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_last_invoice"
+                            style="@style/WrapperContainer"
+                            android:layout_marginTop="14dp"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_unpaid_paid_label"
+                            app:layout_constraintEnd_toStartOf="@+id/gl_v3"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <TextView
+                                android:id="@+id/tv_last_invoice"
+                                style="@style/BaseTextView.Value.Amount"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:text="45.00" />
+
+                            <TextView
+                                android:id="@+id/tv_last_invoice_currency"
+                                style="@style/BaseTextView.Value.Currency"
+                                android:layout_width="wrap_content"
+                                android:layout_marginStart="2dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_last_invoice"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/tv_last_invoice"
+                                tools:text="PLN" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/tv_last_invoice_label"
+                            style="@style/BaseTextView.Label"
+                            android:gravity="center"
+                            android:text="@string/dashboard_last_invoice"
+                            app:layout_constraintEnd_toStartOf="@+id/gl_v3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cl_last_invoice" />
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_paid_value"
+                            style="@style/WrapperContainer"
+                            app:layout_constraintBottom_toBottomOf="@+id/cl_last_invoice"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/gl_v3">
+
+                            <TextView
+                                android:id="@+id/tv_paid_value"
+                                style="@style/BaseTextView.Value.Amount"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:text="45.00" />
+
+                            <TextView
+                                android:id="@+id/tv_paid_value_currency"
+                                style="@style/BaseTextView.Value.Currency"
+                                android:layout_width="wrap_content"
+                                android:layout_marginStart="2dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_paid_value"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/tv_paid_value"
+                                tools:text="PLN" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/tv_paid_value_label"
+                            style="@style/BaseTextView.Label"
+                            android:text="@string/dashboard_paid_amount"
+                            android:textAlignment="center"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/tv_last_invoice_label"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/gl_v3" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/gl_v3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.5" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView style="@style/Card">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        style="@style/Row.h18.v20"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_finances_title"
+                            style="@style/BaseTextView.Title.24"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:text="@string/dashboard_finances_title" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_income"
+                            android:layout_marginTop="20dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/gl_v1"
+                            app:layout_constraintTop_toBottomOf="@id/tv_finances_title"
+                            style="@style/WrapperContainer">
+
+                            <TextView
+                                android:id="@+id/tv_income"
+                                style="@style/BaseTextView.Value.Amount"
+                                android:textColor="@color/colorSuccess"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:text="1,213.57" />
+
+                            <TextView
+                                android:id="@+id/tv_income_currency"
+                                style="@style/BaseTextView.Value"
+                                android:layout_width="wrap_content"
+                                android:textSize="12sp"
+                                android:layout_marginStart="2dp"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/tv_income"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_income"
+                                tools:text="PLN" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/tv_income_label"
+                            style="@style/BaseTextView.Label"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center"
+                            android:text="@string/dashboard_total_income"
+                            app:layout_constraintEnd_toStartOf="@+id/gl_v1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cl_income" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_outcome"
+                            android:layout_marginTop="20dp"
+                            app:layout_constraintStart_toEndOf="@+id/gl_v1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_finances_title"
+                            style="@style/WrapperContainer">
+
+                            <TextView
+                                android:id="@+id/tv_outcome"
+                                android:textColor="@color/colorError"
+                                style="@style/BaseTextView.Value.Amount"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:text="1,031,213.57" />
+
+                            <TextView
+                                android:id="@+id/tv_outcome_currency"
+                                style="@style/BaseTextView.Value"
+                                android:layout_width="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:textSize="12sp"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/tv_outcome"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_outcome"
+                                tools:text="PLN" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <TextView
+                            android:id="@+id/tv_outcome_label"
+                            style="@style/BaseTextView.Label"
+                            android:textAlignment="center"
+                            android:text="@string/dashboard_total_outcome"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/tv_income_label"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/gl_v1" />
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_last_event"
+                            android:layout_marginTop="14dp"
+                            app:layout_constraintEnd_toEndOf="@+id/gl_v1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_income_label"
+                            style="@style/WrapperContainer">
+
+                            <TextView
+                                android:id="@+id/tv_last_event"
+                                style="@style/BaseTextView.Value.Amount"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:text="45.00" />
+
+                            <TextView
+                                android:id="@+id/tv_last_event_currency"
+                                style="@style/BaseTextView.Value"
+                                android:layout_width="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:textSize="12sp"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/tv_last_event"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_last_event"
+                                tools:text="PLN" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <TextView
+                            android:id="@+id/tv_last_event_label"
+                            style="@style/BaseTextView.Label"
+                            android:layout_marginTop="4dp"
+                            android:gravity="center"
+                            android:text="@string/dashboard_last_event"
+                            app:layout_constraintEnd_toStartOf="@+id/gl_v1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/cl_last_event" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_current_state"
+                            style="@style/WrapperContainer"
+                            app:layout_constraintBottom_toBottomOf="@+id/cl_last_event"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/gl_v1">
+
+                            <TextView
+                                android:id="@+id/tv_current_state"
+                                style="@style/BaseTextView.Value.Amount"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:text="45.00" />
+
+                            <TextView
+                                android:id="@+id/tv_current_state_currency"
+                                style="@style/BaseTextView.Value"
+                                android:layout_width="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:textSize="12sp"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/tv_current_state"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_current_state"
+                                tools:text="PLN" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <TextView
+                            android:id="@+id/tv_current_state_label"
+                            style="@style/BaseTextView.Label"
+                            android:text="@string/dashboard_current_state"
+                            android:textAlignment="center"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/tv_last_event_label"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/gl_v1" />
+
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/gl_v1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.5" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView style="@style/Card">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        style="@style/Row.h18.v20"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_resources_title"
+                            style="@style/BaseTextView.Title.24"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:text="@string/dashboard_resources" />
+
+                        <TextView
+                            android:id="@+id/tv_warehouses"
+                            style="@style/BaseTextView.Value.Number"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            app:layout_constraintEnd_toStartOf="@+id/gl_v2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_resources_title"
+                            tools:text="1" />
+
+                        <TextView
+                            android:id="@+id/tv_warehouses_label"
+                            style="@style/BaseTextView.Label"
+                            android:gravity="center"
+                            android:text="@string/dashboard_warehouses"
+                            app:layout_constraintEnd_toStartOf="@+id/gl_v2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_warehouses" />
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_products_value"
+                            style="@style/WrapperContainer"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_warehouses"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/gl_v2">
+
+                            <TextView
+                                android:id="@+id/tv_products_value"
+                                style="@style/BaseTextView.Value.Amount"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:text="45.00" />
+
+                            <TextView
+                                android:id="@+id/tv_products_value_currency"
+                                style="@style/BaseTextView.Value.Currency"
+                                android:layout_width="wrap_content"
+                                android:layout_marginStart="2dp"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/tv_products_value"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_products_value"
+                                tools:text="PLN" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <TextView
+                            android:id="@+id/tv_products_value_label"
+                            style="@style/BaseTextView.Label"
+                            android:text="@string/dashboard_products_value"
+                            android:textAlignment="center"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/tv_warehouses_label"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/gl_v2" />
+
+                        <TextView
+                            android:id="@+id/tv_product_models"
+                            style="@style/BaseTextView.Value.Number"
+                            android:layout_marginTop="14dp"
+                            android:gravity="center"
+                            app:layout_constraintEnd_toStartOf="@+id/gl_v2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_warehouses_label"
+                            tools:text="1" />
+
+                        <TextView
+                            android:id="@+id/tv_product_models_label"
+                            style="@style/BaseTextView.Label"
+                            android:gravity="center"
+                            android:text="@string/dashboard_product_models"
+                            app:layout_constraintEnd_toStartOf="@+id/gl_v2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_product_models" />
+
+                        <TextView
+                            android:id="@+id/tv_service_models"
+                            style="@style/BaseTextView.Value.Number"
+                            android:textAlignment="center"
+                            android:layout_marginTop="4dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/gl_v2"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/tv_product_models"
+                            tools:text="37" />
+
+                        <TextView
+                            android:id="@+id/tv_service_models_label"
+                            style="@style/BaseTextView.Label"
+                            android:text="@string/dashboard_service_models"
+                            android:textAlignment="center"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/tv_product_models_label"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/gl_v2" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/gl_v2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="0.5" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </ScrollView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <include
         android:id="@+id/progress_bar"
-        android:visibility="gone"
-        android:layout_marginTop="96dp"
+        layout="@layout/component_progress_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        layout="@layout/component_progress_view"
+        android:layout_marginTop="96dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <include
         android:id="@+id/error"
-        android:visibility="gone"
-        android:layout_marginTop="96dp"
+        layout="@layout/component_list_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        layout="@layout/component_list_error"
+        android:layout_marginTop="96dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />

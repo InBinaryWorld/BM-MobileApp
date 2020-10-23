@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
@@ -27,11 +26,12 @@ public class CompanyListAdapter extends BaseListAdapter<CompanyListModel, Compan
 
 
     static class ViewHolder {
-        TextView unpaidInvoices;
         TextView companyName;
         TextView address;
         TextView productValue;
+        TextView productValueCurrency;
         TextView financesValue;
+        TextView financesValueCurrency;
     }
 
     @Override
@@ -42,8 +42,9 @@ public class CompanyListAdapter extends BaseListAdapter<CompanyListModel, Compan
             viewHolder.companyName = convertView.findViewById(R.id.tv_company_name);
             viewHolder.address = convertView.findViewById(R.id.tv_address);
             viewHolder.productValue = convertView.findViewById(R.id.tv_product_value);
-            viewHolder.unpaidInvoices = convertView.findViewById(R.id.tv_unpaid_invoices);
-            viewHolder.financesValue = convertView.findViewById(R.id.tv_current_finances_value);
+            viewHolder.financesValue = convertView.findViewById(R.id.tv_finances_state);
+            viewHolder.productValueCurrency = convertView.findViewById(R.id.tv_products_value_currency);
+            viewHolder.financesValueCurrency = convertView.findViewById(R.id.tv_finances_state_currency);
             convertView.setTag(viewHolder);
         }
         CompanyListModel item = getItem(position);
@@ -55,29 +56,28 @@ public class CompanyListAdapter extends BaseListAdapter<CompanyListModel, Compan
     private void fillView(CompanyListModel item, ViewHolder holder) {
         Company company = item.getCompany();
         CompanyStatsModel stats = item.getCompanyStats();
+        String currency = company.getCurrency();
 
         holder.companyName.setText(company.getName());
         holder.address.setText(getShortAddress(company));
-        holder.productValue.setText(getProductsValue(stats, company.getCurrency()));
-        holder.financesValue.setText(getFinancesValue(stats, company.getCurrency()));
-        holder.unpaidInvoices.setText(Integer.toString(stats.getInvoices().getUnpaid()));
+        holder.productValue.setText(getProductsValue(stats));
+        holder.financesValue.setText(getFinancesValue(stats));
+        holder.productValueCurrency.setText(currency);
+        holder.financesValueCurrency.setText(currency);
     }
 
-    private String getFinancesValue(CompanyStatsModel stats, String currency) {
-        BigDecimal value = stats.getFinances().getCurrentState();
-        String valueString = Parsers.safeFormatPrice(value);
-        return String.format("%s %s", valueString, currency);
+    private String getFinancesValue(CompanyStatsModel stats) {
+        return Parsers.safeFormatPrice(stats.getFinances().getCurrentState());
+    }
+
+    private String getProductsValue(CompanyStatsModel stats) {
+        return Parsers.safeFormatPrice(stats.getResources().getTotalGrossValue());
     }
 
     private String getShortAddress(Company company) {
         return company.getHeadquarter().getShortAddress();
     }
 
-    private String getProductsValue(CompanyStatsModel stats, String currency) {
-        BigDecimal productsGross = stats.getProducts().getTotalGrossValue();
-        String grossString = Parsers.safeFormatPrice(productsGross);
-        return String.format("%s %s", grossString, currency);
-    }
 
     @Override
     protected CompanyListModel extractGetItemValue(CompanyListModel item) {

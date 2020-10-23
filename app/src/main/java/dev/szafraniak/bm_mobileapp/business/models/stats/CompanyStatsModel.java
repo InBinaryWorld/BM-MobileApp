@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class CompanyStatsModel {
 
-    private ProductStatsModel products;
+    private ResourcesStatsModel resources;
     private FinancesStatsModel finances;
     private InvoicesStatsModel invoices;
 }

@@ -79,6 +79,10 @@
         <item name="android:paddingVertical">12dp</item>
     </style>
 
+    <style name="Row.h18.v20">
+        <item name="android:paddingVertical">20dp</item>
+    </style>
+
     <style name="Row.h18.SettingsRow">
         <item name="android:layout_height">64dp</item>
     </style>
@@ -97,15 +101,12 @@
 
     <style name="Card">
         <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="cardElevation">4dp</item>
         <item name="cardCornerRadius">3dp</item>
         <item name="cardUseCompatPadding">true</item>
         <item name="android:layout_marginHorizontal">6dp</item>
         <item name="android:layout_marginVertical">3dp</item>
-    </style>
-
-    <style name="Card.CompanyList">
-        <item name="android:layout_height">180dp</item>
     </style>
 
     <style name="ListView" parent="Widget.AppCompat.ListView">
@@ -164,6 +165,18 @@
     </style>
 
     <style name="BaseTextView.Value" />
+
+    <style name="BaseTextView.Value.Amount">
+        <item name="android:textSize">21sp</item>
+    </style>
+
+    <style name="BaseTextView.Value.Currency">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="BaseTextView.Value.Number">
+        <item name="android:textSize">26sp</item>
+    </style>
 
     <style name="BaseTextView.Value.Bold">
         <item name="fontFamily">@font/roboto_bold</item>

@@ -117,4 +117,21 @@
     <string name="btn_product_create">Create</string>
     <string name="header_product_create">Create Product</string>
     <string name="btn_product_modify">Save</string>
+    <string name="dashboard_current_state">Current state</string>
+    <string name="dashboard_last_event">Last event</string>
+    <string name="dashboard_total_outcome">Total outcome</string>
+    <string name="dashboard_total_income">Total income</string>
+    <string name="dashboard_finances_title">Finances</string>
+    <string name="dashboard_no_data">No data</string>
+    <string name="dashboard_resources">Resources</string>
+    <string name="dashboard_warehouses">Warehouses</string>
+    <string name="dashboard_service_models">Service models</string>
+    <string name="dashboard_product_models">Product models</string>
+    <string name="dashboard_invoices">Invoices</string>
+    <string name="slash">/</string>
+    <string name="dashboard_unpaid_paid">Unpaid / Paid</string>
+    <string name="dashboard_unpaid_amount">Unpaid amount</string>
+    <string name="dashboard_last_invoice">Last invoice</string>
+    <string name="dashboard_paid_amount">Paid amount</string>
+    <string name="dashboard_products_value">Products value</string>
 </resources>
