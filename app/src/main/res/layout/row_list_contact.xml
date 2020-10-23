@@ -3,33 +3,50 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Row.h18.v8">
+    style="@style/Row">
 
-    <TextView
-        android:id="@+id/tv_contact_name"
-        style="@style/BaseTextView.Title.18"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        style="@style/Row.h18.v12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Dariusz Szpakowski" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tv_address_label"
-        style="@style/BaseTextView.Label"
-        android:layout_width="0dp"
-        android:layout_marginTop="8dp"
-        android:text="Address"
+        <TextView
+            android:id="@+id/tv_contact_name"
+            style="@style/BaseTextView.Title"
+            app:layout_constraintEnd_toStartOf="@+id/iv_phone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Dariusz Szpakowski" />
+
+        <TextView
+            android:id="@+id/tv_address"
+            style="@style/BaseTextView.Value"
+            android:textSize="13sp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/iv_phone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_contact_name"
+            tools:text="Komorniki, Poland" />
+
+        <ImageView
+            android:id="@+id/iv_phone"
+            style="@style/PhoneImageView"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        style="@style/Divider"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_contact_name" />
-
-    <TextView
-        android:id="@+id/tv_address"
-        style="@style/BaseTextView.Value"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_address_label"
-        tools:text="Komorniki, Poland" />
-
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

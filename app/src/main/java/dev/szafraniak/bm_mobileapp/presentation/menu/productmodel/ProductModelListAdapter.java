@@ -9,18 +9,22 @@ import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
+import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
+import dev.szafraniak.bm_mobileapp.presentation.shared.list.CurrencyWrapper;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterListAdapter;
 
-public class ProductModelListAdapter extends BaseFilterListAdapter<ProductModel, ProductModel> {
+public class ProductModelListAdapter extends BaseFilterListAdapter<CurrencyWrapper<ProductModel>, CurrencyWrapper<ProductModel>> {
 
-    private static final int layoutId = R.layout.row_list_product_model;
+    private static final int layoutId = R.layout.row_list_resource_item_model;
 
-    public ProductModelListAdapter(LayoutInflater inflater, List<ProductModel> initialList) {
+    public ProductModelListAdapter(LayoutInflater inflater, List<CurrencyWrapper<ProductModel>> initialList) {
         super(inflater, initialList);
     }
 
     static class ViewHolder {
         TextView name;
+        TextView price;
+        TextView priceCurrency;
     }
 
     @Override
@@ -28,28 +32,36 @@ public class ProductModelListAdapter extends BaseFilterListAdapter<ProductModel,
         if (convertView == null) {
             convertView = inflater.inflate(layoutId, parent, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.name = convertView.findViewById(R.id.tv_payment_type);
+            viewHolder.name = convertView.findViewById(R.id.tv_name);
+            viewHolder.price = convertView.findViewById(R.id.tv_price);
+            viewHolder.priceCurrency = convertView.findViewById(R.id.tv_price_currency);
             convertView.setTag(viewHolder);
         }
-        ProductModel item = getItem(position);
+        CurrencyWrapper<ProductModel> item = getItem(position);
         ViewHolder holder = (ViewHolder) convertView.getTag();
-        holder.name.setText(item.getName());
+        fullFillView(item, holder);
         return convertView;
     }
 
+    private void fullFillView(CurrencyWrapper<ProductModel> item, ViewHolder holder) {
+        holder.name.setText(item.getItem().getName());
+        holder.price.setText(Parsers.safeFormatPrice(item.getItem().getPriceSuggestion().getGross()));
+        holder.priceCurrency.setText(item.getCurrency());
+    }
+
     @Override
-    protected ProductModel extractGetItemValue(ProductModel item) {
+    protected CurrencyWrapper<ProductModel> extractGetItemValue(CurrencyWrapper<ProductModel> item) {
         return item;
     }
 
     @Override
-    protected long getItemId(ProductModel item) {
-        return item.getId();
+    protected long getItemId(CurrencyWrapper<ProductModel> item) {
+        return item.getItem().getId();
     }
 
     @Override
-    public String getItemFilterValue(ProductModel item) {
-        return item.getFilterValue();
+    public String getItemFilterValue(CurrencyWrapper<ProductModel> item) {
+        return item.getItem().getFilterValue();
     }
 
 }

@@ -61,7 +61,7 @@ public class CreateInvoicesItemsFragment extends BaseFormFragment<List<InvoiceIt
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_invoice_create_Items;
+        return R.string.header_invoice_create_items;
     }
 
     @Override

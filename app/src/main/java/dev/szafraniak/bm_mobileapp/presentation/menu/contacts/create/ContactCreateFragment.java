@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create;
+package dev.szafraniak.bm_mobileapp.presentation.menu.contacts.create;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -11,14 +11,16 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.CreateCompanyContactRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.contact.CreateContactRequest;
+import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.CreateIndividualContactRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
 
 @EFragment(R.layout.fragment_base_form)
-public class CompanyContactCreateFragment extends BaseFormFragment<CreateCompanyContactRequest, CompanyContactCreateFormConfig> implements CompanyContactCreateView {
+public class ContactCreateFragment extends BaseFormFragment<CreateContactRequest, ContactCreateFormConfig> implements ContactCreateView {
 
     @Inject
-    CompanyContactCreatePresenter presenter;
+    ContactCreatePresenter presenter;
 
     @AfterViews
     public void initialize() {
@@ -35,19 +37,23 @@ public class CompanyContactCreateFragment extends BaseFormFragment<CreateCompany
 
 
     @Override
-    protected FormInterface<CreateCompanyContactRequest> createForm(LayoutInflater inflater, ViewGroup linearLayout, CompanyContactCreateFormConfig config) {
-        return new CompanyContactCreateForm(inflater, linearLayout, config);
+    protected FormInterface<CreateContactRequest> createForm(LayoutInflater inflater, ViewGroup linearLayout, ContactCreateFormConfig config) {
+        return new ContactCreateForm(inflater, linearLayout, config);
     }
 
     @Override
-    protected void onSubmit(CreateCompanyContactRequest object) {
-        presenter.createCompany(object);
+    protected void onSubmit(CreateContactRequest object) {
+        if (object instanceof CreateCompanyContactRequest) {
+            presenter.createCompany((CreateCompanyContactRequest) object);
+        } else {
+            presenter.createIndividual((CreateIndividualContactRequest) object);
+        }
     }
 
     @Override
     protected void loadData() {
         // Nothing to load, just show form
-        CompanyContactCreateFormConfig config = presenter.createConfig();
+        ContactCreateFormConfig config = presenter.createConfig();
         startForm(config);
     }
 

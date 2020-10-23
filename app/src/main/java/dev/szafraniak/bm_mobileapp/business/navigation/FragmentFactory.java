@@ -15,13 +15,10 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.bank.BankAccountListFragmen
 import dev.szafraniak.bm_mobileapp.presentation.menu.bank.create.BankAccountCreateFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.bank.modify.BankAccountModifyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.company.modify.ModifyCompanyFragment_;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsFragment_;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.CompanyContactListFragment_;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create.CompanyContactCreateFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactListFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.details.CompanyContactDetailsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.modify.CompanyContactModifyFragment_;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.IndividualContactListFragment_;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.IndividualContactCreateFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.create.ContactCreateFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details.IndividualContactDetailsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment_;
@@ -58,12 +55,9 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_COMPANY_CREATE = 11;
     public static final int FRAGMENT_DASHBOARD = 100;
     public static final int FRAGMENT_CONTACTS = 200;
-    public static final int FRAGMENT_INDIVIDUAL_CONTACT_LIST = 210;
-    public static final int FRAGMENT_INDIVIDUAL_CONTACT_CREATE = 211;
+    public static final int FRAGMENT_CONTACT_CREATE = 201;
     public static final int FRAGMENT_INDIVIDUAL_CONTACT_MODIFY = 212;
     public static final int FRAGMENT_INDIVIDUAL_CONTACT_DETAILS = 213;
-    public static final int FRAGMENT_COMPANY_CONTACT_LIST = 220;
-    public static final int FRAGMENT_COMPANY_CONTACT_CREATE = 221;
     public static final int FRAGMENT_COMPANY_CONTACT_MODIFY = 222;
     public static final int FRAGMENT_COMPANY_CONTACT_DETAILS = 223;
     public static final int FRAGMENT_RESOURCES = 300;
@@ -120,25 +114,16 @@ public abstract class FragmentFactory {
                 fragment = new DashboardFragment_();
                 break;
             case FRAGMENT_CONTACTS:
-                fragment = new ContactsFragment_();
+                fragment = new ContactListFragment_();
                 break;
-            case FRAGMENT_INDIVIDUAL_CONTACT_LIST:
-                fragment = new IndividualContactListFragment_();
-                break;
-            case FRAGMENT_INDIVIDUAL_CONTACT_CREATE:
-                fragment = new IndividualContactCreateFragment_();
+            case FRAGMENT_CONTACT_CREATE:
+                fragment = new ContactCreateFragment_();
                 break;
             case FRAGMENT_INDIVIDUAL_CONTACT_MODIFY:
                 fragment = new IndividualContactModifyFragment_();
                 break;
             case FRAGMENT_INDIVIDUAL_CONTACT_DETAILS:
                 fragment = new IndividualContactDetailsFragment_();
-                break;
-            case FRAGMENT_COMPANY_CONTACT_LIST:
-                fragment = new CompanyContactListFragment_();
-                break;
-            case FRAGMENT_COMPANY_CONTACT_CREATE:
-                fragment = new CompanyContactCreateFragment_();
                 break;
             case FRAGMENT_COMPANY_CONTACT_MODIFY:
                 fragment = new CompanyContactModifyFragment_();

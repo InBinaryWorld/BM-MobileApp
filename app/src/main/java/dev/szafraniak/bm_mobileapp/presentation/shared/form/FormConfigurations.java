@@ -22,6 +22,8 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
 import dev.szafraniak.bm_mobileapp.business.utils.Validator;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create.CompanyContactCreateFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.IndividualContactCreateFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.create.FinancesEventCreateFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.modify.FinancesEventModifyFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
@@ -458,7 +460,7 @@ public final class FormConfigurations {
         return config;
     }
 
-    private static ContactTypeFormConfig getContactTypeConfig() {
+    public static ContactTypeFormConfig getContactTypeConfig() {
         HashMap<ContactType, String> map = new HashMap<>();
         map.put(ContactType.INDIVIDUAL, "Individual Contact");
         map.put(ContactType.COMPANY, "Company Contact");
@@ -658,6 +660,26 @@ public final class FormConfigurations {
         config.setRequired(true);
         config.setSpinnerItems(models);
         config.setValidator(Validator::notNull);
+        return config;
+    }
+
+    public static CompanyContactCreateFormConfig getCompanyContactCreateConfig() {
+        CompanyContactCreateFormConfig config = new CompanyContactCreateFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setNameConfig(FormConfigurations.getCompanyNameConfig());
+        config.setPhoneConfig(FormConfigurations.getPhoneConfig());
+        config.setTaxIdConfig(FormConfigurations.getTaxIdentityNumberConfig());
+        config.setAddressConfig(FormConfigurations.getAddressConfig());
+        return config;
+    }
+
+    public static IndividualContactCreateFormConfig getIndividualContactCreateConfig() {
+        IndividualContactCreateFormConfig config = new IndividualContactCreateFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setFirstNameConfig(FormConfigurations.getFirstNameConfig());
+        config.setLastNameConfig(FormConfigurations.getLastNameConfig());
+        config.setPhoneConfig(FormConfigurations.getPhoneConfig());
+        config.setAddressConfig(FormConfigurations.getAddressConfig());
         return config;
     }
 }

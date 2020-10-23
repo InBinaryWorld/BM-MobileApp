@@ -43,6 +43,7 @@
                         <TextView
                             android:id="@+id/tv_invoices_title"
                             style="@style/BaseTextView.Title.24"
+                            android:textColor="@color/colorBlueDark"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -223,6 +224,7 @@
                         <TextView
                             android:id="@+id/tv_finances_title"
                             style="@style/BaseTextView.Title.24"
+                            android:textColor="@color/colorBlueDark"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -404,6 +406,7 @@
                         <TextView
                             android:id="@+id/tv_resources_title"
                             style="@style/BaseTextView.Title.24"
+                            android:textColor="@color/colorBlueDark"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Row">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/Row.h18.v12"
+        app:layout_constraintBottom_toTopOf="@id/v_divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/tv_name_label"
+            style="@style/BaseTextView.Label"
+            android:text="Name"
+            app:layout_constraintEnd_toStartOf="@+id/tv_price"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/BaseTextView.Value"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_price"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_label"
+            tools:text="Cisteczka" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_marginEnd="4dp"
+            style="@style/BaseTextView.Value.Accent"
+            android:layout_width="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/tv_price_currency"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="18.74" />
+
+        <TextView
+            android:id="@+id/tv_price_currency"
+            style="@style/BaseTextView.Label"
+            android:layout_width="wrap_content"
+            android:textSize="11sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="PLN" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/v_divider"
+        style="@style/Divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

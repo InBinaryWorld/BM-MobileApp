@@ -51,20 +51,14 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.bank.modify.BankAccountModi
 import dev.szafraniak.bm_mobileapp.presentation.menu.bank.modify.BankAccountModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.company.modify.ModifyCompanyFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.company.modify.ModifyCompanyPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsFragment;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.CompanyContactListFragment;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.CompanyContactListPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create.CompanyContactCreateFragment;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create.CompanyContactCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactListFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.details.CompanyContactDetailsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.details.CompanyContactDetailsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.modify.CompanyContactModifyFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.modify.CompanyContactModifyPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.IndividualContactListFragment;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.IndividualContactListPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.IndividualContactCreateFragment;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.IndividualContactCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.create.ContactCreateFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.create.ContactCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details.IndividualContactDetailsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details.IndividualContactDetailsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyFragment;
@@ -163,9 +157,7 @@ public interface AppComponent {
 
     void inject(SettingsPresenter settingsPresenter);
 
-    void inject(ContactsPresenter contactsPresenter);
-
-    void inject(ContactsFragment contactsFragment);
+    void inject(ContactListPresenter contactsPresenter);
 
     void inject(ResourcesPresenter resourcesPresenter);
 
@@ -190,22 +182,6 @@ public interface AppComponent {
     void inject(ProductService productService);
 
     void inject(ContactsService contactsService);
-
-    void inject(IndividualContactListPresenter individualContactListPresenter);
-
-    void inject(IndividualContactListFragment individualContactListFragment);
-
-    void inject(CompanyContactListFragment companyContactListFragment);
-
-    void inject(CompanyContactListPresenter companyContactListPresenter);
-
-    void inject(CompanyContactCreateFragment companyContactCreateFragment);
-
-    void inject(CompanyContactCreatePresenter companyContactCreatePresenter);
-
-    void inject(IndividualContactCreatePresenter individualContactCreatePresenter);
-
-    void inject(IndividualContactCreateFragment individualContactCreateFragment);
 
     void inject(CompanyContactModifyPresenter companyContactModifyPresenter);
 
@@ -352,4 +328,10 @@ public interface AppComponent {
     void inject(ProductModifyPresenter productModifyPresenter);
 
     void inject(StatisticsService statisticsService);
+
+    void inject(ContactListFragment contactListFragment);
+
+    void inject(ContactCreateFragment contactCreateFragment);
+
+    void inject(ContactCreatePresenter contactCreatePresenter);
 }

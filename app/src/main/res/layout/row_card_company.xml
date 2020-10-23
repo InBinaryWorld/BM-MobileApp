@@ -14,6 +14,7 @@
             <TextView
                 android:id="@+id/tv_company_name"
                 style="@style/BaseTextView.Title.24"
+                android:textColor="@color/colorBlueDark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +42,7 @@
                 <TextView
                     android:id="@+id/tv_finances_state"
                     style="@style/BaseTextView.Value.Amount"
-                    android:textColor="@color/colorCoral"
+                    android:textColor="@color/colorBlueLight"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="5072.42" />
@@ -78,7 +79,7 @@
                 <TextView
                     android:id="@+id/tv_product_value"
                     style="@style/BaseTextView.Value.Amount"
-                    android:textColor="@color/colorCoral"
+                    android:textColor="@color/colorBlueLight"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:text="5072.42" />

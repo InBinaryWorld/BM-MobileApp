@@ -172,7 +172,9 @@
         <item name="fontFamily">@font/roboto_bold</item>
     </style>
 
-    <style name="BaseTextView.Value" />
+    <style name="BaseTextView.Value">
+        <item name="android:textSize">16sp</item>
+    </style>
 
     <style name="BaseTextView.Value.Amount">
         <item name="android:textSize">21sp</item>
@@ -215,17 +217,13 @@
     </style>
 
     <style name="BaseTextView.Title">
-        <item name="android:textColor">@color/colorBlueDark</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:letterSpacing">-0.03</item>
     </style>
 
     <style name="BaseTextView.Title.24">
         <item name="android:textSize">24sp</item>
         <item name="android:letterSpacing">-0.05</item>
-    </style>
-
-    <style name="BaseTextView.Title.18">
-        <item name="android:textSize">18sp</item>
-        <item name="android:letterSpacing">-0.03</item>
     </style>
 
     <style name="BaseTextView.Wrap">
@@ -372,24 +370,14 @@
         <item name="tint">@color/colorError</item>
     </style>
 
-    <style name="ActionResultImageView">
-        <item name="android:layout_width">190dp</item>
-        <item name="android:layout_height">190dp</item>
-    </style>
-
-    <style name="ActionResultImageView.Success">
-        <item name="android:tint">@color/colorSuccess</item>
-        <item name="android:src">@drawable/ic_checked</item>
-    </style>
-
-    <style name="ActionResultImageView.Info">
+    <style name="InfoImageView">
         <item name="android:tint">@color/colorBlueLight</item>
         <item name="android:src">@drawable/ic_info</item>
     </style>
 
-    <style name="ActionResultImageView.Failed">
-        <item name="android:tint">@color/colorError</item>
-        <item name="android:src">@drawable/ic_close</item>
+    <style name="PhoneImageView">
+        <item name="android:tint">@color/blue_light_black40</item>
+        <item name="android:src">@drawable/ic_phone</item>
     </style>
 
     <style name="NextImageView">

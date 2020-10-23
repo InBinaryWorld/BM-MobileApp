@@ -25,8 +25,8 @@ public class CompanyCreatePresenter extends BaseFormPresenter<Company, CompanyCr
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void createCompany(CreateCompanyRequest object) {
         companyService.createCompany(object)
-                .compose(view.bindToLifecycle())
-                .subscribe(this::onSuccess, this::onError);
+            .compose(view.bindToLifecycle())
+            .subscribe(this::onSuccess, this::onError);
     }
 
     @Override

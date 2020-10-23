@@ -30,7 +30,7 @@
 
         <ImageView
             android:id="@+id/iv_warehouse_details"
-            style="@style/ActionResultImageView.Info"
+            style="@style/InfoImageView"
             android:layout_width="36dp"
             android:layout_height="36dp"
             app:layout_constraintBottom_toBottomOf="parent"

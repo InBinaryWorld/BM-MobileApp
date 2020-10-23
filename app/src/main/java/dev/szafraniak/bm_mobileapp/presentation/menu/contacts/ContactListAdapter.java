@@ -1,8 +1,12 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.contacts;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -15,14 +19,17 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterListAdap
 public class ContactListAdapter<T extends Contact> extends BaseFilterListAdapter<T, T> {
 
     private static final int layoutId = R.layout.row_list_contact;
+    private Context context;
 
-    public ContactListAdapter(LayoutInflater inflater, List<T> initialList) {
-        super(inflater, initialList);
+    public ContactListAdapter(Context context, List<T> initialList) {
+        super(LayoutInflater.from(context), initialList);
+        this.context = context;
     }
 
     static class ViewHolder {
         TextView contactName;
         TextView address;
+        ImageView phone;
     }
 
     @Override
@@ -32,14 +39,32 @@ public class ContactListAdapter<T extends Contact> extends BaseFilterListAdapter
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.contactName = convertView.findViewById(R.id.tv_contact_name);
             viewHolder.address = convertView.findViewById(R.id.tv_address);
+            viewHolder.phone = convertView.findViewById(R.id.iv_phone);
             convertView.setTag(viewHolder);
         }
         T item = getItem(position);
         ViewHolder holder = (ViewHolder) convertView.getTag();
+        fullFillView(item, holder);
+        return convertView;
+    }
+
+    private void fullFillView(T item, ViewHolder holder) {
         Address address = item.getAddress();
         holder.contactName.setText(item.getName());
         holder.address.setText(address.getShortAddress());
-        return convertView;
+        boolean hasPhone = item.getPhone() != null;
+        holder.phone.setEnabled(hasPhone);
+        if (hasPhone) {
+            holder.phone.setOnClickListener(view -> {
+                openDialer(item.getPhone());
+            });
+        }
+    }
+
+    private void openDialer(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + phoneNumber));
+        context.startActivity(intent);
     }
 
     @Override

@@ -20,11 +20,12 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductMo
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.details.ProductModelDetailsFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.list.CurrencyWrapper;
 import dev.szafraniak.bm_mobileapp.presentation.shared.scanner.Scanner;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.SearchListFragmentWithBtn;
 
 @EFragment(R.layout.fragment_search_product_list)
-public class ProductModelListFragment extends SearchListFragmentWithBtn<ProductModel, ProductModelListAdapter>
+public class ProductModelListFragment extends SearchListFragmentWithBtn<CurrencyWrapper<ProductModel>, ProductModelListAdapter>
     implements ProductModelListView {
 
     @Inject
@@ -82,9 +83,9 @@ public class ProductModelListFragment extends SearchListFragmentWithBtn<ProductM
     }
 
     @Override
-    public void onItemClick(ProductModel item) {
+    public void onItemClick(CurrencyWrapper<ProductModel> item) {
         Bundle args = new Bundle();
-        args.putString(ProductModelDetailsFragment.KEY_PRODUCT_MODEL, gson.toJson(item));
+        args.putString(ProductModelDetailsFragment.KEY_PRODUCT_MODEL, gson.toJson(item.getItem()));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_PRODUCT_MODEL_DETAILS, args);
     }
 

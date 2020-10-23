@@ -11,13 +11,10 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.bank.BankAccountListPresent
 import dev.szafraniak.bm_mobileapp.presentation.menu.bank.create.BankAccountCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.bank.modify.BankAccountModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.company.modify.ModifyCompanyPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactsPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.CompanyContactListPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create.CompanyContactCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.ContactListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.details.CompanyContactDetailsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.modify.CompanyContactModifyPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.IndividualContactListPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.IndividualContactCreatePresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.create.ContactCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details.IndividualContactDetailsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
@@ -65,8 +62,8 @@ public class MenuModule {
 
     @Provides
     @Singleton
-    public ContactsPresenter provideContactsPresenter(Application app) {
-        return new ContactsPresenter(app);
+    public ContactListPresenter provideContactsPresenter(Application app) {
+        return new ContactListPresenter(app);
     }
 
     @Provides
@@ -91,30 +88,6 @@ public class MenuModule {
     @Singleton
     public SettingsPresenter provideSettingsPresenter(Application app) {
         return new SettingsPresenter(app);
-    }
-
-    @Provides
-    @Singleton
-    public IndividualContactListPresenter provideIndividualContactListPresenter(Application app) {
-        return new IndividualContactListPresenter(app);
-    }
-
-    @Provides
-    @Singleton
-    public CompanyContactListPresenter provideCompanyContactListPresenter(Application app) {
-        return new CompanyContactListPresenter(app);
-    }
-
-    @Provides
-    @Singleton
-    public CompanyContactCreatePresenter provideCompanyContactCreatePresenter(Application app) {
-        return new CompanyContactCreatePresenter(app);
-    }
-
-    @Provides
-    @Singleton
-    public IndividualContactCreatePresenter provideIndividualContactCreatePresenter(Application app) {
-        return new IndividualContactCreatePresenter(app);
     }
 
     @Provides
@@ -295,6 +268,12 @@ public class MenuModule {
     @Singleton
     public ProductModifyPresenter provideProductModifyPresenter(Application app) {
         return new ProductModifyPresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public ContactCreatePresenter provideContactCreatePresenter(Application app) {
+        return new ContactCreatePresenter(app);
     }
 
 }
