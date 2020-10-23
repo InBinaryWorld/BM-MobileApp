@@ -5,4 +5,5 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListView;
 
 public interface ResourcesView extends BaseListView<Warehouse> {
 
+    void setData(ResourcesDataModel resourcesDataModel);
 }

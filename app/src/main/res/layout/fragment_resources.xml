@@ -29,42 +29,113 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/Row.h10.v8">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_products"
-                    style="@style/MaterialButton.FullRounded"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Products"
-                    app:layout_constraintEnd_toEndOf="parent"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_product_models"
+                    style="@style/Card"
+                    android:clickable="true"
+                    android:layout_width="0dp"
+                    android:layout_margin="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/gl_v1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_services"
-                    style="@style/MaterialButton.FullRounded"
-                    android:layout_marginHorizontal="20dp"
-                    android:text="Services"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        style="@style/Row.h18.v20"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_product_models"
+                            style="@style/BaseTextView.Value.Number"
+                            android:gravity="center"
+                            android:textColor="@color/colorBlueLight"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="27" />
+
+                        <TextView
+                            style="@style/BaseTextView.Label"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/resources_product_models"
+                            android:textAlignment="center"
+                            app:layout_constraintTop_toBottomOf="@id/tv_product_models"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gl_v1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_service_models"
+                    style="@style/Card"
+                    android:clickable="true"
+                    android:layout_width="0dp"
+                    android:layout_margin="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_products" />
+                    app:layout_constraintStart_toEndOf="@+id/gl_v1"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        style="@style/Row.h18.v20"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_service_models"
+                            style="@style/BaseTextView.Value.Number"
+                            android:gravity="center"
+                            android:textColor="@color/colorBlueLight"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="13" />
+
+                        <TextView
+                            style="@style/BaseTextView.Label"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/resources_service_models"
+                            android:textAlignment="center"
+                            app:layout_constraintTop_toBottomOf="@id/tv_service_models"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ListView
                 android:id="@+id/list"
                 style="@style/ListView.VerticalPadding"
+                android:paddingTop="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
             <include
                 android:id="@+id/empty_list"
-                android:visibility="gone"
-                android:layout_marginTop="56dp"
+                layout="@layout/component_list_empty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                layout="@layout/component_list_empty" />
+                android:layout_marginTop="56dp"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -76,28 +147,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <include
         android:id="@+id/progress_bar"
-        android:visibility="gone"
-        android:layout_marginTop="96dp"
+        layout="@layout/component_progress_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        layout="@layout/component_progress_view"
+        android:layout_marginTop="96dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <include
         android:id="@+id/error"
-        android:visibility="gone"
-        android:layout_marginTop="96dp"
+        layout="@layout/component_list_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        layout="@layout/component_list_error"
+        android:layout_marginTop="96dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />

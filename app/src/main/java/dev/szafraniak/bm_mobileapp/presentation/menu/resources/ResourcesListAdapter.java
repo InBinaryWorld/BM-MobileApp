@@ -33,15 +33,21 @@ public class ResourcesListAdapter extends BaseListAdapter<Warehouse, Warehouse> 
         if (convertView == null) {
             convertView = inflater.inflate(layoutId, parent, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.name = convertView.findViewById(R.id.tv_payment_type);
+            viewHolder.name = convertView.findViewById(R.id.tv_warehouse_name);
+            viewHolder.address = convertView.findViewById(R.id.tv_warehouse_address);
             viewHolder.warehouseDetails = convertView.findViewById(R.id.iv_warehouse_details);
             convertView.setTag(viewHolder);
         }
         Warehouse item = getItem(position);
         ViewHolder holder = (ViewHolder) convertView.getTag();
-        holder.name.setText(item.getName());
-        holder.warehouseDetails.setOnClickListener(view -> requestDetails(item));
+        fullFillView(item, holder);
         return convertView;
+    }
+
+    private void fullFillView(Warehouse item, ViewHolder holder) {
+        holder.name.setText(item.getName());
+        holder.address.setText(item.getAddress().getShortAddress());
+        holder.warehouseDetails.setOnClickListener(view -> requestDetails(item));
     }
 
     @Override
@@ -56,6 +62,7 @@ public class ResourcesListAdapter extends BaseListAdapter<Warehouse, Warehouse> 
 
     static class ViewHolder {
         TextView name;
+        TextView address;
         ImageView warehouseDetails;
     }
 

@@ -134,4 +134,6 @@
     <string name="dashboard_last_invoice">Last invoice</string>
     <string name="dashboard_paid_amount">Paid amount</string>
     <string name="dashboard_products_value">Products value</string>
+    <string name="resources_product_models">Product models</string>
+    <string name="resources_service_models">Service models</string>
 </resources>

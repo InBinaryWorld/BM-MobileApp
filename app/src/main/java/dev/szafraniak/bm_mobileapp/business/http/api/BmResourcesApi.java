@@ -36,6 +36,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
 import dev.szafraniak.bm_mobileapp.business.models.stats.CompanyStatsModel;
 import dev.szafraniak.bm_mobileapp.business.models.stats.FinancesStatsModel;
 import dev.szafraniak.bm_mobileapp.business.models.stats.InvoicesStatsModel;
+import dev.szafraniak.bm_mobileapp.business.models.stats.ResourcesStatsModel;
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
@@ -244,4 +245,7 @@ public interface BmResourcesApi {
 
     @GET("/api/stats/company/{companyId}/invoices")
     Observable<InvoicesStatsModel> getInvoicesStats(@Path("companyId") Long companyId);
+
+    @GET("/api/stats/company/{companyId}/resources")
+    Observable<ResourcesStatsModel> getResourcesStats(@Path("companyId") Long companyId);
 }

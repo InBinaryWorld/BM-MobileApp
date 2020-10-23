@@ -63,6 +63,14 @@
         <item name="android:layout_height">80dp</item>
     </style>
 
+    <style name="Row.h10">
+        <item name="android:paddingHorizontal">10dp</item>
+    </style>
+
+    <style name="Row.h10.v8">
+        <item name="android:paddingVertical">8dp</item>
+    </style>
+
     <style name="Row.h18">
         <item name="android:paddingHorizontal">18dp</item>
     </style>
@@ -372,6 +380,11 @@
     <style name="ActionResultImageView.Success">
         <item name="android:tint">@color/colorSuccess</item>
         <item name="android:src">@drawable/ic_checked</item>
+    </style>
+
+    <style name="ActionResultImageView.Info">
+        <item name="android:tint">@color/colorBlueLight</item>
+        <item name="android:src">@drawable/ic_info</item>
     </style>
 
     <style name="ActionResultImageView.Failed">

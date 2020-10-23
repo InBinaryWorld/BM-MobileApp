@@ -9,6 +9,7 @@ import dev.szafraniak.bm_mobileapp.business.http.api.BmResourcesApi;
 import dev.szafraniak.bm_mobileapp.business.models.stats.CompanyStatsModel;
 import dev.szafraniak.bm_mobileapp.business.models.stats.FinancesStatsModel;
 import dev.szafraniak.bm_mobileapp.business.models.stats.InvoicesStatsModel;
+import dev.szafraniak.bm_mobileapp.business.models.stats.ResourcesStatsModel;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -35,6 +36,12 @@ public class StatisticsService {
 
     public Observable<InvoicesStatsModel> getInvoicesStats(Long companyId) {
         return bmResourcesApi.getInvoicesStats(companyId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<ResourcesStatsModel> getResourcesStats(Long companyId) {
+        return bmResourcesApi.getResourcesStats(companyId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread());
     }
