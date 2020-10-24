@@ -73,10 +73,10 @@ public class InvoiceCreateItemFormPresenter {
         if (ItemCommand.CREATE.equals(command.getType())) {
             item.setId(model.getNextItemsId());
             items.add(item);
-            formsManager.setCreateInvoiceFormModel(model);
         } else {
             replaceItem(items, item, command.getItemId());
         }
+        formsManager.setCreateInvoiceFormModel(model);
         Navigator.back(view);
     }
 

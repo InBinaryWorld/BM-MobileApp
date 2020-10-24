@@ -3,15 +3,59 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Row.TMP_DEV_HEIGHT_80">
+    style="@style/Row">
 
-    <TextView
-        android:id="@+id/tv_payment_type"
-        style="@style/BaseTextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/Row.h18.v12"
+        app:layout_constraintBottom_toTopOf="@id/v_divider"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="FV/71/254" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/BaseTextView.Title"
+            app:layout_constraintEnd_toStartOf="@+id/tv_state"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="FV/71/254" />
+
+        <TextView
+            android:id="@+id/tv_state"
+            style="@style/BaseTextView.Value"
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorError"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Unpaid" />
+
+        <TextView
+            android:id="@+id/tv_buyer"
+            style="@style/BaseTextView.Value"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/colorBlack60"
+            app:layout_constraintEnd_toStartOf="@+id/tv_state"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="Szafraniak Krzysztof" />
+
+        <TextView
+            android:id="@+id/tv_creation_date"
+            style="@style/BaseTextView.Value"
+            android:layout_width="wrap_content"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_buyer"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="2020.10.25" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/v_divider"
+        style="@style/Divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type;
+package dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.baseType;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,27 +12,27 @@ import java.util.HashMap;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.BaseSpinnerAdapter;
 
-public class ContactTypeAdapter extends BaseSpinnerAdapter<ContactType, ContactType> {
+public class BaseTypeAdapter<T> extends BaseSpinnerAdapter<T, T> {
 
     @LayoutRes
     private static final int layoutId = R.layout.row_spinner_base_preview;
     @LayoutRes
     private static final int dropdownLayoutId = R.layout.row_spinner_base_dropdown;
 
-    private final ContactTypeFormConfig config;
+    private final BaseTypeFormConfig<T> config;
 
-    public ContactTypeAdapter(LayoutInflater inflater, ContactTypeFormConfig config) {
+    public BaseTypeAdapter(LayoutInflater inflater, BaseTypeFormConfig<T> config) {
         super(inflater, config.getSpinnerItems());
         this.config = config;
     }
 
     @Override
-    protected ContactType extractGetItemValue(ContactType item) {
+    protected T extractGetItemValue(T item) {
         return item;
     }
 
     @Override
-    protected long getItemId(ContactType item) {
+    protected long getItemId(T item) {
         return 0;
     }
 
@@ -41,33 +41,37 @@ public class ContactTypeAdapter extends BaseSpinnerAdapter<ContactType, ContactT
         if (convertView == null) {
             convertView = inflater.inflate(layoutId, viewGroup, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.name = convertView.findViewById(R.id.tv_spinner_value);
+            viewHolder.value = convertView.findViewById(R.id.tv_spinner_value);
             convertView.setTag(viewHolder);
         }
-        ContactType item = getItem(position);
+        T item = getItem(position);
         ViewHolder holder = (ViewHolder) convertView.getTag();
-        HashMap<ContactType, String> displayValues = config.getDisplayValues();
-        holder.name.setText(displayValues.get(item));
+        HashMap<T, String> displayValues = config.getDisplayValues();
+        holder.value.setText(displayValues.get(item));
         return convertView;
     }
 
     @Override
     protected View createDropdownView(LayoutInflater inflater, int position, View convertView, ViewGroup viewGroup) {
+        return createPaymentView(inflater, position, convertView, viewGroup);
+    }
+
+    private View createPaymentView(LayoutInflater inflater, int position, View convertView, ViewGroup viewGroup) {
         if (convertView == null) {
             convertView = inflater.inflate(dropdownLayoutId, viewGroup, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.name = convertView.findViewById(R.id.tv_spinner_value);
+            viewHolder.value = convertView.findViewById(R.id.tv_spinner_value);
             convertView.setTag(viewHolder);
         }
-        ContactType item = getItem(position);
+        T item = getItem(position);
         ViewHolder holder = (ViewHolder) convertView.getTag();
-        HashMap<ContactType, String> displayValues = config.getDisplayValues();
-        holder.name.setText(displayValues.get(item));
+        HashMap<T, String> displayValues = config.getDisplayValues();
+        holder.value.setText(displayValues.get(item));
         return convertView;
     }
 
     private static class ViewHolder {
-        TextView name;
+        TextView value;
     }
 
 }

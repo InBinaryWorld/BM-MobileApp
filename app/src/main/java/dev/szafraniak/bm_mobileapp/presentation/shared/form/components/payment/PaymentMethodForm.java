@@ -13,18 +13,17 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethod;
 import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentTransfer;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.transfer.PaymentTransferForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.type.PaymentMethodType;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.type.PaymentMethodTypeForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.baseType.BaseTypeForm;
 
-import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.type.PaymentMethodType.CASH;
-import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.type.PaymentMethodType.TRANSFER;
+import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.PaymentMethodType.CASH;
+import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.PaymentMethodType.TRANSFER;
 
 public class PaymentMethodForm extends BaseForm<PaymentMethod, PaymentViewHolder, PaymentMethodFormConfig> {
 
     @LayoutRes
     private static final int layoutId = R.layout.form_base_group;
 
-    PaymentMethodTypeForm paymentMethodTypeForm;
+    BaseTypeForm<PaymentMethodType> paymentMethodTypeForm;
     PaymentTransferForm paymentTransferForm;
 
 
@@ -67,7 +66,7 @@ public class PaymentMethodForm extends BaseForm<PaymentMethod, PaymentViewHolder
 
         LinearLayout groupList = (LinearLayout) inflater.inflate(layoutId, viewGroup, false);
 
-        paymentMethodTypeForm = new PaymentMethodTypeForm(inflater, groupList, config.getPaymentTypeFormConfig());
+        paymentMethodTypeForm = new BaseTypeForm<>(inflater, groupList, config.getPaymentTypeFormConfig());
         paymentTransferForm = new PaymentTransferForm(inflater, groupList, config.getPaymentTransferFormConfig());
 
         View transferView = paymentTransferForm.getView();

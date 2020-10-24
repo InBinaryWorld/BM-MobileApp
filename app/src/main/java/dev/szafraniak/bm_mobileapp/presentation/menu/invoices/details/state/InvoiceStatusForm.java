@@ -7,15 +7,15 @@ import android.view.ViewGroup;
 import androidx.annotation.LayoutRes;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.UpdateInvoiceRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
 
 public class InvoiceStatusForm extends BaseDetails<Boolean, InvoiceStatusViewHolder, InvoiceStatusFormConfig> {
 
     @LayoutRes
     private final static int layoutId = R.layout.row_invoice_paid_status;
 
-    private OnModifyInvoiceRequest onModifyInvoiceRequest;
+    private FormInterface.Callback onPaidOffAction;
 
     public InvoiceStatusForm(LayoutInflater inflater, ViewGroup viewGroup, InvoiceStatusFormConfig config) {
         super(inflater, viewGroup, config);
@@ -45,28 +45,17 @@ public class InvoiceStatusForm extends BaseDetails<Boolean, InvoiceStatusViewHol
         holder.button.setEnabled(true);
         holder.button.setOnClickListener(view -> {
             blockButton();
-            UpdateInvoiceRequest request = new UpdateInvoiceRequest();
-            request.setIsPaid(true);
-            onModifyInvoiceRequest.onModifyRequest(request);
+            onPaidOffAction.call();
         });
     }
 
-    public interface OnModifyInvoiceRequest {
-        void onModifyRequest(UpdateInvoiceRequest request);
-    }
-
-    public void setOnModifyInvoiceRequest(OnModifyInvoiceRequest onModify) {
-        this.onModifyInvoiceRequest = onModify;
+    public void setOnModifyInvoiceRequest(FormInterface.Callback onModify) {
+        this.onPaidOffAction = onModify;
     }
 
     public void blockButton() {
         InvoiceStatusViewHolder holder = getViewHolder();
         holder.button.setEnabled(false);
-    }
-
-    public void unblockProgress() {
-        InvoiceStatusViewHolder holder = getViewHolder();
-        holder.button.setEnabled(true);
     }
 
 }

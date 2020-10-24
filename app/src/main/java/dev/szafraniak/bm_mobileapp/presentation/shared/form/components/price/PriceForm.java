@@ -9,6 +9,7 @@ import androidx.annotation.LayoutRes;
 import java.math.BigDecimal;
 
 import dev.szafraniak.bm_mobileapp.R;
+import dev.szafraniak.bm_mobileapp.business.Constance;
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.utils.FinancesUtils;
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
@@ -47,6 +48,7 @@ public class PriceForm extends BaseForm<Price, BaseViewHolder, PriceFormConfig> 
         price.setNet(net);
         price.setTaxRate(taxRate);
         price.setGross(gross);
+        price.setCurrency(Constance.CURRENCY);
         return price;
     }
 

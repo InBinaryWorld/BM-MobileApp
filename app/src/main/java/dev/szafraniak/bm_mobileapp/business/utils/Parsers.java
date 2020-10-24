@@ -133,7 +133,7 @@ public final class Parsers {
         }
     }
 
-    public static String safeFormat(OffsetDateTime offsetDateTime) {
+    public static String safeFormatDateTime(OffsetDateTime offsetDateTime) {
         if (offsetDateTime == null) {
             return null;
         }
@@ -142,16 +142,32 @@ public final class Parsers {
         return dateTimeAtSystemZone.format(dateTimeFormat);
     }
 
-    public static String safeFormat(LocalDate dueDate) {
+    public static String safeFormatDate(OffsetDateTime offsetDateTime) {
+        if (offsetDateTime == null) {
+            return null;
+        }
+        ZoneOffset offset = OffsetDateTime.now().getOffset();
+        OffsetDateTime dateTimeAtSystemZone = offsetDateTime.withOffsetSameInstant(offset);
+        return dateTimeAtSystemZone.format(dateFormat);
+    }
+
+    public static String safeFormatDate(LocalDate dueDate) {
         if (dueDate != null) {
             return dueDate.format(dateFormat);
         }
         return null;
     }
 
-    public static String safeFormat(LocalDateTime dueDate) {
+    public static String safeFormatDateTime(LocalDateTime dueDate) {
         if (dueDate != null) {
             return dueDate.format(dateTimeFormat);
+        }
+        return null;
+    }
+
+    public static String safeFormatDate(LocalDateTime dueDate) {
+        if (dueDate != null) {
+            return dueDate.format(dateFormat);
         }
         return null;
     }
@@ -198,7 +214,7 @@ public final class Parsers {
         return instant.atZone(TimeUtils.getUtcZoneId()).toLocalDateTime();
     }
 
-    public static String safeFormat(LocalTime value) {
+    public static String safeFormatTime(LocalTime value) {
         if (value != null) {
             return value.toString();
         }

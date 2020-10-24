@@ -54,7 +54,7 @@ public class FinancialEventListAdapter extends BaseListAdapter<FinancialRow, Fin
 
         ViewHolder holder = (ViewHolder) convertView.getTag();
         holder.title.setText(item.getTitle());
-        holder.eventDate.setText(Parsers.safeFormat(item.getEventDate()));
+        holder.eventDate.setText(Parsers.safeFormatDateTime(item.getEventDate()));
         holder.amount.setTextColor(isIncome ? colorIncome : colorOutcome);
         holder.amount.setText(Parsers.safeFormatPrice(absAmount));
         return convertView;

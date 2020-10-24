@@ -19,7 +19,6 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.Indi
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.UpdateIndividualContactRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.CreateInvoiceRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
-import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.UpdateInvoiceRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.CreateProductRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.Product;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.UpdateProductRequest;
@@ -194,10 +193,9 @@ public interface BmResourcesApi {
     Observable<Invoice> createInvoice(@Path("companyId") Long companyId,
                                       @Body CreateInvoiceRequest request);
 
-    @PUT("/api/companies/{companyId}/invoices/{invoiceId}")
-    Observable<Invoice> modifyInvoice(@Path("companyId") Long companyId,
-                                      @Path("invoiceId") Long invoiceId,
-                                      @Body UpdateInvoiceRequest requestBody);
+    @PUT("/api/companies/{companyId}/invoices/{invoiceId}/action/paid")
+    Observable<Invoice> paidOffAction(@Path("companyId") Long companyId,
+                                      @Path("invoiceId") Long invoiceId);
 
     //    ###########  BANK ACCOUNT  ##########
 

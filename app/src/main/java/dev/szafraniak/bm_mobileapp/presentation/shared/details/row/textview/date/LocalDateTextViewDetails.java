@@ -17,6 +17,6 @@ public class LocalDateTextViewDetails extends TextViewDetails<LocalDate, SimpleD
 
     @Override
     protected String parseToDisplay(LocalDate value) {
-        return Parsers.safeFormat(value);
+        return Parsers.safeFormatDate(value);
     }
 }

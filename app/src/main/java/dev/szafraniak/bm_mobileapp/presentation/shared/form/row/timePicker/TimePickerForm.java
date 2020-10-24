@@ -47,7 +47,7 @@ public class TimePickerForm extends LabelFormRow<LocalTime, TimePickerFormViewHo
         holder.error.setVisibility(isValid ? View.GONE : View.VISIBLE);
         holder.dataView.setVisibility(isNull ? View.GONE : View.VISIBLE);
         holder.emptyView.setVisibility(!isNull ? View.GONE : View.VISIBLE);
-        holder.value.setText(Parsers.safeFormat(getValue()));
+        holder.value.setText(Parsers.safeFormatTime(getValue()));
     }
 
     @Override

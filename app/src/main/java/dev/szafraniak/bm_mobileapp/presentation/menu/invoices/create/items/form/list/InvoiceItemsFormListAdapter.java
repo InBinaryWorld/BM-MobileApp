@@ -11,13 +11,16 @@ import androidx.annotation.LayoutRes;
 import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
+import dev.szafraniak.bm_mobileapp.business.models.AmountModel;
+import dev.szafraniak.bm_mobileapp.business.utils.FinancesUtils;
+import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.list.BaseListFormAdapter;
 
 public class InvoiceItemsFormListAdapter extends BaseListFormAdapter<InvoiceItemFormModel> {
 
     @LayoutRes
-    private static final int layoutId = R.layout.row_invoice_create_items;
+    private static final int layoutId = R.layout.row_invoice_create_item;
 
     public InvoiceItemsFormListAdapter(LayoutInflater inflater, List<InvoiceItemFormModel> invoiceItems) {
         super(inflater, invoiceItems);
@@ -28,17 +31,30 @@ public class InvoiceItemsFormListAdapter extends BaseListFormAdapter<InvoiceItem
         if (convertView == null) {
             convertView = inflater.inflate(layoutId, parent, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.name = convertView.findViewById(R.id.tv_item_name);
+            viewHolder.name = convertView.findViewById(R.id.tv_name);
+            viewHolder.quantity = convertView.findViewById(R.id.tv_quantity);
+            viewHolder.quantityUnit = convertView.findViewById(R.id.tv_quantity_unit);
+            viewHolder.amount = convertView.findViewById(R.id.tv_amount);
+            viewHolder.amountCurrency = convertView.findViewById(R.id.tv_amount_currency);
             viewHolder.removeIcon = convertView.findViewById(R.id.iv_remove);
             convertView.setTag(viewHolder);
         }
         InvoiceItemFormModel item = getItem(position);
         ViewHolder holder = (ViewHolder) convertView.getTag();
-        String invoiceName = item.getName();
-        holder.name.setText(invoiceName);
-        holder.removeIcon.setOnClickListener((view) -> removeItem(item));
+        fullFillView(item, holder);
         return convertView;
     }
+
+    private void fullFillView(InvoiceItemFormModel item, ViewHolder holder) {
+        AmountModel amount = FinancesUtils.countAmount(item);
+        holder.name.setText(item.getName());
+        holder.quantity.setText(Parsers.safeFormatWithFraction(item.getQuantity()));
+        holder.quantityUnit.setText(item.getQuantityUnit());
+        holder.amount.setText(Parsers.safeFormatPrice(amount.getGross()));
+        holder.amountCurrency.setText(item.getPrice().getCurrency());
+        holder.removeIcon.setOnClickListener((view) -> removeItem(item));
+    }
+
 
     @Override
     public long getItemId(int i) {
@@ -47,6 +63,10 @@ public class InvoiceItemsFormListAdapter extends BaseListFormAdapter<InvoiceItem
 
     static class ViewHolder {
         TextView name;
+        TextView quantity;
+        TextView quantityUnit;
+        TextView amount;
+        TextView amountCurrency;
         ImageView removeIcon;
     }
 

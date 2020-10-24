@@ -38,7 +38,7 @@ public class ClickablePaymentForm extends ClickableHolderForm<PaymentFormModel, 
         ClickablePaymentFormViewHolder holder = getViewHolder();
         holder.dataView.setVisibility(View.VISIBLE);
         holder.emptyView.setVisibility(View.GONE);
-        holder.dueDate.setText(Parsers.safeFormat(value.getDueDate()));
+        holder.dueDate.setText(Parsers.safeFormatDate(value.getDueDate()));
         holder.paymentMethod.setText(getPaymentDisplayName(value.getPaymentMethod()));
     }
 

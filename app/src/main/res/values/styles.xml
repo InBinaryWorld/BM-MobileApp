@@ -123,6 +123,11 @@
         <item name="android:divider">@null</item>
     </style>
 
+
+    <style name="ListView.BottomPadding">
+        <item name="android:paddingBottom">84dp</item>
+    </style>
+
     <style name="ListView.VerticalPadding">
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">84dp</item>
@@ -130,8 +135,15 @@
 
     <style name="Divider">
         <item name="android:layout_height">1dp</item>
-        <item name="android:layout_width">match_parent</item>`
+        <item name="android:layout_width">0dp</item>`
         <item name="android:layout_marginHorizontal">10dp</item>
+        <item name="android:background">@color/colorBlack10a</item>
+    </style>
+
+    <style name="DividerVertical">
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">1dp</item>`
+        <item name="android:layout_marginVertical">10dp</item>
         <item name="android:background">@color/colorBlack10a</item>
     </style>
 
@@ -175,18 +187,21 @@
 
     <style name="BaseTextView.Value">
         <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+    </style>
+
+    <style name="BaseTextView.ValueS">
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="BaseTextView.Value.Amount">
-        <item name="android:textSize">21sp</item>
-    </style>
-
-    <style name="BaseTextView.Value.Currency">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:letterSpacing">-0.05</item>
     </style>
 
     <style name="BaseTextView.Value.Number">
         <item name="android:textSize">26sp</item>
+        <item name="android:letterSpacing">-0.05</item>
     </style>
 
     <style name="BaseTextView.Value.Bold">
@@ -214,7 +229,7 @@
         <item name="fontFamily">@font/roboto_light</item>
         <item name="android:textSize">28sp</item>
         <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:letterSpacing">0.06</item>
+        <item name="android:letterSpacing">0.05</item>
     </style>
 
     <style name="BaseTextView.Title">
@@ -376,6 +391,13 @@
         <item name="android:src">@drawable/ic_info</item>
     </style>
 
+    <style name="CryImageView">
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_width">80dp</item>
+        <item name="android:tint">@color/colorBlueLight</item>
+        <item name="android:src">@drawable/ic_cry</item>
+    </style>
+
     <style name="PhoneImageView">
         <item name="android:tint">@color/blue_light_black40</item>
         <item name="android:src">@drawable/ic_phone</item>
@@ -390,9 +412,9 @@
 
     <style name="RemoveItemImageView">
         <item name="android:src">@drawable/ic_close</item>
-        <item name="android:layout_width">30dp</item>
-        <item name="android:layout_height">30dp</item>
-        <item name="tint">@color/colorBlueLight</item>
+        <item name="android:layout_width">26dp</item>
+        <item name="android:layout_height">26dp</item>
+        <item name="tint">@color/colorError</item>
     </style>
 
     <style name="BarcodeScannerImageView">

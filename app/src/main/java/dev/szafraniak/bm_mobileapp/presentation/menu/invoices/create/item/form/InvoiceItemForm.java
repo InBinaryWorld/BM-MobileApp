@@ -11,16 +11,15 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.product.ProductAutoCompleteForm;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.service.ServiceAutoCompleteForm;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.type.ItemType;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.type.ItemTypeForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.baseType.BaseTypeForm;
 
 public class InvoiceItemForm extends BaseForm<InvoiceItemFormModel, InvoiceItemViewHolder, InvoiceItemFormConfig> {
 
     @LayoutRes
     private static final int layoutId = R.layout.form_base_group_with_padding;
 
-    ItemTypeForm itemTypeForm;
+    BaseTypeForm<ItemType> itemTypeForm;
     ProductAutoCompleteForm productForm;
     ServiceAutoCompleteForm serviceForm;
 
@@ -70,7 +69,7 @@ public class InvoiceItemForm extends BaseForm<InvoiceItemFormModel, InvoiceItemV
 
         LinearLayout groupList = (LinearLayout) inflater.inflate(layoutId, viewGroup, false);
 
-        itemTypeForm = new ItemTypeForm(inflater, groupList, config.getItemTypeForm());
+        itemTypeForm = new BaseTypeForm<ItemType>(inflater, groupList, config.getItemTypeForm());
         productForm = new ProductAutoCompleteForm(inflater, groupList, config.getProductConfig());
         serviceForm = new ServiceAutoCompleteForm(inflater, groupList, config.getServiceConfig());
 

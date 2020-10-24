@@ -77,7 +77,7 @@
     <string name="header_finances">Finances</string>
     <string name="header_financial_event_list">Financial Events</string>
     <string name="header_financial_event_create">New Event</string>
-    <string name="header_financial_event_modify">Modify Financial Event</string>
+    <string name="header_financial_event_modify">Modify Event</string>
     <string name="header_individual_contact_list">Individual Contacts</string>
     <string name="header_invoice_list">Invoices</string>
     <string name="header_invoice_base_data_create">Invoice Data</string>
@@ -134,5 +134,11 @@
     <string name="row_company_list_products_value">Products Value</string>
     <string name="row_invoice_details_download">Download</string>
     <string name="row_product_model_resource_name">Resource name</string>
+    <string name="row_Invoice_state_paid">Paid</string>
+    <string name="row_invoice_state_unpaid">Unpaid</string>
+    <string name="invoices_finances_card_no_event">No event</string>
+    <string name="invoices_list_card_finances_state">Finances State</string>
+    <string name="finances_list_card_last_event">Last Event</string>
+    <string name="row_form_invoice_items_summary">Summary</string>
 
 </resources>

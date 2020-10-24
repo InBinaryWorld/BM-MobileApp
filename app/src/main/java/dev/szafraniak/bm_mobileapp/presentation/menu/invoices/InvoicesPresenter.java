@@ -6,7 +6,11 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.InvoiceService;
+import dev.szafraniak.bm_mobileapp.business.http.service.StatisticsService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
+import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
+import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
+import io.reactivex.Observable;
 import lombok.Setter;
 
 public class InvoicesPresenter {
@@ -20,6 +24,9 @@ public class InvoicesPresenter {
     @Inject
     InvoiceService invoiceService;
 
+    @Inject
+    StatisticsService statisticsService;
+
     public InvoicesPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
     }
@@ -27,7 +34,18 @@ public class InvoicesPresenter {
     public void loadData() {
         Long companyId = sessionManager.getCompanyId();
         invoiceService.getInvoices(companyId)
-                .compose(view.bindToLifecycle())
-                .subscribe(view::setData, view::setError);
+            .flatMap(collection -> appendStats(collection, companyId))
+            .compose(view.bindToLifecycle())
+            .subscribe(view::setData, view::setError);
+    }
+
+    private Observable<InvoicesDataModel> appendStats(BMCollection<Invoice> invoicesCollection, Long companyId) {
+        return statisticsService.getFinancesStats(companyId)
+            .map(stats -> {
+                InvoicesDataModel model = new InvoicesDataModel();
+                model.setFinancesStats(stats);
+                model.setInvoiceCollection(invoicesCollection);
+                return model;
+            });
     }
 }

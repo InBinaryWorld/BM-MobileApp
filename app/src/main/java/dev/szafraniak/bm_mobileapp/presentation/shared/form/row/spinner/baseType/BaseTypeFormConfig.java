@@ -1,4 +1,4 @@
-package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.type;
+package dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.baseType;
 
 import java.util.HashMap;
 
@@ -8,8 +8,8 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ItemTypeFormConfig extends SpinnerFormRowConfig<ItemType, ItemType> {
+public class BaseTypeFormConfig<T> extends SpinnerFormRowConfig<T, T> {
 
-    private HashMap<ItemType, String> displayValues;
+    private HashMap<T, String> displayValues;
 
 }

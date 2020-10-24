@@ -4,7 +4,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.contact.Contact;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.company.CompanyAutoCompleteFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.individual.IndividualAutoCompleteFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactTypeFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.baseType.BaseTypeFormConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class ContactFormConfig extends BaseFormConfig<Contact> {
 
-    protected ContactTypeFormConfig contactTypeForm;
+    protected BaseTypeFormConfig<ContactType> contactTypeForm;
     protected IndividualAutoCompleteFormConfig individualConfig;
     protected CompanyAutoCompleteFormConfig companyConfig;
 

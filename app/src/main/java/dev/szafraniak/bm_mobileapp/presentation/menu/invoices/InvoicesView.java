@@ -5,4 +5,5 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListView;
 
 public interface InvoicesView extends BaseListView<Invoice> {
 
+    void setData(InvoicesDataModel invoicesDataModel);
 }

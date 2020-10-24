@@ -22,9 +22,8 @@
 
             <TextView
                 android:id="@+id/tv_address"
-                style="@style/BaseTextView.Value"
+                style="@style/BaseTextView.ValueS"
                 android:textColor="@color/colorBlack60"
-                android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_company_name"
@@ -49,7 +48,7 @@
 
                 <TextView
                     android:id="@+id/tv_finances_state_currency"
-                    style="@style/BaseTextView.Value.Currency"
+                    style="@style/BaseTextView.ValueS"
                     android:layout_width="wrap_content"
                     android:layout_marginStart="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +85,7 @@
 
                 <TextView
                     android:id="@+id/tv_products_value_currency"
-                    style="@style/BaseTextView.Value.Currency"
+                    style="@style/BaseTextView.ValueS"
                     android:layout_width="wrap_content"
                     android:layout_marginStart="2dp"
                     app:layout_constraintEnd_toEndOf="parent"

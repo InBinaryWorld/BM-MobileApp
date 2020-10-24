@@ -109,7 +109,7 @@
 
                             <TextView
                                 android:id="@+id/tv_unpaid_value_currency"
-                                style="@style/BaseTextView.Value.Currency"
+                                style="@style/BaseTextView.ValueS"
                                 android:layout_width="wrap_content"
                                 android:layout_marginStart="2dp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -146,7 +146,7 @@
 
                             <TextView
                                 android:id="@+id/tv_last_invoice_currency"
-                                style="@style/BaseTextView.Value.Currency"
+                                style="@style/BaseTextView.ValueS"
                                 android:layout_width="wrap_content"
                                 android:layout_marginStart="2dp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -182,7 +182,7 @@
 
                             <TextView
                                 android:id="@+id/tv_paid_value_currency"
-                                style="@style/BaseTextView.Value.Currency"
+                                style="@style/BaseTextView.ValueS"
                                 android:layout_width="wrap_content"
                                 android:layout_marginStart="2dp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -231,48 +231,10 @@
                             android:text="@string/dashboard_finances_title" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/cl_income"
-                            android:layout_marginTop="20dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/gl_v1"
-                            app:layout_constraintTop_toBottomOf="@id/tv_finances_title"
-                            style="@style/WrapperContainer">
-
-                            <TextView
-                                android:id="@+id/tv_income"
-                                style="@style/BaseTextView.Value.Amount"
-                                android:textColor="@color/colorSuccess"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                tools:text="1,213.57" />
-
-                            <TextView
-                                android:id="@+id/tv_income_currency"
-                                style="@style/BaseTextView.Value"
-                                android:layout_width="wrap_content"
-                                android:textSize="12sp"
-                                android:layout_marginStart="2dp"
-                                app:layout_constraintBaseline_toBaselineOf="@+id/tv_income"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@id/tv_income"
-                                tools:text="PLN" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <TextView
-                            android:id="@+id/tv_income_label"
-                            style="@style/BaseTextView.Label"
-                            android:layout_marginTop="4dp"
-                            android:gravity="center"
-                            android:text="@string/dashboard_total_income"
-                            app:layout_constraintEnd_toStartOf="@+id/gl_v1"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/cl_income" />
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/cl_outcome"
                             android:layout_marginTop="20dp"
-                            app:layout_constraintStart_toEndOf="@+id/gl_v1"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/gl_v1"
                             app:layout_constraintTop_toBottomOf="@id/tv_finances_title"
                             style="@style/WrapperContainer">
 
@@ -286,10 +248,9 @@
 
                             <TextView
                                 android:id="@+id/tv_outcome_currency"
-                                style="@style/BaseTextView.Value"
+                                style="@style/BaseTextView.ValueS"
                                 android:layout_width="wrap_content"
                                 android:layout_marginStart="2dp"
-                                android:textSize="12sp"
                                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_outcome"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/tv_outcome"
@@ -300,12 +261,49 @@
                         <TextView
                             android:id="@+id/tv_outcome_label"
                             style="@style/BaseTextView.Label"
+                            android:layout_marginTop="4dp"
                             android:textAlignment="center"
                             android:text="@string/dashboard_total_outcome"
-                            app:layout_constraintBaseline_toBaselineOf="@+id/tv_income_label"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/gl_v1" />
+                            app:layout_constraintTop_toBottomOf="@+id/cl_outcome"
+                            app:layout_constraintEnd_toStartOf="@+id/gl_v1"
+                            app:layout_constraintStart_toStartOf="parent" />
 
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cl_income"
+                            style="@style/WrapperContainer"
+                            android:layout_marginTop="20dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/cl_outcome"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/gl_v1"
+                            app:layout_constraintTop_toBottomOf="@id/tv_finances_title">
+
+                            <TextView
+                                android:id="@+id/tv_income"
+                                style="@style/BaseTextView.Value.Amount"
+                                android:textColor="@color/colorSuccess"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                tools:text="1,213.57" />
+
+                            <TextView
+                                android:id="@+id/tv_income_currency"
+                                style="@style/BaseTextView.ValueS"
+                                android:layout_width="wrap_content"
+                                android:layout_marginStart="2dp"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/tv_income"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/tv_income"
+                                tools:text="PLN" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:id="@+id/tv_income_label"
+                            style="@style/BaseTextView.Label"
+                            android:gravity="center"
+                            android:text="@string/dashboard_total_income"
+                            app:layout_constraintBaseline_toBaselineOf="@+id/tv_outcome_label"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/gl_v1" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/cl_last_event"
@@ -324,10 +322,9 @@
 
                             <TextView
                                 android:id="@+id/tv_last_event_currency"
-                                style="@style/BaseTextView.Value"
+                                style="@style/BaseTextView.ValueS"
                                 android:layout_width="wrap_content"
                                 android:layout_marginStart="2dp"
-                                android:textSize="12sp"
                                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_last_event"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/tv_last_event"
@@ -361,10 +358,9 @@
 
                             <TextView
                                 android:id="@+id/tv_current_state_currency"
-                                style="@style/BaseTextView.Value"
+                                style="@style/BaseTextView.ValueS"
                                 android:layout_width="wrap_content"
                                 android:layout_marginStart="2dp"
-                                android:textSize="12sp"
                                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_current_state"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/tv_current_state"
@@ -448,7 +444,7 @@
 
                             <TextView
                                 android:id="@+id/tv_products_value_currency"
-                                style="@style/BaseTextView.Value.Currency"
+                                style="@style/BaseTextView.ValueS"
                                 android:layout_width="wrap_content"
                                 android:layout_marginStart="2dp"
                                 app:layout_constraintBaseline_toBaselineOf="@+id/tv_products_value"

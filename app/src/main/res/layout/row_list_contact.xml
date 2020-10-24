@@ -22,8 +22,7 @@
 
         <TextView
             android:id="@+id/tv_address"
-            style="@style/BaseTextView.Value"
-            android:textSize="13sp"
+            style="@style/BaseTextView.ValueS"
             android:layout_marginTop="4dp"
             app:layout_constraintEnd_toStartOf="@+id/iv_phone"
             app:layout_constraintStart_toStartOf="parent"

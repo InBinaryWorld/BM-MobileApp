@@ -46,7 +46,7 @@ public class DatePickerForm extends LabelFormRow<LocalDate, DatePickerFormViewHo
         holder.error.setVisibility(isValid ? View.GONE : View.VISIBLE);
         holder.dataView.setVisibility(isNull ? View.GONE : View.VISIBLE);
         holder.emptyView.setVisibility(!isNull ? View.GONE : View.VISIBLE);
-        holder.value.setText(Parsers.safeFormat(getValue()));
+        holder.value.setText(Parsers.safeFormatDate(getValue()));
     }
 
     @Override

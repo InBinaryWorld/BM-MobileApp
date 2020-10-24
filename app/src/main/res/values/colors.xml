@@ -20,6 +20,7 @@
     <color name="colorBlack20">#CCCCCC</color>
     <color name="colorBlack40">#9A9A9A</color>
     <color name="colorBlack60">#666666</color>
+    <color name="colorBlack80">#333333</color>
     <color name="colorError">#B00020</color>
     <color name="colorSuccess">#009900</color>
 </resources>

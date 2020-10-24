@@ -124,8 +124,7 @@
 
             <ListView
                 android:id="@+id/list"
-                style="@style/ListView.VerticalPadding"
-                android:paddingTop="0dp"
+                style="@style/ListView.BottomPadding"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

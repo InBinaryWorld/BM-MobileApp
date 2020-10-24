@@ -18,7 +18,9 @@ public abstract class BaseListFormRow<T> extends BaseFormRow<List<T>, ListFormVi
     protected BaseListFormAdapter<T> adapter;
 
     @LayoutRes
-    private final static int layoutId = R.layout.form_base_list;
+    protected int getLayoutId() {
+        return R.layout.form_base_list;
+    }
 
     public BaseListFormRow(LayoutInflater inflater, ViewGroup viewGroup, ListFormRowConfig<T> config) {
         super(inflater, viewGroup, config);
@@ -57,7 +59,7 @@ public abstract class BaseListFormRow<T> extends BaseFormRow<List<T>, ListFormVi
     @Override
     protected ListFormViewHolder createViewHolder(LayoutInflater inflater, ViewGroup viewGroup, ListFormRowConfig<T> config) {
         ListFormViewHolder holder = new ListFormViewHolder();
-        holder.view = inflater.inflate(layoutId, viewGroup, false);
+        holder.view = inflater.inflate(getLayoutId(), viewGroup, false);
         holder.listView = holder.view.findViewById(R.id.list);
         holder.emptyView = holder.view.findViewById(R.id.empty_list);
         return holder;

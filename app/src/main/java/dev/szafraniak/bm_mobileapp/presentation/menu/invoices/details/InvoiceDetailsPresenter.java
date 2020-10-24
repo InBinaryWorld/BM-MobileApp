@@ -13,7 +13,6 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.InvoiceService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
-import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.UpdateInvoiceRequest;
 import dev.szafraniak.bm_mobileapp.business.utils.FileUtils;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.state.InvoiceStatusFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsConfigurations;
@@ -95,9 +94,9 @@ public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, Invoi
         }
     }
 
-    public void updateInvoice(Long invoiceId, UpdateInvoiceRequest updateInvoiceRequest) {
+    public void paidOffAction(Long invoiceId) {
         Long companyId = sessionManager.getCompanyId();
-        invoiceService.modifyInvoice(companyId, invoiceId, updateInvoiceRequest)
+        invoiceService.paidOffAction(companyId, invoiceId)
             .compose(view.bindToLifecycle())
             .subscribe(this::onModifySucceed, this::onActionFailed);
 

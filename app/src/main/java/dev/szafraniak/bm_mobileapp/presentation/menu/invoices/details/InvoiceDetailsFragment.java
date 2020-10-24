@@ -14,7 +14,6 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
-import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.UpdateInvoiceRequest;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsFragmentWithBtn;
@@ -75,12 +74,12 @@ public class InvoiceDetailsFragment extends BaseDetailsFragmentWithBtn<Invoice, 
     @Override
     protected DetailsInterface<Invoice> createForm(LayoutInflater inflater, ViewGroup viewGroup, InvoiceDetailsConfig config) {
         InvoiceDetails form = new InvoiceDetails(inflater, detailsLayout, config);
-        form.setOnInvoiceChange(this::onInvoiceUpdate);
+        form.setOnInvoiceChange(this::onPaidOffAction);
         return form;
     }
 
-    private void onInvoiceUpdate(UpdateInvoiceRequest updateInvoiceRequest) {
-        presenter.updateInvoice(invoice.getId(), updateInvoiceRequest);
+    private void onPaidOffAction() {
+        presenter.paidOffAction(invoice.getId());
     }
 
     @Override

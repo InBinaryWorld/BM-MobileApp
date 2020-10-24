@@ -8,7 +8,6 @@ import androidx.annotation.LayoutRes;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
-import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.UpdateInvoiceRequest;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.state.InvoiceStatusForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.EditTextViewHolder;
@@ -17,6 +16,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.date
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.date.OffsetDateTextViewDetails;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.number.DecimalTextViewDetails;
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.text.TextTextViewDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
 
 public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, InvoiceDetailsConfig> {
 
@@ -30,7 +30,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
     OffsetDateTextViewDetails creationDate;
     InvoiceStatusForm statusForm;
 
-    private OnInvoiceStateChange onInvoiceStateChange;
+    private FormInterface.Callback onPaidOffAction;
 
     public InvoiceDetails(LayoutInflater inflater, ViewGroup viewGroup, InvoiceDetailsConfig config) {
         super(inflater, viewGroup, config);
@@ -80,21 +80,16 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
 
     @Override
     protected void setupView(LayoutInflater inflater, InvoiceDetailsConfig config) {
-        statusForm.setOnModifyInvoiceRequest(request -> {
-            if (onInvoiceStateChange != null) {
-                onInvoiceStateChange.onStateUpdate(request);
+        // Dodatkowa konfiguracja
+        statusForm.setOnModifyInvoiceRequest(() -> {
+            if (onPaidOffAction != null) {
+                onPaidOffAction.call();
             }
         });
-
-        // Dodatkowa konfiguracja
     }
 
-    public void setOnInvoiceChange(OnInvoiceStateChange onInvoiceStateChange) {
-        this.onInvoiceStateChange = onInvoiceStateChange;
-    }
-
-    public interface OnInvoiceStateChange {
-        void onStateUpdate(UpdateInvoiceRequest updateInvoiceRequest);
+    public void setOnInvoiceChange(FormInterface.Callback onPaidOffAction) {
+        this.onPaidOffAction = onPaidOffAction;
     }
 
 }

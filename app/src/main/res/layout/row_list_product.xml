@@ -54,8 +54,7 @@
 
         <TextView
             android:id="@+id/tv_price_currency"
-            style="@style/BaseTextView.Value.Currency"
-            android:textColor="@color/colorBlack60"
+            style="@style/BaseTextView.ValueS"
             android:layout_width="wrap_content"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_price"
             app:layout_constraintStart_toEndOf="@id/gl_v1"
@@ -63,9 +62,8 @@
 
         <TextView
             android:id="@+id/tv_quantity_unit"
-            style="@style/BaseTextView.Value.Currency"
+            style="@style/BaseTextView.ValueS"
             android:layout_width="wrap_content"
-            android:textColor="@color/colorBlack60"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_quantity"
             app:layout_constraintStart_toStartOf="@+id/gl_v1"
             tools:text="szt." />

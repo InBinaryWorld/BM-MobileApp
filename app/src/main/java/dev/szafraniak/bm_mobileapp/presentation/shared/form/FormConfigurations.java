@@ -30,10 +30,9 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItem
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.contact.ClickableContactFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.payment.ClickablePaymentFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.InvoiceItemFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.ItemType;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.product.ProductAutoCompleteFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.service.ServiceAutoCompleteFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.type.ItemType;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.type.ItemTypeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.InvoiceItemsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.summary.InvoiceItemsSummaryConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.product.create.model.ProductModelSpinnerFormConfig;
@@ -41,20 +40,19 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsConfigurat
 import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.address.AddressFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactType;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.company.CompanyAutoCompleteFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.individual.IndividualAutoCompleteFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactType;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactTypeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.dateTimePicker.DateTimePickerFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.PaymentMethodFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.PaymentMethodType;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.transfer.PaymentTransferFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.type.PaymentMethodType;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.type.PaymentMethodTypeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.price.PriceFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.autoComplete.AutoCompleteTextFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.barcode.BarcodeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.datePicker.DatePickerFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.list.ListFormRowConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.baseType.BaseTypeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.timePicker.TimePickerFormConfig;
 
@@ -356,12 +354,12 @@ public final class FormConfigurations {
         return config;
     }
 
-    private static PaymentMethodTypeFormConfig getPaymentTypeFormConfig() {
+    private static BaseTypeFormConfig<PaymentMethodType> getPaymentTypeFormConfig() {
         HashMap<PaymentMethodType, String> displayValues = new HashMap<>();
         displayValues.put(PaymentMethodType.CASH, "Cash");
         displayValues.put(PaymentMethodType.TRANSFER, "Transfer");
 
-        PaymentMethodTypeFormConfig config = new PaymentMethodTypeFormConfig();
+        BaseTypeFormConfig<PaymentMethodType> config = new BaseTypeFormConfig<>();
         config.setSpinnerItems(new ArrayList<>(displayValues.keySet()));
         config.setDisplayValues(displayValues);
         config.setVisibleOnSetValueNull(true);
@@ -466,12 +464,12 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static ContactTypeFormConfig getContactTypeConfig() {
+    public static BaseTypeFormConfig<ContactType> getContactTypeConfig() {
         HashMap<ContactType, String> map = new HashMap<>();
         map.put(ContactType.INDIVIDUAL, "Individual Contact");
         map.put(ContactType.COMPANY, "Company Contact");
 
-        ContactTypeFormConfig config = new ContactTypeFormConfig();
+        BaseTypeFormConfig<ContactType> config = new BaseTypeFormConfig<>();
         config.setVisibleOnSetValueNull(true);
         config.setRequired(true);
         config.setLabel("Select contact type");
@@ -546,12 +544,12 @@ public final class FormConfigurations {
     }
 
 
-    private static ItemTypeFormConfig getItemTypeConfig() {
+    private static BaseTypeFormConfig<ItemType> getItemTypeConfig() {
         HashMap<ItemType, String> map = new HashMap<>();
         map.put(ItemType.PRODUCT, "Product");
         map.put(ItemType.SERVICE, "Service");
 
-        ItemTypeFormConfig config = new ItemTypeFormConfig();
+        BaseTypeFormConfig<ItemType> config = new BaseTypeFormConfig<>();
         config.setVisibleOnSetValueNull(true);
         config.setRequired(true);
         config.setDefaultValue(ItemType.PRODUCT);

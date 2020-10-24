@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/Row"
     android:clickable="true">
 
@@ -14,58 +15,49 @@
         <TextView
             android:id="@+id/tv_Summary"
             style="@style/BaseTextView.Title"
-            android:text="Summary"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlueDark"
+            android:text="@string/row_form_invoice_items_summary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_total_items_label"
             android:layout_marginTop="4dp"
-            style="@style/BaseTextView.Label.Bold"
+            style="@style/BaseTextView.Label"
             android:text="@string/invoice_create_items_summary_total_items"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_Summary" />
 
         <TextView
             android:id="@+id/tv_total_items"
-            style="@style/BaseTextView.Value.Bold"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/BaseTextView.Value"
             android:layout_marginStart="4dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_total_items_label"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_total_items_label"
             app:layout_constraintStart_toEndOf="@id/tv_total_items_label"
-            app:layout_constraintTop_toTopOf="@+id/tv_total_items_label" />
+            tools:text="34" />
 
         <TextView
             android:id="@+id/tv_total_gross_label"
-            style="@style/BaseTextView.Label.Bold"
+            style="@style/BaseTextView.Label"
+            android:layout_marginTop="4dp"
             android:text="@string/invoice_create_items_summary_total_gross"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_total_items_label" />
 
         <TextView
             android:id="@+id/tv_total_gross"
-            style="@style/BaseTextView.Value.Bold"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/BaseTextView.Value"
             android:layout_marginStart="4dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_total_gross_label"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_total_gross_label"
             app:layout_constraintStart_toEndOf="@+id/tv_total_gross_label"
-            app:layout_constraintTop_toTopOf="@+id/tv_total_gross_label" />
+            tools:text="12312" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_add_item"
             style="@style/MaterialButton.Rounded.Small"
             android:text="@string/invoice_create_items_summary_btn"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.business.models.entity.amount.Amount;
+import dev.szafraniak.bm_mobileapp.business.models.AmountModel;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.business.utils.FinancesUtils;
@@ -39,7 +39,7 @@ public class InvoiceItemsSummaryForm extends BaseForm<List<InvoiceItemFormModel>
             holder.grossTotalValue.setText("0");
             return;
         }
-        Amount amount = FinancesUtils.countAmount(value);
+        AmountModel amount = FinancesUtils.countAmount(value);
         String totalGross = Parsers.safeFormatPrice(amount.getGross());
         holder.itemCount.setText(Integer.toString(value.size()));
         holder.grossTotalValue.setText(totalGross);

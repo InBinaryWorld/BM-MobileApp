@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.type.ItemType;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.ItemType;
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.price.PriceForm;

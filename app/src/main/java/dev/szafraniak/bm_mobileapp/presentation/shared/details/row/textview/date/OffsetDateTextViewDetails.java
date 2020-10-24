@@ -17,6 +17,6 @@ public class OffsetDateTextViewDetails extends TextViewDetails<OffsetDateTime, S
 
     @Override
     protected String parseToDisplay(OffsetDateTime value) {
-        return Parsers.safeFormat(value);
+        return Parsers.safeFormatDateTime(value);
     }
 }

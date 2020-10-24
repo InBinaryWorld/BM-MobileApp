@@ -9,7 +9,6 @@ import dev.szafraniak.bm_mobileapp.business.http.api.BmResourcesApi;
 import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.CreateInvoiceRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
-import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.UpdateInvoiceRequest;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -47,10 +46,8 @@ public class InvoiceService {
             .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observable<Invoice> modifyInvoice(Long companyId,
-                                             Long invoiceId,
-                                             UpdateInvoiceRequest model) {
-        return bmResourcesApi.modifyInvoice(companyId, invoiceId, model)
+    public Observable<Invoice> paidOffAction(Long companyId, Long invoiceId) {
+        return bmResourcesApi.paidOffAction(companyId, invoiceId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread());
     }

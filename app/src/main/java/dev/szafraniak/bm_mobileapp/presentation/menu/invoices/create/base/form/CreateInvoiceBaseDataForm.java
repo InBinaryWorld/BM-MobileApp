@@ -92,9 +92,9 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
         paymentForm = new ClickablePaymentForm(inflater, groupList, config.getPaymentConfig());
 
         groupList.addView(invoiceNumberFormRow.getView());
+        groupList.addView(paymentForm.getView());
         groupList.addView(buyerFormRow.getView());
         groupList.addView(receiverFormRow.getView());
-        groupList.addView(paymentForm.getView());
 
         BaseViewHolder holder = new BaseViewHolder();
         holder.view = groupList;

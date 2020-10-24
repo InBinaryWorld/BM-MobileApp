@@ -14,19 +14,19 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.Crea
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create.CompanyContactCreateForm;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.IndividualContactCreateForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactType;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactType;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactTypeForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.baseType.BaseTypeForm;
 
-import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactType.COMPANY;
-import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactType.INDIVIDUAL;
+import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactType.COMPANY;
+import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactType.INDIVIDUAL;
 
 public class ContactCreateForm extends BaseForm<CreateContactRequest, ContactViewHolder, ContactCreateFormConfig> {
 
     @LayoutRes
     private static final int layoutId = R.layout.form_base_group_with_padding;
 
-    ContactTypeForm contactTypeForm;
+    BaseTypeForm<ContactType> contactTypeForm;
     CompanyContactCreateForm companyForm;
     IndividualContactCreateForm individualForm;
 
@@ -77,7 +77,7 @@ public class ContactCreateForm extends BaseForm<CreateContactRequest, ContactVie
 
         LinearLayout groupList = (LinearLayout) inflater.inflate(layoutId, viewGroup, false);
 
-        contactTypeForm = new ContactTypeForm(inflater, groupList, config.getContactTypeForm());
+        contactTypeForm = new BaseTypeForm<ContactType>(inflater, groupList, config.getContactTypeForm());
         individualForm = new IndividualContactCreateForm(inflater, groupList, config.getIndividualConfig());
         companyForm = new CompanyContactCreateForm(inflater, groupList, config.getCompanyConfig());
 

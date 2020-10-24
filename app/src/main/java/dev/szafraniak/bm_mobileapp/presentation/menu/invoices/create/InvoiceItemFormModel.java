@@ -3,7 +3,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create;
 import java.math.BigDecimal;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.type.ItemType;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.ItemType;
 import lombok.Data;
 
 @Data

@@ -14,18 +14,17 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.Indi
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.company.CompanyAutoCompleteForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.individual.IndividualAutoCompleteForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactType;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactTypeForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.baseType.BaseTypeForm;
 
-import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactType.COMPANY;
-import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.type.ContactType.INDIVIDUAL;
+import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactType.COMPANY;
+import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactType.INDIVIDUAL;
 
 public class ContactForm extends BaseForm<Contact, ContactViewHolder, ContactFormConfig> {
 
     @LayoutRes
     private static final int layoutId = R.layout.form_base_group_with_padding;
 
-    ContactTypeForm contactTypeForm;
+    BaseTypeForm<ContactType> contactTypeForm;
     IndividualAutoCompleteForm individualForm;
     CompanyAutoCompleteForm companyForm;
 
@@ -75,7 +74,7 @@ public class ContactForm extends BaseForm<Contact, ContactViewHolder, ContactFor
 
         LinearLayout groupList = (LinearLayout) inflater.inflate(layoutId, viewGroup, false);
 
-        contactTypeForm = new ContactTypeForm(inflater, groupList, config.getContactTypeForm());
+        contactTypeForm = new BaseTypeForm<ContactType>(inflater, groupList, config.getContactTypeForm());
         individualForm = new IndividualAutoCompleteForm(inflater, groupList, config.getIndividualConfig());
         companyForm = new CompanyAutoCompleteForm(inflater, groupList, config.getCompanyConfig());
 

@@ -6,10 +6,9 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import dev.szafraniak.bm_mobileapp.business.models.entity.amount.Amount;
+import dev.szafraniak.bm_mobileapp.business.models.AmountModel;
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
-import lombok.Data;
 
 public class FinancesUtils {
 
@@ -23,64 +22,51 @@ public class FinancesUtils {
         return tax.add(net);
     }
 
-    public static Amount countAmount(List<InvoiceItemFormModel> items) {
-        List<TaxGroupAmountModel> taxGroups = groupByTax(items);
-        BigDecimal totalNet = sumBy(taxGroups, TaxGroupAmountModel::getNet);
-        BigDecimal totalTax = sumBy(taxGroups, TaxGroupAmountModel::getTax);
-        BigDecimal totalGross = sumBy(taxGroups, TaxGroupAmountModel::getGross);
-        Amount amount = new Amount();
-        amount.setNet(totalNet);
-        amount.setTax(totalTax);
-        amount.setGross(totalGross);
-        return amount;
-    }
-
-    public static Amount countAmount(InvoiceItemFormModel item) {
-        BigDecimal quantity = item.getQuantity();
+    public static AmountModel countAmount(InvoiceItemFormModel item) {
         Price price = item.getPrice();
-        BigDecimal net = price.getNet().setScale(2, RoundingMode.HALF_UP)
-            .multiply(quantity).setScale(2, RoundingMode.HALF_UP);
-        BigDecimal tax = price.getTaxRate().movePointLeft(2).multiply(net)
-            .setScale(2, RoundingMode.HALF_UP);
-        BigDecimal gross = net.add(tax);
-        Amount amount = new Amount();
-        amount.setNet(net);
-        amount.setTax(tax);
-        amount.setGross(gross);
-        return amount;
+        return countAmount(price.getNet(), price.getTaxRate(), item.getQuantity());
     }
 
-
-    private static List<TaxGroupAmountModel> groupByTax(List<InvoiceItemFormModel> items) {
-        return items.stream()
+    public static AmountModel countAmount(List<InvoiceItemFormModel> items) {
+        List<AmountModel> taxGroupAmounts = items.stream()
             .collect(Collectors.groupingBy(item -> item.getPrice().getTaxRate()))
             .entrySet().stream().map(entry -> {
-                List<Amount> amounts = entry.getValue().stream()
-                    .map(FinancesUtils::countAmount).collect(Collectors.toList());
-                BigDecimal net = sumBy(amounts, Amount::getNet);
-                BigDecimal tax = entry.getKey().movePointLeft(2).multiply(net)
-                    .setScale(2, RoundingMode.HALF_UP);
-                BigDecimal gross = net.add(tax);
-                return new TaxGroupAmountModel(net, tax, gross, entry.getKey());
+                BigDecimal taxRate = entry.getKey();
+                List<BigDecimal> netAmounts = entry.getValue().stream().map(item ->
+                    countNetAmount(item.getPrice().getNet(), item.getQuantity())
+                ).collect(Collectors.toList());
+                return countTaxGroupAmount(taxRate, netAmounts);
             }).collect(Collectors.toList());
+
+        BigDecimal totalNet = sumBy(taxGroupAmounts, AmountModel::getNet);
+        BigDecimal totalTax = sumBy(taxGroupAmounts, AmountModel::getTax);
+        BigDecimal totalGross = sumBy(taxGroupAmounts, AmountModel::getGross);
+        return new AmountModel(totalNet, totalTax, totalGross);
     }
 
-    private static <T> BigDecimal sumBy(List<T> list, Function<T, BigDecimal> fieldFunc) {
+    public static BigDecimal countNetAmount(BigDecimal netPrice, BigDecimal quantity) {
+        return netPrice.setScale(2, RoundingMode.HALF_UP)
+            .multiply(quantity).setScale(2, RoundingMode.HALF_UP);
+    }
+
+    public static AmountModel countAmount(BigDecimal netPrice, BigDecimal taxRate, BigDecimal quantity) {
+        return countAmount(countNetAmount(netPrice, quantity), taxRate);
+    }
+
+    public static AmountModel countAmount(BigDecimal netAmount, BigDecimal taxRate) {
+        BigDecimal tax = taxRate.movePointLeft(2).multiply(netAmount)
+            .setScale(2, RoundingMode.HALF_UP);
+        BigDecimal gross = netAmount.add(tax);
+        return new AmountModel(netAmount, tax, gross);
+    }
+
+    public static AmountModel countTaxGroupAmount(BigDecimal taxRate, List<BigDecimal> netAmounts) {
+        BigDecimal netAmount = sumBy(netAmounts, net -> net);
+        return countAmount(netAmount, taxRate);
+    }
+
+    public static <T> BigDecimal sumBy(List<T> list, Function<T, BigDecimal> fieldFunc) {
         return list.stream().reduce(new BigDecimal("0"), (acc, next) -> acc.add(fieldFunc.apply(next)), BigDecimal::add);
     }
 
-    @Data
-    private static class TaxGroupAmountModel {
-        public TaxGroupAmountModel(BigDecimal net, BigDecimal tax, BigDecimal gross, BigDecimal taxRate) {
-            this.net = net;
-            this.tax = tax;
-            this.gross = gross;
-            this.taxRate = taxRate;
-        }
-
-        private BigDecimal net;
-        private BigDecimal tax;
-        private BigDecimal gross;
-        private BigDecimal taxRate;
-    }
 }
