@@ -2,24 +2,89 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Row.h18.v12">
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Row">
 
-    <TextView
-        android:id="@+id/tv_payment_type"
-        style="@style/BaseTextView"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tv_quantity"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/Row.h18.v12"
+        app:layout_constraintBottom_toTopOf="@id/v_divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-    <TextView
-        android:id="@+id/tv_quantity"
-        style="@style/BaseTextView.Value.Accent"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_name_label"
+            style="@style/BaseTextView.Label"
+            android:text="Product name"
+            app:layout_constraintEnd_toStartOf="@+id/tv_price"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/BaseTextView.Value"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_quantity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_name_label"
+            tools:text="Cisteczka" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            style="@style/BaseTextView.Value.Accent"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_name_label"
+            app:layout_constraintEnd_toStartOf="@+id/gl_v1"
+            tools:text="18.74" />
+
+
+        <TextView
+            android:id="@+id/tv_quantity"
+            style="@style/BaseTextView.Value.Accent"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_name"
+            app:layout_constraintEnd_toStartOf="@+id/gl_v1"
+            tools:text="555" />
+
+        <TextView
+            android:id="@+id/tv_price_currency"
+            style="@style/BaseTextView.Value.Currency"
+            android:textColor="@color/colorBlack60"
+            android:layout_width="wrap_content"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_price"
+            app:layout_constraintStart_toEndOf="@id/gl_v1"
+            tools:text="PLN" />
+
+        <TextView
+            android:id="@+id/tv_quantity_unit"
+            style="@style/BaseTextView.Value.Currency"
+            android:layout_width="wrap_content"
+            android:textColor="@color/colorBlack60"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_quantity"
+            app:layout_constraintStart_toStartOf="@+id/gl_v1"
+            tools:text="szt." />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_v1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="30dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/v_divider"
+        style="@style/Divider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

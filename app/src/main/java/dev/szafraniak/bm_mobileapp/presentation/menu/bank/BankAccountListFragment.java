@@ -53,7 +53,7 @@ public class BankAccountListFragment extends BaseListFragmentWithBtn<BankAccount
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_bank_account_list_create_text;
+        return R.string.btn_bank_account_list;
     }
 
     @Override

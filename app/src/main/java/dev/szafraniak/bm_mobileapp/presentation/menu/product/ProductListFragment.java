@@ -80,7 +80,7 @@ public class ProductListFragment extends SearchListFragmentWithBtn<Product, Prod
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_product_list_add;
+        return R.string.btn_product_list;
     }
 
     @Override

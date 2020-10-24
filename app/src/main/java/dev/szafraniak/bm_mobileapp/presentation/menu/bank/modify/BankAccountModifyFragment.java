@@ -53,7 +53,7 @@ public class BankAccountModifyFragment extends BaseFormFragment<UpdateBankAccoun
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_bank_account_modify;
+        return R.string.btn_modify_form;
     }
 
     @Override

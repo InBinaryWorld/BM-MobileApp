@@ -53,7 +53,7 @@ public class ProductModifyFragment extends BaseFormFragment<UpdateProductRequest
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_product_modify;
+        return R.string.btn_modify_form;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class ProductModifyFragment extends BaseFormFragment<UpdateProductRequest
     }
 
     protected int getHeaderTextResourceId() {
-        return R.string.header_product_model_modify;
+        return R.string.header_product_modify;
     }
 
     @Override

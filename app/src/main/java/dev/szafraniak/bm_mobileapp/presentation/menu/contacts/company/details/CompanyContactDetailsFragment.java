@@ -82,7 +82,7 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_contact_details;
+        return R.string.btn_contact_details;
     }
 
 }

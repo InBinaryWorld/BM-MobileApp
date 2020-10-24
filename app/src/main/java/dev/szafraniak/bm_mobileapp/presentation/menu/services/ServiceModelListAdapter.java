@@ -8,16 +8,16 @@ import android.widget.TextView;
 import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
+import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
 import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
-import dev.szafraniak.bm_mobileapp.presentation.shared.list.CurrencyWrapper;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterListAdapter;
 
-public class ServiceModelListAdapter extends BaseFilterListAdapter<CurrencyWrapper<ServiceModel>, CurrencyWrapper<ServiceModel>> {
+public class ServiceModelListAdapter extends BaseFilterListAdapter<ServiceModel, ServiceModel> {
 
-    private static final int layoutId = R.layout.row_list_resource_item_model;
+    private static final int layoutId = R.layout.row_list_service_model;
 
-    public ServiceModelListAdapter(LayoutInflater inflater, List<CurrencyWrapper<ServiceModel>> initialList) {
+    public ServiceModelListAdapter(LayoutInflater inflater, List<ServiceModel> initialList) {
         super(inflater, initialList);
     }
 
@@ -37,32 +37,33 @@ public class ServiceModelListAdapter extends BaseFilterListAdapter<CurrencyWrapp
             viewHolder.priceCurrency = convertView.findViewById(R.id.tv_price_currency);
             convertView.setTag(viewHolder);
         }
-        CurrencyWrapper<ServiceModel> item = getItem(position);
+        ServiceModel item = getItem(position);
         ViewHolder holder = (ViewHolder) convertView.getTag();
         fullFillView(item, holder);
         return convertView;
     }
 
-    private void fullFillView(CurrencyWrapper<ServiceModel> item, ViewHolder holder) {
-        holder.name.setText(item.getItem().getName());
-        holder.price.setText(Parsers.safeFormatPrice(item.getItem().getPriceSuggestion().getGross()));
-        holder.priceCurrency.setText(item.getCurrency());
+    private void fullFillView(ServiceModel item, ViewHolder holder) {
+        Price price = item.getPriceSuggestion();
+        holder.name.setText(item.getName());
+        holder.price.setText(Parsers.safeFormatPrice(price.getGross()));
+        holder.priceCurrency.setText(price.getCurrency());
     }
 
 
     @Override
-    protected CurrencyWrapper<ServiceModel> extractGetItemValue(CurrencyWrapper<ServiceModel> item) {
+    protected ServiceModel extractGetItemValue(ServiceModel item) {
         return item;
     }
 
     @Override
-    protected long getItemId(CurrencyWrapper<ServiceModel> item) {
-        return item.getItem().getId();
+    protected long getItemId(ServiceModel item) {
+        return item.getId();
     }
 
     @Override
-    public String getItemFilterValue(CurrencyWrapper<ServiceModel> item) {
-        return item.getItem().getFilterValue();
+    public String getItemFilterValue(ServiceModel item) {
+        return item.getFilterValue();
     }
 
 }

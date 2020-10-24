@@ -61,7 +61,7 @@ public class ResourcesFragment extends BaseListFragmentWithBtn<Warehouse, Resour
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_resources;
+        return R.string.btn_resources_list;
     }
 
     @Override

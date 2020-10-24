@@ -12,5 +12,6 @@ public class FinancesStatsModel {
     private BigDecimal totalIncome;
     private BigDecimal totalOutcome;
     private BigDecimal lastChange;
+    private String currency;
 
 }

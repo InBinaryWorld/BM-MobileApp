@@ -21,7 +21,14 @@ public abstract class BaseDetails<T, H extends BaseViewHolder,
     public BaseDetails(LayoutInflater inflater, ViewGroup viewGroup, C config) {
         this.config = config;
         this.viewHolder = createViewHolder(inflater, viewGroup, config);
+        this.setupAndShowDefault(inflater, config);
+    }
+
+    private void setupAndShowDefault(LayoutInflater inflater, C config) {
         this.setupView(inflater, config);
+        if (config.getDefaultValue() != null) {
+            showValueOnView(config.getDefaultValue());
+        }
     }
 
     protected abstract void showValueOnView(T value);

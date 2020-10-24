@@ -25,7 +25,7 @@ public final class Validator {
 
     public final static String WORD_1_20 = LETTER + "{1,20}";
     public final static String WORDS = "( *" + LETTER + "+ *)+";
-    public final static String BASE_2_6 = ALLOWED_SIGNS + "{2,6}";
+    public final static String BASE_1_6 = ALLOWED_SIGNS + "{1,6}";
     public final static String BASE_1_20 = ALLOWED_SIGNS + "{1,20}";
     public final static String BASE_3_20 = ALLOWED_SIGNS + "{3,20}";
     public final static String BASE_2_40 = ALLOWED_SIGNS + "{2,40}";
@@ -66,7 +66,7 @@ public final class Validator {
     }
 
     public static boolean validateQuantityUnit(String value) {
-        return Pattern.matches(BASE_2_6, value) && !value.isEmpty();
+        return Pattern.matches(BASE_1_6, value) && !value.isEmpty();
     }
 
     public static boolean validateBarcode(String value) {
@@ -101,7 +101,7 @@ public final class Validator {
     }
 
     public static boolean validateCountry(String value) {
-        return Pattern.matches(WORD_1_20, value);
+        return Pattern.matches(WORDS, value) && length(value, 4, 25);
     }
 
     public static boolean validateCity(String value) {

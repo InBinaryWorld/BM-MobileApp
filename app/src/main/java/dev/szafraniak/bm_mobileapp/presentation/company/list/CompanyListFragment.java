@@ -58,12 +58,12 @@ public class CompanyListFragment extends BaseListFragmentWithBtn<CompanyListMode
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_company_list;
+        return R.string.btn_company_list;
     }
 
     @Override
     protected void onButtonClick(View view) {
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_COMPANY_CREATE);
     }
-    
+
 }

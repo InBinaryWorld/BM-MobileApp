@@ -18,4 +18,6 @@ public class FinancialRow {
 
     private BigDecimal amountChange;
 
+    private String currency;
+
 }

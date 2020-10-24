@@ -53,7 +53,7 @@ public class ProductModelModifyFragment extends BaseFormFragment<UpdateProductMo
 
     @Override
     protected int getButtonTextId() {
-        return R.string.header_product_model_modify;
+        return R.string.btn_modify_form;
     }
 
     @Override

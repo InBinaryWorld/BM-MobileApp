@@ -85,7 +85,7 @@ public final class FormConfigurations {
         TextFormConfig<String> config = getBaseTextFormConfig();
         config.setLabel("Warehouse Name");
         config.setInvalidMessage("2-40 Signs");
-        config.setValidator(Validator::validateProductModelName);
+        config.setValidator(Validator::validateWarehouseName);
         config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES);
         return config;
     }
@@ -129,7 +129,7 @@ public final class FormConfigurations {
     public static TextFormConfig<String> getQuantityUnitConfig() {
         TextFormConfig<String> config = getBaseTextFormConfig();
         config.setLabel("Quantity Unit");
-        config.setInvalidMessage("2-6 Signs");
+        config.setInvalidMessage("1-6 Signs");
         config.setValidator(Validator::validateQuantityUnit);
         config.setInputType(TYPE_CLASS_TEXT);
         return config;
@@ -233,12 +233,8 @@ public final class FormConfigurations {
     }
 
     public static AddressFormConfig getAddressConfig() {
-        SimpleDetailsConfig<String> countryConfig = DetailsConfigurations.getCountryConfig();
-        countryConfig.setVisibleOnSetValueNull(true);
-        countryConfig.setDefaultValue("Poland");
-
         AddressFormConfig config = new AddressFormConfig();
-        config.setCountryConfig(countryConfig);
+        config.setCountryConfig(getCountryConfig());
         config.setCityConfig(getCityConfig());
         config.setVisibleOnSetValueNull(true);
         config.setCityConfig(getCityConfig());
@@ -246,6 +242,16 @@ public final class FormConfigurations {
         config.setStreetConfig(getStreetConfig());
         config.setHouseConfig(getHouseNumberConfig());
         config.setApartmentConfig(getApartmentNumberConfig());
+        return config;
+    }
+
+    public static TextFormConfig<String> getCountryConfig() {
+        TextFormConfig<String> config = getBaseTextFormConfig();
+        config.setLabel("Country");
+        config.setInvalidMessage("4-25 Signs");
+        config.setValidator(Validator::validateCountry);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS | TYPE_TEXT_FLAG_CAP_WORDS);
+        config.setDefaultValue("Poland");
         return config;
     }
 

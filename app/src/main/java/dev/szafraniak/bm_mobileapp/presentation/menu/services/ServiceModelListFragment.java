@@ -19,11 +19,10 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceMo
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.details.ServiceModelDetailsFragment;
-import dev.szafraniak.bm_mobileapp.presentation.shared.list.CurrencyWrapper;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.SearchListFragmentWithBtn;
 
 @EFragment(R.layout.fragment_search_list_with_btn)
-public class ServiceModelListFragment extends SearchListFragmentWithBtn<CurrencyWrapper<ServiceModel>, ServiceModelListAdapter>
+public class ServiceModelListFragment extends SearchListFragmentWithBtn<ServiceModel, ServiceModelListAdapter>
     implements ServiceModelListView {
 
     @Inject
@@ -47,7 +46,7 @@ public class ServiceModelListFragment extends SearchListFragmentWithBtn<Currency
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_service_model_list;
+        return R.string.btn_service_model_list;
     }
 
     @Override
@@ -66,9 +65,9 @@ public class ServiceModelListFragment extends SearchListFragmentWithBtn<Currency
     }
 
     @Override
-    public void onItemClick(CurrencyWrapper<ServiceModel> item) {
+    public void onItemClick(ServiceModel item) {
         Bundle args = new Bundle();
-        args.putString(ServiceModelDetailsFragment.KEY_SERVICE_MODEL, gson.toJson(item.getItem()));
+        args.putString(ServiceModelDetailsFragment.KEY_SERVICE_MODEL, gson.toJson(item));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_SERVICE_MODEL_DETAILS, args);
     }
 

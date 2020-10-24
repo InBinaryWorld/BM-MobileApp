@@ -8,6 +8,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
+import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.Product;
 import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterListAdapter;
@@ -22,7 +23,10 @@ public class ProductListAdapter extends BaseFilterListAdapter<Product, Product> 
 
     static class ViewHolder {
         TextView name;
+        TextView grossPrice;
+        TextView currency;
         TextView quantity;
+        TextView quantityUnit;
     }
 
     @Override
@@ -30,15 +34,26 @@ public class ProductListAdapter extends BaseFilterListAdapter<Product, Product> 
         if (convertView == null) {
             convertView = inflater.inflate(layoutId, parent, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.name = convertView.findViewById(R.id.tv_payment_type);
+            viewHolder.name = convertView.findViewById(R.id.tv_name);
+            viewHolder.grossPrice = convertView.findViewById(R.id.tv_price);
+            viewHolder.currency = convertView.findViewById(R.id.tv_price_currency);
             viewHolder.quantity = convertView.findViewById(R.id.tv_quantity);
+            viewHolder.quantityUnit = convertView.findViewById(R.id.tv_quantity_unit);
             convertView.setTag(viewHolder);
         }
         Product item = getItem(position);
         ViewHolder holder = (ViewHolder) convertView.getTag();
+        fullFillView(holder, item);
+        return convertView;
+    }
+
+    private void fullFillView(ViewHolder holder, Product item) {
+        Price price = item.getProductModel().getPriceSuggestion();
+        holder.grossPrice.setText(Parsers.safeFormatPrice(price.getGross()));
+        holder.currency.setText(price.getCurrency());
         holder.name.setText(item.getProductModel().getName());
         holder.quantity.setText(Parsers.safeFormatWithFraction(item.getQuantity()));
-        return convertView;
+        holder.quantityUnit.setText(item.getProductModel().getQuantityUnit());
     }
 
     @Override

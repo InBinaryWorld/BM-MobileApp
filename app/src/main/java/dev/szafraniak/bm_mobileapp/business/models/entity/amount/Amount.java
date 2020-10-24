@@ -15,4 +15,6 @@ public class Amount {
 
     private BigDecimal gross;
 
+    private String currency;
+
 }

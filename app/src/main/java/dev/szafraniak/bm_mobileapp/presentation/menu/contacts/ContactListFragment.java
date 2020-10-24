@@ -69,7 +69,7 @@ public class ContactListFragment extends SearchListFragmentWithBtn<Contact, Cont
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_contact_list;
+        return R.string.btn_contact_list;
     }
 
     @Override

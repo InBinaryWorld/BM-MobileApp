@@ -78,7 +78,7 @@ public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_contact_details;
+        return R.string.btn_contact_details;
     }
 
     @Override

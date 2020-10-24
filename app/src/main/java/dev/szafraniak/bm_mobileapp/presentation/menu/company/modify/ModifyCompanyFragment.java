@@ -32,7 +32,7 @@ public class ModifyCompanyFragment extends BaseFormFragment<UpdateCompanyRequest
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_company_modify;
+        return R.string.btn_modify_form;
     }
 
     @Override

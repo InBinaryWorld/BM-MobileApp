@@ -149,6 +149,7 @@
 
     <style name="TextAppearance" parent="TextAppearance.AppCompat">
         <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/colorBlack</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">0dp</item>

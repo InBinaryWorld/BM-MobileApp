@@ -48,7 +48,7 @@ public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice, InvoiceLi
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_invoice_list;
+        return R.string.btn_invoice_list;
     }
 
     @Override

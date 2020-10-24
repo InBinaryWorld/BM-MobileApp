@@ -55,7 +55,7 @@ public class InvoiceContactFormFragment extends BaseFormFragment<Contact, Contac
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_invoice_create_payment;
+        return R.string.btn_invoice_create_payment;
     }
 
     @Override

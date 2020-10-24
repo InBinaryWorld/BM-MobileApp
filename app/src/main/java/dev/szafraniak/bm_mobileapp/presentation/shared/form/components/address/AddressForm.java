@@ -9,7 +9,6 @@ import androidx.annotation.LayoutRes;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.editText.text.TextEditTextDetails;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextEditTextFormRow;
 
@@ -18,7 +17,7 @@ public class AddressForm extends BaseForm<Address, BaseViewHolder, AddressFormCo
     @LayoutRes
     private static final int layoutId = R.layout.form_base_group;
 
-    TextEditTextDetails countryDetails;
+    TextEditTextFormRow countryFormRow;
     TextEditTextFormRow cityFormRow;
     TextEditTextFormRow streetFormRow;
     TextEditTextFormRow postalFormRow;
@@ -35,17 +34,18 @@ public class AddressForm extends BaseForm<Address, BaseViewHolder, AddressFormCo
 
     @Override
     public Address getValue() {
+        String country = countryFormRow.getValue();
         String city = cityFormRow.getValue();
         String street = streetFormRow.getValue();
         String postal = postalFormRow.getValue();
         String house = houseFormRow.getValue();
         String apartment = apartmentFormRow.getValue();
         if (city == null && street == null && postal == null
-            && house == null && apartment == null) {
+            && house == null && apartment == null && country == null) {
             return null;
         }
         Address address = new Address();
-        address.setCountry("Poland");
+        address.setCountry(country);
         address.setCity(city);
         address.setStreet(street);
         address.setPostalCode(postal);
@@ -57,13 +57,13 @@ public class AddressForm extends BaseForm<Address, BaseViewHolder, AddressFormCo
     @Override
     public boolean isValid() {
         return cityFormRow.isValid() && streetFormRow.isValid() && postalFormRow.isValid()
-            && houseFormRow.isValid() && apartmentFormRow.isValid();
+            && houseFormRow.isValid() && apartmentFormRow.isValid() && countryFormRow.isValid();
     }
 
     @Override
     protected void showValueOnView(Address value) {
         if (value == null) {
-            countryDetails.setValue(null);
+            countryFormRow.setValue(null);
             cityFormRow.setValue(null);
             streetFormRow.setValue(null);
             postalFormRow.setValue(null);
@@ -71,7 +71,7 @@ public class AddressForm extends BaseForm<Address, BaseViewHolder, AddressFormCo
             apartmentFormRow.setValue(null);
             return;
         }
-        countryDetails.setValue(value.getCountry());
+        countryFormRow.setValue(value.getCountry());
         cityFormRow.setValue(value.getCity());
         streetFormRow.setValue(value.getStreet());
         postalFormRow.setValue(value.getPostalCode());
@@ -82,14 +82,14 @@ public class AddressForm extends BaseForm<Address, BaseViewHolder, AddressFormCo
     @Override
     protected BaseViewHolder createViewHolder(LayoutInflater inflater, ViewGroup viewGroup, AddressFormConfig config) {
         LinearLayout groupList = (LinearLayout) inflater.inflate(layoutId, viewGroup, false);
-        countryDetails = new TextEditTextDetails(inflater, groupList, config.getCountryConfig());
+        countryFormRow = new TextEditTextFormRow(inflater, groupList, config.getCountryConfig());
         cityFormRow = new TextEditTextFormRow(inflater, groupList, config.getCityConfig());
         streetFormRow = new TextEditTextFormRow(inflater, groupList, config.getStreetConfig());
         postalFormRow = new TextEditTextFormRow(inflater, groupList, config.getPostalConfig());
         houseFormRow = new TextEditTextFormRow(inflater, groupList, config.getHouseConfig());
         apartmentFormRow = new TextEditTextFormRow(inflater, groupList, config.getApartmentConfig());
 
-        groupList.addView(countryDetails.getView());
+        groupList.addView(countryFormRow.getView());
         groupList.addView(cityFormRow.getView());
         groupList.addView(streetFormRow.getView());
         groupList.addView(postalFormRow.getView());
@@ -103,7 +103,6 @@ public class AddressForm extends BaseForm<Address, BaseViewHolder, AddressFormCo
 
     @Override
     protected void setupView(LayoutInflater inflater, AddressFormConfig config) {
-        countryDetails.setValue("Poland");
         cityFormRow.setOnValidationStateChanged(this::onValueChange);
         houseFormRow.setOnValidationStateChanged(this::onValueChange);
         streetFormRow.setOnValidationStateChanged(this::onValueChange);

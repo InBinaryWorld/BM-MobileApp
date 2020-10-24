@@ -15,8 +15,11 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.BaseSpin
 public class ContactTypeAdapter extends BaseSpinnerAdapter<ContactType, ContactType> {
 
     @LayoutRes
-    private static final int layoutId = R.layout.row_dropdown_contact_type;
-    private ContactTypeFormConfig config;
+    private static final int layoutId = R.layout.row_spinner_base_preview;
+    @LayoutRes
+    private static final int dropdownLayoutId = R.layout.row_spinner_base_dropdown;
+
+    private final ContactTypeFormConfig config;
 
     public ContactTypeAdapter(LayoutInflater inflater, ContactTypeFormConfig config) {
         super(inflater, config.getSpinnerItems());
@@ -35,30 +38,36 @@ public class ContactTypeAdapter extends BaseSpinnerAdapter<ContactType, ContactT
 
     @Override
     protected View createView(LayoutInflater inflater, int position, View convertView, ViewGroup viewGroup) {
-        return createPaymentView(inflater, position, convertView, viewGroup);
-    }
-
-    @Override
-    protected View createDropdownView(LayoutInflater inflater, int position, View convertView, ViewGroup viewGroup) {
-        return createPaymentView(inflater, position, convertView, viewGroup);
-    }
-
-    private View createPaymentView(LayoutInflater inflater, int position, View convertView, ViewGroup viewGroup) {
         if (convertView == null) {
             convertView = inflater.inflate(layoutId, viewGroup, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.displayValue = convertView.findViewById(R.id.tv_contact_type);
+            viewHolder.name = convertView.findViewById(R.id.tv_spinner_value);
             convertView.setTag(viewHolder);
         }
         ContactType item = getItem(position);
         ViewHolder holder = (ViewHolder) convertView.getTag();
         HashMap<ContactType, String> displayValues = config.getDisplayValues();
-        holder.displayValue.setText(displayValues.get(item));
+        holder.name.setText(displayValues.get(item));
         return convertView;
     }
 
-    private class ViewHolder {
-        TextView displayValue;
+    @Override
+    protected View createDropdownView(LayoutInflater inflater, int position, View convertView, ViewGroup viewGroup) {
+        if (convertView == null) {
+            convertView = inflater.inflate(dropdownLayoutId, viewGroup, false);
+            ViewHolder viewHolder = new ViewHolder();
+            viewHolder.name = convertView.findViewById(R.id.tv_spinner_value);
+            convertView.setTag(viewHolder);
+        }
+        ContactType item = getItem(position);
+        ViewHolder holder = (ViewHolder) convertView.getTag();
+        HashMap<ContactType, String> displayValues = config.getDisplayValues();
+        holder.name.setText(displayValues.get(item));
+        return convertView;
+    }
+
+    private static class ViewHolder {
+        TextView name;
     }
 
 }

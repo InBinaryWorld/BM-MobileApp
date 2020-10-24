@@ -108,7 +108,7 @@ public class LoginActivity extends LoginView {
     }
 
     private void showError() {
-        Toast.makeText(this, R.string.toast_login_failed, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.login_failed_toast, Toast.LENGTH_SHORT).show();
         setLoginInProgressComponentVisibility(View.GONE, 500, 0);
         setButtonComponentVisibility(View.VISIBLE, 500, 300);
     }

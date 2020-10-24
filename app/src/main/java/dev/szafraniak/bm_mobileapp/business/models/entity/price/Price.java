@@ -14,4 +14,6 @@ public class Price {
     private BigDecimal taxRate;
 
     private BigDecimal gross;
+
+    private String currency;
 }

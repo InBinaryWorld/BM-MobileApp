@@ -83,7 +83,7 @@ public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<Serv
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_service_model_details;
+        return R.string.btn_service_model_details;
     }
 
 

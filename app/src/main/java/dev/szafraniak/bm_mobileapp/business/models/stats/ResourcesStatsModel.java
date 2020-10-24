@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class ResourcesStatsModel {
 
+    private String currency;
     private BigDecimal totalGrossValue;
     private int warehousesNumber;
     private int productsNumber;

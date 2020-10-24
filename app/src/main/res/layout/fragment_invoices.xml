@@ -24,7 +24,7 @@
         <LinearLayout
             android:id="@+id/ll_data_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,8 +34,8 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_show_finances"
                     style="@style/MaterialButton.FullRounded"
-                    android:text="Show Finances"
                     android:layout_margin="24dp"
+                    android:text="Show Finances"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -47,15 +47,16 @@
                 android:id="@+id/list"
                 style="@style/ListView.VerticalPadding"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true" />
 
             <include
                 android:id="@+id/empty_list"
-                android:visibility="gone"
-                android:layout_marginTop="56dp"
+                layout="@layout/component_list_empty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                layout="@layout/component_list_empty" />
+                android:layout_marginTop="56dp"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -67,28 +68,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <include
         android:id="@+id/progress_bar"
-        android:visibility="gone"
-        android:layout_marginTop="96dp"
+        layout="@layout/component_progress_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        layout="@layout/component_progress_view"
+        android:layout_marginTop="96dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <include
         android:id="@+id/error"
-        android:visibility="gone"
-        android:layout_marginTop="96dp"
+        layout="@layout/component_list_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        layout="@layout/component_list_error"
+        android:layout_marginTop="96dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header" />

@@ -30,7 +30,7 @@ public class FinancesEventCreateFragment extends BaseFormFragment<CreateFinancia
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_financial_event_create;
+        return R.string.btn_create_form;
     }
 
     @Override

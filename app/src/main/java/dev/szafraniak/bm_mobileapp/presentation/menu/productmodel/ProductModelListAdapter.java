@@ -8,16 +8,16 @@ import android.widget.TextView;
 import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
+import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
-import dev.szafraniak.bm_mobileapp.presentation.shared.list.CurrencyWrapper;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterListAdapter;
 
-public class ProductModelListAdapter extends BaseFilterListAdapter<CurrencyWrapper<ProductModel>, CurrencyWrapper<ProductModel>> {
+public class ProductModelListAdapter extends BaseFilterListAdapter<ProductModel, ProductModel> {
 
-    private static final int layoutId = R.layout.row_list_resource_item_model;
+    private static final int layoutId = R.layout.row_list_product_model;
 
-    public ProductModelListAdapter(LayoutInflater inflater, List<CurrencyWrapper<ProductModel>> initialList) {
+    public ProductModelListAdapter(LayoutInflater inflater, List<ProductModel> initialList) {
         super(inflater, initialList);
     }
 
@@ -37,31 +37,32 @@ public class ProductModelListAdapter extends BaseFilterListAdapter<CurrencyWrapp
             viewHolder.priceCurrency = convertView.findViewById(R.id.tv_price_currency);
             convertView.setTag(viewHolder);
         }
-        CurrencyWrapper<ProductModel> item = getItem(position);
+        ProductModel item = getItem(position);
         ViewHolder holder = (ViewHolder) convertView.getTag();
         fullFillView(item, holder);
         return convertView;
     }
 
-    private void fullFillView(CurrencyWrapper<ProductModel> item, ViewHolder holder) {
-        holder.name.setText(item.getItem().getName());
-        holder.price.setText(Parsers.safeFormatPrice(item.getItem().getPriceSuggestion().getGross()));
-        holder.priceCurrency.setText(item.getCurrency());
+    private void fullFillView(ProductModel item, ViewHolder holder) {
+        Price price = item.getPriceSuggestion();
+        holder.name.setText(item.getName());
+        holder.price.setText(Parsers.safeFormatPrice(price.getGross()));
+        holder.priceCurrency.setText(price.getCurrency());
     }
 
     @Override
-    protected CurrencyWrapper<ProductModel> extractGetItemValue(CurrencyWrapper<ProductModel> item) {
+    protected ProductModel extractGetItemValue(ProductModel item) {
         return item;
     }
 
     @Override
-    protected long getItemId(CurrencyWrapper<ProductModel> item) {
-        return item.getItem().getId();
+    protected long getItemId(ProductModel item) {
+        return item.getId();
     }
 
     @Override
-    public String getItemFilterValue(CurrencyWrapper<ProductModel> item) {
-        return item.getItem().getFilterValue();
+    public String getItemFilterValue(ProductModel item) {
+        return item.getFilterValue();
     }
 
 }

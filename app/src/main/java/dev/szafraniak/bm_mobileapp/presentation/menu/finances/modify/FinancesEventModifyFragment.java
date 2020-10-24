@@ -53,7 +53,7 @@ public class FinancesEventModifyFragment extends BaseFormFragment<UpdateFinancia
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_financial_event_modify;
+        return R.string.btn_modify_form;
     }
 
     @Override

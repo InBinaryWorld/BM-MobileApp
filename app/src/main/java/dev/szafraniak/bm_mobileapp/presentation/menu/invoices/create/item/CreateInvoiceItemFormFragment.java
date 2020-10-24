@@ -58,7 +58,7 @@ public class CreateInvoiceItemFormFragment extends BaseFormFragment<InvoiceItemF
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_invoice_create_item;
+        return R.string.btn_invoice_create_item;
     }
 
     @Override

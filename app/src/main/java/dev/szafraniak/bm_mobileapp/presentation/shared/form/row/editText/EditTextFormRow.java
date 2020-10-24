@@ -15,7 +15,9 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormVie
 public abstract class EditTextFormRow<T, C extends TextFormConfig<T>> extends TextForm<T, TextFormViewHolder<TextInputEditText>, C, TextInputEditText> {
 
     @LayoutRes
-    private final static int layoutId = R.layout.row_edit_text;
+    protected int getLayoutId() {
+        return R.layout.row_edit_text;
+    }
 
     public EditTextFormRow(LayoutInflater inflater, ViewGroup viewGroup, C config) {
         super(inflater, viewGroup, config);
@@ -24,7 +26,7 @@ public abstract class EditTextFormRow<T, C extends TextFormConfig<T>> extends Te
     @Override
     protected TextFormViewHolder<TextInputEditText> createViewHolder(LayoutInflater inflater, ViewGroup viewGroup, C config) {
         TextFormViewHolder<TextInputEditText> holder = new TextFormViewHolder<>();
-        holder.view = inflater.inflate(layoutId, viewGroup, false);
+        holder.view = inflater.inflate(getLayoutId(), viewGroup, false);
         holder.layout = holder.view.findViewById(R.id.til_text_layout);
         holder.editText = holder.view.findViewById(R.id.et_edit_text);
         return holder;

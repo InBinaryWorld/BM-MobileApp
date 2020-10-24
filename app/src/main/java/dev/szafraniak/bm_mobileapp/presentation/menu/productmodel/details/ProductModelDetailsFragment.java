@@ -82,6 +82,6 @@ public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<Prod
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_product_model_details;
+        return R.string.btn_product_model_details;
     }
 }

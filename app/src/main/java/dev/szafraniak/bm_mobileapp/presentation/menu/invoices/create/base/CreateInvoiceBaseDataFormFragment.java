@@ -38,7 +38,7 @@ public class CreateInvoiceBaseDataFormFragment extends BaseFormFragment<CreateIn
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_invoice_create_base_data;
+        return R.string.btn_invoice_create_base_data;
     }
 
     @Override

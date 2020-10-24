@@ -17,7 +17,7 @@
         <TextView
             android:id="@+id/tv_name_label"
             style="@style/BaseTextView.Label"
-            android:text="Name"
+            android:text="@string/row_product_model_resource_name"
             app:layout_constraintEnd_toStartOf="@+id/tv_price"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +26,7 @@
             android:id="@+id/tv_name"
             style="@style/BaseTextView.Value"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_price"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_name_label"
             tools:text="Cisteczka" />
@@ -42,9 +42,9 @@
 
         <TextView
             android:id="@+id/tv_price_currency"
-            style="@style/BaseTextView.Label"
+            style="@style/BaseTextView.Value.Currency"
+            android:textColor="@color/colorBlack60"
             android:layout_width="wrap_content"
-            android:textSize="11sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_price"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="PLN" />

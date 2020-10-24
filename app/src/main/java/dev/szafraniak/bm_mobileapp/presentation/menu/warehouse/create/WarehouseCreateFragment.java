@@ -31,7 +31,7 @@ public class WarehouseCreateFragment extends BaseFormFragment<CreateWarehouseReq
 
     @Override
     protected int getButtonTextId() {
-        return R.string.header_warehouse_create;
+        return R.string.btn_create_form;
     }
 
     @Override

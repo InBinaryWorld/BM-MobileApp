@@ -32,7 +32,7 @@ public class ContactCreateFragment extends BaseFormFragment<CreateContactRequest
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_warehouse_list;
+        return R.string.btn_create_form;
     }
 
 

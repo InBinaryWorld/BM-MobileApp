@@ -82,7 +82,7 @@ public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehou
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_text_warehouse_details;
+        return R.string.btn_warehouse_details;
     }
 
 }

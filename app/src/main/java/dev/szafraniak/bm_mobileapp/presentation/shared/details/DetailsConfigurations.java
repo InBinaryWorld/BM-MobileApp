@@ -109,7 +109,7 @@ public final class DetailsConfigurations {
 
     public static <T> SimpleDetailsConfig<T> getPostalCodeConfig() {
         SimpleDetailsConfig<T> config = getSimpleConfig();
-        config.setLabel("First Name");
+        config.setLabel("Postal Code");
         return config;
     }
 
