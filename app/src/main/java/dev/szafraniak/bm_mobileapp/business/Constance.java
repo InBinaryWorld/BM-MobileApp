@@ -4,8 +4,9 @@ public final class Constance {
 
     public static final long SPLASH_DISPLAY_LENGTH = 1500;
 
-    public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm";
-    public static final String DATE_PATTERN = "yyyy-MM-dd";
+    public static final String TIME_PATTERN = "HH:mm";
+    public static final String DATE_PATTERN = "yyyy.MM.dd";
+    public static final String DATE_TIME_PATTERN = "yyyy.MM.dd HH:mm";
 
     public static final String CURRENCY = "PLN";
     public final static String PREFERENCES_SESSION_PREFIX = "BM_Session";

@@ -190,6 +190,10 @@
         <item name="android:letterSpacing">-0.03</item>
     </style>
 
+    <style name="BaseTextView.ValueM">
+        <item name="android:textSize">14sp</item>
+    </style>
+
     <style name="BaseTextView.ValueS">
         <item name="android:textSize">12sp</item>
     </style>

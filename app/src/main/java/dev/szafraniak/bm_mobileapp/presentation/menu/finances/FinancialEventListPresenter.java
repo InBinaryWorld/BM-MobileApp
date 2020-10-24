@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.FinancesService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
+import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.FinancialRow;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
@@ -40,8 +41,14 @@ public class FinancialEventListPresenter {
     public void loadData() {
         Long companyId = sessionManager.getCompanyId();
         financesService.getFinancialEvents(companyId)
+            .map(this::sort)
             .compose(view.bindToLifecycle())
             .subscribe(view::setData, view::setError);
+    }
+
+    private BMCollection<FinancialRow> sort(BMCollection<FinancialRow> collection) {
+        collection.getItems().sort((a, b) -> b.getEventDate().compareTo(a.getEventDate()));
+        return collection;
     }
 
     public void modifyModel(FinancialRow item) {

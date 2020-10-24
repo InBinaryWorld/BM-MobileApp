@@ -34,6 +34,7 @@ public class FinancialEventListAdapter extends BaseListAdapter<FinancialRow, Fin
     static class ViewHolder {
         TextView title;
         TextView amount;
+        TextView amountCurrency;
         TextView eventDate;
     }
 
@@ -44,20 +45,27 @@ public class FinancialEventListAdapter extends BaseListAdapter<FinancialRow, Fin
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.title = convertView.findViewById(R.id.tv_title);
             viewHolder.amount = convertView.findViewById(R.id.tv_amount);
+            viewHolder.amountCurrency = convertView.findViewById(R.id.tv_amount_currency);
             viewHolder.eventDate = convertView.findViewById(R.id.tv_event_date);
             convertView.setTag(viewHolder);
         }
         FinancialRow item = getItem(position);
+        ViewHolder holder = (ViewHolder) convertView.getTag();
+        fullFillView(holder, item);
+        return convertView;
+    }
+
+    private void fullFillView(ViewHolder holder, FinancialRow item) {
         BigDecimal amount = item.getAmountChange();
         BigDecimal absAmount = amount.abs();
         boolean isIncome = amount.signum() >= 0;
 
-        ViewHolder holder = (ViewHolder) convertView.getTag();
         holder.title.setText(item.getTitle());
-        holder.eventDate.setText(Parsers.safeFormatDateTime(item.getEventDate()));
-        holder.amount.setTextColor(isIncome ? colorIncome : colorOutcome);
+        holder.eventDate.setText(Parsers.safeFormatDate(item.getEventDate()));
+        holder.amountCurrency.setText(item.getCurrency());
         holder.amount.setText(Parsers.safeFormatPrice(absAmount));
-        return convertView;
+        holder.amount.setTextColor(isIncome ? colorIncome : colorOutcome);
+
     }
 
     @Override

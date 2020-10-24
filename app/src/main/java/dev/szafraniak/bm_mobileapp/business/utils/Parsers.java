@@ -21,6 +21,7 @@ public final class Parsers {
     private final static DecimalFormat dfPrice = getDecimalFormatPrice();
     private final static DecimalFormat dfNoFraction = getDecimalFormatNoFraction();
     private final static DecimalFormat dfWithFraction = getDecimalFormatWithFraction();
+    private final static DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern(Constance.TIME_PATTERN);
     private final static DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(Constance.DATE_PATTERN);
     private final static DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern(Constance.DATE_TIME_PATTERN);
 
@@ -216,7 +217,7 @@ public final class Parsers {
 
     public static String safeFormatTime(LocalTime value) {
         if (value != null) {
-            return value.toString();
+            return timeFormat.format(value);
         }
         return null;
     }
