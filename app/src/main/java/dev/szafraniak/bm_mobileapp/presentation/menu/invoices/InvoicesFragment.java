@@ -25,7 +25,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
 import dev.szafraniak.bm_mobileapp.business.models.stats.FinancesStatsModel;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
+import dev.szafraniak.bm_mobileapp.business.utils.Formatter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.InvoiceDetailsFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWithBtn;
 
@@ -69,7 +69,7 @@ public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice, InvoiceLi
 
     @Override
     protected void onButtonClick(View view) {
-//        formsManager.resetCreateInvoiceForm();
+        formsManager.resetCreateInvoiceForm();
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INVOICES_CREATE_BASE_DATA);
     }
 
@@ -107,14 +107,14 @@ public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice, InvoiceLi
     }
 
     private void fullFillFinancesCard(FinancesStatsModel financesStats) {
-        financesState.setText(Parsers.safeFormatPrice(financesStats.getCurrentState()));
+        financesState.setText(Formatter.safeFormatPrice(financesStats.getCurrentState()));
         financesStateCurrency.setText(financesStats.getCurrency());
         BigDecimal lastCharge = financesStats.getLastChange();
         if (lastCharge == null) {
             lastEvent.setText(R.string.invoices_finances_card_no_event);
             lastEventCurrency.setText("");
         } else {
-            lastEvent.setText(Parsers.safeFormatPrice(lastCharge));
+            lastEvent.setText(Formatter.safeFormatPrice(lastCharge));
             lastEventCurrency.setText(financesStats.getCurrency());
         }
     }

@@ -14,13 +14,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Collections;
 
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.auth.AuthorizationResponse;
-import dev.szafraniak.bm_mobileapp.presentation.BaseActivity;
+import dev.szafraniak.bm_mobileapp.presentation.shared.base.BaseActivity;
 import io.reactivex.observers.DisposableSingleObserver;
 
 import static dev.szafraniak.bm_mobileapp.business.Constance.ACTIVITY_RESULT_CODE_FACEBOOK_LOGIN;
@@ -48,10 +50,6 @@ public class LoginService {
         loginManager.registerCallback(callbackManager, new FacebookCallbackImpl());
     }
 
-    public void facebookLogout() {
-        loginManager.logOut();
-    }
-
     public void silentFacebookSignIn() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         if (accessToken != null && !accessToken.isExpired()) {
@@ -59,7 +57,6 @@ public class LoginService {
             return;
         }
         silentLoginFailed(new Exception("Facebook token is not active"));
-
     }
 
     public void silentGoogleSignIn() {
@@ -82,14 +79,14 @@ public class LoginService {
 
     private void exchangeGoogleToken(String idToken, DisposableSingleObserver<AuthorizationResponse> callback) {
         authorizationService.loginWithGoogle(idToken)
-                .compose(activity.bindToLifecycle())
-                .subscribe(callback);
+            .compose(activity.bindToLifecycle())
+            .subscribe(callback);
     }
 
     private void exchangeFacebookToken(String token, DisposableSingleObserver<AuthorizationResponse> callback) {
         authorizationService.loginWithFacebook(token)
-                .compose(activity.bindToLifecycle())
-                .subscribe(callback);
+            .compose(activity.bindToLifecycle())
+            .subscribe(callback);
     }
 
     private void loginSucceed(AuthorizationResponse authorizationResponse) {
@@ -159,7 +156,7 @@ public class LoginService {
 
     private class LoginObserver extends DisposableSingleObserver<AuthorizationResponse> {
         @Override
-        public void onSuccess(AuthorizationResponse response) {
+        public void onSuccess(@NotNull AuthorizationResponse response) {
             loginSucceed(response);
         }
 
@@ -171,7 +168,7 @@ public class LoginService {
 
     private class SilentLoginObserver extends DisposableSingleObserver<AuthorizationResponse> {
         @Override
-        public void onSuccess(AuthorizationResponse response) {
+        public void onSuccess(@NotNull AuthorizationResponse response) {
             loginSucceed(response);
         }
 

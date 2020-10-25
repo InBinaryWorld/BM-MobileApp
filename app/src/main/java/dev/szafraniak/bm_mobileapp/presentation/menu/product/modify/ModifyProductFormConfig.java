@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.Product;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.UpdateProductRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.SimpleDetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

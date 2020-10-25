@@ -4,8 +4,8 @@ package dev.szafraniak.bm_mobileapp.business.models.entity.invoice;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
-import dev.szafraniak.bm_mobileapp.business.models.IdNameEntity;
 import dev.szafraniak.bm_mobileapp.business.models.entity.amount.Amount;
+import dev.szafraniak.bm_mobileapp.business.models.mics.IdNameEntity;
 import lombok.Data;
 
 @Data
@@ -22,6 +22,8 @@ public class Invoice {
     private String invoiceName;
 
     private OffsetDateTime creationDate;
+
+    private OffsetDateTime dateOfPayment;
 
     private LocalDate dueDate;
 

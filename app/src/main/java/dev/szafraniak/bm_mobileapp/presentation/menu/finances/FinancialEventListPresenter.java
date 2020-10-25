@@ -9,10 +9,10 @@ import com.google.gson.Gson;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.FinancesService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.FinancesService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
-import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.FinancialRow;
+import dev.szafraniak.bm_mobileapp.business.models.mics.BMCollection;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.modify.FinancesEventModifyFragment;

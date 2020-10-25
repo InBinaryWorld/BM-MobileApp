@@ -16,8 +16,8 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.BankAccoun
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.form.CreateInvoicePaymentForm;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.form.CreateInvoicePaymentFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
 
 @EFragment(R.layout.fragment_base_form)
 public class InvoicePaymentFormFragment extends BaseFormFragment<PaymentFormModel, CreateInvoicePaymentFormConfig> implements InvoicePaymentView {

@@ -12,7 +12,7 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.memory.session.SessionPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuActivity_;
@@ -25,7 +25,7 @@ public class CompanyListFragment extends BaseListFragmentWithBtn<CompanyListMode
     CompanyListPresenter presenter;
 
     @Inject
-    SessionPreferences sessionPreferences;
+    SessionManager sessionManager;
 
     @AfterViews
     public void initialize() {
@@ -52,7 +52,7 @@ public class CompanyListFragment extends BaseListFragmentWithBtn<CompanyListMode
 
     @Override
     public void onItemClick(CompanyListModel item) {
-        sessionPreferences.setCompany(item.getCompany());
+        sessionManager.setCompanyId(item.getCompany().getId());
         Navigator.startActivity(getContext(), MenuActivity_.class);
     }
 

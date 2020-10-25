@@ -17,8 +17,8 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoi
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.InvoiceItemsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.InvoiceItemsForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
 
 @EFragment(R.layout.fragment_base_form)
 public class CreateInvoicesItemsFragment extends BaseFormFragment<List<InvoiceItemFormModel>, InvoiceItemsConfig> implements CreateInvoiceItemsView {

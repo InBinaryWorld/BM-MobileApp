@@ -12,13 +12,14 @@ import org.androidannotations.annotations.EFragment;
 import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
+import dev.szafraniak.bm_mobileapp.business.models.mics.BMCollection;
 import dev.szafraniak.bm_mobileapp.presentation.shared.load.BaseSRLLoadFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.ExtendedBaseAdapter;
 import timber.log.Timber;
 
 @EFragment
-public abstract class BaseListFragment<T, A extends ExtendedBaseAdapter<T, T>> extends BaseSRLLoadFragment implements BaseListView<T>, AdapterView.OnItemClickListener {
+public abstract class BaseListFragment<T, A extends ExtendedBaseAdapter<T, T>> extends BaseSRLLoadFragment
+    implements BaseListView<T>, AdapterView.OnItemClickListener {
 
     protected View emptyListView;
 

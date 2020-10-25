@@ -9,14 +9,14 @@ import androidx.annotation.LayoutRes;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.state.InvoiceStatusForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.EditTextViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.date.LocalDateTextViewDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.date.OffsetDateTextViewDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.number.DecimalTextViewDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.text.TextTextViewDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.EditTextViewHolder;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.BaseDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.date.LocalDateTextViewDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.date.OffsetDateTextViewDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.number.DecimalTextViewDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.text.TextTextViewDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 
 public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, InvoiceDetailsConfig> {
 
@@ -28,6 +28,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
     DecimalTextViewDetails grossValue;
     LocalDateTextViewDetails dueDate;
     OffsetDateTextViewDetails creationDate;
+    OffsetDateTextViewDetails dateOfPayment;
     InvoiceStatusForm statusForm;
 
     private FormInterface.Callback onPaidOffAction;
@@ -43,6 +44,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
             dueDate.setValue(null);
             grossValue.setValue(null);
             creationDate.setValue(null);
+            dateOfPayment.setValue(null);
             invoiceNumber.setValue(null);
             statusForm.setValue(null);
             return;
@@ -51,6 +53,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
         dueDate.setValue(value.getDueDate());
         grossValue.setValue(value.getTotalAmount().getGross());
         creationDate.setValue(value.getCreationDate());
+        dateOfPayment.setValue(value.getDateOfPayment());
         invoiceNumber.setValue(value.getInvoiceName());
         statusForm.setValue(value.getIsPaid());
     }
@@ -63,12 +66,14 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
         buyerName = new TextTextViewDetails(inflater, groupList, config.getBuyerNameConfig());
         dueDate = new LocalDateTextViewDetails(inflater, groupList, config.getDueDateConfig());
         creationDate = new OffsetDateTextViewDetails(inflater, groupList, config.getCreationDateConfig());
+        dateOfPayment = new OffsetDateTextViewDetails(inflater, groupList, config.getDateOfPaymentConfig());
         grossValue = new DecimalTextViewDetails(inflater, groupList, config.getGrossConfig());
         statusForm = new InvoiceStatusForm(inflater, groupList, config.getStatusConfig());
 
         groupList.addView(invoiceNumber.getView());
         groupList.addView(buyerName.getView());
         groupList.addView(statusForm.getView());
+        groupList.addView(dateOfPayment.getView());
         groupList.addView(creationDate.getView());
         groupList.addView(dueDate.getView());
         groupList.addView(grossValue.getView());

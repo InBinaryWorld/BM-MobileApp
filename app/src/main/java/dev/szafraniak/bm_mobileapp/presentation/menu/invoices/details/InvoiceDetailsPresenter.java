@@ -1,5 +1,6 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.widget.Toast;
 
@@ -10,13 +11,13 @@ import java.util.HashMap;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.InvoiceService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.InvoiceService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
 import dev.szafraniak.bm_mobileapp.business.utils.FileUtils;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.state.InvoiceStatusFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.DetailsConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsPresenter;
 import okhttp3.ResponseBody;
 
 public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, InvoiceDetailsView, InvoiceDetailsConfig> {
@@ -31,6 +32,8 @@ public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, Invoi
         ((BMApplication) app).getAppComponent().inject(this);
     }
 
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData(Invoice invoice) {
         Long companyId = sessionManager.getCompanyId();
         invoiceService.getInvoice(companyId, invoice.getId())
@@ -44,6 +47,7 @@ public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, Invoi
         config.setVisibleOnSetValueNull(true);
         config.setBuyerNameConfig(DetailsConfigurations.getBuyerNameConfig());
         config.setCreationDateConfig(DetailsConfigurations.getCreationDateConfig());
+        config.setDateOfPaymentConfig(DetailsConfigurations.getDateOfPaymentConfig());
         config.setDueDateConfig(DetailsConfigurations.getDueDateConfiguration());
         config.setInvoiceNumberConfig(DetailsConfigurations.getInvoiceNumberConfig());
         config.setGrossConfig(DetailsConfigurations.getGrossPriceConfig());
@@ -73,6 +77,8 @@ public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, Invoi
         downloadPDF(invoice);
     }
 
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private void downloadPDF(Invoice invoice) {
         Long companyId = sessionManager.getCompanyId();
         invoiceService.getInvoiceDocument(companyId, invoice.getId())
@@ -94,6 +100,8 @@ public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, Invoi
         }
     }
 
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void paidOffAction(Long invoiceId) {
         Long companyId = sessionManager.getCompanyId();
         invoiceService.paidOffAction(companyId, invoiceId)

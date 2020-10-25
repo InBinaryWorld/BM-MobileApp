@@ -1,7 +1,6 @@
 package dev.szafraniak.bm_mobileapp.business.models.entity.invoice;
 
 import java.time.LocalDate;
-import java.time.OffsetDateTime;
 import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.contact.Contact;
@@ -20,8 +19,6 @@ public class CreateInvoiceRequest {
     private PaymentMethod paymentMethod;
 
     private LocalDate dueDate;
-
-    private OffsetDateTime creationDate;
 
     private List<InvoiceItem> items;
 }

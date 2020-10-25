@@ -9,9 +9,10 @@ import com.google.gson.Gson;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.BankAccountService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.BankAccountService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.BankAccount;
+import dev.szafraniak.bm_mobileapp.business.models.mics.BMCollection;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.bank.modify.BankAccountModifyFragment;
@@ -40,8 +41,14 @@ public class BankAccountListPresenter {
     public void loadData() {
         Long companyId = sessionManager.getCompanyId();
         bankAccountService.getBankAccounts(companyId)
+            .map(this::sort)
             .compose(view.bindToLifecycle())
             .subscribe(view::setData, view::setError);
+    }
+
+    private BMCollection<BankAccount> sort(BMCollection<BankAccount> collection) {
+        collection.getItems().sort((a, b) -> a.getName().compareTo(b.getName()));
+        return collection;
     }
 
     public void modifyModel(BankAccount item) {

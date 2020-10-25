@@ -13,6 +13,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static dev.szafraniak.bm_mobileapp.business.Constance.PREFERENCES_USER_PREFIX;
 
 public class SettingsPreferences {
+    
     private final SharedPreferences preferences;
     private final static String GOOGLE_SILENT_LOGIN_ENABLED = "google.silent.login.enabled";
     private final static String FACEBOOK_SILENT_LOGIN_ENABLED = "facebook.silent.login.enabled";

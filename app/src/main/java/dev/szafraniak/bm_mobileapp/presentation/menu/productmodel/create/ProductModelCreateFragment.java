@@ -11,8 +11,8 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.CreateProductModelRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
 
 @EFragment(R.layout.fragment_base_form)
 public class ProductModelCreateFragment extends BaseFormFragment<CreateProductModelRequest, CreateProductModelFormConfig> implements ProductModelCreateView {

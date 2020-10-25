@@ -3,9 +3,9 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.finances.create;
 import java.math.BigDecimal;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.CreateFinancialRowRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.dateTimePicker.DateTimePickerFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.dateTimePicker.DateTimePickerFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

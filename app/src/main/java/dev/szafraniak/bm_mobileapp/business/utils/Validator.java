@@ -8,14 +8,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.regex.Pattern;
 
-import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
-import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.CompanyContact;
-import dev.szafraniak.bm_mobileapp.business.models.entity.contact.Contact;
-import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
-import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentCash;
-import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethod;
-import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentTransfer;
-
 public final class Validator {
 
     private final static String UPPERCASE_LETTER = "[A-ZŻŹĆĄŚĘŁÓŃ]";
@@ -26,7 +18,6 @@ public final class Validator {
     public final static String WORD_1_20 = LETTER + "{1,20}";
     public final static String WORDS = "( *" + LETTER + "+ *)+";
     public final static String BASE_1_6 = ALLOWED_SIGNS + "{1,6}";
-    public final static String BASE_1_20 = ALLOWED_SIGNS + "{1,20}";
     public final static String BASE_3_20 = ALLOWED_SIGNS + "{3,20}";
     public final static String BASE_2_40 = ALLOWED_SIGNS + "{2,40}";
     public final static String BASE_2_240 = ALLOWED_SIGNS + "{2,240}";
@@ -37,7 +28,6 @@ public final class Validator {
     public final static String INVOICE_PREFIX_2_14 = ALLOWED_SIGNS + "{1,13}[^ \\d\\t\\n\\r\\f\\x0B]";
     public final static String HOUSE_NUMBER = "\\d{1,3}[A-Za-z]?";
     public final static String POSTAL_CODE = "\\d{2}-\\d{3}";
-    public final static String CURRENCY = UPPERCASE_LETTER + "{2,4}";
     public final static String TAX_IDENTITY_NUMBER = "\\d{10}";
 
     public static boolean validateLastName(String value) {
@@ -82,21 +72,6 @@ public final class Validator {
 
     public static boolean validateTaxIdentityNumber(String value) {
         return Pattern.matches(TAX_IDENTITY_NUMBER, value);
-    }
-
-    public static boolean validateAddress(Address address) {
-        String country = address.getCountry();
-        String city = address.getCity();
-        String street = address.getStreet();
-        String postal = address.getPostalCode();
-        String house = address.getHouseNumber();
-        String apartment = address.getApartmentNumber();
-        return country != null && validateCountry(country)
-            && city != null && validateCity(city)
-            && street != null && validateStreet(street)
-            && postal != null && validatePostalCode(postal)
-            && house != null && validateHouseNumber(house)
-            && (apartment == null || validateApartmentNumber(apartment));
     }
 
     public static boolean validateCountry(String value) {
@@ -164,54 +139,6 @@ public final class Validator {
         return len >= min && len <= max;
     }
 
-    public static boolean validateContact(Contact value) {
-        if (value instanceof IndividualContact) {
-            return validateContact((IndividualContact) value);
-        } else if (value instanceof CompanyContact) {
-            return validateContact((CompanyContact) value);
-        }
-        return false;
-    }
-
-    public static boolean validateContact(CompanyContact value) {
-        String name = value.getName();
-        String taxId = value.getTaxIdentityNumber();
-        String phone = value.getPhone();
-        Address address = value.getAddress();
-        return name != null && validateCompanyName(name)
-            && taxId != null && validateTaxIdentityNumber(taxId)
-            && address != null && validateAddress(address)
-            && (phone == null || validatePhoneNumber(phone));
-    }
-
-    public static boolean validateContact(IndividualContact value) {
-        String firstName = value.getFirstName();
-        String lastName = value.getLastName();
-        String phone = value.getPhone();
-        Address address = value.getAddress();
-        return firstName != null && validateFirstName(firstName)
-            && lastName != null && validateLastName(lastName)
-            && address != null && validateAddress(address)
-            && (phone == null || validatePhoneNumber(phone));
-    }
-
-    public static boolean validatePaymentMethod(PaymentMethod paymentMethod) {
-        if (paymentMethod instanceof PaymentCash) {
-            return validatePaymentMethod((PaymentCash) paymentMethod);
-        } else if (paymentMethod instanceof PaymentTransfer) {
-            return validatePaymentMethod((PaymentTransfer) paymentMethod);
-        }
-        return false;
-    }
-
-    public static boolean validatePaymentMethod(PaymentCash paymentMethod) {
-        return true;
-    }
-
-    public static boolean validatePaymentMethod(PaymentTransfer paymentMethod) {
-        return validateBankAccountNumber(paymentMethod.getAccountNumber());
-    }
-
     public static boolean validateDueDate(LocalDate dueDate) {
         return dueDate.compareTo(LocalDate.now()) >= 0;
     }
@@ -224,17 +151,18 @@ public final class Validator {
         return value != null;
     }
 
+
+    public static boolean validateFinancesEventDateTime(LocalDateTime value) {
+        return LocalDateTime.now().compareTo(value) >= 0;
+    }
+
     public static DateValidatorPointForward getFromValidatorInclusive(LocalDate localDate) {
-        Long mills = Parsers.parseToMills(localDate);
+        long mills = Parser.parseToMillsAtStartOfDay(localDate);
         return DateValidatorPointForward.from(mills);
     }
 
     public static DateValidatorPointBackward getBeforeValidatorInclusive(LocalDate localDate) {
-        Long mills = Parsers.parseToMills(localDate);
+        long mills = Parser.parseToMillsAtStartOfDay(localDate);
         return DateValidatorPointBackward.before(mills);
-    }
-
-    public static boolean validateFinancesEventDateTime(LocalDateTime value) {
-        return LocalDateTime.now().compareTo(value) >= 0;
     }
 }

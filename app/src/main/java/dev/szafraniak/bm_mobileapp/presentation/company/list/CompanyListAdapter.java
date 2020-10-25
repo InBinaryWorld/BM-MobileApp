@@ -12,7 +12,7 @@ import java.util.List;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
 import dev.szafraniak.bm_mobileapp.business.models.stats.CompanyStatsModel;
-import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
+import dev.szafraniak.bm_mobileapp.business.utils.Formatter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListAdapter;
 
 public class CompanyListAdapter extends BaseListAdapter<CompanyListModel, CompanyListModel> {
@@ -23,7 +23,6 @@ public class CompanyListAdapter extends BaseListAdapter<CompanyListModel, Compan
     public CompanyListAdapter(LayoutInflater inflater, List<CompanyListModel> initValue) {
         super(inflater, initValue);
     }
-
 
     static class ViewHolder {
         TextView companyName;
@@ -54,8 +53,8 @@ public class CompanyListAdapter extends BaseListAdapter<CompanyListModel, Compan
     }
 
     private void fillView(CompanyListModel item, ViewHolder holder) {
-        Company company = item.getCompany();
         CompanyStatsModel stats = item.getCompanyStats();
+        Company company = item.getCompany();
         String currency = company.getCurrency();
 
         holder.companyName.setText(company.getName());
@@ -67,17 +66,16 @@ public class CompanyListAdapter extends BaseListAdapter<CompanyListModel, Compan
     }
 
     private String getFinancesValue(CompanyStatsModel stats) {
-        return Parsers.safeFormatPrice(stats.getFinances().getCurrentState());
+        return Formatter.safeFormatPrice(stats.getFinances().getCurrentState());
     }
 
     private String getProductsValue(CompanyStatsModel stats) {
-        return Parsers.safeFormatPrice(stats.getResources().getTotalGrossValue());
+        return Formatter.safeFormatPrice(stats.getResources().getTotalGrossValue());
     }
 
     private String getShortAddress(Company company) {
         return company.getHeadquarter().getShortAddress();
     }
-
 
     @Override
     protected CompanyListModel extractGetItemValue(CompanyListModel item) {

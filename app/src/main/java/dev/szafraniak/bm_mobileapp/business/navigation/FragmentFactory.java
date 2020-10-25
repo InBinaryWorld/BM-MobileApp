@@ -21,12 +21,13 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.modify.Com
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.create.ContactCreateFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details.IndividualContactDetailsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.copyrights.CopyrightsFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancialEventListFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.create.FinancesEventCreateFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.modify.FinancesEventModifyFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesFragment_;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataFormFragment_;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.baseData.CreateInvoiceBaseDataFormFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.InvoiceContactFormFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.CreateInvoiceItemFormFragment_;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.CreateInvoicesItemsFragment_;
@@ -69,6 +70,7 @@ public abstract class FragmentFactory {
     public static final int FRAGMENT_INVOICES_DETAILS = 420;
     public static final int FRAGMENT_SETTINGS = 500;
     public static final int FRAGMENT_SETTINGS_COMPANY = 501;
+    public static final int FRAGMENT_SETTINGS_COPYRIGHTS = 502;
     public static final int FRAGMENT_PRODUCT_MODEL_LIST = 700;
     public static final int FRAGMENT_PRODUCT_MODEL_MODIFY = 701;
     public static final int FRAGMENT_PRODUCT_MODEL_CREATE = 702;
@@ -166,6 +168,9 @@ public abstract class FragmentFactory {
                 break;
             case FRAGMENT_SETTINGS_COMPANY:
                 fragment = new ModifyCompanyFragment_();
+                break;
+            case FRAGMENT_SETTINGS_COPYRIGHTS:
+                fragment = new CopyrightsFragment_();
                 break;
             case FRAGMENT_PRODUCT_MODEL_LIST:
                 fragment = new ProductModelListFragment_();

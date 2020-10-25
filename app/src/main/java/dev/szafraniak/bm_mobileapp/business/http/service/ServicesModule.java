@@ -6,6 +6,17 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.BankAccountService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.CompanyService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ContactsService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.FinancesService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.InvoiceService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ProductModelService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ProductService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ServiceModelService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.StatisticsService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.UserService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.WarehouseService;
 
 @Module
 public class ServicesModule {

@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.LayoutRes;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.BaseDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 
 public class InvoiceStatusForm extends BaseDetails<Boolean, InvoiceStatusViewHolder, InvoiceStatusFormConfig> {
 

@@ -12,7 +12,7 @@ import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
-import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
+import dev.szafraniak.bm_mobileapp.business.utils.Formatter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListAdapter;
 
 public class InvoiceListAdapter extends BaseListAdapter<Invoice, Invoice> {
@@ -48,10 +48,10 @@ public class InvoiceListAdapter extends BaseListAdapter<Invoice, Invoice> {
     private void fullFillView(ViewHolder holder, Invoice item) {
         holder.name.setText(item.getInvoiceName());
         holder.buyer.setText(item.getBuyerName());
-        holder.creationDate.setText(Parsers.safeFormatDate(item.getCreationDate()));
+        holder.creationDate.setText(Formatter.safeFormatDate(item.getCreationDate()));
         if (item.getIsPaid()) {
             holder.state.setTextColor(colorPaid);
-            holder.state.setText(R.string.row_Invoice_state_paid);
+            holder.state.setText(R.string.row_invoice_state_paid);
         } else {
             holder.state.setTextColor(colorUnpaid);
             holder.state.setText(R.string.row_invoice_state_unpaid);

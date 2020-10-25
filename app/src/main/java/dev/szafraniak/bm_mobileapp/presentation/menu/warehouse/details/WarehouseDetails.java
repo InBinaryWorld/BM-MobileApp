@@ -8,11 +8,11 @@ import androidx.annotation.LayoutRes;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
-import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.EditTextViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.models.address.AddressDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.text.TextTextViewDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.address.AddressDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.BaseDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.text.TextTextViewDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.EditTextViewHolder;
 
 public class WarehouseDetails extends BaseDetails<Warehouse, BaseViewHolder, WarehouseDetailsConfig> {
 

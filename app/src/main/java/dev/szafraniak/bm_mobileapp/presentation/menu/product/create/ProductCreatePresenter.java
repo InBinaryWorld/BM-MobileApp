@@ -8,14 +8,14 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
-import dev.szafraniak.bm_mobileapp.business.http.service.ProductService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ProductModelService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ProductService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.CreateProductRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.Product;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
 import lombok.Setter;
 
 public class ProductCreatePresenter {
@@ -60,6 +60,8 @@ public class ProductCreatePresenter {
         return config;
     }
 
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData() {
         Long companyId = sessionManager.getCompanyId();
         productModelService.getProductModels(companyId)

@@ -4,8 +4,8 @@ import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.summary.InvoiceItemsSummaryConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.list.ListFormRowConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.list.ListFormRowConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

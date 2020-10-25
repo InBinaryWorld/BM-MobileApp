@@ -5,19 +5,18 @@ import android.app.Application;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
-import dev.szafraniak.bm_mobileapp.business.http.service.StatisticsService;
-import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.CompanyService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.StatisticsService;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
-import dev.szafraniak.bm_mobileapp.business.models.stats.CompanyStatsModel;
+import dev.szafraniak.bm_mobileapp.business.models.mics.BMCollection;
 import dev.szafraniak.bm_mobileapp.business.utils.RxUtils;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
-import io.reactivex.functions.Function;
 import lombok.Setter;
 
 public class CompanyListPresenter {
@@ -40,17 +39,16 @@ public class CompanyListPresenter {
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData() {
         companyService.getCompanies()
-            .flatMap(this::appendStats)
+            .flatMap(this::mapToModels)
             .compose(view.bindToLifecycle())
             .subscribe(view::setData, view::setError);
     }
 
-    private ObservableSource<List<CompanyListModel>> appendStats(BMCollection<Company> companiesCollection) {
+    private ObservableSource<List<CompanyListModel>> mapToModels(BMCollection<Company> companiesCollection) {
         List<Company> companies = companiesCollection.getItems();
-        List<Observable<CompanyListModel>> models = new ArrayList<>();
-        for (Company company : companies) {
-            models.add(getCompanyListModel(company));
-        }
+        companies.sort((a, b) -> a.getName().compareTo(b.getName()));
+        List<Observable<CompanyListModel>> models = companies.stream()
+            .map(this::mapToModels).collect(Collectors.toList());
         if (models.size() == 0) {
             return Observable.just(new ArrayList<>());
         }
@@ -58,24 +56,13 @@ public class CompanyListPresenter {
     }
 
 
-    private Observable<CompanyListModel> getCompanyListModel(Company company) {
-        return statisticsService.getCompanyStats(company.getId())
-            .map(new FullFillCompanyListModel(company));
-    }
-
-    private static class FullFillCompanyListModel implements Function<CompanyStatsModel, CompanyListModel> {
-        private final Company company;
-
-        public FullFillCompanyListModel(Company company) {
-            this.company = company;
-        }
-
-        @Override
-        public CompanyListModel apply(CompanyStatsModel companyStats) {
+    private Observable<CompanyListModel> mapToModels(Company company) {
+        return statisticsService.getCompanyStats(company.getId()).map(stats -> {
             CompanyListModel model = new CompanyListModel();
             model.setCompany(company);
-            model.setCompanyStats(companyStats);
+            model.setCompanyStats(stats);
             return model;
-        }
+        });
     }
+
 }

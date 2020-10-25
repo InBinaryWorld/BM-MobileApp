@@ -10,10 +10,10 @@ import java.math.BigDecimal;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.UpdateProductRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.text.TextTextViewDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.number.DecimalEditTextFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.text.TextTextViewDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.number.DecimalEditTextFormRow;
 
 public class ModifyProductForm extends BaseForm<UpdateProductRequest, BaseViewHolder, ModifyProductFormConfig> {
 

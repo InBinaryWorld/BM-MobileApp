@@ -1,7 +1,7 @@
 package dev.szafraniak.bm_mobileapp.business.models.entity.productmodel;
 
-import dev.szafraniak.bm_mobileapp.business.models.IdNameEntity;
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
+import dev.szafraniak.bm_mobileapp.business.models.mics.IdNameEntity;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.FilterValue;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

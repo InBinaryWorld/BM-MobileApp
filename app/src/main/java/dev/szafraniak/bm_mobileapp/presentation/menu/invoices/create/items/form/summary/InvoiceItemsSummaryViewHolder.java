@@ -4,7 +4,7 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
 
-import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
 
 public class InvoiceItemsSummaryViewHolder extends BaseViewHolder {
     TextView itemCount;

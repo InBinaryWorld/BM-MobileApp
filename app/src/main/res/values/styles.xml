@@ -75,10 +75,6 @@
         <item name="android:paddingHorizontal">18dp</item>
     </style>
 
-    <style name="Row.h18.v8">
-        <item name="android:paddingVertical">8dp</item>
-    </style>
-
     <style name="Row.h18.v10">
         <item name="android:paddingVertical">10dp</item>
     </style>
@@ -404,7 +400,7 @@
 
     <style name="PhoneImageView">
         <item name="android:tint">@color/blue_light_black40</item>
-        <item name="android:src">@drawable/ic_phone</item>
+        <item name="android:src">@drawable/ic_smartphone</item>
     </style>
 
     <style name="NextImageView">

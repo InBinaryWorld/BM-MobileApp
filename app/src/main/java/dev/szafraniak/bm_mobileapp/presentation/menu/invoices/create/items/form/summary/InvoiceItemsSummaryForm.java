@@ -1,5 +1,6 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.summary;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,15 +13,15 @@ import com.google.gson.Gson;
 import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.business.models.AmountModel;
+import dev.szafraniak.bm_mobileapp.business.models.mics.AmountModel;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.business.utils.FinancesUtils;
-import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
+import dev.szafraniak.bm_mobileapp.business.utils.Formatter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.CreateInvoiceItemFormFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.ItemCommand;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseForm;
 
 public class InvoiceItemsSummaryForm extends BaseForm<List<InvoiceItemFormModel>, InvoiceItemsSummaryViewHolder, InvoiceItemsSummaryConfig> {
 
@@ -32,6 +33,7 @@ public class InvoiceItemsSummaryForm extends BaseForm<List<InvoiceItemFormModel>
     }
 
     @Override
+    @SuppressLint("SetTextI18n")
     protected void showValueOnView(List<InvoiceItemFormModel> value) {
         InvoiceItemsSummaryViewHolder holder = getViewHolder();
         if (value == null) {
@@ -40,7 +42,7 @@ public class InvoiceItemsSummaryForm extends BaseForm<List<InvoiceItemFormModel>
             return;
         }
         AmountModel amount = FinancesUtils.countAmount(value);
-        String totalGross = Parsers.safeFormatPrice(amount.getGross());
+        String totalGross = Formatter.safeFormatPrice(amount.getGross());
         holder.itemCount.setText(Integer.toString(value.size()));
         holder.grossTotalValue.setText(totalGross);
     }

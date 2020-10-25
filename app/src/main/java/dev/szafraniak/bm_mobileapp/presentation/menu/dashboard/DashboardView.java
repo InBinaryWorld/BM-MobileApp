@@ -1,6 +1,6 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.dashboard;
 
-import dev.szafraniak.bm_mobileapp.presentation.BaseView;
+import dev.szafraniak.bm_mobileapp.presentation.shared.base.BaseView;
 
 public interface DashboardView extends BaseView {
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MathParentContainer"
-    tools:context=".presentation.login.LoginActivity"
+    tools:context=".presentation.login.activity.LoginActivity"
     tools:background="@color/colorBlueDark">
 
     <androidx.constraintlayout.widget.ConstraintLayout

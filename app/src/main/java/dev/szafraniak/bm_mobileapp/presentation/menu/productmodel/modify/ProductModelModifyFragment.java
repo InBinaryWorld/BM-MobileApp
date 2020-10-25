@@ -16,8 +16,8 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.UpdateProductModelRequest;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
 
 @EFragment(R.layout.fragment_base_form)
 public class ProductModelModifyFragment extends BaseFormFragment<UpdateProductModelRequest, ModifyProductModelFormConfig> implements ProductModelModifyView {

@@ -8,9 +8,9 @@ import androidx.annotation.LayoutRes;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.CreateBankAccountRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextEditTextFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.text.TextEditTextFormRow;
 
 public class BankAccountCreateForm extends BaseForm<CreateBankAccountRequest, BaseViewHolder, BankAccountCreateFormConfig> {
 

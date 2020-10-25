@@ -8,14 +8,14 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.presentation.BaseSRLFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.base.BaseSRLFragment;
 
 @EFragment
 public abstract class BaseSRLLoadFragment extends BaseSRLFragment {
 
-    protected View progressBar;
-
     protected View errorView;
+
+    protected View progressBar;
 
     protected View dataContainerView;
 

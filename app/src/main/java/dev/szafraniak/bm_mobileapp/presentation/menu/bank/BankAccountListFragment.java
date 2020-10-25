@@ -18,7 +18,8 @@ import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListFragmentWithBtn;
 
 @EFragment(R.layout.fragment_base_list_with_btn)
-public class BankAccountListFragment extends BaseListFragmentWithBtn<BankAccount, BankAccountListAdapter> implements BankAccountListView {
+public class BankAccountListFragment extends BaseListFragmentWithBtn<BankAccount, BankAccountListAdapter>
+    implements BankAccountListView {
 
     @Inject
     BankAccountListPresenter presenter;

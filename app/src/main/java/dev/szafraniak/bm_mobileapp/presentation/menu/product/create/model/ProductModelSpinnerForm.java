@@ -4,8 +4,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.BaseSpinnerAdapter;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.BaseSpinnerFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.spinner.BaseSpinnerAdapter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.spinner.BaseSpinnerFormRow;
 
 public class ProductModelSpinnerForm extends BaseSpinnerFormRow<ProductModel, Long, ProductModelSpinnerFormConfig> {
     public ProductModelSpinnerForm(LayoutInflater inflater, ViewGroup viewGroup, ProductModelSpinnerFormConfig config) {

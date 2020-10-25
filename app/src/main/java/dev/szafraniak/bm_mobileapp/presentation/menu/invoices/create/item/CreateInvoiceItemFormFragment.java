@@ -21,8 +21,8 @@ import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.InvoiceItemForm;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.InvoiceItemFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
 
 @EFragment(R.layout.fragment_base_form)
 public class CreateInvoiceItemFormFragment extends BaseFormFragment<InvoiceItemFormModel, InvoiceItemFormConfig> implements CrateInvoiceItemFormView {

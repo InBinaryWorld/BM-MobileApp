@@ -17,12 +17,13 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.modify.Com
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.create.ContactCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details.IndividualContactDetailsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.copyrights.CopyrightsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancialEventListPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.create.FinancesEventCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.modify.FinancesEventModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.baseData.CreateInvoiceBaseDataPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.InvoiceContactPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.InvoiceCreateItemFormPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.CreateInvoiceItemsPresenter;
@@ -274,6 +275,12 @@ public class MenuModule {
     @Singleton
     public ContactCreatePresenter provideContactCreatePresenter(Application app) {
         return new ContactCreatePresenter(app);
+    }
+
+    @Provides
+    @Singleton
+    public CopyrightsPresenter provideCopyrightsPresenter(Application app) {
+        return new CopyrightsPresenter(app);
     }
 
 }

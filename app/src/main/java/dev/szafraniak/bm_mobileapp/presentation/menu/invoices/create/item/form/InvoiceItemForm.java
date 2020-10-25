@@ -11,8 +11,8 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.product.ProductAutoCompleteForm;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.service.ServiceAutoCompleteForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.baseType.BaseTypeForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.spinner.type.BaseTypeForm;
 
 public class InvoiceItemForm extends BaseForm<InvoiceItemFormModel, InvoiceItemViewHolder, InvoiceItemFormConfig> {
 

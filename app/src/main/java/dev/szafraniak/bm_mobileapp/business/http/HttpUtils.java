@@ -12,9 +12,7 @@ public class HttpUtils {
     private static final String AUTHORIZATION_KEY = "Authorization";
 
     public static Request addAuthToRequest(Request request, String authValue) {
-        return request.newBuilder()
-            .header(AUTHORIZATION_KEY, authValue)
-            .build();
+        return request.newBuilder().header(AUTHORIZATION_KEY, authValue).build();
     }
 
     public static <T> T executeCall(Call<T> request) {

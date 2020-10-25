@@ -17,10 +17,10 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.Company
 import dev.szafraniak.bm_mobileapp.business.models.entity.contact.Contact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.form.ContactForm;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.form.ContactFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 
 @EFragment(R.layout.fragment_base_form)
 public class InvoiceContactFormFragment extends BaseFormFragment<Contact, ContactFormConfig> implements InvoiceContactView {

@@ -9,11 +9,11 @@ import androidx.annotation.LayoutRes;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.CreateProductModelRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.price.PriceForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.barcode.BarcodeFormRow;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextEditTextFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.barcode.BarcodeFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.text.TextEditTextFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.price.PriceForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
 
 public class CreateProductModelForm extends BaseForm<CreateProductModelRequest, BaseViewHolder, CreateProductModelFormConfig> {
 

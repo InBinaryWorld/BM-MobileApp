@@ -12,12 +12,12 @@ import java.time.OffsetDateTime;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.UpdateFinancialRowRequest;
-import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
-import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.dateTimePicker.DateTimePickerForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.number.DecimalEditTextFormRow;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.text.TextEditTextFormRow;
+import dev.szafraniak.bm_mobileapp.business.utils.Parser;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.dateTimePicker.DateTimePickerForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.number.DecimalEditTextFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.text.TextEditTextFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
 
 public class FinancesEventModifyForm extends BaseForm<UpdateFinancialRowRequest, BaseViewHolder, FinancesEventModifyFormConfig> {
 
@@ -48,7 +48,7 @@ public class FinancesEventModifyForm extends BaseForm<UpdateFinancialRowRequest,
         }
         titleForm.setValue(value.getTitle());
         amountForm.setValue(value.getAmountChange());
-        eventDateForm.setValue(Parsers.parseToLocalDateTime(value.getEventDate()));
+        eventDateForm.setValue(Parser.parseToLocalDateTime(value.getEventDate()));
         descriptionForm.setValue(value.getDescription());
     }
 
@@ -61,7 +61,7 @@ public class FinancesEventModifyForm extends BaseForm<UpdateFinancialRowRequest,
         if (title == null && description == null && amount == null && dateTime == null) {
             return null;
         }
-        OffsetDateTime offsetDateTime = Parsers.parseToOffsetDateTime(dateTime);
+        OffsetDateTime offsetDateTime = Parser.parseToOffsetDateTime(dateTime);
         UpdateFinancialRowRequest model = new UpdateFinancialRowRequest();
         model.setTitle(title);
         model.setEventDate(offsetDateTime);

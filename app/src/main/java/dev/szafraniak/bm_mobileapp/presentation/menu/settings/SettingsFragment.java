@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.BaseHeaderFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.base.BaseHeaderFragment;
 import dev.szafraniak.bm_mobileapp.presentation.company.activity.CompanyActivity_;
 
 @EFragment(R.layout.fragment_settings)
@@ -42,12 +42,12 @@ public class SettingsFragment extends BaseHeaderFragment implements SettingsView
     }
 
     @Click(R.id.cl_switch_google)
-    public void enableGoogleAutoLogin() {
+    public void negateGoogleAutoLogin() {
         presenter.negateGoogleSilentSetting();
     }
 
     @Click(R.id.cl_switch_facebook)
-    public void enableFacebookAutoLogin() {
+    public void negateFacebookAutoLogin() {
         presenter.negateFacebookSilentSetting();
     }
 
@@ -64,6 +64,11 @@ public class SettingsFragment extends BaseHeaderFragment implements SettingsView
     @Click(R.id.cl_menage_bank_accounts)
     public void manageBankAccounts() {
         presenter.manageBankAccounts();
+    }
+
+    @Click(R.id.cl_copyrights)
+    public void showCopyrights() {
+        presenter.showCopyrights();
     }
 
     @Click(R.id.cl_logout)

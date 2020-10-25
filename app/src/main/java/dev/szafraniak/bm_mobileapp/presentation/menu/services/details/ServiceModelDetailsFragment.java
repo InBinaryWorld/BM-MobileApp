@@ -17,8 +17,8 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceMo
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyFragment;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsFragmentWithBtn;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.DetailsInterface;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsFragmentWithBtn;
 
 @EFragment(R.layout.fragment_base_details)
 public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<ServiceModel, ServiceModelDetailsConfig>

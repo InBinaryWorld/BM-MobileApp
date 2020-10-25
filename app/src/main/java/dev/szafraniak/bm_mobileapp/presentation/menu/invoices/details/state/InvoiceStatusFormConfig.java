@@ -2,7 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.state;
 
 import java.util.HashMap;
 
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.BaseDetailsConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

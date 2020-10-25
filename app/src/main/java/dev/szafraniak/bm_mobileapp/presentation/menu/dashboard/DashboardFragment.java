@@ -13,7 +13,7 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.stats.FinancesStatsModel;
 import dev.szafraniak.bm_mobileapp.business.models.stats.InvoicesStatsModel;
 import dev.szafraniak.bm_mobileapp.business.models.stats.ResourcesStatsModel;
-import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
+import dev.szafraniak.bm_mobileapp.business.utils.Formatter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.load.BaseSRLLoadFragment;
 
 @EFragment(R.layout.fragment_dashboard)
@@ -66,11 +66,11 @@ public class DashboardFragment extends BaseSRLLoadFragment implements DashboardV
 
     @SuppressLint("SetTextI18n")
     private void fullFillInvoices(InvoicesStatsModel invoices) {
-        String lastInvoice = Parsers.safeFormatPrice(invoices.getLastInvoiceValue());
+        String lastInvoice = Formatter.safeFormatPrice(invoices.getLastInvoiceValue());
         holder.paid.setText(Integer.toString(invoices.getPaid()));
         holder.unpaid.setText(Integer.toString(invoices.getUnpaid()));
-        holder.paidValue.setText(Parsers.safeFormatPrice(invoices.getPaidValue()));
-        holder.unpaidValue.setText(Parsers.safeFormatPrice(invoices.getUnpaidValue()));
+        holder.paidValue.setText(Formatter.safeFormatPrice(invoices.getPaidValue()));
+        holder.unpaidValue.setText(Formatter.safeFormatPrice(invoices.getUnpaidValue()));
         holder.paidValueCurrency.setText(invoices.getCurrency());
         holder.unpaidValueCurrency.setText(invoices.getCurrency());
         if (lastInvoice == null) {
@@ -87,17 +87,17 @@ public class DashboardFragment extends BaseSRLLoadFragment implements DashboardV
         holder.productModels.setText(Integer.toString(resources.getProductModelsNumber()));
         holder.serviceModels.setText(Integer.toString(resources.getServiceModelsNumber()));
         holder.warehouses.setText(Integer.toString(resources.getWarehousesNumber()));
-        holder.productsValue.setText(Parsers.safeFormatPrice(resources.getTotalGrossValue()));
+        holder.productsValue.setText(Formatter.safeFormatPrice(resources.getTotalGrossValue()));
         holder.productsValueCurrency.setText(resources.getCurrency());
     }
 
     private void fullFillFinances(FinancesStatsModel finances) {
-        String lastEvent = Parsers.safeFormatPrice(finances.getLastChange());
-        holder.income.setText(Parsers.safeFormatPrice(finances.getTotalIncome()));
+        String lastEvent = Formatter.safeFormatPrice(finances.getLastChange());
+        holder.income.setText(Formatter.safeFormatPrice(finances.getTotalIncome()));
         holder.incomeCurrency.setText(finances.getCurrency());
-        holder.outcome.setText(Parsers.safeFormatPrice(finances.getTotalOutcome()));
+        holder.outcome.setText(Formatter.safeFormatPrice(finances.getTotalOutcome()));
         holder.outcomeCurrency.setText(finances.getCurrency());
-        holder.currentState.setText(Parsers.safeFormatPrice(finances.getCurrentState()));
+        holder.currentState.setText(Formatter.safeFormatPrice(finances.getCurrentState()));
         holder.currentStateCurrency.setText(finances.getCurrency());
         if (lastEvent == null) {
             holder.lastEvent.setText(R.string.dashboard_no_data);

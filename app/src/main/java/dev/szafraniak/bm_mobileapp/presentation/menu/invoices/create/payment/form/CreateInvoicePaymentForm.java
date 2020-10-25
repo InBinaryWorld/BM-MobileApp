@@ -11,10 +11,10 @@ import java.time.LocalDate;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentMethod;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentFormModel;
-import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.PaymentMethodForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.datePicker.DatePickerForm;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.form.payment.PaymentMethodForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.datePicker.DatePickerForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
 
 public class CreateInvoicePaymentForm extends BaseForm<PaymentFormModel, BaseViewHolder, CreateInvoicePaymentFormConfig> {
 

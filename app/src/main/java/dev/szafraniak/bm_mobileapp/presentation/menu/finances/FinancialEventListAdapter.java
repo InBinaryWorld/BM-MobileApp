@@ -13,7 +13,7 @@ import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.FinancialRow;
-import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
+import dev.szafraniak.bm_mobileapp.business.utils.Formatter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.list.BaseListAdapter;
 
 public class FinancialEventListAdapter extends BaseListAdapter<FinancialRow, FinancialRow> {
@@ -61,9 +61,9 @@ public class FinancialEventListAdapter extends BaseListAdapter<FinancialRow, Fin
         boolean isIncome = amount.signum() >= 0;
 
         holder.title.setText(item.getTitle());
-        holder.eventDate.setText(Parsers.safeFormatDate(item.getEventDate()));
+        holder.eventDate.setText(Formatter.safeFormatDate(item.getEventDate()));
         holder.amountCurrency.setText(item.getCurrency());
-        holder.amount.setText(Parsers.safeFormatPrice(absAmount));
+        holder.amount.setText(Formatter.safeFormatPrice(absAmount));
         holder.amount.setTextColor(isIncome ? colorIncome : colorOutcome);
 
     }

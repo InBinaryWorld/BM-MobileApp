@@ -6,11 +6,11 @@ import android.app.Application;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ProductModelService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.DetailsConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsPresenter;
 
 public class ProductModelDetailsPresenter extends BaseDetailsPresenter<ProductModel, ProductModelDetailsView, ProductModelDetailsConfig> {
 

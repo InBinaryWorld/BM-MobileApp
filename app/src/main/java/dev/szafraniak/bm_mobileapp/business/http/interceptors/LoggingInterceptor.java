@@ -1,6 +1,9 @@
 package dev.szafraniak.bm_mobileapp.business.http.interceptors;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
+import java.util.Objects;
 
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -13,7 +16,7 @@ import timber.log.Timber;
 public class LoggingInterceptor implements Interceptor {
 
     @Override
-    public Response intercept(Chain chain) throws IOException {
+    public @NotNull Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
         logRequest(request);
 
@@ -24,12 +27,12 @@ public class LoggingInterceptor implements Interceptor {
 
         ResponseBody responseBody;
         String responseContent = "{{ binary data }}";
-        MediaType contentType = response.body().contentType();
+        MediaType contentType = Objects.requireNonNull(response.body()).contentType();
         if (hasRepresentation(contentType)) {
-            responseContent = response.body().string();
+            responseContent = Objects.requireNonNull(response.body()).string();
             responseBody = ResponseBody.create(responseContent, contentType);
         } else {
-            responseBody = ResponseBody.create(response.body().bytes(), contentType);
+            responseBody = ResponseBody.create(Objects.requireNonNull(response.body()).bytes(), contentType);
         }
 
         logResponse(response, responseContent, responseTime);
@@ -60,7 +63,7 @@ public class LoggingInterceptor implements Interceptor {
         try {
             Request copy = request.newBuilder().build();
             Buffer buffer = new Buffer();
-            copy.body().writeTo(buffer);
+            Objects.requireNonNull(copy.body()).writeTo(buffer);
             return buffer.readUtf8();
         } catch (final IOException e) {
             Timber.e(e, "Cannot parse body to string");

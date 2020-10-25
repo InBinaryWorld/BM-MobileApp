@@ -21,8 +21,8 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.BaseActivity;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.base.BaseActivity;
 
 @SuppressLint("Registered")
 @EActivity(R.layout.activity_menu)
@@ -48,7 +48,6 @@ public class MenuActivity extends BaseActivity implements MenuView, BottomNaviga
     public void initialize() {
         Navigator.startMenuNavigation(this);
         navigationView.setOnNavigationItemSelectedListener(this);
-
     }
 
     @Override

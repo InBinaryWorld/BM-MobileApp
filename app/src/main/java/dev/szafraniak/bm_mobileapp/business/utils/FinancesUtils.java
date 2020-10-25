@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import dev.szafraniak.bm_mobileapp.business.models.AmountModel;
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
+import dev.szafraniak.bm_mobileapp.business.models.mics.AmountModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 
 public class FinancesUtils {
@@ -17,9 +17,7 @@ public class FinancesUtils {
             taxRate == null || !Validator.validateTaxRate(taxRate)) {
             return null;
         }
-        BigDecimal tax = taxRate.movePointLeft(2).multiply(net)
-            .setScale(2, RoundingMode.HALF_UP);
-        return tax.add(net);
+        return countAmount(net, taxRate).getGross();
     }
 
     public static AmountModel countAmount(InvoiceItemFormModel item) {
@@ -65,8 +63,8 @@ public class FinancesUtils {
         return countAmount(netAmount, taxRate);
     }
 
-    public static <T> BigDecimal sumBy(List<T> list, Function<T, BigDecimal> fieldFunc) {
-        return list.stream().reduce(new BigDecimal("0"), (acc, next) -> acc.add(fieldFunc.apply(next)), BigDecimal::add);
+    public static <T> BigDecimal sumBy(List<T> list, Function<T, BigDecimal> extractor) {
+        return list.stream().reduce(BigDecimal.ZERO, (acc, next) -> acc.add(extractor.apply(next)), BigDecimal::add);
     }
 
 }

@@ -11,9 +11,9 @@ import java.math.BigDecimal;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.CreateProductRequest;
 import dev.szafraniak.bm_mobileapp.presentation.menu.product.create.model.ProductModelSpinnerForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.editText.number.DecimalEditTextFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.number.DecimalEditTextFormRow;
 
 public class CreateProductForm extends BaseForm<CreateProductRequest, BaseViewHolder, CreateProductFormConfig> {
 

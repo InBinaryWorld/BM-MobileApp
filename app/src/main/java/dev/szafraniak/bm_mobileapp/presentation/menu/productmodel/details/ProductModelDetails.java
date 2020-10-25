@@ -7,13 +7,13 @@ import android.widget.LinearLayout;
 import androidx.annotation.LayoutRes;
 
 import dev.szafraniak.bm_mobileapp.R;
-import dev.szafraniak.bm_mobileapp.business.models.IdNameEntity;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
-import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.EditTextViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.models.price.PriceDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.textview.text.TextTextViewDetails;
+import dev.szafraniak.bm_mobileapp.business.models.mics.IdNameEntity;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.EditTextViewHolder;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.price.PriceDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.BaseDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.text.TextTextViewDetails;
 
 public class ProductModelDetails extends BaseDetails<ProductModel, BaseViewHolder, ProductModelDetailsConfig> {
 

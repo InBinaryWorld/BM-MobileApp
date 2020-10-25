@@ -6,12 +6,12 @@ import android.app.Application;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.FinancesService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.FinancesService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.FinancialRow;
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.UpdateFinancialRowRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormPresenter;
 
 public class FinancesEventModifyPresenter extends BaseFormPresenter<FinancialRow, FinancialEventModifyView, FinancesEventModifyFormConfig> {
 
@@ -39,6 +39,8 @@ public class FinancesEventModifyPresenter extends BaseFormPresenter<FinancialRow
         return FormConfigurations.getFinancesEventModifyConfig();
     }
 
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData(Long eventId) {
         Long companyId = sessionManager.getCompanyId();
         financesService.getFinancialEvent(companyId, eventId)

@@ -6,12 +6,14 @@ import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
+import dev.szafraniak.bm_mobileapp.business.memory.settings.SettingsManager;
 import dev.szafraniak.bm_mobileapp.business.memory.settings.SettingsPreferences;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import lombok.Setter;
 
 import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_BANK_ACCOUNT_LIST;
 import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_SETTINGS_COMPANY;
+import static dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory.FRAGMENT_SETTINGS_COPYRIGHTS;
 
 public class SettingsPresenter {
 
@@ -22,6 +24,9 @@ public class SettingsPresenter {
     SettingsPreferences settingsPreferences;
 
     @Inject
+    SettingsManager settingsManager;
+
+    @Inject
     SessionManager sessionManager;
 
 
@@ -29,26 +34,20 @@ public class SettingsPresenter {
         ((BMApplication) app).getAppComponent().inject(this);
     }
 
-    private void saveSettingsAndUpdateUI(boolean silentGoogle, boolean silentFacebook) {
-        settingsPreferences.setFacebookSilentLoginEnabled(silentFacebook);
-        settingsPreferences.setGoogleSilentLoginEnabled(silentGoogle);
-        view.updateUI(silentGoogle, silentFacebook);
-    }
-
     public void loadSettings() {
-        boolean silentGoogle = settingsPreferences.getGoogleSilentLoginEnabled();
-        boolean silentFacebook = settingsPreferences.getFacebookSilentLoginEnabled();
+        boolean silentGoogle = settingsManager.getGoogleSilentLoginEnabled();
+        boolean silentFacebook = settingsManager.getFacebookSilentLoginEnabled();
         view.updateUI(silentGoogle, silentFacebook);
     }
 
     public void negateFacebookSilentSetting() {
-        boolean silentFacebook = settingsPreferences.getFacebookSilentLoginEnabled();
-        saveSettingsAndUpdateUI(false, !silentFacebook);
+        settingsManager.negateFacebookSilentSetting();
+        loadSettings();
     }
 
     public void negateGoogleSilentSetting() {
-        boolean silentGoogle = settingsPreferences.getGoogleSilentLoginEnabled();
-        saveSettingsAndUpdateUI(!silentGoogle, false);
+        settingsManager.negateGoogleSilentLoginEnabled();
+        loadSettings();
     }
 
     public void logoutAction() {
@@ -61,5 +60,9 @@ public class SettingsPresenter {
 
     public void manageBankAccounts() {
         Navigator.navigateTo(view, FRAGMENT_BANK_ACCOUNT_LIST);
+    }
+
+    public void showCopyrights() {
+        Navigator.navigateTo(view, FRAGMENT_SETTINGS_COPYRIGHTS);
     }
 }

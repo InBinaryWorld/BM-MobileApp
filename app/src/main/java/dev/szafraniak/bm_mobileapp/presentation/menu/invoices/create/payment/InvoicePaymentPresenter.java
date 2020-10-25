@@ -8,7 +8,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.BankAccountService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.BankAccountService;
 import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsManager;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.BankAccount;
@@ -17,9 +17,9 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoi
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.form.CreateInvoicePaymentFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.payment.PaymentMethodFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.datePicker.DatePickerFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.form.payment.PaymentMethodFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.datePicker.DatePickerFormConfig;
 import lombok.Setter;
 
 public class InvoicePaymentPresenter {

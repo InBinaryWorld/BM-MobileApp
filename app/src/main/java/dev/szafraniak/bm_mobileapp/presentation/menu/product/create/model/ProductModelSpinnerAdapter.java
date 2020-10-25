@@ -10,8 +10,8 @@ import androidx.annotation.LayoutRes;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
-import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.BaseSpinnerAdapter;
+import dev.szafraniak.bm_mobileapp.business.utils.Formatter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.spinner.BaseSpinnerAdapter;
 
 public class ProductModelSpinnerAdapter extends BaseSpinnerAdapter<ProductModel, Long> {
 
@@ -44,7 +44,7 @@ public class ProductModelSpinnerAdapter extends BaseSpinnerAdapter<ProductModel,
     private void fullFillView(ProductModel item, DropdownViewHolder holder) {
         Price price = item.getPriceSuggestion();
         holder.name.setText(item.getName());
-        holder.price.setText(Parsers.safeFormatPrice(price.getGross()));
+        holder.price.setText(Formatter.safeFormatPrice(price.getGross()));
         holder.priceCurrency.setText(price.getCurrency());
     }
 

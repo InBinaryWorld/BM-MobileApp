@@ -1,9 +1,9 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.services.details;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.SimpleDetailsConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.models.price.PriceDetailsConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.row.base.BaseDetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.SimpleDetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.BaseDetailsConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.price.PriceDetailsConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -1,10 +1,10 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.modify;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.UpdateProductModelRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.price.PriceFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.barcode.BarcodeFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.barcode.BarcodeFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.price.PriceFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

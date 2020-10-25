@@ -6,12 +6,12 @@ import android.app.Application;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.BankAccountService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.BankAccountService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.BankAccount;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.UpdateBankAccountRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormPresenter;
 
 public class BankAccountModifyPresenter extends BaseFormPresenter<BankAccount, BankAccountModifyView, BankAccountModifyFormConfig> {
 
@@ -44,6 +44,8 @@ public class BankAccountModifyPresenter extends BaseFormPresenter<BankAccount, B
         return config;
     }
 
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData(Long accountId) {
         Long companyId = sessionManager.getCompanyId();
         bankAccountService.getBankAccount(companyId, accountId)

@@ -7,7 +7,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        style="@style/Row.h18.v8"
+        style="@style/Row.h18.v12"
         app:layout_constraintBottom_toTopOf="@id/d_divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,15 +17,16 @@
         <TextView
             android:id="@+id/tv_product_label"
             style="@style/BaseTextView.Label"
-            android:text="Product"
+            android:text="@string/product_model_dropdown_product"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_product_name"
-            tools:text="pierwsze konto 1"
-            style="@style/BaseTextView.Value.Bold"
+            tools:text="pierwszy produkt 1"
+            android:layout_marginTop="2dp"
+            style="@style/BaseTextView.Value"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_product_label" />

@@ -19,7 +19,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterListAdap
 public class ContactListAdapter<T extends Contact> extends BaseFilterListAdapter<T, T> {
 
     private static final int layoutId = R.layout.row_list_contact;
-    private Context context;
+    private final Context context;
 
     public ContactListAdapter(Context context, List<T> initialList) {
         super(LayoutInflater.from(context), initialList);
@@ -55,9 +55,9 @@ public class ContactListAdapter<T extends Contact> extends BaseFilterListAdapter
         boolean hasPhone = item.getPhone() != null;
         holder.phone.setEnabled(hasPhone);
         if (hasPhone) {
-            holder.phone.setOnClickListener(view -> {
-                openDialer(item.getPhone());
-            });
+            holder.phone.setOnClickListener(
+                view -> openDialer(item.getPhone())
+            );
         }
     }
 

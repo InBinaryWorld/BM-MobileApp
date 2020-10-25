@@ -6,11 +6,11 @@ import android.app.Application;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.StatisticsService;
-import dev.szafraniak.bm_mobileapp.business.http.service.WarehouseService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.StatisticsService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.WarehouseService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
-import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
+import dev.szafraniak.bm_mobileapp.business.models.mics.BMCollection;
 import io.reactivex.ObservableSource;
 import lombok.Setter;
 
@@ -43,6 +43,7 @@ public class ResourcesPresenter {
     }
 
     private ObservableSource<ResourcesDataModel> appendStats(BMCollection<Warehouse> collection, Long companyId) {
+        collection.getItems().sort((a, b) -> a.getName().compareTo(b.getName()));
         return statisticsService.getResourcesStats(companyId).map(stats -> {
             ResourcesDataModel model = new ResourcesDataModel();
             model.setResourcesStats(stats);

@@ -1,7 +1,6 @@
 package dev.szafraniak.bm_mobileapp.business.http.api;
 
 
-import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.BankAccount;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.CreateBankAccountRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.UpdateBankAccountRequest;
@@ -32,6 +31,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.user.User;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.CreateWarehouseRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.UpdateWarehouseRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
+import dev.szafraniak.bm_mobileapp.business.models.mics.BMCollection;
 import dev.szafraniak.bm_mobileapp.business.models.stats.CompanyStatsModel;
 import dev.szafraniak.bm_mobileapp.business.models.stats.FinancesStatsModel;
 import dev.szafraniak.bm_mobileapp.business.models.stats.InvoicesStatsModel;

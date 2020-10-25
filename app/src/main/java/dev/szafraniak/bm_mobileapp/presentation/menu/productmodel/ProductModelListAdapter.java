@@ -10,7 +10,7 @@ import java.util.List;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
-import dev.szafraniak.bm_mobileapp.business.utils.Parsers;
+import dev.szafraniak.bm_mobileapp.business.utils.Formatter;
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.BaseFilterListAdapter;
 
 public class ProductModelListAdapter extends BaseFilterListAdapter<ProductModel, ProductModel> {
@@ -46,7 +46,7 @@ public class ProductModelListAdapter extends BaseFilterListAdapter<ProductModel,
     private void fullFillView(ProductModel item, ViewHolder holder) {
         Price price = item.getPriceSuggestion();
         holder.name.setText(item.getName());
-        holder.price.setText(Parsers.safeFormatPrice(price.getGross()));
+        holder.price.setText(Formatter.safeFormatPrice(price.getGross()));
         holder.priceCurrency.setText(price.getCurrency());
     }
 

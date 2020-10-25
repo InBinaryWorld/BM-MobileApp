@@ -31,11 +31,6 @@ public abstract class BaseListAdapter<T, R> extends ExtendedBaseAdapter<T, R> {
     }
 
     @Override
-    public List<T> getVisibleItems() {
-        return items;
-    }
-
-    @Override
     public R getItem(int position) {
         T item = items.get(position);
         return extractGetItemValue(item);

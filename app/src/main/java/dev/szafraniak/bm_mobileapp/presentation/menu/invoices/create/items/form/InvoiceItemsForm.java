@@ -14,8 +14,8 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItem
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.InvoiceItemViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.list.InvoiceItemsListForm;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.summary.InvoiceItemsSummaryForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseForm;
 
 public class InvoiceItemsForm extends BaseForm<List<InvoiceItemFormModel>, BaseViewHolder, InvoiceItemsConfig> {
 

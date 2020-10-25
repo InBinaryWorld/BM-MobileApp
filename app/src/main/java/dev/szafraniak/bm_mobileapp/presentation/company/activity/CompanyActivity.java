@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.BaseActivity;
+import dev.szafraniak.bm_mobileapp.presentation.shared.base.BaseActivity;
 
 @SuppressLint("Registered")
 @EActivity(R.layout.activity_company)

@@ -13,21 +13,21 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.contact.CreateContactR
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.CreateIndividualContactRequest;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.create.CompanyContactCreateForm;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.create.IndividualContactCreateForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactType;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.spinner.baseType.BaseTypeForm;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.form.ContactType;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.form.ContactViewHolder;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseForm;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.spinner.type.BaseTypeForm;
 
-import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactType.COMPANY;
-import static dev.szafraniak.bm_mobileapp.presentation.shared.form.components.contact.ContactType.INDIVIDUAL;
+import static dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.form.ContactType.COMPANY;
+import static dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.form.ContactType.INDIVIDUAL;
 
 public class ContactCreateForm extends BaseForm<CreateContactRequest, ContactViewHolder, ContactCreateFormConfig> {
 
     @LayoutRes
     private static final int layoutId = R.layout.form_base_group_with_padding;
 
-    BaseTypeForm<ContactType> contactTypeForm;
     CompanyContactCreateForm companyForm;
+    BaseTypeForm<ContactType> contactTypeForm;
     IndividualContactCreateForm individualForm;
 
 
@@ -77,9 +77,9 @@ public class ContactCreateForm extends BaseForm<CreateContactRequest, ContactVie
 
         LinearLayout groupList = (LinearLayout) inflater.inflate(layoutId, viewGroup, false);
 
-        contactTypeForm = new BaseTypeForm<ContactType>(inflater, groupList, config.getContactTypeForm());
-        individualForm = new IndividualContactCreateForm(inflater, groupList, config.getIndividualConfig());
         companyForm = new CompanyContactCreateForm(inflater, groupList, config.getCompanyConfig());
+        individualForm = new IndividualContactCreateForm(inflater, groupList, config.getIndividualConfig());
+        contactTypeForm = new BaseTypeForm<>(inflater, groupList, config.getContactTypeForm());
 
         View individualFormView = individualForm.getView();
         View companyFormView = companyForm.getView();

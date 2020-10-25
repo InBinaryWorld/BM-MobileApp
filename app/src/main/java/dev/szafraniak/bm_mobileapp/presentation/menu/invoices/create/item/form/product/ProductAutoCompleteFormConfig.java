@@ -7,10 +7,10 @@ import java.util.List;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.base.BaseFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.components.price.PriceFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.autoComplete.AutoCompleteTextFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.autoComplete.AutoCompleteTextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.price.PriceFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

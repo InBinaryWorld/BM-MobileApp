@@ -6,13 +6,13 @@ import android.app.Application;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.ProductService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ProductService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.Product;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.UpdateProductRequest;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.DetailsConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
 import lombok.Setter;
 
 public class ProductModifyPresenter {
@@ -49,6 +49,8 @@ public class ProductModifyPresenter {
         return config;
     }
 
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData(long productId) {
         Long companyId = sessionManager.getCompanyId();
         productService.getProduct(companyId, productId)

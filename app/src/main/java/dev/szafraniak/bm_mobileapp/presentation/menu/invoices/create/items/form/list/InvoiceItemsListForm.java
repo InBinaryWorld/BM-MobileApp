@@ -16,9 +16,9 @@ import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.CreateInvoiceItemFormFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.ItemCommand;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.list.BaseListFormAdapter;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.list.BaseListFormRow;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.row.list.ListFormRowConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.list.BaseListFormAdapter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.list.BaseListFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.list.ListFormRowConfig;
 
 public class InvoiceItemsListForm extends BaseListFormRow<InvoiceItemFormModel> {
 

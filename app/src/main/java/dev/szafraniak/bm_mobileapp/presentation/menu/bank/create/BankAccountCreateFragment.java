@@ -11,11 +11,12 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.CreateBankAccountRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 
 @EFragment(R.layout.fragment_base_form)
-public class BankAccountCreateFragment extends BaseFormFragment<CreateBankAccountRequest, BankAccountCreateFormConfig> implements BankAccountCreateView {
+public class BankAccountCreateFragment extends BaseFormFragment<CreateBankAccountRequest, BankAccountCreateFormConfig>
+    implements BankAccountCreateView {
 
     @Inject
     BankAccountCreatePresenter presenter;
@@ -34,7 +35,9 @@ public class BankAccountCreateFragment extends BaseFormFragment<CreateBankAccoun
     }
 
     @Override
-    protected FormInterface<CreateBankAccountRequest> createForm(LayoutInflater inflater, ViewGroup linearLayout, BankAccountCreateFormConfig config) {
+    protected FormInterface<CreateBankAccountRequest> createForm(LayoutInflater inflater,
+                                                                 ViewGroup linearLayout,
+                                                                 BankAccountCreateFormConfig config) {
         return new BankAccountCreateForm(inflater, linearLayout, config);
     }
 

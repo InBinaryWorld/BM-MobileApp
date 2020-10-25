@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cl_row"
-    style="@style/Row.h10.v8"
-    android:clickable="true">
+    style="@style/Row.h10.v8">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_text_layout"

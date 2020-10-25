@@ -9,18 +9,18 @@ import dev.szafraniak.bm_mobileapp.business.http.RetrofitModule;
 import dev.szafraniak.bm_mobileapp.business.http.api.ServerApiModule;
 import dev.szafraniak.bm_mobileapp.business.http.interceptors.AuthInterceptor;
 import dev.szafraniak.bm_mobileapp.business.http.interceptors.TokenAuthenticator;
-import dev.szafraniak.bm_mobileapp.business.http.service.BankAccountService;
-import dev.szafraniak.bm_mobileapp.business.http.service.CompanyService;
-import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
-import dev.szafraniak.bm_mobileapp.business.http.service.FinancesService;
-import dev.szafraniak.bm_mobileapp.business.http.service.InvoiceService;
-import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
-import dev.szafraniak.bm_mobileapp.business.http.service.ProductService;
-import dev.szafraniak.bm_mobileapp.business.http.service.ServiceModelService;
 import dev.szafraniak.bm_mobileapp.business.http.service.ServicesModule;
-import dev.szafraniak.bm_mobileapp.business.http.service.StatisticsService;
-import dev.szafraniak.bm_mobileapp.business.http.service.UserService;
-import dev.szafraniak.bm_mobileapp.business.http.service.WarehouseService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.BankAccountService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.CompanyService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ContactsService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.FinancesService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.InvoiceService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ProductModelService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ProductService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ServiceModelService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.StatisticsService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.UserService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.WarehouseService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthModule;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.AuthorizationService;
 import dev.szafraniak.bm_mobileapp.business.http.service.auth.LoginService;
@@ -29,6 +29,7 @@ import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsManager;
 import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsPreferences;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.settings.SettingsManager;
 import dev.szafraniak.bm_mobileapp.business.memory.settings.SettingsPreferences;
 import dev.szafraniak.bm_mobileapp.presentation.company.CompanyActivityModule;
 import dev.szafraniak.bm_mobileapp.presentation.company.activity.CompanyActivity;
@@ -37,9 +38,9 @@ import dev.szafraniak.bm_mobileapp.presentation.company.create.CompanyCreateFrag
 import dev.szafraniak.bm_mobileapp.presentation.company.create.CompanyCreatePresenter;
 import dev.szafraniak.bm_mobileapp.presentation.company.list.CompanyListFragment;
 import dev.szafraniak.bm_mobileapp.presentation.company.list.CompanyListPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.login.LoginActivity;
-import dev.szafraniak.bm_mobileapp.presentation.login.LoginActivityPresenterModule;
-import dev.szafraniak.bm_mobileapp.presentation.login.LoginPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.login.LoginModule;
+import dev.szafraniak.bm_mobileapp.presentation.login.activity.LoginActivity;
+import dev.szafraniak.bm_mobileapp.presentation.login.activity.LoginPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.MenuModule;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuActivity;
 import dev.szafraniak.bm_mobileapp.presentation.menu.activity.MenuPresenter;
@@ -63,6 +64,8 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.details.IndividualContactDetailsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.copyrights.CopyrightsFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.copyrights.CopyrightsPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.dashboard.DashboardPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.FinancialEventListFragment;
@@ -73,8 +76,8 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.finances.modify.FinancesEve
 import dev.szafraniak.bm_mobileapp.presentation.menu.finances.modify.FinancesEventModifyPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.InvoicesPresenter;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataFormFragment;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.base.CreateInvoiceBaseDataPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.baseData.CreateInvoiceBaseDataFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.baseData.CreateInvoiceBaseDataPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.InvoiceContactFormFragment;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.contact.InvoiceContactPresenter;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.CreateInvoiceItemFormFragment;
@@ -122,7 +125,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.modify.WarehouseM
 @Component(modules = {
     AppModule.class, MemoryManagementModule.class, OkHttpClientModule.class,
     ServerApiModule.class, RetrofitModule.class, ServicesModule.class, GsonModule.class,
-    LoginActivityPresenterModule.class, MenuModule.class, AuthModule.class,
+    LoginModule.class, MenuModule.class, AuthModule.class,
     CompanyActivityModule.class
 })
 public interface AppComponent {
@@ -334,4 +337,10 @@ public interface AppComponent {
     void inject(ContactCreateFragment contactCreateFragment);
 
     void inject(ContactCreatePresenter contactCreatePresenter);
+
+    void inject(CopyrightsPresenter copyrightsPresenter);
+
+    void inject(CopyrightsFragment copyrightsFragment);
+
+    void inject(SettingsManager settingsManager);
 }

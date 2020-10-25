@@ -26,7 +26,6 @@ public abstract class SearchListFragmentWithBtn<T, A extends BaseFilterListAdapt
         searchView.setOnQueryTextListener(new QueryListener());
     }
 
-
     class QueryListener implements SearchView.OnQueryTextListener {
 
         @Override

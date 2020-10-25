@@ -6,12 +6,12 @@ import android.app.Application;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ProductModelService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.CreateProductModelRequest;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormPresenter;
 
 public class ProductModelCreatePresenter extends BaseFormPresenter<ProductModel, ProductModelCreateView, CreateProductModelFormConfig> {
 

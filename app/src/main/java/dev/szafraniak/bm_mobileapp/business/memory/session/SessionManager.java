@@ -11,7 +11,6 @@ import javax.inject.Inject;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsManager;
 import dev.szafraniak.bm_mobileapp.business.models.auth.AuthorizationResponse;
-import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
 
 public class SessionManager {
 
@@ -65,10 +64,6 @@ public class SessionManager {
 
     public Long getCompanyId() {
         return session.getCompanyId();
-    }
-
-    public Company getCompany() {
-        return session.getCompany();
     }
 
     public void setCompanyId(Long companyId) {

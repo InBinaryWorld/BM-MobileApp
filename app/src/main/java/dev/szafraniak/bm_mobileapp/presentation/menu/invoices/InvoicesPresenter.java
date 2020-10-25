@@ -1,15 +1,16 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.invoices;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.InvoiceService;
-import dev.szafraniak.bm_mobileapp.business.http.service.StatisticsService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.InvoiceService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.StatisticsService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
-import dev.szafraniak.bm_mobileapp.business.models.BMCollection;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
+import dev.szafraniak.bm_mobileapp.business.models.mics.BMCollection;
 import io.reactivex.Observable;
 import lombok.Setter;
 
@@ -31,6 +32,8 @@ public class InvoicesPresenter {
         ((BMApplication) app).getAppComponent().inject(this);
     }
 
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData() {
         Long companyId = sessionManager.getCompanyId();
         invoiceService.getInvoices(companyId)
@@ -40,6 +43,7 @@ public class InvoicesPresenter {
     }
 
     private Observable<InvoicesDataModel> appendStats(BMCollection<Invoice> invoicesCollection, Long companyId) {
+        invoicesCollection.getItems().sort((a, b) -> b.getCreationDate().compareTo(a.getCreationDate()));
         return statisticsService.getFinancesStats(companyId)
             .map(stats -> {
                 InvoicesDataModel model = new InvoicesDataModel();

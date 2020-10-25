@@ -6,12 +6,12 @@ import android.app.Application;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.ServiceModelService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ServiceModelService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.UpdateServiceModelRequest;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.fragment.BaseFormPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormPresenter;
 
 public class ServiceModelModifyPresenter extends BaseFormPresenter<ServiceModel, ServiceModelModifyView, ModifyServiceModelFormConfig> {
 
@@ -30,8 +30,8 @@ public class ServiceModelModifyPresenter extends BaseFormPresenter<ServiceModel,
     public void modifyServiceModel(UpdateServiceModelRequest object, Long serviceModelId) {
         Long companyId = sessionManager.getCompanyId();
         serviceModelService.modifyServiceModel(companyId, serviceModelId, object)
-                .compose(view.bindToLifecycle())
-                .subscribe(this::onSuccess, this::onError);
+            .compose(view.bindToLifecycle())
+            .subscribe(this::onSuccess, this::onError);
     }
 
     @Override
@@ -44,10 +44,12 @@ public class ServiceModelModifyPresenter extends BaseFormPresenter<ServiceModel,
         return config;
     }
 
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void loadData(Long serviceModelId) {
         Long companyId = sessionManager.getCompanyId();
         serviceModelService.getServiceModel(companyId, serviceModelId)
-                .compose(view.bindToLifecycle())
-                .subscribe(view::setModifyModel, view::setError);
+            .compose(view.bindToLifecycle())
+            .subscribe(view::setModifyModel, view::setError);
     }
 }

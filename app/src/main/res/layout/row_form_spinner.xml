@@ -7,7 +7,7 @@
     android:clickable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/Row.h18.v8"
+        style="@style/Row.h18.v12"
         app:layout_constraintBottom_toTopOf="@id/v_divider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -15,7 +15,6 @@
         <TextView
             android:id="@+id/tv_label"
             style="@style/BaseTextView.Label"
-            android:layout_width="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

@@ -129,16 +129,24 @@
     <string name="resources_product_models">Product models</string>
     <string name="resources_service_models">Service models</string>
 
-    <string name="slash">/</string>
-    <string name="row_service_list_service_name">Service name</string>
     <string name="row_company_list_products_value">Products Value</string>
+    <string name="row_form_invoice_items_summary">Summary</string>
     <string name="row_invoice_details_download">Download</string>
-    <string name="row_product_model_resource_name">Resource name</string>
-    <string name="row_Invoice_state_paid">Paid</string>
+    <string name="row_invoice_state_paid">Paid</string>
     <string name="row_invoice_state_unpaid">Unpaid</string>
+    <string name="row_product_model_resource_name">Resource name</string>
+    <string name="row_service_list_service_name">Service name</string>
+
+
+    <string name="slash">/</string>
+    <string name="contact_dropdown_contact">Contact</string>
+    <string name="copyrights_title">Icons delivered by</string>
+    <string name="finances_list_card_last_event">Last Event</string>
+    <string name="header_copyrights">Copyrights</string>
     <string name="invoices_finances_card_no_event">No event</string>
     <string name="invoices_list_card_finances_state">Finances State</string>
-    <string name="finances_list_card_last_event">Last Event</string>
-    <string name="row_form_invoice_items_summary">Summary</string>
+    <string name="product_model_dropdown_product">Product</string>
+    <string name="service_model_dropdown_service">Service</string>
+    <string name="settings_copyrights">Copyrights</string>
 
 </resources>

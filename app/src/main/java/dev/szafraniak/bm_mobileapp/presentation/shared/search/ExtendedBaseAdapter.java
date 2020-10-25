@@ -13,6 +13,4 @@ public abstract class ExtendedBaseAdapter<T, R> extends BaseAdapter {
 
     public abstract T getWholeItem(int position);
 
-    public abstract List<T> getVisibleItems();
-
 }

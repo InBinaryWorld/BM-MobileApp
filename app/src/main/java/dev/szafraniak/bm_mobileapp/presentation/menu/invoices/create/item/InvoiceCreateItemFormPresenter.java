@@ -9,8 +9,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.ProductModelService;
-import dev.szafraniak.bm_mobileapp.business.http.service.ServiceModelService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ProductModelService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ServiceModelService;
 import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsManager;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
@@ -19,7 +19,7 @@ import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.item.form.InvoiceItemFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
 import io.reactivex.Observable;
 import lombok.Setter;
 
@@ -89,7 +89,7 @@ public class InvoiceCreateItemFormPresenter {
     }
 
     private InvoiceItemFormModel findItemById(List<InvoiceItemFormModel> items, Long id) {
-        return items.stream().filter(item -> item.getId().equals(id)).findFirst().get();
+        return items.stream().filter(item -> item.getId().equals(id)).findFirst().orElse(null);
     }
 
     public InvoiceItemFormConfig createConfig(List<ProductModel> products, List<ServiceModel> services) {

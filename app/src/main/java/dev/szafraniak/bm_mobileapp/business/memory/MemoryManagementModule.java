@@ -10,6 +10,7 @@ import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsManager;
 import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsPreferences;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionPreferences;
+import dev.szafraniak.bm_mobileapp.business.memory.settings.SettingsManager;
 import dev.szafraniak.bm_mobileapp.business.memory.settings.SettingsPreferences;
 
 @Module
@@ -44,4 +45,11 @@ public class MemoryManagementModule {
     public FormsManager provideFormsManager(Application app) {
         return new FormsManager(app);
     }
+
+    @Provides
+    @Singleton
+    public SettingsManager provideSettingsManager(Application app) {
+        return new SettingsManager(app);
+    }
+
 }

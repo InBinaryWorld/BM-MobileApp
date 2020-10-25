@@ -1,18 +1,18 @@
 package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
 
-import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.InvoiceService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.InvoiceService;
 import dev.szafraniak.bm_mobileapp.business.memory.forms.FormsManager;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.CreateInvoiceRequest;
@@ -24,7 +24,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoi
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.items.form.InvoiceItemsConfig;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.InvoiceDetailsFragment;
-import dev.szafraniak.bm_mobileapp.presentation.shared.form.FormConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
 import lombok.Setter;
 
 public class CreateInvoiceItemsPresenter {
@@ -55,6 +55,8 @@ public class CreateInvoiceItemsPresenter {
     }
 
 
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void generateInvoice() {
         Long companyId = sessionManager.getCompanyId();
         CreateInvoiceRequest request = getRequest();
@@ -68,7 +70,6 @@ public class CreateInvoiceItemsPresenter {
         CreateInvoiceRequest request = new CreateInvoiceRequest();
         request.setBuyer(model.getBaseModel().getBuyer());
         request.setReceiver(model.getBaseModel().getReceiver());
-        request.setCreationDate(OffsetDateTime.now());
         request.setDueDate(model.getBaseModel().getPayment().getDueDate());
         request.setInvoiceNumber(model.getBaseModel().getInvoiceNumber());
         request.setPaymentMethod(model.getBaseModel().getPayment().getPaymentMethod());

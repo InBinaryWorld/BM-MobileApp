@@ -6,11 +6,11 @@ import android.app.Application;
 import javax.inject.Inject;
 
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
-import dev.szafraniak.bm_mobileapp.business.http.service.ContactsService;
+import dev.szafraniak.bm_mobileapp.business.http.service.api.ContactsService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.DetailsConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.details.fragment.BaseDetailsPresenter;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.DetailsConfigurations;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsPresenter;
 
 public class IndividualContactDetailsPresenter extends BaseDetailsPresenter<IndividualContact,
         IndividualContactDetailsView, IndividualContactDetailsConfig> {
