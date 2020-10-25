@@ -39,7 +39,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".presentation.login.LoginActivity_"
+            android:name=".presentation.login.activity.LoginActivity_"
             android:screenOrientation="portrait"
             android:theme="@style/LoginTheme">
             <intent-filter>

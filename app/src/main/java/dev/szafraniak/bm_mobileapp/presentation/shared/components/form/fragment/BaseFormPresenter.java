@@ -4,7 +4,7 @@ import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
 import lombok.Setter;
 
-public abstract class BaseFormPresenter<T, F extends BaseFormView, C extends BaseFormConfig<T>> {
+public abstract class BaseFormPresenter<T, F extends BaseFormView, C extends BaseFormConfig<?>> {
 
     @Setter
     protected F view;

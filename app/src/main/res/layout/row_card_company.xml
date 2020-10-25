@@ -61,7 +61,7 @@
             <TextView
                 android:id="@+id/tv_finances_state_label"
                 style="@style/BaseTextView.Label"
-                android:text="Finances state"
+                android:text="@string/row_company_list_finances_state"
                 android:textAlignment="center"
                 app:layout_constraintTop_toBottomOf="@id/cl_finances_state"
                 app:layout_constraintEnd_toStartOf="@+id/gl_v1"

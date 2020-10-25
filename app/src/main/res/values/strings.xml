@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">Business Manager</string>
-    <string name="facebook_app_id">255726149027121</string>
-    <string name="fb_login_protocol_scheme">fb255726149027121</string>
+    <string name="app_name" translatable="false">Business Manager</string>
+    <string name="facebook_app_id" translatable="false">255726149027121</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb255726149027121</string>
 
     <string name="address">Address</string>
     <string name="contacts">Contacts</string>
-    <string name="dashboard">Dashboard</string>
+    <string name="dashboard" translatable="false">Dashboard</string>
     <string name="invoices">Invoices</string>
     <string name="resources">Resources</string>
     <string name="settings">Settings</string>
@@ -56,13 +56,11 @@
     <string name="btn_contact_list">New Contact</string>
     <string name="btn_financial_event_list">Add Event</string>
     <string name="btn_invoice_list">New Invoice</string>
-    <string name="btn_product_list">Add product</string>
+    <string name="btn_product_list">Add Product</string>
     <string name="btn_product_model_list">New Product Model</string>
     <string name="btn_resources_list">New Warehouse</string>
     <string name="btn_service_model_list">New Service</string>
-    <string name="btn_warehouse_list">New Warehouse</string>
 
-    <string name="header_action_status">Action Status</string>
     <string name="header_bank_accounts_list">Bank Accounts</string>
     <string name="header_bank_account_modify">Modify Bank Account</string>
     <string name="header_contacts">Contacts</string>
@@ -73,7 +71,7 @@
     <string name="header_contact_create">New Contact</string>
     <string name="header_contact_details">Contact Details</string>
     <string name="header_contact_modify">Modify Contact</string>
-    <string name="header_dashboard">Dashboard</string>
+    <string name="header_dashboard" translatable="false">Dashboard</string>
     <string name="header_finances">Finances</string>
     <string name="header_financial_event_list">Financial Events</string>
     <string name="header_financial_event_create">New Event</string>
@@ -129,6 +127,7 @@
     <string name="resources_product_models">Product models</string>
     <string name="resources_service_models">Service models</string>
 
+    <string name="row_company_list_finances_state">Finances state</string>
     <string name="row_company_list_products_value">Products Value</string>
     <string name="row_form_invoice_items_summary">Summary</string>
     <string name="row_invoice_details_download">Download</string>
@@ -138,12 +137,12 @@
     <string name="row_service_list_service_name">Service name</string>
 
 
-    <string name="slash">/</string>
+    <string name="slash" translatable="false">/</string>
     <string name="contact_dropdown_contact">Contact</string>
     <string name="copyrights_title">Icons delivered by</string>
     <string name="finances_list_card_last_event">Last Event</string>
     <string name="header_copyrights">Copyrights</string>
-    <string name="invoices_finances_card_no_event">No event</string>
+    <string name="invoices_finances_card_no_events">No events</string>
     <string name="invoices_list_card_finances_state">Finances State</string>
     <string name="product_model_dropdown_product">Product</string>
     <string name="service_model_dropdown_service">Service</string>

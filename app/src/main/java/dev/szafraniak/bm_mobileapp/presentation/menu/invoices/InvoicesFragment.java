@@ -111,7 +111,7 @@ public class InvoicesFragment extends BaseListFragmentWithBtn<Invoice, InvoiceLi
         financesStateCurrency.setText(financesStats.getCurrency());
         BigDecimal lastCharge = financesStats.getLastChange();
         if (lastCharge == null) {
-            lastEvent.setText(R.string.invoices_finances_card_no_event);
+            lastEvent.setText(R.string.invoices_finances_card_no_events);
             lastEventCurrency.setText("");
         } else {
             lastEvent.setText(Formatter.safeFormatPrice(lastCharge));
