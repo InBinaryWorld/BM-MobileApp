@@ -36,13 +36,7 @@ public class CompanyContactModifyPresenter extends BaseFormPresenter<CompanyCont
 
     @Override
     public CompanyContactModifyFormConfig createConfig() {
-        CompanyContactModifyFormConfig config = new CompanyContactModifyFormConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setNameConfig(FormConfigurations.getCompanyNameConfig());
-        config.setPhoneConfig(FormConfigurations.getPhoneConfig());
-        config.setTaxIdConfig(FormConfigurations.getTaxIdentityNumberConfig());
-        config.setAddressConfig(FormConfigurations.getAddressConfig());
-        return config;
+        return FormConfigurations.getCompanyContactModifyFormConfig(view.getContext());
     }
 
     @SuppressLint("CheckResult")

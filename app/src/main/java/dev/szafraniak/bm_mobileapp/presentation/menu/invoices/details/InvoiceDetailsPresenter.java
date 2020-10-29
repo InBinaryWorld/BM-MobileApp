@@ -6,16 +6,15 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.inject.Inject;
 
+import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.api.InvoiceService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
 import dev.szafraniak.bm_mobileapp.business.utils.FileUtils;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.state.InvoiceStatusFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.DetailsConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsPresenter;
 import okhttp3.ResponseBody;
@@ -43,29 +42,7 @@ public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, Invoi
 
     @Override
     public InvoiceDetailsConfig createConfig() {
-        InvoiceDetailsConfig config = new InvoiceDetailsConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setBuyerNameConfig(DetailsConfigurations.getBuyerNameConfig());
-        config.setCreationDateConfig(DetailsConfigurations.getCreationDateConfig());
-        config.setDateOfPaymentConfig(DetailsConfigurations.getDateOfPaymentConfig());
-        config.setDueDateConfig(DetailsConfigurations.getDueDateConfiguration());
-        config.setInvoiceNumberConfig(DetailsConfigurations.getInvoiceNumberConfig());
-        config.setGrossConfig(DetailsConfigurations.getGrossPriceConfig());
-        config.setStatusConfig(getStatusConfig());
-        return config;
-    }
-
-    private InvoiceStatusFormConfig getStatusConfig() {
-        HashMap<Boolean, String> map = new HashMap<>();
-        map.put(true, "Paid");
-        map.put(false, "Unpaid");
-
-        InvoiceStatusFormConfig config = new InvoiceStatusFormConfig();
-        config.setVisibleOnSetValueNull(false);
-        config.setLabel("Payment Status");
-        config.setDisplayValues(map);
-        config.setDefaultValue(false);
-        return config;
+        return DetailsConfigurations.getInvoiceDetailsConfig(view.getContext());
     }
 
     public void downloadInvoice(Invoice invoice) {
@@ -93,7 +70,7 @@ public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, Invoi
             FileUtils.openPDFFile(view.getActivity(), file);
         } catch (IOException e) {
             e.printStackTrace();
-            String msg = "Download PDF File Failed";
+            String msg = view.getContext().getString(R.string.invoice_download_succeed);
             Toast.makeText(view.getContext(), msg, Toast.LENGTH_SHORT).show();
         } finally {
             view.hideBtnProgress();
@@ -111,12 +88,12 @@ public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, Invoi
     }
 
     private void onActionFailed(Throwable throwable) {
-        Toast.makeText(view.getContext(), "Action Failed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(view.getContext(), R.string.toast_action_failed, Toast.LENGTH_SHORT).show();
         view.reload();
     }
 
     private void onModifySucceed(Invoice invoice) {
-        Toast.makeText(view.getContext(), "Action succeed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(view.getContext(), R.string.toast_action_succeed, Toast.LENGTH_SHORT).show();
         view.reload();
     }
 }

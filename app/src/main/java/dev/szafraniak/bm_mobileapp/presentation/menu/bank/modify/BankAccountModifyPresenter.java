@@ -37,11 +37,7 @@ public class BankAccountModifyPresenter extends BaseFormPresenter<BankAccount, B
 
     @Override
     public BankAccountModifyFormConfig createConfig() {
-        BankAccountModifyFormConfig config = new BankAccountModifyFormConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setNameConfig(FormConfigurations.getBankAccountNameConfig());
-        config.setNumberConfig(FormConfigurations.getBankAccountNumberConfig());
-        return config;
+        return FormConfigurations.getBankAccountModifyFormConfig(view.getContext());
     }
 
     @SuppressLint("CheckResult")

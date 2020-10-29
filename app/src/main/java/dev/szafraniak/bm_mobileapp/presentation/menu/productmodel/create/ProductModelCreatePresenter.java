@@ -35,12 +35,6 @@ public class ProductModelCreatePresenter extends BaseFormPresenter<ProductModel,
 
     @Override
     public CreateProductModelFormConfig createConfig() {
-        CreateProductModelFormConfig config = new CreateProductModelFormConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setNameConfig(FormConfigurations.getProductModelNameConfig());
-        config.setBarcodeConfig(FormConfigurations.getBarcodeConfig(view.getActivity()));
-        config.setQuantityUniteConfig(FormConfigurations.getQuantityUnitConfig());
-        config.setPriceFormConfig(FormConfigurations.getPriceConfig());
-        return config;
+        return FormConfigurations.getCreateProductModelFormConfig(view.getActivity());
     }
 }

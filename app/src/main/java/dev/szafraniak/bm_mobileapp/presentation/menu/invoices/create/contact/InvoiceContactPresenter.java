@@ -87,6 +87,6 @@ public class InvoiceContactPresenter {
     }
 
     public ContactFormConfig createConfig(List<IndividualContact> individuals, List<CompanyContact> companies) {
-        return FormConfigurations.getContactFormConfig(individuals, companies);
+        return FormConfigurations.getContactFormConfig(view.getContext(), individuals, companies);
     }
 }

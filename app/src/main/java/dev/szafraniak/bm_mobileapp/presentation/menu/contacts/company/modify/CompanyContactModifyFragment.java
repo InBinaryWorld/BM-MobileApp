@@ -16,8 +16,8 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.CompanyContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.UpdateCompanyContactRequest;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 
 @EFragment(R.layout.fragment_base_form)
 public class CompanyContactModifyFragment extends BaseFormFragment<UpdateCompanyContactRequest,
@@ -55,7 +55,7 @@ public class CompanyContactModifyFragment extends BaseFormFragment<UpdateCompany
 
     @Override
     protected int getButtonTextId() {
-        return R.string.header_contact_modify;
+        return R.string.btn_modify_form;
     }
 
     @Override

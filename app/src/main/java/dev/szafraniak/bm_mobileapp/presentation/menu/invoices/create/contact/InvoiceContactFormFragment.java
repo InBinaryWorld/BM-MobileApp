@@ -70,7 +70,7 @@ public class InvoiceContactFormFragment extends BaseFormFragment<Contact, Contac
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_invoice_create_payment;
+        return R.string.header_invoice_create_contact;
     }
 
     @Override

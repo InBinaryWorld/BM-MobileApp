@@ -13,8 +13,8 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.CreateCompanyRequest;
 import dev.szafraniak.bm_mobileapp.presentation.company.create.form.CreateCompanyForm;
 import dev.szafraniak.bm_mobileapp.presentation.company.create.form.CreateCompanyFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 
 @EFragment(R.layout.fragment_base_form)
 public class CompanyCreateFragment extends BaseFormFragment<CreateCompanyRequest, CreateCompanyFormConfig> implements CompanyCreateView {
@@ -32,7 +32,7 @@ public class CompanyCreateFragment extends BaseFormFragment<CreateCompanyRequest
 
     @Override
     protected int getButtonTextId() {
-        return R.string.header_company_create;
+        return R.string.btn_create_form;
     }
 
     @Override

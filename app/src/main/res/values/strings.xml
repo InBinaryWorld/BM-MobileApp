@@ -5,7 +5,7 @@
 
     <string name="address">Address</string>
     <string name="contacts">Contacts</string>
-    <string name="dashboard" translatable="false">Dashboard</string>
+    <string name="dashboard">Dashboard</string>
     <string name="invoices">Invoices</string>
     <string name="resources">Resources</string>
     <string name="settings">Settings</string>
@@ -23,8 +23,8 @@
     <string name="settings_modify_company">Modify company data</string>
     <string name="settings_logout">Logout</string>
 
-    <string name="action_status_succeeded">Operation Succeeded</string>
-    <string name="action_status_failed">Operation Failed</string>
+    <string name="action_status_succeeded">Operation succeeded</string>
+    <string name="action_status_failed">Operation failed</string>
 
     <string name="list_component_no_data_to_display">No data to display</string>
 
@@ -32,80 +32,80 @@
     <string name="error_component_please_try_to_refresh">Please try to refresh</string>
 
     <string name="content_description_list_component_error">Failed</string>
-    <string name="content_description_login_app">App Icon</string>
+    <string name="content_description_login_app">App icon</string>
     <string name="content_description_next_arrow">Next</string>
 
     <string name="hint_base_search_list_search_view">Search</string>
-    <string name="hint_invoice_create_base_invoice_name">Invoice Number</string>
+    <string name="hint_invoice_create_base_invoice_name">Invoice number</string>
 
     <string name="btn_modify_form">Save</string>
     <string name="btn_create_form">Create</string>
-    <string name="btn_invoice_create_items">Generate Invoice</string>
+    <string name="btn_invoice_create_items">Generate invoice</string>
     <string name="btn_invoice_create_base_data">Add Items</string>
     <string name="btn_invoice_create_payment">Save</string>
     <string name="btn_invoice_create_item">Save</string>
 
-    <string name="btn_contact_details">Modify Contact</string>
+    <string name="btn_contact_details">Modify contact</string>
     <string name="btn_invoice_details_download">Download PDF</string>
-    <string name="btn_product_model_details">Modify Product Model</string>
-    <string name="btn_service_model_details">Modify Service Model</string>
-    <string name="btn_warehouse_details">Modify Warehouse</string>
+    <string name="btn_product_model_details">Modify model</string>
+    <string name="btn_service_model_details">Modify model</string>
+    <string name="btn_warehouse_details">Modify warehouse</string>
 
-    <string name="btn_bank_account_list">New Bank Account</string>
-    <string name="btn_company_list">New Company</string>
-    <string name="btn_contact_list">New Contact</string>
-    <string name="btn_financial_event_list">Add Event</string>
-    <string name="btn_invoice_list">New Invoice</string>
-    <string name="btn_product_list">Add Product</string>
-    <string name="btn_product_model_list">New Product Model</string>
-    <string name="btn_resources_list">New Warehouse</string>
-    <string name="btn_service_model_list">New Service</string>
+    <string name="btn_bank_account_list">Add bank account</string>
+    <string name="btn_company_list">Add company</string>
+    <string name="btn_contact_list">Add contact</string>
+    <string name="btn_financial_event_list">Add event</string>
+    <string name="btn_invoice_list">Create invoice</string>
+    <string name="btn_product_list">Add product</string>
+    <string name="btn_product_model_list">Add model</string>
+    <string name="btn_resources_list">Add warehouse</string>
+    <string name="btn_service_model_list">Add service</string>
 
-    <string name="header_bank_accounts_list">Bank Accounts</string>
-    <string name="header_bank_account_modify">Modify Bank Account</string>
+    <string name="header_bank_accounts_list">Bank accounts</string>
+    <string name="header_bank_account_modify">Modify bank account</string>
     <string name="header_contacts">Contacts</string>
-    <string name="header_company_list">Choose Company</string>
-    <string name="header_company_contacts_list">Company Contacts</string>
-    <string name="header_company_create">New Company</string>
-    <string name="header_company_modify">Modify Company Data</string>
-    <string name="header_contact_create">New Contact</string>
-    <string name="header_contact_details">Contact Details</string>
-    <string name="header_contact_modify">Modify Contact</string>
-    <string name="header_dashboard" translatable="false">Dashboard</string>
+    <string name="header_company_list">Choose company</string>
+    <string name="header_company_contacts_list">Company contacts</string>
+    <string name="header_company_create">New company</string>
+    <string name="header_company_modify">Modify company data</string>
+    <string name="header_contact_create">New contact</string>
+    <string name="header_contact_details">Contact details</string>
+    <string name="header_contact_modify">Modify contact</string>
+    <string name="header_dashboard">Dashboard</string>
     <string name="header_finances">Finances</string>
-    <string name="header_financial_event_list">Financial Events</string>
-    <string name="header_financial_event_create">New Event</string>
-    <string name="header_financial_event_modify">Modify Event</string>
-    <string name="header_individual_contact_list">Individual Contacts</string>
+    <string name="header_financial_event_list">Financial events</string>
+    <string name="header_financial_event_create">New event</string>
+    <string name="header_financial_event_modify">Modify event</string>
+    <string name="header_individual_contact_list">Individual contacts</string>
     <string name="header_invoice_list">Invoices</string>
-    <string name="header_invoice_base_data_create">Invoice Data</string>
-    <string name="header_invoice_create_base_data">New Invoice</string>
+    <string name="header_invoice_base_data_create">Invoice data</string>
+    <string name="header_invoice_create_base_data">New invoice</string>
     <string name="header_invoice_create_item">Invoice item</string>
-    <string name="header_invoice_create_items">Invoice Items</string>
-    <string name="header_invoice_create_payment">Payment Data</string>
-    <string name="header_invoice_details">Invoice Details</string>
-    <string name="header_product_create">New Product</string>
-    <string name="header_product_list">Warehouse Products</string>
+    <string name="header_invoice_create_items">Invoice items</string>
+    <string name="header_invoice_create_payment">Payment data</string>
+    <string name="header_invoice_details">Invoice details</string>
+    <string name="header_product_create">New product</string>
+    <string name="header_product_list">Warehouse products</string>
     <string name="header_product_modify">Product</string>
-    <string name="header_product_model_create">New Product Model</string>
-    <string name="header_product_model_details">Product Model Details</string>
-    <string name="header_product_model_list">Product Models</string>
-    <string name="header_product_model_modify">Modify Product Model</string>
+    <string name="header_product_model_create">New product model</string>
+    <string name="header_product_model_details">Product model details</string>
+    <string name="header_product_model_list">Product models</string>
+    <string name="header_product_model_modify">Modify product model</string>
     <string name="header_resources">Resources</string>
-    <string name="header_service_model_create">New Service Model</string>
-    <string name="header_service_model_details">Service Model Details</string>
+    <string name="header_service_model_create">New service model</string>
+    <string name="header_service_model_details">Service model details</string>
     <string name="header_service_model_list">Services</string>
     <string name="header_settings">Settings</string>
-    <string name="header_service_model_modify">Modify Service</string>
-    <string name="header_warehouse_create">New Warehouse</string>
-    <string name="header_warehouse_details">Warehouse Details</string>
+    <string name="header_service_model_modify">Modify service</string>
+    <string name="header_warehouse_create">New warehouse</string>
+    <string name="header_warehouse_details">Warehouse details</string>
     <string name="header_warehouse_list">Warehouses</string>
-    <string name="header_warehouse_modify">Modify Warehouse</string>
-
+    <string name="header_warehouse_modify">Modify warehouse</string>
+    <string name="header_invoice_create_contact">Contact</string>
 
     <string name="invoice_create_items_summary_total_items">Total items:</string>
     <string name="invoice_create_items_summary_total_gross">Total gross:</string>
-    <string name="invoice_create_items_summary_btn">New Item</string>
+    <string name="invoice_create_items_summary_btn">Add item</string>
 
     <string name="dashboard_current_state">Current state</string>
     <string name="dashboard_last_event">Last event</string>
@@ -128,7 +128,7 @@
     <string name="resources_service_models">Service models</string>
 
     <string name="row_company_list_finances_state">Finances state</string>
-    <string name="row_company_list_products_value">Products Value</string>
+    <string name="row_company_list_products_value">Products value</string>
     <string name="row_form_invoice_items_summary">Summary</string>
     <string name="row_invoice_details_download">Download</string>
     <string name="row_invoice_state_paid">Paid</string>
@@ -136,16 +136,120 @@
     <string name="row_product_model_resource_name">Resource name</string>
     <string name="row_service_list_service_name">Service name</string>
 
+    <string name="toast_action_failed">Action failed</string>
+    <string name="toast_action_succeed">Action succeed</string>
 
-    <string name="slash" translatable="false">/</string>
     <string name="contact_dropdown_contact">Contact</string>
     <string name="copyrights_title">Icons delivered by</string>
     <string name="finances_list_card_last_event">Last Event</string>
     <string name="header_copyrights">Copyrights</string>
+    <string name="invoice_download_succeed">Download PDF file failed</string>
     <string name="invoices_finances_card_no_events">No events</string>
-    <string name="invoices_list_card_finances_state">Finances State</string>
+    <string name="invoices_list_card_finances_state">Finances state</string>
     <string name="product_model_dropdown_product">Product</string>
     <string name="service_model_dropdown_service">Service</string>
     <string name="settings_copyrights">Copyrights</string>
+    <string name="slash" translatable="false">/</string>
 
+    <string name="details_warehouse_name">Warehouse name</string>
+    <string name="details_product_name">Product Name</string>
+    <string name="details_product_group_name">Product group name</string>
+    <string name="details_service_name">Service name</string>
+    <string name="details_first_name">First name</string>
+    <string name="details_last_name">Last name</string>
+    <string name="details_quantity_unit">Quantity unit</string>
+    <string name="details_net_price">Net price</string>
+    <string name="details_tax_rate">Tax rate</string>
+    <string name="details_gross_price">Gross price</string>
+    <string name="details_barcode">Barcode</string>
+    <string name="details_company_name">Company name</string>
+    <string name="details_tax_id_number">Tax identity number</string>
+    <string name="details_phone">Phone</string>
+    <string name="details_country">Country</string>
+    <string name="details_city">City</string>
+    <string name="details_postal_code">Postal code</string>
+    <string name="details_street">Street</string>
+    <string name="details_house_number">House number</string>
+    <string name="details_apartment_number">Apartment number</string>
+    <string name="details_buyer">Buyer</string>
+    <string name="details_date_of_payment">Date of payment</string>
+    <string name="details_creation_date">Creation date</string>
+    <string name="details_gross_value">Gross value</string>
+    <string name="details_due_date">Due date</string>
+    <string name="details_invoice_number">Invoice number</string>
+    <string name="details_paid">Paid</string>
+    <string name="details_unpaid">Unpaid</string>
+    <string name="details_payment_state">Payment status</string>
+
+    <string name="forms_service_name">Service name</string>
+    <string name="forms_warehouse_name">Warehouse name</string>
+    <string name="forms_product_name">Product name</string>
+    <string name="forms_first_name">First name</string>
+    <string name="forms_last_name">Last name</string>
+    <string name="forms_quantity">Quantity</string>
+    <string name="forms_scale_5">Max scale: 5</string>
+    <string name="forms_quantity_unity">Quantity unit</string>
+    <string name="forms_barcode">Barcode</string>
+    <string name="forms_invoice_prefix">Invoice prefix</string>
+    <string name="forms_invoice_number">Invoice number</string>
+    <string name="forms_company_name">Company name</string>
+    <string name="forms_tax_id_number">Tax identity number</string>
+    <string name="forms_10_digits">10 digits</string>
+    <string name="forms_phone_number">Phone number</string>
+    <string name="forms_4_12_digits_optional_plus">4-12 Digits, With Optional Plus Sign</string>
+    <string name="forms_tax_rate">Tax rate</string>
+    <string name="forms_positive_decimal">Positive decimal number</string>
+    <string name="forms_net_price">Net price</string>
+    <string name="forms_positive_integer">Positive integer number</string>
+    <string name="forms_country">Country</string>
+    <string name="forms_poland">Poland</string>
+    <string name="forms_city">City</string>
+    <string name="forms_postal_code">Postal code</string>
+    <string name="forms_postal_pattern">Pattern XX-XXX</string>
+    <string name="forms_street">Street</string>
+    <string name="forms_house_number">House number</string>
+    <string name="forms_apartment_number">Apartment number</string>
+    <string name="forms_account_number">Account number (IBAN)</string>
+    <string name="forms_invalid_bank_account">Invalid format (for Poland: \'PL\' and 26 digits)</string>
+    <string name="forms_description">Description</string>
+    <string name="forms_invalid_value">Invalid value</string>
+    <string name="forms_contact">Contact</string>
+    <string name="forms_provide_contact">Provide contact</string>
+    <string name="forms_cash">Cash</string>
+    <string name="forms_transfer">Transfer</string>
+    <string name="forms_payment">Payment</string>
+    <string name="forms_payment_due_date">Due date:</string>
+    <string name="forms_payment_payment_method">Payment method:</string>
+    <string name="forms_provide_payment_data">Provide payment data</string>
+    <string name="forms_payment_method">Payment method</string>
+    <string name="forms_account_name">Account name</string>
+    <string name="forms_name">Name</string>
+    <string name="forms_individual_contact">Individual contact</string>
+    <string name="forms_company_contact">Company contact</string>
+    <string name="forms_select_contact_type">Select contact type</string>
+    <string name="forms_due_date">Due date</string>
+    <string name="forms_no_date_provided">Please enter a date</string>
+    <string name="forms_product">Product</string>
+    <string name="forms_service">Service</string>
+    <string name="forms_type">Type</string>
+    <string name="forms_cannot_set_future_date">Enter a past date</string>
+    <string name="forms_time">Time</string>
+    <string name="forms_no_provided_date">Please enter a date</string>
+    <string name="forms_date">Date</string>
+    <string name="forms_scale_2">Max scale: 2</string>
+    <string name="forms_title">Title</string>
+    <string name="forms_product_model">Product model</string>
+    <string name="forms_amount_of_change">Amount of change</string>
+
+    <string name="forms_2_240">2-240 signs</string>
+    <string name="forms_4_25">4-25 signs</string>
+    <string name="forms_2_30">2-30 signs</string>
+    <string name="forms_3_20">3-20 signs</string>
+    <string name="forms_2_60">2-60 signs</string>
+    <string name="forms_2_40">2-40 signs</string>
+    <string name="forms_1_20">1-20 signs</string>
+    <string name="forms_1_6">1-6 signs</string>
+    <string name="form_2_20">5-20 signs</string>
+    <string name="forms_2_14_last_no_digit">2-14 signs, last no digit</string>
+    <string name="forms_1_3_opt_letter">1-3 digits, optional letter</string>
 </resources>

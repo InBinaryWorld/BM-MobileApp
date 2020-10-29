@@ -11,7 +11,6 @@ import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.Product;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.UpdateProductRequest;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.DetailsConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
 import lombok.Setter;
 
@@ -40,13 +39,7 @@ public class ProductModifyPresenter {
     }
 
     public ModifyProductFormConfig createConfig(Product product) {
-        ModifyProductFormConfig config = new ModifyProductFormConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setNameConfig(DetailsConfigurations.getProductNameConfig());
-        config.setBarCodeConfig(DetailsConfigurations.getBarcodeConfig());
-        config.setQuantityFormConfig(FormConfigurations.getQuantityConfig());
-        config.setProduct(product);
-        return config;
+        return FormConfigurations.getModifyProductFormConfig(view.getContext(), product);
     }
 
     @SuppressLint("CheckResult")

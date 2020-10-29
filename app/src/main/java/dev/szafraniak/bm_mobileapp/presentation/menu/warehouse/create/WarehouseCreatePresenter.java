@@ -29,15 +29,12 @@ public class WarehouseCreatePresenter extends BaseFormPresenter<Warehouse, Wareh
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void createWarehouse(CreateWarehouseRequest object) {
         warehouseService.createWarehouse(sessionManager.getCompanyId(), object)
-                .compose(view.bindToLifecycle())
-                .subscribe(this::onSuccess, this::onError);
+            .compose(view.bindToLifecycle())
+            .subscribe(this::onSuccess, this::onError);
     }
 
     @Override
     public CreateWarehouseFormConfig createConfig() {
-        CreateWarehouseFormConfig config = new CreateWarehouseFormConfig();
-        config.setNameConfig(FormConfigurations.getWarehouseName());
-        config.setAddressConfig(FormConfigurations.getAddressConfig());
-        return config;
+        return FormConfigurations.getCreateWarehouseFormConfig(view.getContext());
     }
 }

@@ -88,10 +88,11 @@ public class CreateInvoiceItemsPresenter {
     protected void navigateToDetails(Invoice invoice) {
         Bundle bundle = new Bundle();
         bundle.putString(InvoiceDetailsFragment.KEY_INVOICE, gson.toJson(invoice));
-        Navigator.backOneAndNavigateTo(view, FragmentFactory.FRAGMENT_INVOICES_DETAILS, bundle);
+        Navigator.backAndNavigateTo(view, FragmentFactory.FRAGMENT_INVOICES_DETAILS,
+            FragmentFactory.FRAGMENT_INVOICES, bundle);
     }
 
     public InvoiceItemsConfig createConfig() {
-        return FormConfigurations.getInvoiceItemsConfig();
+        return FormConfigurations.getInvoiceItemsConfig(view.getContext());
     }
 }

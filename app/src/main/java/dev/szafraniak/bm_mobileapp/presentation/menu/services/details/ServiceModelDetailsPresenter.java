@@ -29,18 +29,12 @@ public class ServiceModelDetailsPresenter extends BaseDetailsPresenter<ServiceMo
     public void loadData(Long serviceModelId) {
         Long companyId = sessionManager.getCompanyId();
         serviceModelService.getServiceModel(companyId, serviceModelId)
-                .compose(view.bindToLifecycle())
-                .subscribe(view::setData, view::setError);
+            .compose(view.bindToLifecycle())
+            .subscribe(view::setData, view::setError);
     }
 
     @Override
     public ServiceModelDetailsConfig createConfig() {
-        ServiceModelDetailsConfig config = new ServiceModelDetailsConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setDefaultValue(null);
-        config.setServiceModelNameConfig(DetailsConfigurations.getServiceNameConfig());
-        config.setQuantityUnitConfig(DetailsConfigurations.getQuantityUnitConfig());
-        config.setPriceDetailsConfig(DetailsConfigurations.getPriceConfig());
-        return config;
+        return DetailsConfigurations.getServiceModelDetailsConfig(view.getContext());
     }
 }

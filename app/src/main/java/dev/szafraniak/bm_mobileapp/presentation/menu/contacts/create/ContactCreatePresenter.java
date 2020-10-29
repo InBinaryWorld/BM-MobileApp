@@ -45,12 +45,7 @@ public class ContactCreatePresenter extends BaseFormPresenter<Contact,
 
     @Override
     public ContactCreateFormConfig createConfig() {
-        ContactCreateFormConfig config = new ContactCreateFormConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setCompanyConfig(FormConfigurations.getCompanyContactCreateConfig());
-        config.setIndividualConfig(FormConfigurations.getIndividualContactCreateConfig());
-        config.setContactTypeForm(FormConfigurations.getContactTypeConfig());
-        return config;
+        return FormConfigurations.getContactCreateFormConfig(view.getContext());
     }
 
 }

@@ -16,8 +16,8 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceModel;
 import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.UpdateServiceModelRequest;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 
 @EFragment(R.layout.fragment_base_form)
 public class ServiceModelModifyFragment extends BaseFormFragment<UpdateServiceModelRequest, ModifyServiceModelFormConfig> implements ServiceModelModifyView {
@@ -54,7 +54,7 @@ public class ServiceModelModifyFragment extends BaseFormFragment<UpdateServiceMo
 
     @Override
     protected int getButtonTextId() {
-        return R.string.header_service_model_modify;
+        return R.string.btn_modify_form;
     }
 
 
@@ -70,7 +70,7 @@ public class ServiceModelModifyFragment extends BaseFormFragment<UpdateServiceMo
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_service_model_create;
+        return R.string.header_service_model_modify;
     }
 
     @Override

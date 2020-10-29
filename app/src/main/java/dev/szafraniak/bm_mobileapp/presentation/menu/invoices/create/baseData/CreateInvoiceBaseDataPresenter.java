@@ -14,10 +14,7 @@ import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceBaseFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.baseData.form.CreateInvoiceBaseDataFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.baseData.form.contact.ClickableContactFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.baseData.form.payment.ClickablePaymentFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
 import lombok.Setter;
 
 public class CreateInvoiceBaseDataPresenter {
@@ -43,13 +40,7 @@ public class CreateInvoiceBaseDataPresenter {
     }
 
     public CreateInvoiceBaseDataFormConfig createConfig(String invoicePrefix) {
-        CreateInvoiceBaseDataFormConfig config = new CreateInvoiceBaseDataFormConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setInvoiceNumberConfig(getInvoiceNumberConfig(invoicePrefix));
-        config.setBuyerConfig(getBuyerConfig());
-        config.setReceiverConfig(getReceiverConfig());
-        config.setPaymentConfig(getPaymentConfig());
-        return config;
+        return FormConfigurations.getCreateInvoiceBaseDataFormConfig(view.getContext(), invoicePrefix);
     }
 
     @SuppressLint("CheckResult")
@@ -61,29 +52,6 @@ public class CreateInvoiceBaseDataPresenter {
         companyService.getCompany(companyId)
             .compose(view.bindToLifecycle())
             .subscribe(company -> view.setData(invoiceBaseModel, company), view::setError);
-    }
-
-    private TextFormConfig<String> getInvoiceNumberConfig(String invoicePrefix) {
-        TextFormConfig<String> config = FormConfigurations.getInvoiceNumberConfig();
-        config.setDefaultValue(invoicePrefix);
-        return config;
-    }
-
-    private ClickableContactFormConfig getReceiverConfig() {
-        ClickableContactFormConfig config = FormConfigurations.getClickableContactConfig();
-        config.setLabel("Receiver");
-        config.setRequired(false);
-        return config;
-    }
-
-    private ClickableContactFormConfig getBuyerConfig() {
-        ClickableContactFormConfig config = FormConfigurations.getClickableContactConfig();
-        config.setLabel("Buyer");
-        return config;
-    }
-
-    private ClickablePaymentFormConfig getPaymentConfig() {
-        return FormConfigurations.getClickablePaymentConfig();
     }
 
 }

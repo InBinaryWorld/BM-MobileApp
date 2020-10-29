@@ -29,17 +29,12 @@ public class WarehouseDetailsPresenter extends BaseDetailsPresenter<Warehouse, W
     public void loadData(Long contactId) {
         Long companyId = sessionManager.getCompanyId();
         warehouseService.getWarehouse(companyId, contactId)
-                .compose(view.bindToLifecycle())
-                .subscribe(view::setData, view::setError);
+            .compose(view.bindToLifecycle())
+            .subscribe(view::setData, view::setError);
     }
 
     @Override
     public WarehouseDetailsConfig createConfig() {
-        WarehouseDetailsConfig config = new WarehouseDetailsConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setDefaultValue(null);
-        config.setWarehouseNameConfig(DetailsConfigurations.getWarehouseName());
-        config.setAddressDetailsConfig(DetailsConfigurations.getAddressConfig());
-        return config;
+        return DetailsConfigurations.getWarehouseDetailsConfig(view.getContext());
     }
 }

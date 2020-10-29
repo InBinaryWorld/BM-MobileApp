@@ -32,12 +32,6 @@ public class CompanyCreatePresenter extends BaseFormPresenter<Company, CompanyCr
 
     @Override
     public CreateCompanyFormConfig createConfig() {
-        CreateCompanyFormConfig config = new CreateCompanyFormConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setNameConfig(FormConfigurations.getCompanyNameConfig());
-        config.setInvoicePrefixConfig(FormConfigurations.getInvoicePrefixConfig());
-        config.setTaxIdentityConfig(FormConfigurations.getTaxIdentityNumberConfig());
-        config.setAddressConfig(FormConfigurations.getAddressConfig());
-        return config;
+        return FormConfigurations.getCreateCompanyFormConfig(view.getContext());
     }
 }

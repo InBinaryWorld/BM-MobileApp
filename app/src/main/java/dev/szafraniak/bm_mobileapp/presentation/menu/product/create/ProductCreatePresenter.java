@@ -53,11 +53,7 @@ public class ProductCreatePresenter {
     }
 
     public CreateProductFormConfig createConfig(List<ProductModel> models) {
-        CreateProductFormConfig config = new CreateProductFormConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setProductModelConfig(FormConfigurations.getProductModelConfig(models));
-        config.setQuantityConfig(FormConfigurations.getQuantityConfig());
-        return config;
+        return FormConfigurations.getCreateProductFormConfig(view.getContext(), models);
     }
 
     @SuppressLint("CheckResult")

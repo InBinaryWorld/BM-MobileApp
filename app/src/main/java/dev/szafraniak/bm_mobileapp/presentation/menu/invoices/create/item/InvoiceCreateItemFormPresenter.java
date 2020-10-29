@@ -93,6 +93,6 @@ public class InvoiceCreateItemFormPresenter {
     }
 
     public InvoiceItemFormConfig createConfig(List<ProductModel> products, List<ServiceModel> services) {
-        return FormConfigurations.getInvoiceItemConfig(products, services, view.getActivity());
+        return FormConfigurations.getInvoiceItemConfig(view.getContext(), products, services, view.getActivity());
     }
 }

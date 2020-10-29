@@ -40,13 +40,7 @@ public class ModifyCompanyPresenter extends BaseFormPresenter<Company, ModifyCom
 
     @Override
     public ModifyCompanyFormConfig createConfig() {
-        ModifyCompanyFormConfig config = new ModifyCompanyFormConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setNameConfig(FormConfigurations.getCompanyNameConfig());
-        config.setInvoicePrefixConfig(FormConfigurations.getInvoicePrefixConfig());
-        config.setTaxIdentityConfig(FormConfigurations.getTaxIdentityNumberConfig());
-        config.setAddressConfig(FormConfigurations.getAddressConfig());
-        return config;
+        return FormConfigurations.getModifyCompanyFormConfig(view.getContext());
     }
 
     @SuppressLint("CheckResult")

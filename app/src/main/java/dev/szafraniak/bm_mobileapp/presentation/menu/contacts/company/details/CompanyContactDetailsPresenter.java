@@ -29,19 +29,12 @@ public class CompanyContactDetailsPresenter extends BaseDetailsPresenter<Company
     public void loadData(Long contactId) {
         Long companyId = sessionManager.getCompanyId();
         contactsService.getCompanyContact(companyId, contactId)
-                .compose(view.bindToLifecycle())
-                .subscribe(view::setData, view::setError);
+            .compose(view.bindToLifecycle())
+            .subscribe(view::setData, view::setError);
     }
 
     @Override
     public CompanyContactDetailsConfig createConfig() {
-        CompanyContactDetailsConfig config = new CompanyContactDetailsConfig();
-        config.setDefaultValue(null);
-        config.setVisibleOnSetValueNull(true);
-        config.setCompanyNameConfig(DetailsConfigurations.getCompanyNameConfig());
-        config.setTaxIdConfig(DetailsConfigurations.getTaxIdConfig());
-        config.setPhoneConfig(DetailsConfigurations.getPhoneConfig());
-        config.setAddressConfig(DetailsConfigurations.getAddressConfig());
-        return config;
+        return DetailsConfigurations.getCompanyContactDetailsConfig(view.getContext());
     }
 }

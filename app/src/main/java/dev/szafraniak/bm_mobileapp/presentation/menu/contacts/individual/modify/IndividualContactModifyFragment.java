@@ -16,8 +16,8 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.IndividualContact;
 import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.UpdateIndividualContactRequest;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 
 @EFragment(R.layout.fragment_base_form)
 public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndividualContactRequest, IndividualContactModifyFormConfig> implements IndividualContactModifyView {
@@ -59,7 +59,7 @@ public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndi
 
     @Override
     protected int getButtonTextId() {
-        return R.string.header_contact_modify;
+        return R.string.btn_modify_form;
     }
 
     @Override

@@ -35,14 +35,6 @@ public class ProductModelDetailsPresenter extends BaseDetailsPresenter<ProductMo
 
     @Override
     public ProductModelDetailsConfig createConfig() {
-        ProductModelDetailsConfig config = new ProductModelDetailsConfig();
-        config.setVisibleOnSetValueNull(false);
-        config.setDefaultValue(null);
-        config.setProductModelNameConfig(DetailsConfigurations.getProductNameConfig());
-        config.setBarcodeConfig(DetailsConfigurations.getBarcodeConfig());
-        config.setQuantityUnitConfig(DetailsConfigurations.getQuantityUnitConfig());
-        config.setProductGroupNameConfig(DetailsConfigurations.getProductGroupNameConfig());
-        config.setPriceDetailsConfig(DetailsConfigurations.getPriceConfig());
-        return config;
+        return DetailsConfigurations.getProductModelDetailsConfig(view.getContext());
     }
 }

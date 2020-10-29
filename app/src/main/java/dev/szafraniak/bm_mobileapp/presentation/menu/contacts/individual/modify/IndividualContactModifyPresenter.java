@@ -36,13 +36,7 @@ public class IndividualContactModifyPresenter extends BaseFormPresenter<Individu
 
     @Override
     public IndividualContactModifyFormConfig createConfig() {
-        IndividualContactModifyFormConfig config = new IndividualContactModifyFormConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setFirstNameConfig(FormConfigurations.getFirstNameConfig());
-        config.setLastNameConfig(FormConfigurations.getLastNameConfig());
-        config.setPhoneConfig(FormConfigurations.getPhoneConfig());
-        config.setAddressConfig(FormConfigurations.getAddressConfig());
-        return config;
+        return FormConfigurations.getIndividualContactModifyFormConfig(view.getContext());
     }
 
     @SuppressLint("CheckResult")

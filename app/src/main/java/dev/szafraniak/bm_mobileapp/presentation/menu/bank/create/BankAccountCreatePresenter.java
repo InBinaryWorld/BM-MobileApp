@@ -36,10 +36,6 @@ public class BankAccountCreatePresenter extends BaseFormPresenter<BankAccount, B
 
     @Override
     public BankAccountCreateFormConfig createConfig() {
-        BankAccountCreateFormConfig config = new BankAccountCreateFormConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setNameConfig(FormConfigurations.getBankAccountNameConfig());
-        config.setNumberConfig(FormConfigurations.getBankAccountNumberConfig());
-        return config;
+        return FormConfigurations.getBankAccountCreateFormConfig(view.getContext());
     }
 }

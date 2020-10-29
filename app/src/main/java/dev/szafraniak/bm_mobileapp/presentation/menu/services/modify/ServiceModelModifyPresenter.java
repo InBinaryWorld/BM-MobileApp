@@ -36,12 +36,7 @@ public class ServiceModelModifyPresenter extends BaseFormPresenter<ServiceModel,
 
     @Override
     public ModifyServiceModelFormConfig createConfig() {
-        ModifyServiceModelFormConfig config = new ModifyServiceModelFormConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setNameConfig(FormConfigurations.getProductModelNameConfig());
-        config.setQuantityUniteConfig(FormConfigurations.getQuantityUnitConfig());
-        config.setPriceFormConfig(FormConfigurations.getPriceConfig());
-        return config;
+        return FormConfigurations.getModifyServiceModelFormConfig(view.getContext());
     }
 
     @SuppressLint("CheckResult")

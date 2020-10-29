@@ -36,10 +36,7 @@ public class WarehouseModifyPresenter extends BaseFormPresenter<Warehouse, Wareh
 
     @Override
     public UpdateWarehouseFormConfig createConfig() {
-        UpdateWarehouseFormConfig config = new UpdateWarehouseFormConfig();
-        config.setNameConfig(FormConfigurations.getWarehouseName());
-        config.setAddressConfig(FormConfigurations.getAddressConfig());
-        return config;
+        return FormConfigurations.getUpdateWarehouseFormConfig(view.getContext());
     }
 
     @SuppressLint("CheckResult")

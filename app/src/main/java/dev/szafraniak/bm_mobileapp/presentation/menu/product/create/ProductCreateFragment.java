@@ -2,12 +2,14 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.product.create;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
 
 import java.util.List;
 
@@ -19,13 +21,16 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.product.CreateProductR
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductModel;
 import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 
-@EFragment(R.layout.fragment_base_form)
+@EFragment(R.layout.fragment_product_form)
 public class ProductCreateFragment extends BaseFormFragment<CreateProductRequest, CreateProductFormConfig> implements ProductCreateView {
 
     public static final String KEY_WAREHOUSE = "KEY_WAREHOUSE";
+
+    @ViewById(R.id.view_no_product_models)
+    View noModelsView;
 
     @Inject
     ProductCreatePresenter presenter;
@@ -71,8 +76,34 @@ public class ProductCreateFragment extends BaseFormFragment<CreateProductRequest
 
     @Override
     public void setData(List<ProductModel> models) {
+        if (models.size() == 0) {
+            showOnNoModelsView();
+            return;
+        }
         CreateProductFormConfig config = presenter.createConfig(models);
         startForm(config);
+
+    }
+
+    @Override
+    protected void showFirstProgress() {
+        noModelsView.setVisibility(View.GONE);
+        super.showFirstProgress();
+    }
+
+    protected void showOnNoModelsView() {
+        errorView.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE);
+        noModelsView.setVisibility(View.VISIBLE);
+        dataContainerView.setVisibility(View.GONE);
+        setRefreshEnabled(true);
+        hideSRLRefreshing();
+    }
+
+    @Override
+    protected void viewOnSRLRefresh() {
+        noModelsView.setVisibility(View.GONE);
+        super.viewOnSRLRefresh();
     }
 
     @Override

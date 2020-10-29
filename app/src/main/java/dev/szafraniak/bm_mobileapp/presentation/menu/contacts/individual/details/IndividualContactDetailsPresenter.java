@@ -13,7 +13,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.Detail
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsPresenter;
 
 public class IndividualContactDetailsPresenter extends BaseDetailsPresenter<IndividualContact,
-        IndividualContactDetailsView, IndividualContactDetailsConfig> {
+    IndividualContactDetailsView, IndividualContactDetailsConfig> {
 
     @Inject
     ContactsService contactsService;
@@ -31,19 +31,12 @@ public class IndividualContactDetailsPresenter extends BaseDetailsPresenter<Indi
     public void loadData(Long contactId) {
         Long companyId = sessionManager.getCompanyId();
         contactsService.getIndividualContact(companyId, contactId)
-                .compose(view.bindToLifecycle())
-                .subscribe(view::setData, view::setError);
+            .compose(view.bindToLifecycle())
+            .subscribe(view::setData, view::setError);
     }
 
     @Override
     public IndividualContactDetailsConfig createConfig() {
-        IndividualContactDetailsConfig config = new IndividualContactDetailsConfig();
-        config.setDefaultValue(null);
-        config.setVisibleOnSetValueNull(true);
-        config.setFirstNameConfig(DetailsConfigurations.getFirstNameConfig());
-        config.setLastNameConfig(DetailsConfigurations.getLastNameConfig());
-        config.setPhoneConfig(DetailsConfigurations.getPhoneConfig());
-        config.setAddressConfig(DetailsConfigurations.getAddressConfig());
-        return config;
+        return DetailsConfigurations.getIndividualContactDetailsConfig(view.getContext());
     }
 }

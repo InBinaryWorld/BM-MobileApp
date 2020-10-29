@@ -13,8 +13,8 @@ import dev.szafraniak.bm_mobileapp.business.Constance;
 
 public class Formatter {
 
-    private final static DecimalFormat dfBase = getBaseDecimalFormat();
     private final static DecimalFormat dfPrice = getDecimalFormatPrice();
+    private final static DecimalFormat dfFraction = getDecimalFormatWithFraction();
     private final static DecimalFormat dfNoFraction = getDecimalFormatNoFraction();
     private final static DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern(Constance.TIME_PATTERN);
     private final static DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(Constance.DATE_PATTERN);
@@ -39,7 +39,7 @@ public class Formatter {
     }
 
     public static String safeFormatWithFraction(BigDecimal value) {
-        return value == null ? null : dfBase.format(value);
+        return value == null ? null : dfFraction.format(value);
     }
 
     public static String safeFormatWithFractionNoSep(BigDecimal value) {
@@ -59,7 +59,13 @@ public class Formatter {
 
         DecimalFormat format = new DecimalFormat();
         format.setDecimalFormatSymbols(symbols);
-        format.setMinimumIntegerDigits(1);
+        return format;
+    }
+
+    private static DecimalFormat getDecimalFormatWithFraction() {
+        DecimalFormat format = getBaseDecimalFormat();
+        format.setMinimumFractionDigits(0);
+        format.setMaximumFractionDigits(Integer.MAX_VALUE);
         return format;
     }
 

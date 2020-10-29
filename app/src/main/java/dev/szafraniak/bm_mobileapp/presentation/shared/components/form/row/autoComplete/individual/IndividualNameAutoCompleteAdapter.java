@@ -43,7 +43,7 @@ public class IndividualNameAutoCompleteAdapter extends BaseAutoCompleteListAdapt
         }
         IndividualContact item = getWholeItem(position);
         ViewHolder holder = (ViewHolder) convertView.getTag();
-        holder.contactName.setText(item.getFirstName());
+        holder.contactName.setText(item.getName());
         holder.contactAddress.setText(item.getAddress().getShortAddress());
         return convertView;
     }

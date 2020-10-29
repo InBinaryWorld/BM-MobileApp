@@ -29,17 +29,12 @@ public class ServiceModelCreatePresenter extends BaseFormPresenter<ServiceModel,
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void createServiceModel(CreateServiceModelRequest object) {
         serviceModelService.createServiceModel(sessionManager.getCompanyId(), object)
-                .compose(view.bindToLifecycle())
-                .subscribe(this::onSuccess, this::onError);
+            .compose(view.bindToLifecycle())
+            .subscribe(this::onSuccess, this::onError);
     }
 
     @Override
     public CreateServiceFormConfig createConfig() {
-        CreateServiceFormConfig config = new CreateServiceFormConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setNameConfig(FormConfigurations.getProductModelNameConfig());
-        config.setQuantityUniteConfig(FormConfigurations.getQuantityUnitConfig());
-        config.setPriceFormConfig(FormConfigurations.getPriceConfig());
-        return config;
+        return FormConfigurations.getCreateServiceFormConfig(view.getContext());
     }
 }

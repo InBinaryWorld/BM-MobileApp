@@ -36,7 +36,7 @@ public class FinancesEventModifyPresenter extends BaseFormPresenter<FinancialRow
 
     @Override
     public FinancesEventModifyFormConfig createConfig() {
-        return FormConfigurations.getFinancesEventModifyConfig();
+        return FormConfigurations.getFinancesEventModifyConfig(view.getContext());
     }
 
     @SuppressLint("CheckResult")

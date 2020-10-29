@@ -17,9 +17,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoi
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.CreateInvoiceFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.PaymentFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.form.CreateInvoicePaymentFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.payment.form.payment.PaymentMethodFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.datePicker.DatePickerFormConfig;
 import lombok.Setter;
 
 public class InvoicePaymentPresenter {
@@ -41,15 +39,7 @@ public class InvoicePaymentPresenter {
     }
 
     public CreateInvoicePaymentFormConfig createConfig(List<BankAccount> bankAccounts) {
-        CreateInvoicePaymentFormConfig config = new CreateInvoicePaymentFormConfig();
-        config.setVisibleOnSetValueNull(true);
-        config.setPaymentConfig(createPaymentConfig(bankAccounts));
-        config.setDueDateFormConfig(createDueDateConfig());
-        return config;
-    }
-
-    private DatePickerFormConfig createDueDateConfig() {
-        return FormConfigurations.getDueDateConfig();
+        return FormConfigurations.getCreateInvoicePaymentFormConfig(view.getContext(), bankAccounts);
     }
 
     @SuppressLint("CheckResult")
@@ -66,10 +56,6 @@ public class InvoicePaymentPresenter {
                 collection -> view.setData(paymentFormModel, collection.getItems()),
                 view::setError
             );
-    }
-
-    private PaymentMethodFormConfig createPaymentConfig(List<BankAccount> bankAccounts) {
-        return FormConfigurations.getPaymentMethodConfig(bankAccounts);
     }
 
     public void savePayment(PaymentFormModel paymentFormModel) {
