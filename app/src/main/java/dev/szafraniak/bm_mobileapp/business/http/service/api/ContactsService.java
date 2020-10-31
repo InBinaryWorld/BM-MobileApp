@@ -20,6 +20,7 @@ import dev.szafraniak.bm_mobileapp.business.models.mics.BMCollection;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 public class ContactsService {
 
@@ -84,6 +85,12 @@ public class ContactsService {
             .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Observable<Response<Void>> deleteIndividualContact(Long companyId, Long contactId) {
+        return bmResourcesApi.deleteIndividualContact(companyId, contactId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread());
+    }
+
     public Observable<BMCollection<Contact>> getContacts(Long companyId) {
         return bmResourcesApi.getCompanyContacts(companyId)
             .flatMap(companyContacts -> appendCompanyContacts(companyContacts, companyId))
@@ -104,4 +111,9 @@ public class ContactsService {
     }
 
 
+    public Observable<Response<Void>> deleteCompanyContact(Long companyId, Long contactId) {
+        return bmResourcesApi.deleteCompanyContact(companyId, contactId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread());
+    }
 }

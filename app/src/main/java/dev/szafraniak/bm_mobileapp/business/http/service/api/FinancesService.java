@@ -13,6 +13,7 @@ import dev.szafraniak.bm_mobileapp.business.models.mics.BMCollection;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 public class FinancesService {
 
@@ -47,4 +48,9 @@ public class FinancesService {
             .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Observable<Response<Void>> deleteFinancialEvent(Long companyId, Long eventId) {
+        return bmResourcesApi.deleteFinancialEvent(companyId, eventId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread());
+    }
 }

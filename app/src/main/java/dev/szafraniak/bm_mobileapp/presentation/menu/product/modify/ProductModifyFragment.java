@@ -16,11 +16,11 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.Product;
 import dev.szafraniak.bm_mobileapp.business.models.entity.product.UpdateProductRequest;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormWithTrashFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
 
-@EFragment(R.layout.fragment_base_form)
-public class ProductModifyFragment extends BaseFormFragment<UpdateProductRequest, ModifyProductFormConfig> implements ProductModifyView {
+@EFragment(R.layout.fragment_base_form_with_trash)
+public class ProductModifyFragment extends BaseFormWithTrashFragment<UpdateProductRequest, ModifyProductFormConfig> implements ProductModifyView {
 
     public final static String KEY_PRODUCT = "PRODUCT_KEY";
 
@@ -83,5 +83,10 @@ public class ProductModifyFragment extends BaseFormFragment<UpdateProductRequest
 
         ModifyProductFormConfig config = presenter.createConfig(product);
         startForm(config, model);
+    }
+
+    @Override
+    protected void onTrash() {
+        presenter.deleteProduct(product.getId());
     }
 }

@@ -15,11 +15,11 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsWithBtnAndTrashFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.DetailsInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsFragmentWithBtn;
 
-@EFragment(R.layout.fragment_base_details)
-public class InvoiceDetailsFragment extends BaseDetailsFragmentWithBtn<Invoice, InvoiceDetailsConfig>
+@EFragment(R.layout.fragment_base_details_with_trash)
+public class InvoiceDetailsFragment extends BaseDetailsWithBtnAndTrashFragment<Invoice, InvoiceDetailsConfig>
     implements InvoiceDetailsView {
 
     public final static String KEY_INVOICE = "KEY_INVOICE";
@@ -63,7 +63,7 @@ public class InvoiceDetailsFragment extends BaseDetailsFragmentWithBtn<Invoice, 
 
     @Override
     public void hideBtnProgress() {
-        this.showButton();
+        this.hideButtonProgress();
     }
 
     @Override
@@ -97,5 +97,9 @@ public class InvoiceDetailsFragment extends BaseDetailsFragmentWithBtn<Invoice, 
         presenter.downloadInvoice(invoice);
     }
 
+    @Override
+    protected void onTrash() {
+        presenter.deleteInvoice(invoice.getId());
+    }
 
 }

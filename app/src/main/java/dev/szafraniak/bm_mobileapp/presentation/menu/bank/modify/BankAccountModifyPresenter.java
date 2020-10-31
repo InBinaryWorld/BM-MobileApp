@@ -10,8 +10,10 @@ import dev.szafraniak.bm_mobileapp.business.http.service.api.BankAccountService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.BankAccount;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.UpdateBankAccountRequest;
+import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormPresenter;
+import retrofit2.Response;
 
 public class BankAccountModifyPresenter extends BaseFormPresenter<BankAccount, BankAccountModifyView, BankAccountModifyFormConfig> {
 
@@ -32,7 +34,19 @@ public class BankAccountModifyPresenter extends BaseFormPresenter<BankAccount, B
         bankAccountService.modifyBankAccount(companyId, accountId, request)
             .compose(view.bindToLifecycle())
             .subscribe(this::onSuccess, this::onError);
+    }
 
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public void deleteAccount(Long accountId) {
+        Long companyId = sessionManager.getCompanyId();
+        bankAccountService.deleteBankAccount(companyId, accountId)
+            .compose(view.bindToLifecycle())
+            .subscribe(this::onDeleteSucceed, this::onError);
+    }
+
+    private void onDeleteSucceed(Response<Void> voidResponse) {
+        Navigator.back(view);
     }
 
     @Override

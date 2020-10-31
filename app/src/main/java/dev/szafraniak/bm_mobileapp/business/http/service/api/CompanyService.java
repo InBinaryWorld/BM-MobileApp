@@ -13,6 +13,7 @@ import dev.szafraniak.bm_mobileapp.business.models.mics.BMCollection;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 public class CompanyService {
     @Inject
@@ -46,4 +47,9 @@ public class CompanyService {
             .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Observable<Response<Void>> deleteCompany(Long companyId) {
+        return bmResourcesApi.deleteCompany(companyId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread());
+    }
 }

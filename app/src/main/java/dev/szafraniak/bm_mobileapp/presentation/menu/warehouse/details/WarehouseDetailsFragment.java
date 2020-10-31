@@ -17,11 +17,11 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.warehouse.Warehouse;
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.warehouse.modify.WarehouseModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsWithBtnAndTrashFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.DetailsInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsFragmentWithBtn;
 
-@EFragment(R.layout.fragment_base_details)
-public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehouse, WarehouseDetailsConfig>
+@EFragment(R.layout.fragment_base_details_with_trash)
+public class WarehouseDetailsFragment extends BaseDetailsWithBtnAndTrashFragment<Warehouse, WarehouseDetailsConfig>
     implements WarehouseDetailsView {
 
     public final static String KEY_WAREHOUSE = "KEY_WAREHOUSE";
@@ -85,4 +85,8 @@ public class WarehouseDetailsFragment extends BaseDetailsFragmentWithBtn<Warehou
         return R.string.btn_warehouse_details;
     }
 
+    @Override
+    protected void onTrash() {
+        presenter.deleteWarehouse(warehouse.getId());
+    }
 }

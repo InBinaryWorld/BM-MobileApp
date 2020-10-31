@@ -13,6 +13,7 @@ import dev.szafraniak.bm_mobileapp.business.models.mics.BMCollection;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 public class BankAccountService {
     @Inject
@@ -46,4 +47,9 @@ public class BankAccountService {
             .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Observable<Response<Void>> deleteBankAccount(Long companyId, Long accountId) {
+        return bmResourcesApi.deleteBankAccount(companyId, accountId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread());
+    }
 }

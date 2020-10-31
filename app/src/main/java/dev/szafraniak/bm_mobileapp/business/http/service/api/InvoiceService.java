@@ -13,6 +13,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
+import retrofit2.Response;
 
 public class InvoiceService {
     @Inject
@@ -52,4 +53,9 @@ public class InvoiceService {
             .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Observable<Response<Void>> deleteInvoice(Long companyId, Long invoiceId) {
+        return bmResourcesApi.deleteInvoice(companyId, invoiceId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread());
+    }
 }

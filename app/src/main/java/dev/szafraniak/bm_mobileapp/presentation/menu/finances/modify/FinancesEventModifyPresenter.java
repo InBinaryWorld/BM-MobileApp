@@ -10,8 +10,10 @@ import dev.szafraniak.bm_mobileapp.business.http.service.api.FinancesService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.FinancialRow;
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.UpdateFinancialRowRequest;
+import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormPresenter;
+import retrofit2.Response;
 
 public class FinancesEventModifyPresenter extends BaseFormPresenter<FinancialRow, FinancialEventModifyView, FinancesEventModifyFormConfig> {
 
@@ -32,6 +34,19 @@ public class FinancesEventModifyPresenter extends BaseFormPresenter<FinancialRow
         financesService.modifyFinancialEvent(companyId, eventId, request)
             .compose(view.bindToLifecycle())
             .subscribe(this::onSuccess, this::onError);
+    }
+
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public void deleteEvent(Long eventId) {
+        Long companyId = sessionManager.getCompanyId();
+        financesService.deleteFinancialEvent(companyId, eventId)
+            .compose(view.bindToLifecycle())
+            .subscribe(this::onDeleteSucceed, this::onError);
+    }
+
+    private void onDeleteSucceed(Response<Void> voidResponse) {
+        Navigator.back(view);
     }
 
     @Override

@@ -19,7 +19,7 @@
     <string name="settings_change_company">Change the company</string>
     <string name="settings_login_with_facebook">Automatic login with Facebook</string>
     <string name="settings_login_with_google">Automatic login with Google</string>
-    <string name="settings_menage_bank_accounts">Manage bank accounts</string>
+    <string name="settings_menage_bank_accounts">Bank accounts</string>
     <string name="settings_modify_company">Modify company data</string>
     <string name="settings_logout">Logout</string>
 

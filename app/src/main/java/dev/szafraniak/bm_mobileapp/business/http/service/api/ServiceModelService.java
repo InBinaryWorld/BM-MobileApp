@@ -13,6 +13,7 @@ import dev.szafraniak.bm_mobileapp.business.models.mics.BMCollection;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 public class ServiceModelService {
     @Inject
@@ -49,4 +50,9 @@ public class ServiceModelService {
             .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Observable<Response<Void>> deleteServiceModel(Long companyId, Long modelId) {
+        return bmResourcesApi.deleteServiceModel(companyId, modelId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread());
+    }
 }

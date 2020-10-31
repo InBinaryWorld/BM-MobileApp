@@ -16,11 +16,11 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.FinancialRow;
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.UpdateFinancialRowRequest;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormWithTrashFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
 
-@EFragment(R.layout.fragment_base_form)
-public class FinancesEventModifyFragment extends BaseFormFragment<UpdateFinancialRowRequest, FinancesEventModifyFormConfig> implements FinancialEventModifyView {
+@EFragment(R.layout.fragment_base_form_with_trash)
+public class FinancesEventModifyFragment extends BaseFormWithTrashFragment<UpdateFinancialRowRequest, FinancesEventModifyFormConfig> implements FinancialEventModifyView {
 
     public final static String KEY_FINANCIAL_EVENT = "KEY_FINANCIAL_EVENT";
 
@@ -83,4 +83,8 @@ public class FinancesEventModifyFragment extends BaseFormFragment<UpdateFinancia
         startForm(config, model);
     }
 
+    @Override
+    protected void onTrash() {
+        presenter.deleteEvent(financialRow.getId());
+    }
 }

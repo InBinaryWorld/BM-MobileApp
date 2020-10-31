@@ -17,11 +17,11 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductMo
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.modify.ProductModelModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsWithBtnAndTrashFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.DetailsInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsFragmentWithBtn;
 
-@EFragment(R.layout.fragment_base_details)
-public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<ProductModel, ProductModelDetailsConfig>
+@EFragment(R.layout.fragment_base_details_with_trash)
+public class ProductModelDetailsFragment extends BaseDetailsWithBtnAndTrashFragment<ProductModel, ProductModelDetailsConfig>
     implements ProductModelDetailsView {
 
     public final static String KEY_PRODUCT_MODEL = "KEY_PRODUCT_MODEL";
@@ -66,6 +66,11 @@ public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<Prod
     }
 
     @Override
+    protected void onTrash() {
+        presenter.deleteModel(productModel.getId());
+    }
+
+    @Override
     protected void loadData() {
         presenter.loadData(productModel.getId());
     }
@@ -84,4 +89,5 @@ public class ProductModelDetailsFragment extends BaseDetailsFragmentWithBtn<Prod
     protected int getButtonTextId() {
         return R.string.btn_product_model_details;
     }
+
 }

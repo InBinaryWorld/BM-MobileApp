@@ -12,11 +12,11 @@ import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.Company;
 import dev.szafraniak.bm_mobileapp.business.models.entity.company.UpdateCompanyRequest;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormWithTrashFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
 
-@EFragment(R.layout.fragment_base_form)
-public class ModifyCompanyFragment extends BaseFormFragment<UpdateCompanyRequest, ModifyCompanyFormConfig> implements ModifyCompanyView {
+@EFragment(R.layout.fragment_base_form_with_trash)
+public class ModifyCompanyFragment extends BaseFormWithTrashFragment<UpdateCompanyRequest, ModifyCompanyFormConfig> implements ModifyCompanyView {
 
     @Inject
     ModifyCompanyPresenter presenter;
@@ -68,4 +68,8 @@ public class ModifyCompanyFragment extends BaseFormFragment<UpdateCompanyRequest
         startForm(config, model);
     }
 
+    @Override
+    protected void onTrash() {
+        presenter.deleteCompany();
+    }
 }

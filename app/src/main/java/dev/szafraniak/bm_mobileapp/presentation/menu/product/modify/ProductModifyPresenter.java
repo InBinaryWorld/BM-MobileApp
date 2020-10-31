@@ -13,6 +13,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.product.UpdateProductR
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.FormConfigurations;
 import lombok.Setter;
+import retrofit2.Response;
 
 public class ProductModifyPresenter {
 
@@ -36,6 +37,19 @@ public class ProductModifyPresenter {
         productService.modifyProduct(companyId, productId, object)
             .compose(view.bindToLifecycle())
             .subscribe(this::onSuccess, this::onError);
+    }
+
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public void deleteProduct(Long productId) {
+        Long companyId = sessionManager.getCompanyId();
+        productService.deleteProduct(companyId, productId)
+            .compose(view.bindToLifecycle())
+            .subscribe(this::onDeleteSucceed, this::onError);
+    }
+
+    private void onDeleteSucceed(Response<Void> voidResponse) {
+        Navigator.back(view);
     }
 
     public ModifyProductFormConfig createConfig(Product product) {

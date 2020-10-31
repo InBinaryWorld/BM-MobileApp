@@ -398,6 +398,13 @@
         <item name="android:src">@drawable/ic_cry</item>
     </style>
 
+    <style name="TrashImageView">
+        <item name="android:layout_height">26dp</item>
+        <item name="android:layout_width">26dp</item>
+        <item name="android:tint">@color/colorWhite</item>
+        <item name="android:src">@drawable/ic_trash_can</item>
+    </style>
+
     <style name="PhoneImageView">
         <item name="android:tint">@color/blue_light_black40</item>
         <item name="android:src">@drawable/ic_smartphone</item>

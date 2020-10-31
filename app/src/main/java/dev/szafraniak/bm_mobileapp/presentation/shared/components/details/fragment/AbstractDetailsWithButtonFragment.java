@@ -1,20 +1,19 @@
 package dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment;
 
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.IdRes;
 import androidx.annotation.StringRes;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.EFragment;
-
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.BaseDetailsConfig;
+import timber.log.Timber;
 
-@EFragment
-public abstract class BaseDetailsFragmentWithBtn<T, C extends BaseDetailsConfig<T>> extends BaseDetailsFragment<T, C> {
+public abstract class AbstractDetailsWithButtonFragment<T, C extends BaseDetailsConfig<T>>
+    extends BaseDetailsFragment<T, C> implements BaseDetailsWithBtnView<T> {
 
     protected ExtendedFloatingActionButton fblBtn;
     protected View btnProgressView;
@@ -35,26 +34,43 @@ public abstract class BaseDetailsFragmentWithBtn<T, C extends BaseDetailsConfig<
     protected abstract void onFblClick();
 
     private void onBtnClick(View view) {
-        showProgress();
+        startButtonProgress();
         this.onFblClick();
     }
 
-    @AfterViews
-    public void initializeBaseDetailsFragmentWithBtn() {
+    public void initializeDetailsWithBtnFragment() {
         this.fblBtn = (ExtendedFloatingActionButton) findViewById(getButtonId());
         this.btnProgressView = findViewById(getButtonProgressId());
         fblBtn.setText(getButtonTextId());
         fblBtn.setOnClickListener(this::onBtnClick);
-        showButton();
+        hideButtonProgress();
     }
 
-    private void showProgress() {
+    protected void startButtonProgress() {
         fblBtn.setVisibility(View.GONE);
         btnProgressView.setVisibility(View.VISIBLE);
     }
 
-    protected void showButton() {
+    protected void hideButtonProgress() {
         fblBtn.setVisibility(View.VISIBLE);
         btnProgressView.setVisibility(View.GONE);
     }
+
+    @Override
+    public void setActionFailed(Throwable e) {
+        Timber.e(e);
+        errorToast();
+        hideButtonProgress();
+    }
+
+    @Override
+    public void setActionSucceed() {
+        hideButtonProgress();
+    }
+
+    public void errorToast() {
+        Toast.makeText(getContext(), "Action Failed", Toast.LENGTH_SHORT).show();
+    }
+
+
 }

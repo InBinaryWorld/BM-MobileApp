@@ -16,11 +16,11 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.BankAccount;
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.UpdateBankAccountRequest;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.fragment.BaseFormWithTrashFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
 
-@EFragment(R.layout.fragment_base_form)
-public class BankAccountModifyFragment extends BaseFormFragment<UpdateBankAccountRequest, BankAccountModifyFormConfig>
+@EFragment(R.layout.fragment_base_form_with_trash)
+public class BankAccountModifyFragment extends BaseFormWithTrashFragment<UpdateBankAccountRequest, BankAccountModifyFormConfig>
     implements BankAccountModifyView {
 
     public final static String KEY_BANK_ACCOUNT = "KEY_BANK_ACCOUNT";
@@ -84,4 +84,8 @@ public class BankAccountModifyFragment extends BaseFormFragment<UpdateBankAccoun
         startForm(config, model);
     }
 
+    @Override
+    protected void onTrash() {
+        presenter.deleteAccount(bankAccount.getId());
+    }
 }

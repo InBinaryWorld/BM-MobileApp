@@ -17,11 +17,11 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.serviceModel.ServiceMo
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.services.modify.ServiceModelModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsWithBtnAndTrashFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.DetailsInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsFragmentWithBtn;
 
-@EFragment(R.layout.fragment_base_details)
-public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<ServiceModel, ServiceModelDetailsConfig>
+@EFragment(R.layout.fragment_base_details_with_trash)
+public class ServiceModelDetailsFragment extends BaseDetailsWithBtnAndTrashFragment<ServiceModel, ServiceModelDetailsConfig>
     implements ServiceModelDetailsView {
 
     public final static String KEY_SERVICE_MODEL = "SERVICE_MODEL_KEY";
@@ -74,6 +74,11 @@ public class ServiceModelDetailsFragment extends BaseDetailsFragmentWithBtn<Serv
         Bundle args = new Bundle();
         args.putString(ServiceModelModifyFragment.KEY_SERVICE_MODEL, gson.toJson(serviceModel));
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_SERVICE_MODEL_MODIFY, args);
+    }
+
+    @Override
+    protected void onTrash() {
+        presenter.deleteModel(serviceModel.getId());
     }
 
     @Override

@@ -38,7 +38,9 @@ import dev.szafraniak.bm_mobileapp.business.models.stats.InvoicesStatsModel;
 import dev.szafraniak.bm_mobileapp.business.models.stats.ResourcesStatsModel;
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
+import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -66,6 +68,10 @@ public interface BmResourcesApi {
     Observable<Company> modifyCompany(@Path("companyId") Long companyId,
                                       @Body UpdateCompanyRequest requestBody);
 
+    @DELETE("/api/companies/{companyId}")
+    Observable<Response<Void>> deleteCompany(@Path("companyId") Long companyId);
+
+
     //    ###########  PRODUCT  ##########
 
     @GET("/api/companies/{companyId}/products")
@@ -83,6 +89,10 @@ public interface BmResourcesApi {
     Observable<Product> modifyProduct(@Path("companyId") Long companyId,
                                       @Path("productId") Long productId,
                                       @Body UpdateProductRequest request);
+
+    @DELETE("/api/companies/{companyId}/products/{productId}")
+    Observable<Response<Void>> deleteProduct(@Path("companyId") Long companyId,
+                                             @Path("productId") Long productId);
 
 
     //    ###########  PRODUCT MODEL  ##########
@@ -103,6 +113,11 @@ public interface BmResourcesApi {
                                                 @Path("productModelId") Long productModelId,
                                                 @Body UpdateProductModelRequest model);
 
+    @DELETE("/api/companies/{companyId}/products/models/{productModelId}")
+    Observable<Response<Void>> deleteProductModel(@Path("companyId") Long companyId,
+                                                  @Path("productModelId") Long productModelId);
+
+
     //    ###########  SERVICE MODEL  ##########
 
     @GET("/api/companies/{companyId}/services/models")
@@ -120,6 +135,10 @@ public interface BmResourcesApi {
     Observable<ServiceModel> modifyServiceModel(@Path("companyId") Long companyId,
                                                 @Path("serviceModelId") Long serviceModelId,
                                                 @Body UpdateServiceModelRequest model);
+
+    @DELETE("/api/companies/{companyId}/services/models/{serviceModelId}")
+    Observable<Response<Void>> deleteServiceModel(@Path("companyId") Long companyId,
+                                                  @Path("serviceModelId") Long serviceModelId);
 
     //    ###########  COMPANY CONTACT  ##########
 
@@ -139,6 +158,10 @@ public interface BmResourcesApi {
                                                     @Path("contactId") Long contactId,
                                                     @Body UpdateCompanyContactRequest requestBody);
 
+    @DELETE("/api/companies/{companyId}/contacts/company/{contactId}")
+    Observable<Response<Void>> deleteCompanyContact(@Path("companyId") Long companyId,
+                                                    @Path("contactId") Long contactId);
+
     //    ###########  INDIVIDUAL CONTACT  ##########
 
     @GET("/api/companies/{companyId}/contacts/individual")
@@ -157,6 +180,10 @@ public interface BmResourcesApi {
                                                           @Path("contactId") Long contactId,
                                                           @Body UpdateIndividualContactRequest requestBody);
 
+    @DELETE("/api/companies/{companyId}/contacts/individual/{contactId}")
+    Observable<Response<Void>> deleteIndividualContact(@Path("companyId") Long companyId,
+                                                       @Path("contactId") Long contactId);
+
     //    ###########  WAREHOUSE  ##########
 
     @GET("/api/companies/{companyId}/warehouses")
@@ -165,6 +192,10 @@ public interface BmResourcesApi {
     @GET("/api/companies/{companyId}/warehouses/{warehouseId}")
     Observable<Warehouse> getWarehouse(@Path("companyId") Long companyId,
                                        @Path("warehouseId") Long warehouseId);
+
+    @DELETE("/api/companies/{companyId}/warehouses/{warehouseId}")
+    Observable<Response<Void>> deleteWarehouse(@Path("companyId") Long companyId,
+                                               @Path("warehouseId") Long warehouseId);
 
     @POST("/api/companies/{companyId}/warehouses")
     Observable<Warehouse> createWarehouse(@Path("companyId") Long companyId,
@@ -197,6 +228,11 @@ public interface BmResourcesApi {
     Observable<Invoice> paidOffAction(@Path("companyId") Long companyId,
                                       @Path("invoiceId") Long invoiceId);
 
+    @DELETE("/api/companies/{companyId}/invoices/{invoiceId}")
+    Observable<Response<Void>> deleteInvoice(@Path("companyId") Long companyId,
+                                             @Path("invoiceId") Long invoiceId);
+
+
     //    ###########  BANK ACCOUNT  ##########
 
     @GET("/api/companies/{companyId}/bank/accounts")
@@ -215,6 +251,10 @@ public interface BmResourcesApi {
     Observable<BankAccount> createBankAccount(@Path("companyId") Long companyId,
                                               @Body CreateBankAccountRequest request);
 
+    @DELETE("/api/companies/{companyId}/bank/accounts/{accountId}")
+    Observable<Response<Void>> deleteBankAccount(@Path("companyId") Long companyId,
+                                                 @Path("accountId") Long accountId);
+
     //    ###########  FINANCES  ##########
 
     @GET("/api/companies/{companyId}/finances")
@@ -223,6 +263,10 @@ public interface BmResourcesApi {
     @GET("/api/companies/{companyId}/finances/{eventId}")
     Observable<FinancialRow> getFinancialEvent(@Path("companyId") Long companyId,
                                                @Path("eventId") Long eventId);
+
+    @DELETE("/api/companies/{companyId}/finances/{eventId}")
+    Observable<Response<Void>> deleteFinancialEvent(@Path("companyId") Long companyId,
+                                                    @Path("eventId") Long eventId);
 
     @PUT("/api/companies/{companyId}/finances/{eventId}")
     Observable<FinancialRow> modifyFinancialEvent(@Path("companyId") Long companyId,
@@ -246,4 +290,5 @@ public interface BmResourcesApi {
 
     @GET("/api/stats/company/{companyId}/resources")
     Observable<ResourcesStatsModel> getResourcesStats(@Path("companyId") Long companyId);
+
 }

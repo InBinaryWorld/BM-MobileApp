@@ -17,11 +17,11 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.Company
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.company.modify.CompanyContactModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsWithBtnAndTrashFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.DetailsInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsFragmentWithBtn;
 
-@EFragment(R.layout.fragment_base_details)
-public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<CompanyContact, CompanyContactDetailsConfig>
+@EFragment(R.layout.fragment_base_details_with_trash)
+public class CompanyContactDetailsFragment extends BaseDetailsWithBtnAndTrashFragment<CompanyContact, CompanyContactDetailsConfig>
     implements CompanyContactDetailsView {
 
     public final static String KEY_COMPANY_CONTACT = "COMPANY_CONTACT_KEY";
@@ -85,4 +85,8 @@ public class CompanyContactDetailsFragment extends BaseDetailsFragmentWithBtn<Co
         return R.string.btn_contact_details;
     }
 
+    @Override
+    protected void onTrash() {
+        presenter.deleteContact(contact.getId());
+    }
 }

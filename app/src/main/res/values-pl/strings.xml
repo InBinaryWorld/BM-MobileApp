@@ -13,7 +13,7 @@
     <string name="settings_change_company">Zmień firmę</string>
     <string name="settings_login_with_facebook">Autmoatyczne logowanie z Facebook</string>
     <string name="settings_login_with_google">Autmoatyczne logowanie z Google</string>
-    <string name="settings_menage_bank_accounts">Zarządzaj kontami bankowymi</string>
+    <string name="settings_menage_bank_accounts">Konta bankowe</string>
     <string name="settings_modify_company">Modyfikuj dane firmy</string>
     <string name="settings_logout">Wyloguj</string>
     <string name="action_status_succeeded">Operacja zakończona pomyślnie</string>

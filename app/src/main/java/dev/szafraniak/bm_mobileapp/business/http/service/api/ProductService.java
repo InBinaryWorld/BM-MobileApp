@@ -13,6 +13,7 @@ import dev.szafraniak.bm_mobileapp.business.models.mics.BMCollection;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 public class ProductService {
     @Inject
@@ -42,6 +43,12 @@ public class ProductService {
 
     public Observable<Product> modifyProduct(Long companyId, Long productId, UpdateProductRequest request) {
         return bmResourcesApi.modifyProduct(companyId, productId, request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Observable<Response<Void>> deleteProduct(Long companyId, Long productId) {
+        return bmResourcesApi.deleteProduct(companyId, productId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread());
     }

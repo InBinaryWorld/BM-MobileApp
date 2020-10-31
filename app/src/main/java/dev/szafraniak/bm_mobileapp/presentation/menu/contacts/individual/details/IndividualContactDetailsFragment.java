@@ -17,12 +17,12 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.individualContact.Indi
 import dev.szafraniak.bm_mobileapp.business.navigation.FragmentFactory;
 import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.presentation.menu.contacts.individual.modify.IndividualContactModifyFragment;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsWithBtnAndTrashFragment;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.DetailsInterface;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsFragmentWithBtn;
 
-@EFragment(R.layout.fragment_base_details)
-public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn<IndividualContact, IndividualContactDetailsConfig>
-    implements IndividualContactDetailsView {
+@EFragment(R.layout.fragment_base_details_with_trash)
+public class IndividualContactDetailsFragment extends BaseDetailsWithBtnAndTrashFragment<IndividualContact,
+    IndividualContactDetailsConfig> implements IndividualContactDetailsView {
 
     public final static String KEY_INDIVIDUAL_CONTACT = "INDIVIDUAL_CONTACT_KEY";
 
@@ -88,4 +88,8 @@ public class IndividualContactDetailsFragment extends BaseDetailsFragmentWithBtn
         Navigator.navigateTo(this, FragmentFactory.FRAGMENT_INDIVIDUAL_CONTACT_MODIFY, args);
     }
 
+    @Override
+    protected void onTrash() {
+        presenter.deleteContact(contact.getId());
+    }
 }

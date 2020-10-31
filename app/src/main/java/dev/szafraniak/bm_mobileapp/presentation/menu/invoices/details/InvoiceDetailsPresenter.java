@@ -14,10 +14,12 @@ import dev.szafraniak.bm_mobileapp.business.BMApplication;
 import dev.szafraniak.bm_mobileapp.business.http.service.api.InvoiceService;
 import dev.szafraniak.bm_mobileapp.business.memory.session.SessionManager;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
+import dev.szafraniak.bm_mobileapp.business.navigation.Navigator;
 import dev.szafraniak.bm_mobileapp.business.utils.FileUtils;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.DetailsConfigurations;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.fragment.BaseDetailsPresenter;
 import okhttp3.ResponseBody;
+import retrofit2.Response;
 
 public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, InvoiceDetailsView, InvoiceDetailsConfig> {
 
@@ -84,7 +86,19 @@ public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, Invoi
         invoiceService.paidOffAction(companyId, invoiceId)
             .compose(view.bindToLifecycle())
             .subscribe(this::onModifySucceed, this::onActionFailed);
+    }
 
+    @SuppressLint("CheckResult")
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public void deleteInvoice(Long invoiceId) {
+        Long companyId = sessionManager.getCompanyId();
+        invoiceService.deleteInvoice(companyId, invoiceId)
+            .compose(view.bindToLifecycle())
+            .subscribe(this::onDeleteSucceed, this::onActionFailed);
+    }
+
+    private void onDeleteSucceed(Response<Void> voidResponse) {
+        Navigator.back(view);
     }
 
     private void onActionFailed(Throwable throwable) {
