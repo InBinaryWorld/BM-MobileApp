@@ -236,8 +236,9 @@ public final class FormConfigurations {
     private static TextFormConfig<BigDecimal> getTaxRatePriceConfig(Context context) {
         TextFormConfig<BigDecimal> config = getBaseTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_tax_rate));
-        config.setInvalidMessage(context.getString(R.string.forms_positive_decimal));
+        config.setInvalidMessage(context.getString(R.string.forms_positive_integer));
         config.setDefaultValue(BigDecimal.ZERO);
+        config.setValidator(Validator::validateTaxRate);
         config.setInputType(TYPE_CLASS_NUMBER);
         return config;
     }
@@ -245,8 +246,9 @@ public final class FormConfigurations {
     private static TextFormConfig<BigDecimal> getNetPriceConfig(Context context) {
         TextFormConfig<BigDecimal> config = getBaseTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_net_price));
-        config.setInvalidMessage(context.getString(R.string.forms_positive_integer));
+        config.setInvalidMessage(context.getString(R.string.forms_positive_decimal));
         config.setDefaultValue(BigDecimal.ZERO);
+        config.setValidator(Validator::validateNetPrice);
         config.setInputType(TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_DECIMAL);
         return config;
     }
@@ -360,14 +362,14 @@ public final class FormConfigurations {
 
     public static ClickableContactFormConfig getReceiverClickableContactConfig(Context context) {
         ClickableContactFormConfig config = getClickableContactConfig(context);
-        config.setLabel("Receiver");
+        config.setLabel(context.getString(R.string.form_create_invoice_receiver));
         config.setRequired(false);
         return config;
     }
 
     public static ClickableContactFormConfig getBuyerClickableContactConfig(Context context) {
         ClickableContactFormConfig config = getClickableContactConfig(context);
-        config.setLabel("Buyer");
+        config.setLabel(context.getString(R.string.form_create_invoice_buyer));
         return config;
     }
 

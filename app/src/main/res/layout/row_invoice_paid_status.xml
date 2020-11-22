@@ -35,7 +35,7 @@
             android:id="@+id/btn_mark_as_paid"
             style="@style/MaterialButton.Rounded.Small"
             android:layout_height="40dp"
-            android:text="Paid Off"
+            android:text="@string/paid_off"
             android:textSize="12sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_state_value"
             app:layout_constraintEnd_toEndOf="parent" />

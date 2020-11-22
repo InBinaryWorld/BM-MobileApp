@@ -17,7 +17,7 @@
         <TextView
             android:id="@+id/tv_name_label"
             style="@style/BaseTextView.Label"
-            android:text="Product name"
+            android:text="@string/product_name"
             app:layout_constraintEnd_toStartOf="@+id/tv_price"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

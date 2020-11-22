@@ -252,4 +252,9 @@
     <string name="form_2_20">5-20 signs</string>
     <string name="forms_2_14_last_no_digit">2-14 signs, last no digit</string>
     <string name="forms_1_3_opt_letter">1-3 digits, optional letter</string>
+    <string name="product_name">Product name</string>
+    <string name="paid_off">Paid Off</string>
+    <string name="item_list_cannot_be_empty">Item list cannot be empty</string>
+    <string name="form_create_invoice_buyer">Buyer</string>
+    <string name="form_create_invoice_receiver">Receiver</string>
 </resources>

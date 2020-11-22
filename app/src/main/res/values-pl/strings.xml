@@ -228,4 +228,9 @@
     <string name="dashboard">Pulpit</string>
     <string name="header_dashboard">Pulpit</string>
     <string name="header_invoice_create_contact">Kontakt</string>
+    <string name="product_name">Nazwa produktu</string>
+    <string name="paid_off">Opłacono</string>
+    <string name="item_list_cannot_be_empty">Lista nie może być pusta</string>
+    <string name="form_create_invoice_buyer">Nabywca</string>
+    <string name="form_create_invoice_receiver">Odbiorca</string>
 </resources>
