@@ -268,7 +268,7 @@ public final class FormConfigurations {
     public static TextFormConfig<String> getCountryConfig(Context context) {
         TextFormConfig<String> config = getBaseTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_country));
-        config.setInvalidMessage(context.getString(R.string.forms_4_25));
+        config.setInvalidMessage(context.getString(R.string.forms_2_30));
         config.setDefaultValue(context.getString(R.string.forms_poland));
         config.setValidator(Validator::validateCountry);
         config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS | TYPE_TEXT_FLAG_CAP_WORDS);
@@ -287,7 +287,7 @@ public final class FormConfigurations {
     public static TextFormConfig<String> getPostalCodeConfig(Context context) {
         TextFormConfig<String> config = getBaseTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_postal_code));
-        config.setInvalidMessage(context.getString(R.string.forms_postal_pattern));
+        config.setInvalidMessage(context.getString(R.string.forms_4_10_signs));
         config.setValidator(Validator::validatePostalCode);
         config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_VARIATION_POSTAL_ADDRESS);
         return config;

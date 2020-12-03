@@ -173,7 +173,7 @@
     <string name="forms_poland">Polska</string>
     <string name="forms_city">Miasto</string>
     <string name="forms_postal_code">Kod pocztowy</string>
-    <string name="forms_postal_pattern">Wzór XX-XXX</string>
+    <string name="forms_4_10_signs">4-10 znaków</string>
     <string name="forms_street">Ulica</string>
     <string name="forms_house_number">Numer domu</string>
     <string name="forms_apartment_number">Numer mieszkania</string>
@@ -208,7 +208,6 @@
     <string name="forms_product_model">Model produktu</string>
     <string name="forms_amount_of_change">Kwota zmiany</string>
     <string name="forms_2_240">2-240 znaków</string>
-    <string name="forms_4_25">4-25 znaków</string>
     <string name="forms_2_30">2-30 znaków</string>
     <string name="forms_3_20">2-20 znaków</string>
     <string name="forms_2_60">2-60 znaków</string>

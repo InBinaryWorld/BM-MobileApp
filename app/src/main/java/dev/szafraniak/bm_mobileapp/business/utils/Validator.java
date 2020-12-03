@@ -18,6 +18,7 @@ public final class Validator {
     public final static String WORD_1_20 = LETTER + "{1,20}";
     public final static String WORDS = "( *" + LETTER + "+ *)+";
     public final static String BASE_1_6 = ALLOWED_SIGNS + "{1,6}";
+    public final static String BASE_4_10 = ALLOWED_SIGNS + "{4,10}";
     public final static String BASE_3_20 = ALLOWED_SIGNS + "{3,20}";
     public final static String BASE_2_40 = ALLOWED_SIGNS + "{2,40}";
     public final static String BASE_2_240 = ALLOWED_SIGNS + "{2,240}";
@@ -27,7 +28,6 @@ public final class Validator {
     public static final String BARCODE_5_20 = "\\S{5,20}";
     public final static String INVOICE_PREFIX_2_14 = ALLOWED_SIGNS + "{1,13}[^ \\d\\t\\n\\r\\f\\x0B]";
     public final static String HOUSE_NUMBER = "\\d{1,3}[A-Za-z]?";
-    public final static String POSTAL_CODE = "\\d{2}-\\d{3}";
     public final static String TAX_IDENTITY_NUMBER = "\\d{10}";
 
     public static boolean validateLastName(String value) {
@@ -75,7 +75,7 @@ public final class Validator {
     }
 
     public static boolean validateCountry(String value) {
-        return Pattern.matches(WORDS, value) && length(value, 4, 25);
+        return Pattern.matches(WORDS, value) && length(value, 2, 30);
     }
 
     public static boolean validateCity(String value) {
@@ -83,7 +83,7 @@ public final class Validator {
     }
 
     public static boolean validatePostalCode(String value) {
-        return Pattern.matches(POSTAL_CODE, value);
+        return Pattern.matches(BASE_4_10, value);
     }
 
     public static boolean validateStreet(String value) {
