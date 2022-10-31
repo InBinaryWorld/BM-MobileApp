@@ -24,7 +24,7 @@
   <br/>
   <a href="https://github.com/InBinaryWorld/BM-Servers"><strong>Explore the backend services »</strong></a>
   <br>
-  <a href="https://github.com/InBinaryWord/BM-MobileApp/blob/master/diploma_paper.pdf"><strong>Explore the diploma paper »</strong></a>
+  <a href="https://github.com/InBinaryWorld/BM-MobileApp/blob/master/diploma_paper.pdf"><strong>Explore the diploma paper »</strong></a>
   <br/>
   <a href="https://github.com/InBinaryWorld/BM-MobileApp"><strong>Explore the documents »</strong></a>
   <br/>
@@ -85,7 +85,7 @@ Android app was created with:
 
 ## Getting started
 
-[Please check chapter #7 of my thesis >>](https://github.com/InBinaryWord/BM-MobileApp/blob/master/diploma_paper.pdf)
+[Please check chapter #7 of my thesis >>](https://github.com/InBinaryWorld/BM-MobileApp/blob/master/diploma_paper.pdf)
 
 ## Product description
 
@@ -210,10 +210,10 @@ Find me on:
 <!-- MARKDOWN LINKS & IMAGES -->
 
 [license-shield]: https://img.shields.io/github/license/InBinaryWorld/BM-MobileApp
-[license-url]: https://github.com/InBinaryWord/BM-MobileApp/blob/master/LICENSE
+[license-url]: https://github.com/InBinaryWorld/BM-MobileApp/blob/master/LICENSE
 [top-language-shield]: https://img.shields.io/github/languages/top/InBinaryWorld/BM-MobileApp
 [contributors-shield]: https://img.shields.io/github/contributors/InBinaryWorld/BM-MobileApp
-[contributors-url]: https://github.com/InBinaryWord/BM-MobileApp/graphs/contributors
+[contributors-url]: https://github.com/InBinaryWorld/BM-MobileApp/graphs/contributors
 [last-commit-shield]:https://img.shields.io/github/last-commit/InBinaryWorld/BM-MobileApp
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&color=175a7a
 [linkedin-url]: https://linkedin.com/in/Krzysztof-Szafraniak
