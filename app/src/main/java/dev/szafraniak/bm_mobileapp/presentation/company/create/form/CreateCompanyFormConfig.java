@@ -14,8 +14,9 @@ public class CreateCompanyFormConfig extends BaseFormConfig<CreateCompanyRequest
 
     public AddressFormConfig addressConfig;
     public TextFormConfig<String> nameConfig;
-    public TextFormConfig<String> invoicePrefixConfig;
     public TextFormConfig<String> taxIdentityConfig;
+    public TextFormConfig<String> invoiceLogoConfig;
+    public TextFormConfig<String> invoicePrefixConfig;
 
 }
 

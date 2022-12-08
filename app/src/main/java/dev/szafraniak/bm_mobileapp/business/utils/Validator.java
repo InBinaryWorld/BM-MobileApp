@@ -67,6 +67,10 @@ public final class Validator {
         return Pattern.matches(INVOICE_PREFIX_2_14, value);
     }
 
+    public static boolean validateInvoiceLogo(String value) {
+        return Pattern.matches(BASE_1_20, value) && !value.isEmpty();
+    }
+
     public static boolean validateInvoiceNumber(String value) {
         return Pattern.matches(BASE_1_20, value) && !value.isEmpty();
     }

@@ -10,6 +10,8 @@ public class CreateCompanyRequest {
 
     private String invoicePrefix;
 
+    private String invoiceLogo;
+
     private String taxIdentityNumber;
 
     private Address headquarter;
