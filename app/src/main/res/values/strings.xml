@@ -184,6 +184,7 @@
     <string name="forms_quantity_unity">Quantity unit</string>
     <string name="forms_barcode">Barcode</string>
     <string name="forms_invoice_prefix">Invoice prefix</string>
+    <string name="forms_invoice_logo">Logo on invoice</string>
     <string name="forms_invoice_number">Invoice number</string>
     <string name="forms_company_name">Company name</string>
     <string name="forms_tax_id_number">Tax identity number</string>

@@ -23,6 +23,7 @@ public class ModifyCompanyForm extends BaseForm<UpdateCompanyRequest, BaseViewHo
     TextEditTextFormRow nameFormRow;
     TextEditTextFormRow taxIdentityFormRow;
     TextEditTextFormRow invoicePrefixFormRow;
+    TextEditTextFormRow invoiceLogoFormRow;
 
     public ModifyCompanyForm(LayoutInflater inflater, ViewGroup viewGroup, ModifyCompanyFormConfig config) {
         super(inflater, viewGroup, config);
@@ -39,12 +40,14 @@ public class ModifyCompanyForm extends BaseForm<UpdateCompanyRequest, BaseViewHo
             nameFormRow.setValue(null);
             taxIdentityFormRow.setValue(null);
             invoicePrefixFormRow.setValue(null);
+            invoiceLogoFormRow.setValue(null);
             return;
         }
         addressForm.setValue(value.getHeadquarter());
         nameFormRow.setValue(value.getName());
         taxIdentityFormRow.setValue(value.getTaxIdentityNumber());
         invoicePrefixFormRow.setValue(value.getInvoicePrefix());
+        invoiceLogoFormRow.setValue(value.getInvoiceLogo());
     }
 
     @Override
@@ -53,13 +56,15 @@ public class ModifyCompanyForm extends BaseForm<UpdateCompanyRequest, BaseViewHo
         Address address = addressForm.getValue();
         String taxIdentity = taxIdentityFormRow.getValue();
         String invoicePrefix = invoicePrefixFormRow.getValue();
-        if (name == null && taxIdentity == null && invoicePrefix == null && address == null) {
+        String invoiceLogo = invoiceLogoFormRow.getValue();
+        if (name == null && taxIdentity == null && invoicePrefix == null && invoiceLogo == null && address == null) {
             return null;
         }
         UpdateCompanyRequest model = new UpdateCompanyRequest();
         model.setName(name);
         model.setHeadquarter(address);
         model.setInvoicePrefix(invoicePrefix);
+        model.setInvoiceLogo(invoiceLogo);
         model.setTaxIdentityNumber(taxIdentity);
         return model;
     }
@@ -73,9 +78,11 @@ public class ModifyCompanyForm extends BaseForm<UpdateCompanyRequest, BaseViewHo
         addressForm = new AddressForm(inflater, groupList, config.getAddressConfig());
         taxIdentityFormRow = new TextEditTextFormRow(inflater, groupList, config.getTaxIdentityConfig());
         invoicePrefixFormRow = new TextEditTextFormRow(inflater, groupList, config.getInvoicePrefixConfig());
+        invoiceLogoFormRow = new TextEditTextFormRow(inflater, groupList, config.getInvoiceLogoConfig());
 
         groupList.addView(nameFormRow.getView());
         groupList.addView(invoicePrefixFormRow.getView());
+        groupList.addView(invoiceLogoFormRow.getView());
         groupList.addView(taxIdentityFormRow.getView());
         groupList.addView(addressForm.getView());
 
@@ -90,12 +97,14 @@ public class ModifyCompanyForm extends BaseForm<UpdateCompanyRequest, BaseViewHo
         addressForm.setOnValidationStateChanged(this::onValueChange);
         taxIdentityFormRow.setOnValidationStateChanged(this::onValueChange);
         invoicePrefixFormRow.setOnValidationStateChanged(this::onValueChange);
+        invoiceLogoFormRow.setOnValidationStateChanged(this::onValueChange);
     }
 
     @Override
     public boolean isValid() {
         return nameFormRow.isValid() && taxIdentityFormRow.isValid()
-            && invoicePrefixFormRow.isValid() && addressForm.isValid();
+                && invoicePrefixFormRow.isValid() && addressForm.isValid()
+                && invoiceLogoFormRow.isValid();
     }
 }
 

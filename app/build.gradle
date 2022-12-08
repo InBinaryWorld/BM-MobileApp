@@ -25,13 +25,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.defaultConf
             buildConfigField "String", "GOOGLE_CLIENT_ID", '"<WEB_APP_CLIENT>"'
             buildConfigField "String", "RESOURCE_SERVER_URL", '"http://192.168.1.100:8081"'
+            signingConfig signingConfigs.defaultConf
         }
         debug {
-            buildConfigField "String", "GOOGLE_CLIENT_ID", '"896691165273-um6gce2ec2p4r4jkl307lij2lrvc5vma.apps.googleusercontent.com"'
-            buildConfigField "String", "RESOURCE_SERVER_URL", '"http://192.168.1.120:8081"'
+            buildConfigField "String", "GOOGLE_CLIENT_ID", '"<WEB_APP_CLIENT>"'
+            buildConfigField "String", "RESOURCE_SERVER_URL", '"http://192.168.1.100:8081"'
             signingConfig signingConfigs.defaultConf
         }
     }

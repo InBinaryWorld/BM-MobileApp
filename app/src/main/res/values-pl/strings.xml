@@ -157,6 +157,7 @@
     <string name="forms_quantity_unity">Jednostka miary</string>
     <string name="forms_barcode">Kod kreskowy</string>
     <string name="forms_invoice_prefix">Prefiks nazw faktur</string>
+    <string name="forms_invoice_logo">Logo na fakturze</string>
     <string name="forms_invoice_number">Nazwa faktury</string>
     <string name="forms_company_name">Nazwa firmy</string>
     <string name="forms_tax_id_number">NIP</string>

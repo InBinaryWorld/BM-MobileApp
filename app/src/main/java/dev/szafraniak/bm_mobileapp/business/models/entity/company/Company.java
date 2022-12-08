@@ -12,6 +12,8 @@ public class Company {
 
     private String invoicePrefix;
 
+    private String invoiceLogo;
+
     private String taxIdentityNumber;
 
     private String currency;
