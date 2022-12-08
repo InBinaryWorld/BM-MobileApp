@@ -30,7 +30,7 @@ public class ProductModelCreateFragment extends BaseFormFragment<CreateProductMo
 
     @Override
     protected int getButtonTextId() {
-        return R.string.header_product_model_create;
+        return R.string.btn_save;
     }
 
     @Override

@@ -169,6 +169,7 @@ public final class FormConfigurations {
 
     public static TextFormConfig<String> getInvoicePrefixConfig(Context context) {
         TextFormConfig<String> config = getBaseTextFormConfig(context);
+        config.setRequired(false);
         config.setInvalidMessage(context.getString(R.string.forms_2_14_last_no_digit));
         config.setLabel(context.getString(R.string.forms_invoice_prefix));
         config.setValidator(Validator::validateInvoicePrefix);
@@ -179,7 +180,7 @@ public final class FormConfigurations {
     public static TextFormConfig<String> getInvoiceNumberConfig(Context context, String invoicePrefix) {
         TextFormConfig<String> config = getBaseTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_invoice_number));
-        config.setInvalidMessage(context.getString(R.string.forms_3_20));
+        config.setInvalidMessage(context.getString(R.string.forms_1_20));
         config.setValidator(Validator::validateInvoiceNumber);
         config.setInputType(TYPE_CLASS_TEXT);
         config.setDefaultValue(invoicePrefix);
@@ -295,6 +296,7 @@ public final class FormConfigurations {
 
     public static TextFormConfig<String> getStreetConfig(Context context) {
         TextFormConfig<String> config = getBaseTextFormConfig(context);
+        config.setRequired(false);
         config.setLabel(context.getString(R.string.forms_street));
         config.setInvalidMessage(context.getString(R.string.forms_2_30));
         config.setValidator(Validator::validateStreet);

@@ -3,9 +3,14 @@ package dev.szafraniak.bm_mobileapp.business.utils;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
@@ -13,15 +18,13 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
-import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
+import java.io.OutputStream;
 
 import static android.os.Environment.DIRECTORY_DOWNLOADS;
 import static android.os.Environment.getExternalStoragePublicDirectory;
 import static dev.szafraniak.bm_mobileapp.business.Constance.ACTIVITY_RESULT_WRITE_EXTERNAL_STORAGE;
 
 public class FileUtils {
-    private final static String PDF_EXTENSION = ".pdf";
 
     public static boolean checkPermission(Activity activity) {
         int state = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -33,31 +36,30 @@ public class FileUtils {
         ActivityCompat.requestPermissions(activity, permissions, ACTIVITY_RESULT_WRITE_EXTERNAL_STORAGE);
     }
 
-    public static File saveInvoice(Invoice invoice, byte[] bytes) throws IOException {
-        String fileName = generateFileNameForInvoice(invoice);
-        return saveFileInDownloads(bytes, fileName);
-    }
 
-    private static File saveFileInDownloads(byte[] bytes, String fileNameWithExt) throws IOException {
-        File downloadFile = getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS);
-        File pdfFile = new File(downloadFile, fileNameWithExt);
-        try (FileOutputStream fos = new FileOutputStream(pdfFile)) {
+    public static Uri savePDFFileInDownloads(Activity activity, String fileNameWithExt, byte[] bytes) throws IOException {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, fileNameWithExt);
+            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf");
+            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
+            ContentResolver resolver = activity.getContentResolver();
+            Uri uri = resolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues);
+            OutputStream fos = resolver.openOutputStream(uri);
             fos.write(bytes);
+            fos.close();
+            return uri;
+        } else {
+            File downloadFile = getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS);
+            File pdfFile = new File(downloadFile, fileNameWithExt);
+
+            try (FileOutputStream fos = new FileOutputStream(pdfFile)) {
+                fos.write(bytes);
+            }
+            return FileProvider.getUriForFile(activity, activity.getPackageName() + ".provider", pdfFile);
         }
-        return pdfFile;
     }
 
-    public static String generateFileNameForInvoice(Invoice invoice) {
-        String safeInvoiceName = invoice.getInvoiceName().replaceAll("[/:*?\"<>|]+", "_");
-        return String.format("%s%s", safeInvoiceName, PDF_EXTENSION);
-    }
-
-    public static void openPDFFile(Activity activity, File file) throws ActivityNotFoundException {
-        Uri fileUri = FileProvider.getUriForFile(activity, activity.getPackageName() + ".provider", file);
-        openPDFFile(activity, fileUri);
-    }
-
-    // Throw Error if no PDF reader Is available
     public static void openPDFFile(Activity activity, Uri fileUri) throws ActivityNotFoundException {
         Intent target = prepareOpenFileIntent(activity, fileUri);
         activity.startActivity(target);

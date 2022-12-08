@@ -31,7 +31,7 @@ public class ServiceModelCreateFragment extends BaseFormFragment<CreateServiceMo
 
     @Override
     protected int getButtonTextId() {
-        return R.string.header_service_model_create;
+        return R.string.btn_save;
     }
 
     @Override

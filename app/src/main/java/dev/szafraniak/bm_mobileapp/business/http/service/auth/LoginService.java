@@ -110,8 +110,8 @@ public class LoginService {
     }
 
     private void handleGoogleActivityResult(Intent data) {
-        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
         try {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             String token = extractToken(task);
             exchangeGoogleToken(token, new LoginObserver());
         } catch (Exception e) {

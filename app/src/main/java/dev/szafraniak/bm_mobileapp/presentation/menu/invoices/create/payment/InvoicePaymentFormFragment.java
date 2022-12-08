@@ -35,7 +35,7 @@ public class InvoicePaymentFormFragment extends BaseFormFragment<PaymentFormMode
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_invoice_create_payment;
+        return R.string.btn_save;
     }
 
     @Override
