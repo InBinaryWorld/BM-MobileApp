@@ -53,7 +53,7 @@ public class WarehouseModifyFragment extends BaseFormFragment<UpdateWarehouseReq
 
     @Override
     protected int getButtonTextId() {
-        return R.string.header_warehouse_modify;
+        return R.string.btn_save;
     }
 
 

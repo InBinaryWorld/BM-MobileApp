@@ -31,7 +31,7 @@ public class BankAccountCreateFragment extends BaseFormFragment<CreateBankAccoun
 
     @Override
     protected int getButtonTextId() {
-        return R.string.header_company_create;
+        return R.string.btn_save;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class BankAccountCreateFragment extends BaseFormFragment<CreateBankAccoun
 
     @Override
     protected int getHeaderTextResourceId() {
-        return R.string.header_company_create;
+        return R.string.header_bank_account_new;
     }
 
     @Override

@@ -32,12 +32,12 @@ public class Address extends FilterValue {
         return String.format("%s %s, %s", postalCode, city, country);
     }
 
-    public String getAddressWithNewLine() {
-        return String.format("%s %s\n%s %s, %s", street, getFullNumber(), postalCode, city, country);
+    public String getFullAddress() {
+        return String.format("%s %s, %s %s, %s", street == null ? city : street, getFullNumber(), postalCode, city, country);
     }
 
     @Override
     protected String createDescriptionForFilter() {
-        return String.format("%s %s %s %s %s", street, getFullNumber(), postalCode, city, country);
+        return this.getFullAddress();
     }
 }

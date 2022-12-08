@@ -40,6 +40,7 @@
 
         <activity
             android:name=".presentation.login.activity.LoginActivity_"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/LoginTheme">
             <intent-filter>
@@ -50,10 +51,12 @@
         <activity
             android:name=".presentation.company.activity.CompanyActivity_"
             android:screenOrientation="portrait"
+            android:exported="false"
             android:theme="@style/BMTheme" />
         <activity
             android:name=".presentation.menu.activity.MenuActivity_"
             android:screenOrientation="portrait"
+            android:exported="false"
             android:theme="@style/BMTheme" />
         <activity
             android:name="com.facebook.FacebookActivity"

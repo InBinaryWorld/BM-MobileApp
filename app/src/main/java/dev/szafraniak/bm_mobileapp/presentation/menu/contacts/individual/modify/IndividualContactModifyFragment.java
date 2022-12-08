@@ -59,7 +59,7 @@ public class IndividualContactModifyFragment extends BaseFormFragment<UpdateIndi
 
     @Override
     protected int getButtonTextId() {
-        return R.string.btn_modify_form;
+        return R.string.btn_save;
     }
 
     @Override

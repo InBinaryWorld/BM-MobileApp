@@ -2,9 +2,10 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.net.Uri;
+import android.os.Build;
 import android.widget.Toast;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.inject.Inject;
@@ -23,6 +24,8 @@ import retrofit2.Response;
 
 public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, InvoiceDetailsView, InvoiceDetailsConfig> {
 
+    private final static String PDF_EXTENSION = ".pdf";
+
     @Inject
     InvoiceService invoiceService;
 
@@ -31,6 +34,11 @@ public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, Invoi
 
     public InvoiceDetailsPresenter(Application app) {
         ((BMApplication) app).getAppComponent().inject(this);
+    }
+
+    public static String generateFileNameForInvoice(Invoice invoice) {
+        String safeInvoiceName = invoice.getInvoiceName().replaceAll("[/:*?\"<>|]+", "_");
+        return String.format("%s%s", safeInvoiceName, PDF_EXTENSION);
     }
 
     @SuppressLint("CheckResult")
@@ -48,7 +56,7 @@ public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, Invoi
     }
 
     public void downloadInvoice(Invoice invoice) {
-        if (!FileUtils.checkPermission(view.getActivity())) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q && !FileUtils.checkPermission(view.getActivity())) {
             FileUtils.requestPermission(view.getActivity());
             view.hideBtnProgress();
             return;
@@ -65,11 +73,11 @@ public class InvoiceDetailsPresenter extends BaseDetailsPresenter<Invoice, Invoi
             .subscribe(response -> this.saveAndOpenPdf(invoice, response), this::onActionFailed);
     }
 
-
     private void saveAndOpenPdf(Invoice invoice, ResponseBody body) {
         try {
-            File file = FileUtils.saveInvoice(invoice, body.bytes());
-            FileUtils.openPDFFile(view.getActivity(), file);
+            String fileName = generateFileNameForInvoice(invoice);
+            Uri fileUri = FileUtils.savePDFFileInDownloads(view.getActivity(), fileName, body.bytes());
+            FileUtils.openPDFFile(view.getActivity(), fileUri);
         } catch (IOException e) {
             e.printStackTrace();
             String msg = view.getContext().getString(R.string.invoice_download_succeed);
