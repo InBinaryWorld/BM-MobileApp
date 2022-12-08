@@ -61,6 +61,7 @@ public class ModifyCompanyFragment extends BaseFormWithTrashFragment<UpdateCompa
         UpdateCompanyRequest model = new UpdateCompanyRequest();
         model.setName(company.getName());
         model.setInvoicePrefix(company.getInvoicePrefix());
+        model.setInvoiceLogo(company.getInvoiceLogo());
         model.setTaxIdentityNumber(company.getTaxIdentityNumber());
         model.setHeadquarter(company.getHeadquarter());
 

@@ -14,8 +14,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.text.TextEditTextFormRow;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
 
-public class CreateCompanyForm extends BaseForm<CreateCompanyRequest, BaseViewHolder,
-    CreateCompanyFormConfig> {
+public class CreateCompanyForm extends BaseForm<CreateCompanyRequest, BaseViewHolder, CreateCompanyFormConfig> {
 
     @LayoutRes
     private static final int layoutId = R.layout.form_base_group_with_padding;
@@ -23,6 +22,7 @@ public class CreateCompanyForm extends BaseForm<CreateCompanyRequest, BaseViewHo
     AddressForm addressForm;
     TextEditTextFormRow nameFormRow;
     TextEditTextFormRow invoicePrefixFormRow;
+    TextEditTextFormRow invoiceLogoFormRow;
     TextEditTextFormRow taxIdentityFormRow;
 
     public CreateCompanyForm(LayoutInflater inflater, ViewGroup viewGroup, CreateCompanyFormConfig config) {
@@ -38,12 +38,14 @@ public class CreateCompanyForm extends BaseForm<CreateCompanyRequest, BaseViewHo
         if (value == null) {
             nameFormRow.setValue(null);
             invoicePrefixFormRow.setValue(null);
+            invoiceLogoFormRow.setValue(null);
             taxIdentityFormRow.setValue(null);
             addressForm.setValue(null);
             return;
         }
         nameFormRow.setValue(value.getName());
         invoicePrefixFormRow.setValue(value.getInvoicePrefix());
+        invoiceLogoFormRow.setValue(value.getInvoiceLogo());
         taxIdentityFormRow.setValue(value.getTaxIdentityNumber());
         addressForm.setValue(value.getHeadquarter());
     }
@@ -52,14 +54,16 @@ public class CreateCompanyForm extends BaseForm<CreateCompanyRequest, BaseViewHo
     public CreateCompanyRequest getValue() {
         String name = nameFormRow.getValue();
         String invoicePrefix = invoicePrefixFormRow.getValue();
+        String invoiceLogo = invoiceLogoFormRow.getValue();
         String taxIdentity = taxIdentityFormRow.getValue();
         Address address = addressForm.getValue();
-        if (name == null && taxIdentity == null && invoicePrefix == null && address == null) {
+        if (name == null && taxIdentity == null && invoicePrefix == null && invoiceLogo == null && address == null) {
             return null;
         }
         CreateCompanyRequest model = new CreateCompanyRequest();
         model.setName(name);
         model.setInvoicePrefix(invoicePrefix);
+        model.setInvoiceLogo(invoiceLogo);
         model.setTaxIdentityNumber(taxIdentity);
         model.setHeadquarter(address);
         return model;
@@ -73,11 +77,13 @@ public class CreateCompanyForm extends BaseForm<CreateCompanyRequest, BaseViewHo
         LinearLayout groupList = (LinearLayout) inflater.inflate(layoutId, viewGroup, false);
         nameFormRow = new TextEditTextFormRow(inflater, groupList, config.getNameConfig());
         invoicePrefixFormRow = new TextEditTextFormRow(inflater, groupList, config.getInvoicePrefixConfig());
+        invoiceLogoFormRow = new TextEditTextFormRow(inflater, groupList, config.getInvoiceLogoConfig());
         taxIdentityFormRow = new TextEditTextFormRow(inflater, groupList, config.getTaxIdentityConfig());
         addressForm = new AddressForm(inflater, groupList, config.getAddressConfig());
 
         groupList.addView(nameFormRow.getView());
         groupList.addView(invoicePrefixFormRow.getView());
+        groupList.addView(invoiceLogoFormRow.getView());
         groupList.addView(taxIdentityFormRow.getView());
         groupList.addView(addressForm.getView());
 
@@ -90,6 +96,7 @@ public class CreateCompanyForm extends BaseForm<CreateCompanyRequest, BaseViewHo
     protected void setupView(LayoutInflater inflater, CreateCompanyFormConfig config) {
         nameFormRow.setOnValidationStateChanged(this::onValueChange);
         invoicePrefixFormRow.setOnValidationStateChanged(this::onValueChange);
+        invoiceLogoFormRow.setOnValidationStateChanged(this::onValueChange);
         taxIdentityFormRow.setOnValidationStateChanged(this::onValueChange);
         addressForm.setOnValidationStateChanged(this::onValueChange);
     }
@@ -97,7 +104,8 @@ public class CreateCompanyForm extends BaseForm<CreateCompanyRequest, BaseViewHo
     @Override
     public boolean isValid() {
         return nameFormRow.isValid() && taxIdentityFormRow.isValid()
-            && invoicePrefixFormRow.isValid() && addressForm.isValid();
+                && invoicePrefixFormRow.isValid() && addressForm.isValid()
+                && invoiceLogoFormRow.isValid();
     }
 }
 

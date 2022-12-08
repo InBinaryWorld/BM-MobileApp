@@ -177,6 +177,16 @@ public final class FormConfigurations {
         return config;
     }
 
+    public static TextFormConfig<String> getInvoiceLogoConfig(Context context) {
+        TextFormConfig<String> config = getBaseTextFormConfig(context);
+        config.setRequired(false);
+        config.setInvalidMessage(context.getString(R.string.forms_1_20));
+        config.setLabel(context.getString(R.string.forms_invoice_logo));
+        config.setValidator(Validator::validateInvoiceLogo);
+        config.setInputType(TYPE_CLASS_TEXT);
+        return config;
+    }
+
     public static TextFormConfig<String> getInvoiceNumberConfig(Context context, String invoicePrefix) {
         TextFormConfig<String> config = getBaseTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_invoice_number));
@@ -848,6 +858,7 @@ public final class FormConfigurations {
         config.setVisibleOnSetValueNull(true);
         config.setNameConfig(FormConfigurations.getCompanyNameConfig(context));
         config.setInvoicePrefixConfig(FormConfigurations.getInvoicePrefixConfig(context));
+        config.setInvoiceLogoConfig(FormConfigurations.getInvoiceLogoConfig(context));
         config.setTaxIdentityConfig(FormConfigurations.getTaxIdentityNumberConfig(context));
         config.setAddressConfig(FormConfigurations.getAddressConfig(context));
         return config;
@@ -858,6 +869,7 @@ public final class FormConfigurations {
         config.setVisibleOnSetValueNull(true);
         config.setNameConfig(FormConfigurations.getCompanyNameConfig(context));
         config.setInvoicePrefixConfig(FormConfigurations.getInvoicePrefixConfig(context));
+        config.setInvoiceLogoConfig(FormConfigurations.getInvoiceLogoConfig(context));
         config.setTaxIdentityConfig(FormConfigurations.getTaxIdentityNumberConfig(context));
         config.setAddressConfig(FormConfigurations.getAddressConfig(context));
         return config;

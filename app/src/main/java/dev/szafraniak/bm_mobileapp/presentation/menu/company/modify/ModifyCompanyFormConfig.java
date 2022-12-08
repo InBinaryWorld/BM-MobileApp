@@ -15,6 +15,7 @@ public class ModifyCompanyFormConfig extends BaseFormConfig<UpdateCompanyRequest
     public AddressFormConfig addressConfig;
     public TextFormConfig<String> nameConfig;
     public TextFormConfig<String> taxIdentityConfig;
+    public TextFormConfig<String> invoiceLogoConfig;
     public TextFormConfig<String> invoicePrefixConfig;
 
 }
