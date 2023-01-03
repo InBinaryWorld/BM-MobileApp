@@ -4,13 +4,13 @@ public final class Constance {
 
     public static final long SPLASH_DISPLAY_LENGTH = 1500;
 
-    public static final char DECIMAL_SEPARATOR = '.';
-    public static final char GROUPING_SEPARATOR = ',';
+    public static final char DECIMAL_SEPARATOR = ',';
+    public static final char GROUPING_SEPARATOR = ' ';
 
     public static final String CURRENCY = "PLN";
     public static final String TIME_PATTERN = "HH:mm";
-    public static final String DATE_PATTERN = "yyyy.MM.dd";
-    public static final String DATE_TIME_PATTERN = "yyyy.MM.dd HH:mm";
+    public static final String DATE_PATTERN = "dd-MM-yyyy";
+    public static final String DATE_TIME_PATTERN = "dd-MM-yyyy HH:mm";
 
     public final static String PREFERENCES_USER_PREFIX = "BM_User";
     public final static String PREFERENCES_FORMS_PREFIX = "BM_Forms";

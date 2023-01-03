@@ -27,6 +27,8 @@ public class Invoice {
 
     private LocalDate dueDate;
 
+    private LocalDate issueDate;
+
     private IdNameEntity contact;
 
     private Amount totalAmount;

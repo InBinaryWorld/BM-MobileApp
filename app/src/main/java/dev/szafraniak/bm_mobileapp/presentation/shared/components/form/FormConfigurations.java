@@ -542,12 +542,24 @@ public final class FormConfigurations {
         return config;
     }
 
+    public static DatePickerFormConfig getIssueDateConfig(Context context) {
+        DatePickerFormConfig config = new DatePickerFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setValidator(Validator::notNull);
+        config.setRequired(true);
+        config.setDefaultValue(LocalDate.now());
+        config.setLabel(context.getString(R.string.forms_issue_date));
+        config.setEmptyText(context.getString(R.string.forms_no_date_provided));
+        config.setInvalidText(context.getString(R.string.forms_invalid_value));
+        return config;
+    }
+
     public static DatePickerFormConfig getDueDateConfig(Context context) {
         DatePickerFormConfig config = new DatePickerFormConfig();
         config.setVisibleOnSetValueNull(true);
         config.setValidator(Validator::validateDueDate);
-        config.setPickerValidator(Validator.getFromValidatorInclusive(LocalDate.now()));
         config.setRequired(true);
+        config.setDefaultValue(LocalDate.now().plusDays(10));
         config.setLabel(context.getString(R.string.forms_due_date));
         config.setEmptyText(context.getString(R.string.forms_no_date_provided));
         config.setInvalidText(context.getString(R.string.forms_invalid_value));
@@ -731,7 +743,7 @@ public final class FormConfigurations {
     private static TextFormConfig<String> getFinancesEventTitleConfig(Context context) {
         TextFormConfig<String> config = getBaseTextFormConfig(context);
         config.setValidator(Validator::validateFinancialEventTitle);
-        config.setInvalidMessage(context.getString(R.string.forms_2_40));
+        config.setInvalidMessage(context.getString(R.string.forms_2_60));
         config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES);
         config.setLabel(context.getString(R.string.forms_title));
         return config;
@@ -882,6 +894,7 @@ public final class FormConfigurations {
         CreateInvoiceBaseDataFormConfig config = new CreateInvoiceBaseDataFormConfig();
         config.setVisibleOnSetValueNull(true);
         config.setInvoiceNumberConfig(getInvoiceNumberConfig(context, invoicePrefix));
+        config.setIssueDateConfig(getIssueDateConfig(context));
         config.setBuyerConfig(getBuyerClickableContactConfig(context));
         config.setReceiverConfig(getReceiverClickableContactConfig(context));
         config.setPaymentConfig(getClickablePaymentConfig(context));

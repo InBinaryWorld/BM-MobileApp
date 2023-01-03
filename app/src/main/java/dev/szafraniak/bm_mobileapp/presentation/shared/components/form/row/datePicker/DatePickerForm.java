@@ -90,7 +90,9 @@ public class DatePickerForm extends LabelFormRow<LocalDate, DatePickerFormViewHo
 
     private MaterialDatePicker.Builder<Long> setupBaseBuilder(DatePickerFormConfig config) {
         CalendarConstraints.Builder calendarBuilder = new CalendarConstraints.Builder();
-        calendarBuilder.setValidator(config.getPickerValidator()).build();
+        if (config.getPickerValidator() != null) {
+            calendarBuilder.setValidator(config.getPickerValidator());
+        }
 
         MaterialDatePicker.Builder<Long> builder = MaterialDatePicker.Builder.datePicker();
         builder.setCalendarConstraints(calendarBuilder.build());

@@ -195,6 +195,7 @@
     <string name="forms_company_contact">Kontakt biznesowy</string>
     <string name="forms_select_contact_type">Wybierz rodzaj kontaktu</string>
     <string name="forms_due_date">Termin płatności</string>
+    <string name="forms_issue_date">Data wystawienia</string>
     <string name="forms_no_date_provided">Wprowadz datę</string>
     <string name="forms_product">Produkt</string>
     <string name="forms_service">Usługa</string>

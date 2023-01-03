@@ -43,9 +43,7 @@ public class CreateInvoiceBaseDataFormFragment extends BaseFormFragment<CreateIn
 
     @Override
     protected void executeSafeNavigation(FormInterface.NavigationCallback navigationCallback) {
-        CreateInvoiceFormModel model = formsManager.getCreateInvoiceFormModel();
-        model.setBaseModel(formComponent.getValue());
-        formsManager.setCreateInvoiceFormModel(model);
+        this.saveBaseData();
         navigationCallback.navigate(this);
     }
 
@@ -56,7 +54,14 @@ public class CreateInvoiceBaseDataFormFragment extends BaseFormFragment<CreateIn
 
     @Override
     protected void onSubmit(CreateInvoiceBaseFormModel object) {
+        this.saveBaseData();
         presenter.goToItemsSection();
+    }
+
+    private void saveBaseData() {
+        CreateInvoiceFormModel model = formsManager.getCreateInvoiceFormModel();
+        model.setBaseModel(formComponent.getValue());
+        formsManager.setCreateInvoiceFormModel(model);
     }
 
     @Override
