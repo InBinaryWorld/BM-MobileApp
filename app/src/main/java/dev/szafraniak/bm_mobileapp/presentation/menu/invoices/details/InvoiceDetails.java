@@ -26,6 +26,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
     TextTextViewDetails invoiceNumber;
     TextTextViewDetails buyerName;
     DecimalTextViewDetails grossValue;
+    LocalDateTextViewDetails issueDate;
     LocalDateTextViewDetails dueDate;
     OffsetDateTextViewDetails creationDate;
     OffsetDateTextViewDetails dateOfPayment;
@@ -41,6 +42,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
     protected void showValueOnView(Invoice value) {
         if (value == null) {
             buyerName.setValue(null);
+            issueDate.setValue(null);
             dueDate.setValue(null);
             grossValue.setValue(null);
             creationDate.setValue(null);
@@ -50,6 +52,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
             return;
         }
         buyerName.setValue(value.getBuyerName());
+        issueDate.setValue(value.getIssueDate());
         dueDate.setValue(value.getDueDate());
         grossValue.setValue(value.getTotalAmount().getGross());
         creationDate.setValue(value.getCreationDate());
@@ -64,6 +67,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
 
         invoiceNumber = new TextTextViewDetails(inflater, groupList, config.getInvoiceNumberConfig());
         buyerName = new TextTextViewDetails(inflater, groupList, config.getBuyerNameConfig());
+        issueDate = new LocalDateTextViewDetails(inflater, groupList, config.getIssueDateConfig());
         dueDate = new LocalDateTextViewDetails(inflater, groupList, config.getDueDateConfig());
         creationDate = new OffsetDateTextViewDetails(inflater, groupList, config.getCreationDateConfig());
         dateOfPayment = new OffsetDateTextViewDetails(inflater, groupList, config.getDateOfPaymentConfig());
@@ -75,6 +79,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
         groupList.addView(statusForm.getView());
         groupList.addView(dateOfPayment.getView());
         groupList.addView(creationDate.getView());
+        groupList.addView(issueDate.getView());
         groupList.addView(dueDate.getView());
         groupList.addView(grossValue.getView());
 

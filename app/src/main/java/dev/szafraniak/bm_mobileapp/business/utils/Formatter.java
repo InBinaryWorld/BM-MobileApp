@@ -54,7 +54,9 @@ public class Formatter {
 
     private static DecimalFormat getBaseDecimalFormat() {
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-        symbols.setDecimalSeparator(Constance.DECIMAL_SEPARATOR);
+        if (Constance.DECIMAL_SEPARATOR.length() == 1) {
+            symbols.setDecimalSeparator(Constance.DECIMAL_SEPARATOR.charAt(0));
+        }
         symbols.setGroupingSeparator(Constance.GROUPING_SEPARATOR);
 
         DecimalFormat format = new DecimalFormat();

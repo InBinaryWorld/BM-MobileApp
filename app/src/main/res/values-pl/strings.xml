@@ -131,6 +131,7 @@
     <string name="details_net_price">Cena netto</string>
     <string name="details_tax_rate">Stawka vat</string>
     <string name="details_gross_price">Cena brutto</string>
+    <string name="details_gross_amount">Kwota brutto</string>
     <string name="details_barcode">Kod kreskowy</string>
     <string name="details_company_name">Nazwa firmy</string>
     <string name="details_tax_id_number">NIP</string>
@@ -146,6 +147,7 @@
     <string name="details_creation_date">Data utworzenia</string>
     <string name="details_gross_value">Wartość brutto</string>
     <string name="details_due_date">Termin płatności</string>
+    <string name="details_issue_date">Data wystawienia</string>
     <string name="details_invoice_number">Numer faktury</string>
     <string name="forms_service_name">Nazwa usługi</string>
     <string name="forms_warehouse_name">Nazwa magazynu</string>

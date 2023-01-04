@@ -77,6 +77,12 @@ public final class DetailsConfigurations {
         return config;
     }
 
+    public static <T> SimpleDetailsConfig<T> getGrossAmountConfig(Context context) {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
+        config.setLabel(context.getString(R.string.details_gross_amount));
+        return config;
+    }
+
     public static <T> SimpleDetailsConfig<T> getBarcodeConfig(Context context) {
         SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel(context.getString(R.string.details_barcode));
@@ -158,6 +164,12 @@ public final class DetailsConfigurations {
     public static <T> SimpleDetailsConfig<T> getDueDateConfiguration(Context context) {
         SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel(context.getString(R.string.details_due_date));
+        return config;
+    }
+
+    public static <T> SimpleDetailsConfig<T> getIssueDateConfiguration(Context context) {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
+        config.setLabel(context.getString(R.string.details_issue_date));
         return config;
     }
 
@@ -258,8 +270,9 @@ public final class DetailsConfigurations {
         config.setCreationDateConfig(DetailsConfigurations.getCreationDateConfig(context));
         config.setDateOfPaymentConfig(DetailsConfigurations.getDateOfPaymentConfig(context));
         config.setDueDateConfig(DetailsConfigurations.getDueDateConfiguration(context));
+        config.setIssueDateConfig(DetailsConfigurations.getIssueDateConfiguration(context));
         config.setInvoiceNumberConfig(DetailsConfigurations.getInvoiceNumberConfig(context));
-        config.setGrossConfig(DetailsConfigurations.getGrossPriceConfig(context));
+        config.setGrossConfig(DetailsConfigurations.getGrossAmountConfig(context));
         config.setStatusConfig(getInvoiceStatusFormConfig(context));
         return config;
     }
