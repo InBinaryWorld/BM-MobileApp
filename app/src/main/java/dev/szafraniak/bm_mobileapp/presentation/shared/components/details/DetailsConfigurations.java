@@ -161,6 +161,12 @@ public final class DetailsConfigurations {
         return config;
     }
 
+    public static <T> SimpleDetailsConfig<T> getSellDateConfig(Context context) {
+        SimpleDetailsConfig<T> config = getSimpleConfig();
+        config.setLabel(context.getString(R.string.details_sell_date));
+        return config;
+    }
+
     public static <T> SimpleDetailsConfig<T> getDueDateConfiguration(Context context) {
         SimpleDetailsConfig<T> config = getSimpleConfig();
         config.setLabel(context.getString(R.string.details_due_date));
@@ -270,6 +276,7 @@ public final class DetailsConfigurations {
         config.setCreationDateConfig(DetailsConfigurations.getCreationDateConfig(context));
         config.setDateOfPaymentConfig(DetailsConfigurations.getDateOfPaymentConfig(context));
         config.setDueDateConfig(DetailsConfigurations.getDueDateConfiguration(context));
+        config.setSellDateConfig(DetailsConfigurations.getSellDateConfig(context));
         config.setIssueDateConfig(DetailsConfigurations.getIssueDateConfiguration(context));
         config.setInvoiceNumberConfig(DetailsConfigurations.getInvoiceNumberConfig(context));
         config.setGrossConfig(DetailsConfigurations.getGrossAmountConfig(context));

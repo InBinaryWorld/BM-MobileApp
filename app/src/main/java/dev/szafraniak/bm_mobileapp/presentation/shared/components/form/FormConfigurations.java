@@ -554,6 +554,18 @@ public final class FormConfigurations {
         return config;
     }
 
+    public static DatePickerFormConfig getSellDateConfig(Context context) {
+        DatePickerFormConfig config = new DatePickerFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setValidator(Validator::notNull);
+        config.setRequired(true);
+        config.setDefaultValue(LocalDate.now());
+        config.setLabel(context.getString(R.string.forms_sell_date));
+        config.setEmptyText(context.getString(R.string.forms_no_date_provided));
+        config.setInvalidText(context.getString(R.string.forms_invalid_value));
+        return config;
+    }
+
     public static DatePickerFormConfig getDueDateConfig(Context context) {
         DatePickerFormConfig config = new DatePickerFormConfig();
         config.setVisibleOnSetValueNull(true);
@@ -895,6 +907,7 @@ public final class FormConfigurations {
         config.setVisibleOnSetValueNull(true);
         config.setInvoiceNumberConfig(getInvoiceNumberConfig(context, invoicePrefix));
         config.setIssueDateConfig(getIssueDateConfig(context));
+        config.setSellDateConfig(getSellDateConfig(context));
         config.setBuyerConfig(getBuyerClickableContactConfig(context));
         config.setReceiverConfig(getReceiverClickableContactConfig(context));
         config.setPaymentConfig(getClickablePaymentConfig(context));

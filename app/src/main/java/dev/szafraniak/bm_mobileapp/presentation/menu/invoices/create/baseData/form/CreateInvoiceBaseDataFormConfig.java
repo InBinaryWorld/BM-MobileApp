@@ -15,6 +15,7 @@ public class CreateInvoiceBaseDataFormConfig extends BaseFormConfig<CreateInvoic
 
     public TextFormConfig<String> invoiceNumberConfig;
     public DatePickerFormConfig issueDateConfig;
+    public DatePickerFormConfig sellDateConfig;
     public ClickableContactFormConfig buyerConfig;
     public ClickableContactFormConfig receiverConfig;
     public ClickablePaymentFormConfig paymentConfig;

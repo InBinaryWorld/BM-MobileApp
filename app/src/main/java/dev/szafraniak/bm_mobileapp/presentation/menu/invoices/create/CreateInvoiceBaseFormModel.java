@@ -18,6 +18,8 @@ public class CreateInvoiceBaseFormModel {
 
     private LocalDate issueDate;
 
+    private LocalDate sellDate;
+
 }
 
 

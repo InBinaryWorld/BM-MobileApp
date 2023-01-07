@@ -30,6 +30,7 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
     TextEditTextFormRow invoiceNumberFormRow;
     ClickablePaymentForm paymentForm;
     DatePickerForm issueDateForm;
+    DatePickerForm sellDateForm;
     ClickableBuyerForm buyerFormRow;
     ClickableReceiverForm receiverFormRow;
 
@@ -47,6 +48,7 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
             invoiceNumberFormRow.setValue(null);
             paymentForm.setValue(null);
             issueDateForm.setValue(null);
+            sellDateForm.setValue(null);
             buyerFormRow.setValue(null);
             receiverFormRow.setValue(null);
             return;
@@ -54,6 +56,7 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
         invoiceNumberFormRow.setValue(value.getInvoiceNumber());
         paymentForm.setValue(value.getPayment());
         issueDateForm.setValue(value.getIssueDate());
+        sellDateForm.setValue(value.getSellDate());
         buyerFormRow.setValue(value.getBuyer());
         receiverFormRow.setValue(value.getReceiver());
     }
@@ -74,6 +77,7 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
         String invoiceNumber = invoiceNumberFormRow.getValue();
         PaymentFormModel payment = paymentForm.getValue();
         LocalDate issueDate = issueDateForm.getValue();
+        LocalDate sellDate = sellDateForm.getValue();
         Contact buyer = buyerFormRow.getValue();
         Contact receiver = receiverFormRow.getValue();
         // If whole form is not required that allow to return null value if all of child fields have null values
@@ -85,6 +89,7 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
         model.setInvoiceNumber(invoiceNumber);
         model.setPayment(payment);
         model.setIssueDate(issueDate);
+        model.setSellDate(sellDate);
         model.setBuyer(buyer);
         model.setReceiver(receiver);
         return model;
@@ -98,12 +103,14 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
         invoiceNumberFormRow = new TextEditTextFormRow(inflater, groupList, config.getInvoiceNumberConfig());
         paymentForm = new ClickablePaymentForm(inflater, groupList, config.getPaymentConfig());
         issueDateForm = new DatePickerForm(inflater, groupList, config.getIssueDateConfig());
+        sellDateForm = new DatePickerForm(inflater, groupList, config.getSellDateConfig());
         buyerFormRow = new ClickableBuyerForm(inflater, groupList, config.getBuyerConfig());
         receiverFormRow = new ClickableReceiverForm(inflater, groupList, config.getReceiverConfig());
 
         groupList.addView(invoiceNumberFormRow.getView());
         groupList.addView(paymentForm.getView());
         groupList.addView(issueDateForm.getView());
+        groupList.addView(sellDateForm.getView());
         groupList.addView(buyerFormRow.getView());
         groupList.addView(receiverFormRow.getView());
 
@@ -116,6 +123,7 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
     protected void setupView(LayoutInflater inflater, CreateInvoiceBaseDataFormConfig config) {
         invoiceNumberFormRow.setOnValidationStateChanged(this::onValueChange);
         issueDateForm.setOnValidationStateChanged(this::onValueChange);
+        sellDateForm.setOnValidationStateChanged(this::onValueChange);
         paymentForm.setSafeNavigationExecutor(this::executeSafeNavigation);
         buyerFormRow.setSafeNavigationExecutor(this::executeSafeNavigation);
         receiverFormRow.setSafeNavigationExecutor(this::executeSafeNavigation);

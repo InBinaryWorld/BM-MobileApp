@@ -145,6 +145,7 @@
     <string name="details_buyer">Nabywca</string>
     <string name="details_date_of_payment">Data płatności</string>
     <string name="details_creation_date">Data utworzenia</string>
+    <string name="details_sell_date">Data sprzedaży</string>
     <string name="details_gross_value">Wartość brutto</string>
     <string name="details_due_date">Termin płatności</string>
     <string name="details_issue_date">Data wystawienia</string>
@@ -198,6 +199,7 @@
     <string name="forms_select_contact_type">Wybierz rodzaj kontaktu</string>
     <string name="forms_due_date">Termin płatności</string>
     <string name="forms_issue_date">Data wystawienia</string>
+    <string name="forms_sell_date">Data sprzedaży</string>
     <string name="forms_no_date_provided">Wprowadz datę</string>
     <string name="forms_product">Produkt</string>
     <string name="forms_service">Usługa</string>

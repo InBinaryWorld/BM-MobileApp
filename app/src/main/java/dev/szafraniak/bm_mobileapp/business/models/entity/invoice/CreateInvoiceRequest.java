@@ -22,5 +22,7 @@ public class CreateInvoiceRequest {
 
     private LocalDate issueDate;
 
+    private LocalDate sellDate;
+
     private List<InvoiceItem> items;
 }

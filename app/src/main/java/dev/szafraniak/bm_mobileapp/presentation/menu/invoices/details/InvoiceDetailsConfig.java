@@ -19,6 +19,7 @@ public class InvoiceDetailsConfig extends BaseDetailsConfig<Invoice> {
     private SimpleDetailsConfig<String> invoiceNumberConfig;
     private SimpleDetailsConfig<LocalDate> dueDateConfig;
     private SimpleDetailsConfig<LocalDate> issueDateConfig;
+    private SimpleDetailsConfig<LocalDate> sellDateConfig;
     private SimpleDetailsConfig<OffsetDateTime> creationDateConfig;
     private SimpleDetailsConfig<OffsetDateTime> dateOfPaymentConfig;
     private SimpleDetailsConfig<BigDecimal> grossConfig;

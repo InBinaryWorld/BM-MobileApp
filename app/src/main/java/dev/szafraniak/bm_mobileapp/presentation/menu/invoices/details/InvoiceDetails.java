@@ -27,6 +27,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
     TextTextViewDetails buyerName;
     DecimalTextViewDetails grossValue;
     LocalDateTextViewDetails issueDate;
+    LocalDateTextViewDetails sellDate;
     LocalDateTextViewDetails dueDate;
     OffsetDateTextViewDetails creationDate;
     OffsetDateTextViewDetails dateOfPayment;
@@ -43,6 +44,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
         if (value == null) {
             buyerName.setValue(null);
             issueDate.setValue(null);
+            sellDate.setValue(null);
             dueDate.setValue(null);
             grossValue.setValue(null);
             creationDate.setValue(null);
@@ -53,6 +55,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
         }
         buyerName.setValue(value.getBuyerName());
         issueDate.setValue(value.getIssueDate());
+        sellDate.setValue(value.getSellDate());
         dueDate.setValue(value.getDueDate());
         grossValue.setValue(value.getTotalAmount().getGross());
         creationDate.setValue(value.getCreationDate());
@@ -68,6 +71,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
         invoiceNumber = new TextTextViewDetails(inflater, groupList, config.getInvoiceNumberConfig());
         buyerName = new TextTextViewDetails(inflater, groupList, config.getBuyerNameConfig());
         issueDate = new LocalDateTextViewDetails(inflater, groupList, config.getIssueDateConfig());
+        sellDate = new LocalDateTextViewDetails(inflater, groupList, config.getSellDateConfig());
         dueDate = new LocalDateTextViewDetails(inflater, groupList, config.getDueDateConfig());
         creationDate = new OffsetDateTextViewDetails(inflater, groupList, config.getCreationDateConfig());
         dateOfPayment = new OffsetDateTextViewDetails(inflater, groupList, config.getDateOfPaymentConfig());
@@ -80,6 +84,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
         groupList.addView(dateOfPayment.getView());
         groupList.addView(creationDate.getView());
         groupList.addView(issueDate.getView());
+        groupList.addView(sellDate.getView());
         groupList.addView(dueDate.getView());
         groupList.addView(grossValue.getView());
 
