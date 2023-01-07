@@ -20,6 +20,8 @@ public class CreateInvoiceBaseFormModel {
 
     private LocalDate sellDate;
 
+    private Boolean splitPayment;
+
 }
 
 

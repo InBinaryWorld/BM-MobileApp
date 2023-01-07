@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Spinner;
 
+import com.google.android.material.switchmaterial.SwitchMaterial;
+
 import dev.szafraniak.bm_mobileapp.presentation.shared.search.ExtendedBaseAdapter;
 
 public class ViewUtils {
@@ -36,6 +38,14 @@ public class ViewUtils {
 
     public static void addOnTextChangeListener(EditText editText, OnChange onTextChange) {
         ViewUtils.addOnTextChangeListener(editText, (text) -> onTextChange.onChange());
+    }
+
+    public static void addOnToggleChangeListener(SwitchMaterial toggle, OnNewValue<Boolean> onNewValue) {
+        toggle.setOnCheckedChangeListener((toggleBtn, value) -> onNewValue.onNewValue(value));
+    }
+
+    public static void addOnToggleChangeListener(SwitchMaterial toggle, OnChange onToggleChange) {
+        ViewUtils.addOnToggleChangeListener(toggle, (value) -> onToggleChange.onChange());
     }
 
     public static void addOnQueryListener(SearchView editText, OnQuery onQuery) {

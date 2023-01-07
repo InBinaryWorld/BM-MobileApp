@@ -6,6 +6,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.baseData.fo
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.datePicker.DatePickerFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.toggleButton.ToggleButtonFormConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,6 +20,7 @@ public class CreateInvoiceBaseDataFormConfig extends BaseFormConfig<CreateInvoic
     public ClickableContactFormConfig buyerConfig;
     public ClickableContactFormConfig receiverConfig;
     public ClickablePaymentFormConfig paymentConfig;
+    public ToggleButtonFormConfig splitPaymentConfig;
 
 }
 

@@ -211,6 +211,9 @@
     <string name="forms_title">Tytuł</string>
     <string name="forms_product_model">Model produktu</string>
     <string name="forms_amount_of_change">Kwota zmiany</string>
+    <string name="forms_split_payment">Mechanizm podzielonej płatności</string>
+    <string name="forms_split_payment_desc">Dodaj odpowiednią adnotacje na fakturze</string>
+
     <string name="forms_1_20">1-20 znaków</string>
     <string name="forms_2_240">2-240 znaków</string>
     <string name="forms_2_30">2-30 znaków</string>

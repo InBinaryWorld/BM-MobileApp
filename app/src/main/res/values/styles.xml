@@ -294,7 +294,7 @@
     <style name="BaseSwitch">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:clickable">false</item>
+        <item name="android:clickable">true</item>
         <item name="thumbTint">@color/colorBlack5</item>
         <item name="trackTint">@color/coral40_black20</item>
         <item name="android:scaleX">1.1</item>

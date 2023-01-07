@@ -72,6 +72,7 @@ public class CreateInvoiceItemsPresenter {
         request.setReceiver(model.getBaseModel().getReceiver());
         request.setIssueDate(model.getBaseModel().getIssueDate());
         request.setSellDate(model.getBaseModel().getSellDate());
+        request.setSplitPayment(model.getBaseModel().getSplitPayment());
         request.setDueDate(model.getBaseModel().getPayment().getDueDate());
         request.setInvoiceNumber(model.getBaseModel().getInvoiceNumber());
         request.setPaymentMethod(model.getBaseModel().getPayment().getPaymentMethod());

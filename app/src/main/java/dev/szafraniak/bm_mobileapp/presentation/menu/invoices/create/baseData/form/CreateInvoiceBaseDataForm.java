@@ -20,6 +20,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.baseData.fo
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.datePicker.DatePickerForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.text.TextEditTextFormRow;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.toggleButton.ToggleButtonForm;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
 
 public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormModel, BaseViewHolder, CreateInvoiceBaseDataFormConfig> {
@@ -29,6 +30,7 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
 
     TextEditTextFormRow invoiceNumberFormRow;
     ClickablePaymentForm paymentForm;
+    ToggleButtonForm splitPaymentForm;
     DatePickerForm issueDateForm;
     DatePickerForm sellDateForm;
     ClickableBuyerForm buyerFormRow;
@@ -47,6 +49,7 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
         if (value == null) {
             invoiceNumberFormRow.setValue(null);
             paymentForm.setValue(null);
+            splitPaymentForm.setValue(null);
             issueDateForm.setValue(null);
             sellDateForm.setValue(null);
             buyerFormRow.setValue(null);
@@ -55,6 +58,7 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
         }
         invoiceNumberFormRow.setValue(value.getInvoiceNumber());
         paymentForm.setValue(value.getPayment());
+        splitPaymentForm.setValue(value.getSplitPayment());
         issueDateForm.setValue(value.getIssueDate());
         sellDateForm.setValue(value.getSellDate());
         buyerFormRow.setValue(value.getBuyer());
@@ -76,6 +80,7 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
     public CreateInvoiceBaseFormModel getValue() {
         String invoiceNumber = invoiceNumberFormRow.getValue();
         PaymentFormModel payment = paymentForm.getValue();
+        Boolean splitPayment = splitPaymentForm.getValue();
         LocalDate issueDate = issueDateForm.getValue();
         LocalDate sellDate = sellDateForm.getValue();
         Contact buyer = buyerFormRow.getValue();
@@ -88,6 +93,7 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
         CreateInvoiceBaseFormModel model = new CreateInvoiceBaseFormModel();
         model.setInvoiceNumber(invoiceNumber);
         model.setPayment(payment);
+        model.setSplitPayment(splitPayment);
         model.setIssueDate(issueDate);
         model.setSellDate(sellDate);
         model.setBuyer(buyer);
@@ -102,6 +108,7 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
         LinearLayout groupList = (LinearLayout) inflater.inflate(layoutId, viewGroup, false);
         invoiceNumberFormRow = new TextEditTextFormRow(inflater, groupList, config.getInvoiceNumberConfig());
         paymentForm = new ClickablePaymentForm(inflater, groupList, config.getPaymentConfig());
+        splitPaymentForm = new ToggleButtonForm(inflater, groupList, config.getSplitPaymentConfig());
         issueDateForm = new DatePickerForm(inflater, groupList, config.getIssueDateConfig());
         sellDateForm = new DatePickerForm(inflater, groupList, config.getSellDateConfig());
         buyerFormRow = new ClickableBuyerForm(inflater, groupList, config.getBuyerConfig());
@@ -109,6 +116,7 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
 
         groupList.addView(invoiceNumberFormRow.getView());
         groupList.addView(paymentForm.getView());
+        groupList.addView(splitPaymentForm.getView());
         groupList.addView(issueDateForm.getView());
         groupList.addView(sellDateForm.getView());
         groupList.addView(buyerFormRow.getView());
@@ -121,10 +129,11 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
 
     @Override
     protected void setupView(LayoutInflater inflater, CreateInvoiceBaseDataFormConfig config) {
-        invoiceNumberFormRow.setOnValidationStateChanged(this::onValueChange);
-        issueDateForm.setOnValidationStateChanged(this::onValueChange);
-        sellDateForm.setOnValidationStateChanged(this::onValueChange);
+        invoiceNumberFormRow.setOnValueChange(this::onValueChange);
         paymentForm.setSafeNavigationExecutor(this::executeSafeNavigation);
+        splitPaymentForm.setOnValueChange(this::onValueChange);
+        issueDateForm.setOnValueChange(this::onValueChange);
+        sellDateForm.setOnValueChange(this::onValueChange);
         buyerFormRow.setSafeNavigationExecutor(this::executeSafeNavigation);
         receiverFormRow.setSafeNavigationExecutor(this::executeSafeNavigation);
     }
@@ -134,10 +143,12 @@ public class CreateInvoiceBaseDataForm extends BaseForm<CreateInvoiceBaseFormMod
     public boolean isValid() {
         return invoiceNumberFormRow.isValid() && buyerFormRow.isValid()
                 && receiverFormRow.isValid() && paymentForm.isValid()
-                && this.isDueDateLaterThanIssueDate();
+                && splitPaymentForm.isValid() && sellDateForm.isValid()
+                && issueDateForm.isValid() && this.isDueDateLaterThanIssueDate();
     }
 
     private boolean isDueDateLaterThanIssueDate() {
+    // TODO
         return true;
     }
 }

@@ -117,7 +117,7 @@ public final class Validator {
     }
 
     public static boolean validateTaxRate(BigDecimal number) {
-        return number.signum() >= 0 && number.scale() == 0;
+        return number.signum() >= 0 && number.scale() <= 0;
     }
 
     public static boolean validateFinancialEventAmount(BigDecimal bigDecimal) {
@@ -145,10 +145,6 @@ public final class Validator {
         return len >= min && len <= max;
     }
 
-    public static boolean validateDueDate(LocalDate dueDate) {
-        return dueDate.compareTo(LocalDate.now()) >= 0;
-    }
-
     public static boolean validateFinancesDate(LocalDate dueDate) {
         return dueDate.compareTo(LocalDate.now()) <= 0;
     }
@@ -156,7 +152,6 @@ public final class Validator {
     public static <T> boolean notNull(T value) {
         return value != null;
     }
-
 
     public static boolean validateFinancesEventDateTime(LocalDateTime value) {
         return LocalDateTime.now().compareTo(value) >= 0;

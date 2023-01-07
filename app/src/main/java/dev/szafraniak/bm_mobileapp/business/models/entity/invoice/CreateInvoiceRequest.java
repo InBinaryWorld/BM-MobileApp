@@ -24,5 +24,7 @@ public class CreateInvoiceRequest {
 
     private LocalDate sellDate;
 
+    private Boolean splitPayment;
+
     private List<InvoiceItem> items;
 }

@@ -75,6 +75,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.price
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.spinner.type.BaseTypeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.timePicker.TimePickerFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.toggleButton.ToggleButtonFormConfig;
 
 import static android.text.InputType.TYPE_CLASS_NUMBER;
 import static android.text.InputType.TYPE_CLASS_PHONE;
@@ -416,6 +417,16 @@ public final class FormConfigurations {
         return config;
     }
 
+    public static ToggleButtonFormConfig getSplitPaymentConfig(Context context) {
+        ToggleButtonFormConfig config = new ToggleButtonFormConfig();
+        config.setVisibleOnSetValueNull(true);
+        config.setRequired(false);
+        config.setDefaultValue(true);
+        config.setLabel(context.getString(R.string.forms_split_payment));
+        config.setDescription(context.getString(R.string.forms_split_payment_desc));
+        return config;
+    }
+
     private static PaymentTransferFormConfig getPaymentTransferFormConfig(Context context, List<BankAccount> bankAccounts) {
         PaymentTransferFormConfig config = new PaymentTransferFormConfig();
         config.setVisibleOnSetValueNull(true);
@@ -569,9 +580,9 @@ public final class FormConfigurations {
     public static DatePickerFormConfig getDueDateConfig(Context context) {
         DatePickerFormConfig config = new DatePickerFormConfig();
         config.setVisibleOnSetValueNull(true);
-        config.setValidator(Validator::validateDueDate);
+        config.setValidator(Validator::notNull);
         config.setRequired(true);
-        config.setDefaultValue(LocalDate.now().plusDays(10));
+        config.setDefaultValue(LocalDate.now().plusDays(14));
         config.setLabel(context.getString(R.string.forms_due_date));
         config.setEmptyText(context.getString(R.string.forms_no_date_provided));
         config.setInvalidText(context.getString(R.string.forms_invalid_value));
@@ -911,6 +922,7 @@ public final class FormConfigurations {
         config.setBuyerConfig(getBuyerClickableContactConfig(context));
         config.setReceiverConfig(getReceiverClickableContactConfig(context));
         config.setPaymentConfig(getClickablePaymentConfig(context));
+        config.setSplitPaymentConfig(getSplitPaymentConfig(context));
         return config;
     }
 
