@@ -12,10 +12,10 @@ public abstract class BaseDetails<T, H extends BaseViewHolder,
     C extends BaseDetailsConfig<T>> implements DetailsInterface<T> {
 
     @Getter(AccessLevel.PROTECTED)
-    private final C config;
+    protected final C config;
 
     @Getter(AccessLevel.PROTECTED)
-    private final H viewHolder;
+    protected final H viewHolder;
 
     public BaseDetails(LayoutInflater inflater, ViewGroup viewGroup, C config) {
         this.config = config;

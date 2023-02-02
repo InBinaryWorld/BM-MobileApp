@@ -9,14 +9,14 @@ import androidx.annotation.LayoutRes;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.invoice.Invoice;
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.details.state.InvoiceStatusForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.EditTextViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.BaseDetails;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.date.LocalDateTextViewDetails;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.date.OffsetDateTextViewDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.number.DecimalTextViewDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.number.PriceTextViewDetails;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.text.TextTextViewDetails;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.FormInterface;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.EditTextViewHolder;
 
 public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, InvoiceDetailsConfig> {
 
@@ -25,7 +25,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
 
     TextTextViewDetails invoiceNumber;
     TextTextViewDetails buyerName;
-    DecimalTextViewDetails grossValue;
+    PriceTextViewDetails grossValue;
     LocalDateTextViewDetails issueDate;
     LocalDateTextViewDetails sellDate;
     LocalDateTextViewDetails dueDate;
@@ -75,7 +75,7 @@ public class InvoiceDetails extends BaseDetails<Invoice, BaseViewHolder, Invoice
         dueDate = new LocalDateTextViewDetails(inflater, groupList, config.getDueDateConfig());
         creationDate = new OffsetDateTextViewDetails(inflater, groupList, config.getCreationDateConfig());
         dateOfPayment = new OffsetDateTextViewDetails(inflater, groupList, config.getDateOfPaymentConfig());
-        grossValue = new DecimalTextViewDetails(inflater, groupList, config.getGrossConfig());
+        grossValue = new PriceTextViewDetails(inflater, groupList, config.getGrossConfig());
         statusForm = new InvoiceStatusForm(inflater, groupList, config.getStatusConfig());
 
         groupList.addView(invoiceNumber.getView());
