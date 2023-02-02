@@ -4,7 +4,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.companyContact.Company
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.address.AddressFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.autoComplete.AutoCompleteTextFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.text.TextEditTextFormConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
 public class CompanyAutoCompleteFormConfig extends BaseFormConfig<CompanyContact> {
 
     private AutoCompleteTextFormConfig<String, CompanyContact> companyNameConfig;
-    private TextFormConfig<String> taxIdConfig;
+    private TextEditTextFormConfig taxIdConfig;
     public AddressFormConfig addressConfig;
 
 }

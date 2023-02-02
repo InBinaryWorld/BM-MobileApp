@@ -9,7 +9,6 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextForm;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.scanner.Scanner;
 
 public class BarcodeFormRow extends TextForm<String, BarcodeFormViewHolder, BarcodeFormConfig, TextInputEditText> {
@@ -38,11 +37,12 @@ public class BarcodeFormRow extends TextForm<String, BarcodeFormViewHolder, Barc
         Scanner scanner = new Scanner(config.getActivity());
         scanner.addBarcodeListener(barcode -> setValue(barcode.displayValue));
         holder.scannerView.setOnClickListener(view -> scanner.openScanner());
+        holder.editText.setInputType(config.getInputType());
     }
 
     @Override
     protected String parseInput(String inputValue) {
-        TextFormConfig<String> config = getConfig();
+        BarcodeFormConfig config = getConfig();
         if (config.isReadEmptyAsNull() && inputValue.isEmpty()) {
             return null;
         }

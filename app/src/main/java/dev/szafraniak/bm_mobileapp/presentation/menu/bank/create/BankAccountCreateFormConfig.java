@@ -2,7 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.bank.create;
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.CreateBankAccountRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.text.TextEditTextFormConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,8 +11,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class BankAccountCreateFormConfig extends BaseFormConfig<CreateBankAccountRequest> {
 
-    public TextFormConfig<String> nameConfig;
-    public TextFormConfig<String> numberConfig;
+    public TextEditTextFormConfig nameConfig;
+    public TextEditTextFormConfig numberConfig;
 
 }
 

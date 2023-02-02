@@ -1,5 +1,15 @@
 package dev.szafraniak.bm_mobileapp.presentation.shared.components.form;
 
+import static android.text.InputType.TYPE_CLASS_NUMBER;
+import static android.text.InputType.TYPE_CLASS_PHONE;
+import static android.text.InputType.TYPE_CLASS_TEXT;
+import static android.text.InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS;
+import static android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES;
+import static android.text.InputType.TYPE_TEXT_FLAG_CAP_WORDS;
+import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
+import static android.text.InputType.TYPE_TEXT_VARIATION_PERSON_NAME;
+import static android.text.InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS;
+
 import android.app.Activity;
 import android.content.Context;
 
@@ -70,6 +80,7 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.autoC
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.barcode.BarcodeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.datePicker.DatePickerFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.dateTimePicker.DateTimePickerFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.text.TextEditTextFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.list.ListFormRowConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.price.PriceFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.spinner.type.BaseTypeFormConfig;
@@ -77,49 +88,34 @@ import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.timePicker.TimePickerFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.toggleButton.ToggleButtonFormConfig;
 
-import static android.text.InputType.TYPE_CLASS_NUMBER;
-import static android.text.InputType.TYPE_CLASS_PHONE;
-import static android.text.InputType.TYPE_CLASS_TEXT;
-import static android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL;
-import static android.text.InputType.TYPE_NUMBER_FLAG_SIGNED;
-import static android.text.InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS;
-import static android.text.InputType.TYPE_TEXT_FLAG_CAP_SENTENCES;
-import static android.text.InputType.TYPE_TEXT_FLAG_CAP_WORDS;
-import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
-import static android.text.InputType.TYPE_TEXT_VARIATION_PERSON_NAME;
-import static android.text.InputType.TYPE_TEXT_VARIATION_POSTAL_ADDRESS;
-
 public final class FormConfigurations {
 
-    public static TextFormConfig<String> getServiceModelNameConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getServiceModelNameConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_service_name));
         config.setInvalidMessage(context.getString(R.string.forms_2_60));
         config.setValidator(Validator::validateProductModelName);
-        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES);
         return config;
     }
 
-    public static TextFormConfig<String> getProductModelNameConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getProductModelNameConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_product_name));
         config.setInvalidMessage(context.getString(R.string.forms_2_60));
         config.setValidator(Validator::validateProductModelName);
-        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES);
         return config;
     }
 
-    public static TextFormConfig<String> getWarehouseName(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getWarehouseName(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_warehouse_name));
         config.setInvalidMessage(context.getString(R.string.forms_2_40));
         config.setValidator(Validator::validateWarehouseName);
-        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES);
         return config;
     }
 
-    public static TextFormConfig<String> getFirstNameConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getFirstNameConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_first_name));
         config.setInvalidMessage(context.getString(R.string.forms_1_20));
         config.setValidator(Validator::validateFirstName);
@@ -127,8 +123,8 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getLastNameConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getLastNameConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_last_name));
         config.setInvalidMessage(context.getString(R.string.forms_1_20));
         config.setValidator(Validator::validateLastName);
@@ -141,12 +137,11 @@ public final class FormConfigurations {
         config.setLabel(context.getString(R.string.forms_quantity));
         config.setInvalidMessage(context.getString(R.string.forms_scale_5));
         config.setValidator(Validator::validateQuantity);
-        config.setInputType(TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_DECIMAL);
         return config;
     }
 
-    public static TextFormConfig<String> getQuantityUnitConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getQuantityUnitConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_quantity_unity));
         config.setInvalidMessage(context.getString(R.string.forms_1_6));
         config.setValidator(Validator::validateQuantityUnit);
@@ -168,8 +163,8 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getInvoicePrefixConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getInvoicePrefixConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setRequired(false);
         config.setInvalidMessage(context.getString(R.string.forms_2_14_last_no_digit));
         config.setLabel(context.getString(R.string.forms_invoice_prefix));
@@ -178,18 +173,17 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getInvoiceLogoConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getInvoiceLogoConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setRequired(false);
         config.setInvalidMessage(context.getString(R.string.forms_1_20));
         config.setLabel(context.getString(R.string.forms_invoice_logo));
         config.setValidator(Validator::validateInvoiceLogo);
-        config.setInputType(TYPE_CLASS_TEXT);
         return config;
     }
 
-    public static TextFormConfig<String> getInvoiceNumberConfig(Context context, String invoicePrefix) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getInvoiceNumberConfig(Context context, String invoicePrefix) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_invoice_number));
         config.setInvalidMessage(context.getString(R.string.forms_1_20));
         config.setValidator(Validator::validateInvoiceNumber);
@@ -198,8 +192,8 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getCompanyNameConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getCompanyNameConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_company_name));
         config.setInvalidMessage(context.getString(R.string.forms_2_40));
         config.setValidator(Validator::validateCompanyName);
@@ -207,8 +201,8 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getTaxIdentityNumberConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getTaxIdentityNumberConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_tax_id_number));
         config.setInvalidMessage(context.getString(R.string.forms_10_digits));
         config.setValidator(Validator::validateTaxIdentityNumber);
@@ -216,8 +210,8 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getPhoneConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getPhoneConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setRequired(false);
         config.setLabel(context.getString(R.string.forms_phone_number));
         config.setInvalidMessage(context.getString(R.string.forms_4_12_digits_optional_plus));
@@ -251,7 +245,6 @@ public final class FormConfigurations {
         config.setInvalidMessage(context.getString(R.string.forms_positive_integer));
         config.setDefaultValue(BigDecimal.ZERO);
         config.setValidator(Validator::validateTaxRate);
-        config.setInputType(TYPE_CLASS_NUMBER);
         return config;
     }
 
@@ -261,7 +254,6 @@ public final class FormConfigurations {
         config.setInvalidMessage(context.getString(R.string.forms_positive_decimal));
         config.setDefaultValue(BigDecimal.ZERO);
         config.setValidator(Validator::validateNetPrice);
-        config.setInputType(TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_DECIMAL);
         return config;
     }
 
@@ -277,8 +269,8 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getCountryConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getCountryConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_country));
         config.setInvalidMessage(context.getString(R.string.forms_2_30));
         config.setDefaultValue(context.getString(R.string.forms_poland));
@@ -287,8 +279,8 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getCityConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getCityConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_city));
         config.setInvalidMessage(context.getString(R.string.forms_2_30));
         config.setValidator(Validator::validateCity);
@@ -296,8 +288,8 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getPostalCodeConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getPostalCodeConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_postal_code));
         config.setInvalidMessage(context.getString(R.string.forms_4_10_signs));
         config.setValidator(Validator::validatePostalCode);
@@ -305,8 +297,8 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getStreetConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getStreetConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setRequired(false);
         config.setLabel(context.getString(R.string.forms_street));
         config.setInvalidMessage(context.getString(R.string.forms_2_30));
@@ -315,8 +307,8 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getHouseNumberConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getHouseNumberConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_house_number));
         config.setInvalidMessage(context.getString(R.string.forms_1_3_opt_letter));
         config.setValidator(Validator::validateHouseNumber);
@@ -324,8 +316,8 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getApartmentNumberConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getApartmentNumberConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setRequired(false);
         config.setLabel(context.getString(R.string.forms_apartment_number));
         config.setInvalidMessage(context.getString(R.string.forms_1_3_opt_letter));
@@ -334,8 +326,8 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getBankAccountNumberConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getBankAccountNumberConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_account_number));
         config.setInvalidMessage(context.getString(R.string.forms_invalid_bank_account));
         config.setValidator(Validator::validateBankAccountNumber);
@@ -343,8 +335,8 @@ public final class FormConfigurations {
         return config;
     }
 
-    private static TextFormConfig<String> getFinancialEventDescriptionConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    private static TextEditTextFormConfig getFinancialEventDescriptionConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setLines(4);
         config.setRequired(false);
         config.setLabel(context.getString(R.string.forms_description));
@@ -358,6 +350,17 @@ public final class FormConfigurations {
         TextFormConfig<T> config = new TextFormConfig<>();
         config.setInvalidMessage(context.getString(R.string.forms_invalid_value));
         config.setVisibleOnSetValueNull(true);
+        config.setReadEmptyAsNull(true);
+        config.setRequired(true);
+        config.setLines(1);
+        return config;
+    }
+
+    private static TextEditTextFormConfig getBaseTextEditTextFormConfig(Context context) {
+        TextEditTextFormConfig config = new TextEditTextFormConfig();
+        config.setInvalidMessage(context.getString(R.string.forms_invalid_value));
+        config.setVisibleOnSetValueNull(true);
+        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES);
         config.setReadEmptyAsNull(true);
         config.setRequired(true);
         config.setLines(1);
@@ -421,7 +424,7 @@ public final class FormConfigurations {
         ToggleButtonFormConfig config = new ToggleButtonFormConfig();
         config.setVisibleOnSetValueNull(true);
         config.setRequired(false);
-        config.setDefaultValue(true);
+        config.setDefaultValue(false);
         config.setLabel(context.getString(R.string.forms_split_payment));
         config.setDescription(context.getString(R.string.forms_split_payment_desc));
         return config;
@@ -436,8 +439,8 @@ public final class FormConfigurations {
     }
 
     public static PaymentMethodFormConfig getPaymentMethodConfig(
-        Context context,
-        List<BankAccount> bankAccounts
+            Context context,
+            List<BankAccount> bankAccounts
     ) {
         PaymentMethodFormConfig config = new PaymentMethodFormConfig();
         config.setVisibleOnSetValueNull(true);
@@ -448,8 +451,8 @@ public final class FormConfigurations {
     }
 
     private static AutoCompleteTextFormConfig<String, BankAccount> getAccountNameAutoCompleteConfig(
-        Context context,
-        List<BankAccount> bankAccounts
+            Context context,
+            List<BankAccount> bankAccounts
     ) {
         AutoCompleteTextFormConfig<String, BankAccount> config = getAutoCompleteTextFormConfig(context);
         config.setValidator(Validator::validateBankAccountName);
@@ -460,10 +463,9 @@ public final class FormConfigurations {
         return config;
     }
 
-    public static TextFormConfig<String> getBankAccountNameConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    public static TextEditTextFormConfig getBankAccountNameConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setValidator(Validator::validateBankAccountName);
-        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_WORDS);
         config.setLabel(context.getString(R.string.forms_name));
         config.setInvalidMessage(context.getString(R.string.forms_2_30));
         return config;
@@ -489,8 +491,8 @@ public final class FormConfigurations {
     }
 
     private static IndividualAutoCompleteFormConfig getIndividualAutocompleteFormConfig(
-        Context context,
-        List<IndividualContact> individuals
+            Context context,
+            List<IndividualContact> individuals
     ) {
         IndividualAutoCompleteFormConfig config = new IndividualAutoCompleteFormConfig();
         config.setVisibleOnSetValueNull(true);
@@ -501,8 +503,8 @@ public final class FormConfigurations {
     }
 
     private static AutoCompleteTextFormConfig<String, IndividualContact> getFirstNameAutoCompleteConfig(
-        Context context,
-        List<IndividualContact> individuals
+            Context context,
+            List<IndividualContact> individuals
     ) {
         AutoCompleteTextFormConfig<String, IndividualContact> config = getAutoCompleteTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_first_name));
@@ -514,8 +516,8 @@ public final class FormConfigurations {
     }
 
     private static CompanyAutoCompleteFormConfig getCompanyAutoCompleteFormConfig(
-        Context context,
-        List<CompanyContact> companies
+            Context context,
+            List<CompanyContact> companies
     ) {
         CompanyAutoCompleteFormConfig config = new CompanyAutoCompleteFormConfig();
         config.setVisibleOnSetValueNull(true);
@@ -526,8 +528,8 @@ public final class FormConfigurations {
     }
 
     private static AutoCompleteTextFormConfig<String, CompanyContact> getCompanyNameAutoCompleteConfig(
-        Context context,
-        List<CompanyContact> companies
+            Context context,
+            List<CompanyContact> companies
     ) {
         AutoCompleteTextFormConfig<String, CompanyContact> config = getAutoCompleteTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_company_name));
@@ -590,10 +592,10 @@ public final class FormConfigurations {
     }
 
     public static InvoiceItemFormConfig getInvoiceItemConfig(
-        Context context,
-        List<ProductModel> products,
-        List<ServiceModel> services,
-        Activity activity
+            Context context,
+            List<ProductModel> products,
+            List<ServiceModel> services,
+            Activity activity
     ) {
         InvoiceItemFormConfig config = new InvoiceItemFormConfig();
         config.setVisibleOnSetValueNull(true);
@@ -604,8 +606,8 @@ public final class FormConfigurations {
     }
 
     private static ServiceAutoCompleteFormConfig getServiceAutoCmplConfig(
-        Context context,
-        List<ServiceModel> services
+            Context context,
+            List<ServiceModel> services
     ) {
         ServiceAutoCompleteFormConfig config = new ServiceAutoCompleteFormConfig();
         config.setVisibleOnSetValueNull(true);
@@ -617,8 +619,8 @@ public final class FormConfigurations {
     }
 
     private static AutoCompleteTextFormConfig<String, ServiceModel> getServiceNameAutoCmplConfig(
-        Context context,
-        List<ServiceModel> services
+            Context context,
+            List<ServiceModel> services
     ) {
         AutoCompleteTextFormConfig<String, ServiceModel> config = getAutoCompleteTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_service_name));
@@ -630,9 +632,9 @@ public final class FormConfigurations {
     }
 
     private static ProductAutoCompleteFormConfig getProductAutoCompleteConfig(
-        Context context,
-        List<ProductModel> products,
-        Activity activity
+            Context context,
+            List<ProductModel> products,
+            Activity activity
     ) {
         ProductAutoCompleteFormConfig config = new ProductAutoCompleteFormConfig();
         config.setVisibleOnSetValueNull(true);
@@ -646,8 +648,8 @@ public final class FormConfigurations {
     }
 
     private static AutoCompleteTextFormConfig<String, ProductModel> getProductNameAutoCmplConfig(
-        Context context,
-        List<ProductModel> products
+            Context context,
+            List<ProductModel> products
     ) {
         AutoCompleteTextFormConfig<String, ProductModel> config = getAutoCompleteTextFormConfig(context);
         config.setLabel(context.getString(R.string.forms_product_name));
@@ -758,16 +760,14 @@ public final class FormConfigurations {
         TextFormConfig<BigDecimal> config = getBaseTextFormConfig(context);
         config.setValidator(Validator::validateFinancialEventAmount);
         config.setInvalidMessage(context.getString(R.string.forms_scale_2));
-        config.setInputType(TYPE_CLASS_NUMBER | TYPE_NUMBER_FLAG_DECIMAL | TYPE_NUMBER_FLAG_SIGNED);
         config.setLabel(context.getString(R.string.forms_amount_of_change));
         return config;
     }
 
-    private static TextFormConfig<String> getFinancesEventTitleConfig(Context context) {
-        TextFormConfig<String> config = getBaseTextFormConfig(context);
+    private static TextEditTextFormConfig getFinancesEventTitleConfig(Context context) {
+        TextEditTextFormConfig config = getBaseTextEditTextFormConfig(context);
         config.setValidator(Validator::validateFinancialEventTitle);
         config.setInvalidMessage(context.getString(R.string.forms_2_60));
-        config.setInputType(TYPE_CLASS_TEXT | TYPE_TEXT_FLAG_CAP_SENTENCES);
         config.setLabel(context.getString(R.string.forms_title));
         return config;
     }
@@ -865,8 +865,8 @@ public final class FormConfigurations {
     }
 
     public static CreateProductFormConfig getCreateProductFormConfig(
-        Context context,
-        List<ProductModel> models
+            Context context,
+            List<ProductModel> models
     ) {
         CreateProductFormConfig config = new CreateProductFormConfig();
         config.setVisibleOnSetValueNull(true);
@@ -876,8 +876,8 @@ public final class FormConfigurations {
     }
 
     public static ModifyProductFormConfig getModifyProductFormConfig(
-        Context context,
-        Product product
+            Context context,
+            Product product
     ) {
         ModifyProductFormConfig config = new ModifyProductFormConfig();
         config.setVisibleOnSetValueNull(true);
@@ -911,8 +911,8 @@ public final class FormConfigurations {
     }
 
     public static CreateInvoiceBaseDataFormConfig getCreateInvoiceBaseDataFormConfig(
-        Context context,
-        String invoicePrefix
+            Context context,
+            String invoicePrefix
     ) {
         CreateInvoiceBaseDataFormConfig config = new CreateInvoiceBaseDataFormConfig();
         config.setVisibleOnSetValueNull(true);
@@ -962,8 +962,8 @@ public final class FormConfigurations {
     }
 
     public static CreateInvoicePaymentFormConfig getCreateInvoicePaymentFormConfig(
-        Context context,
-        List<BankAccount> accounts
+            Context context,
+            List<BankAccount> accounts
     ) {
         CreateInvoicePaymentFormConfig config = new CreateInvoicePaymentFormConfig();
         config.setVisibleOnSetValueNull(true);

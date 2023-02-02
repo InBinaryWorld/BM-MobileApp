@@ -2,7 +2,7 @@ package dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.addr
 
 import dev.szafraniak.bm_mobileapp.business.models.entity.address.Address;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.text.TextEditTextFormConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,11 +11,11 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class AddressFormConfig extends BaseFormConfig<Address> {
 
-    protected TextFormConfig<String> countryConfig;
-    protected TextFormConfig<String> cityConfig;
-    protected TextFormConfig<String> streetConfig;
-    protected TextFormConfig<String> postalConfig;
-    protected TextFormConfig<String> houseConfig;
-    protected TextFormConfig<String> apartmentConfig;
+    protected TextEditTextFormConfig countryConfig;
+    protected TextEditTextFormConfig cityConfig;
+    protected TextEditTextFormConfig streetConfig;
+    protected TextEditTextFormConfig postalConfig;
+    protected TextEditTextFormConfig houseConfig;
+    protected TextEditTextFormConfig apartmentConfig;
 
 }

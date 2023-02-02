@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import dev.szafraniak.bm_mobileapp.business.models.entity.finantialRow.UpdateFinancialRowRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.dateTimePicker.DateTimePickerFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.text.TextEditTextFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,9 +15,9 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class FinancesEventModifyFormConfig extends BaseFormConfig<UpdateFinancialRowRequest> {
 
-    private TextFormConfig<String> titleConfig;
+    private TextEditTextFormConfig titleConfig;
     private TextFormConfig<BigDecimal> amountConfig;
-    private TextFormConfig<String> descriptionConfig;
+    private TextEditTextFormConfig descriptionConfig;
     private DateTimePickerFormConfig dateTimePickerConfig;
 
 }

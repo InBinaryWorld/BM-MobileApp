@@ -1,6 +1,7 @@
 package dev.szafraniak.bm_mobileapp.business.utils;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormatSymbols;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,7 +27,11 @@ public final class Parser {
             return zeroOnNullOrEmpty ? BigDecimal.ZERO : null;
         }
         try {
-            return new BigDecimal(value).stripTrailingZeros();
+            DecimalFormatSymbols dfs = Formatter.getDecimalFormatSymbols();
+            String valueEn = value
+                    .replace(String.valueOf(dfs.getGroupingSeparator()), "")
+                    .replace(dfs.getDecimalSeparator(), '.');
+            return new BigDecimal(valueEn).stripTrailingZeros();
         } catch (NumberFormatException e) {
             return zeroOnException ? BigDecimal.ZERO : null;
         }
