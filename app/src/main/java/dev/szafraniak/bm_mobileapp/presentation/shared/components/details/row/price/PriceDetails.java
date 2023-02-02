@@ -9,8 +9,8 @@ import androidx.annotation.LayoutRes;
 import dev.szafraniak.bm_mobileapp.R;
 import dev.szafraniak.bm_mobileapp.business.models.entity.price.Price;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.base.BaseDetails;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.number.DecimalTextViewDetails;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.number.IntegerTextViewDetails;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.details.row.textview.number.PriceTextViewDetails;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.BaseViewHolder;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.shared.EditTextViewHolder;
 
@@ -19,9 +19,9 @@ public class PriceDetails extends BaseDetails<Price, BaseViewHolder, PriceDetail
     @LayoutRes
     private final int layoutId = R.layout.form_base_group;
 
-    DecimalTextViewDetails netRow;
+    PriceTextViewDetails netRow;
     IntegerTextViewDetails taxRow;
-    DecimalTextViewDetails grossRow;
+    PriceTextViewDetails grossRow;
 
     public PriceDetails(LayoutInflater inflater, ViewGroup viewGroup, PriceDetailsConfig config) {
         super(inflater, viewGroup, config);
@@ -44,9 +44,9 @@ public class PriceDetails extends BaseDetails<Price, BaseViewHolder, PriceDetail
     protected EditTextViewHolder createViewHolder(LayoutInflater inflater, ViewGroup viewGroup, PriceDetailsConfig config) {
         LinearLayout groupList = (LinearLayout) inflater.inflate(layoutId, viewGroup, false);
 
-        netRow = new DecimalTextViewDetails(inflater, groupList, config.getNetConfig());
+        netRow = new PriceTextViewDetails(inflater, groupList, config.getNetConfig());
         taxRow = new IntegerTextViewDetails(inflater, groupList, config.getTaxConfig());
-        grossRow = new DecimalTextViewDetails(inflater, groupList, config.getGrossConfig());
+        grossRow = new PriceTextViewDetails(inflater, groupList, config.getGrossConfig());
 
         groupList.addView(netRow.getView());
         groupList.addView(taxRow.getView());
