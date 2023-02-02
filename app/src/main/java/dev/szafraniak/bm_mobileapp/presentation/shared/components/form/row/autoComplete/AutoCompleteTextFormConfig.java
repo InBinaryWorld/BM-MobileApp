@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class AutoCompleteTextFormConfig<T, R> extends TextFormConfig<T> {
 
+    private int inputType;
     private String invalidMessage;
     private List<R> listItems;
 

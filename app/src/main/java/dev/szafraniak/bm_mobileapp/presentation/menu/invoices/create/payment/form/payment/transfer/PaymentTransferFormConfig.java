@@ -4,7 +4,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.bankAccount.BankAccoun
 import dev.szafraniak.bm_mobileapp.business.models.entity.payment.PaymentTransfer;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.autoComplete.AutoCompleteTextFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.text.TextEditTextFormConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,6 +13,6 @@ import lombok.EqualsAndHashCode;
 public class PaymentTransferFormConfig extends BaseFormConfig<PaymentTransfer> {
 
     private AutoCompleteTextFormConfig<String, BankAccount> nameConfig;
-    private TextFormConfig<String> numberConfig;
+    private TextEditTextFormConfig numberConfig;
 
 }

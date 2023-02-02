@@ -3,8 +3,8 @@ package dev.szafraniak.bm_mobileapp.presentation.menu.productmodel.create;
 import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.CreateProductModelRequest;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.barcode.BarcodeFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.text.TextEditTextFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.price.PriceFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,8 +13,8 @@ import lombok.EqualsAndHashCode;
 public class CreateProductModelFormConfig extends BaseFormConfig<CreateProductModelRequest> {
 
     public BarcodeFormConfig barcodeConfig;
-    public TextFormConfig<String> nameConfig;
-    public TextFormConfig<String> quantityUniteConfig;
+    public TextEditTextFormConfig nameConfig;
+    public TextEditTextFormConfig quantityUniteConfig;
     public PriceFormConfig priceFormConfig;
 
 }

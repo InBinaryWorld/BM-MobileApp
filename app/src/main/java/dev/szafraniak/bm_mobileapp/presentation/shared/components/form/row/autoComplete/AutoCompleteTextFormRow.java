@@ -30,6 +30,7 @@ public abstract class AutoCompleteTextFormRow<T, P, C extends AutoCompleteTextFo
         super.setupView(inflater, config);
         AutoCompleteTextViewViewHolder holder = getViewHolder();
         holder.editText.setAdapter(createAdapter(inflater, config));
+        holder.editText.setAdapter(createAdapter(inflater, config));
         addOnItemSelected(this::viewOnItemSelected);
     }
 

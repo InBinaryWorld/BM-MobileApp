@@ -9,6 +9,7 @@ import dev.szafraniak.bm_mobileapp.business.models.entity.productmodel.ProductMo
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.InvoiceItemFormModel;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.autoComplete.AutoCompleteTextFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.text.TextEditTextFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.price.PriceFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
 import lombok.Data;
@@ -19,7 +20,7 @@ import lombok.EqualsAndHashCode;
 public class ProductAutoCompleteFormConfig extends BaseFormConfig<InvoiceItemFormModel> {
 
     private AutoCompleteTextFormConfig<String, ProductModel> productNameConfig;
-    private TextFormConfig<String> quantityUnitConfig;
+    private TextEditTextFormConfig quantityUnitConfig;
     public TextFormConfig<BigDecimal> quantityConfig;
     public PriceFormConfig priceFormConfig;
     private Activity activity;

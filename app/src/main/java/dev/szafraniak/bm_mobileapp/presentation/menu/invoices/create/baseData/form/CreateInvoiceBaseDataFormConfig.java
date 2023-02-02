@@ -5,7 +5,7 @@ import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.baseData.fo
 import dev.szafraniak.bm_mobileapp.presentation.menu.invoices.create.baseData.form.payment.ClickablePaymentFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.base.BaseFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.datePicker.DatePickerFormConfig;
-import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.text.TextFormConfig;
+import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.editText.text.TextEditTextFormConfig;
 import dev.szafraniak.bm_mobileapp.presentation.shared.components.form.row.toggleButton.ToggleButtonFormConfig;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class CreateInvoiceBaseDataFormConfig extends BaseFormConfig<CreateInvoiceBaseFormModel> {
 
-    public TextFormConfig<String> invoiceNumberConfig;
+    public TextEditTextFormConfig invoiceNumberConfig;
     public DatePickerFormConfig issueDateConfig;
     public DatePickerFormConfig sellDateConfig;
     public ClickableContactFormConfig buyerConfig;

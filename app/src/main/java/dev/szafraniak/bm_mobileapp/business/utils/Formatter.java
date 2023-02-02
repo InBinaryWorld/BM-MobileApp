@@ -47,20 +47,22 @@ public class Formatter {
         return number == null ? null : removeSeparator(number);
     }
 
-    private static String removeSeparator(String value) {
-        return value.replaceAll(String.valueOf(Constance.GROUPING_SEPARATOR), "");
-    }
-
-
-    private static DecimalFormat getBaseDecimalFormat() {
+    public static DecimalFormatSymbols getDecimalFormatSymbols(){
         DecimalFormatSymbols symbols = new DecimalFormatSymbols();
         if (Constance.DECIMAL_SEPARATOR.length() == 1) {
             symbols.setDecimalSeparator(Constance.DECIMAL_SEPARATOR.charAt(0));
         }
         symbols.setGroupingSeparator(Constance.GROUPING_SEPARATOR);
+        return symbols;
+    }
 
+    private static String removeSeparator(String value) {
+        return value.replaceAll(String.valueOf(Constance.GROUPING_SEPARATOR), "");
+    }
+
+    private static DecimalFormat getBaseDecimalFormat() {
         DecimalFormat format = new DecimalFormat();
-        format.setDecimalFormatSymbols(symbols);
+        format.setDecimalFormatSymbols(Formatter.getDecimalFormatSymbols());
         return format;
     }
 
